@@ -72,9 +72,9 @@ class DropHintView: UIView {
         if self.currenDropView == toDropView {
             if (self.currenDropView?.isShow)! {
                 self.currenDropView?.hiddenDropView()
-                self.currentTapTab(index: index)
-            } else {
                 self.tabButtonAllInactive()
+            } else {
+                self.currentTapTab(index: index)
                 self.currenDropView?.showDropViewAnimation()
             }
             return
@@ -135,7 +135,7 @@ class DropHintView: UIView {
         var tabItems:[TabItem] = []
         if let titles = titles {
             for title in titles {
-                let item = TabItem(selected: false, title: title, selectedImage: #imageLiteral(resourceName: "down_other"), defaultImage: #imageLiteral(resourceName: "down_other"))
+                let item = TabItem(selected: false, title: title, selectedImage: #imageLiteral(resourceName: "tab_up"), defaultImage: #imageLiteral(resourceName: "down_other"))
                 tabItems.append(item)
             }
         }
