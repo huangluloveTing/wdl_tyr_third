@@ -1,0 +1,6 @@
+module Pods_WDL_TYR {
+  umbrella header "Pods-WDL_TYR-umbrella.h"
+
+  export *
+  module * { export * }
+}

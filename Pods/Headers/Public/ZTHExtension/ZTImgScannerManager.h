@@ -1,0 +1,1 @@
+../../../ZTHExtension/ZTExtension/Pictures/ZTImgScannerManager.h
