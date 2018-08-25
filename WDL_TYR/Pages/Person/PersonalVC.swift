@@ -8,12 +8,13 @@
 
 import UIKit
 
-class PersonalVC: MainBaseVC {
-
+class PersonalVC: MainBaseVC , DropHintViewDataSource{
+    
+    @IBOutlet weak var dropHintView: DropHintView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.dropHintView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +22,22 @@ class PersonalVC: MainBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.dropHintView.tabTitles(titles: ["消息时间","全部"])
+        self.dropHintView.dropTapClosure = {(index) in
+            print("current tap index ： \(index)")
+        }
     }
-    */
-
+    
+    func dropHintView(dropHint: DropHintView, index: Int) -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.zt_width, height: 100))
+        if index == 0 {
+            view.backgroundColor = UIColor.red
+            
+        } else {
+            view.backgroundColor = UIColor.blue
+        }
+        return view
+    }
 }

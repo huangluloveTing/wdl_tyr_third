@@ -11,7 +11,6 @@ import Foundation
 class GoodsSupplyStatusDropView: UIView , ZTTagViewDelegate , ZTTagViewDataSource {
     
     public var isShow:Bool = false
-    
     private var tagTitles:[String]?
     private var opacityView:UIView?
     private var targetView:UIView?
@@ -21,6 +20,23 @@ class GoodsSupplyStatusDropView: UIView , ZTTagViewDelegate , ZTTagViewDataSourc
         self.targetView = targetView
         super.init(frame: frame)
         self.configSubViews()
+    }
+    
+    init(tags:[String]) {
+        self.tagTitles = tags
+        super.init(frame:CGRect.zero)
+        self.configTagView()
+    }
+    
+    func configTagView() {
+        self.backgroundColor = UIColor.white
+        self.clipsToBounds = true
+        self.configTags()
+        let tagSize = self.tagView.intrinsicContentSize
+        self.tagView.zt_origin = CGPoint.zero
+        self.tagView.zt_size = tagSize
+        self.frame = self.tagView.frame
+        self.addSubview(self.tagView)
     }
     
     func configSubViews() {

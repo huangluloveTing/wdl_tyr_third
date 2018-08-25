@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		702B40E021314A2400D3D27A /* DropHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B40DF21314A2400D3D27A /* DropHintView.swift */; };
 		702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D2CBE2130545A0007A11F /* UIView+Extension.swift */; };
 		702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D2CC421305CA80007A11F /* MainBaseVC.swift */; };
 		702D2CC721305CCE0007A11F /* NormalBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D2CC621305CCE0007A11F /* NormalBaseVC.swift */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		702B40DF21314A2400D3D27A /* DropHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropHintView.swift; sourceTree = "<group>"; };
 		702D2CBE2130545A0007A11F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		702D2CC421305CA80007A11F /* MainBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseVC.swift; sourceTree = "<group>"; };
 		702D2CC621305CCE0007A11F /* NormalBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalBaseVC.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				708150C22130F53200D42723 /* BageView.swift */,
 				708150D7213123A400D42723 /* DropView.swift */,
 				708150D92131396700D42723 /* DropViewContainer.swift */,
+				702B40DF21314A2400D3D27A /* DropHintView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				702B40E021314A2400D3D27A /* DropHintView.swift in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,

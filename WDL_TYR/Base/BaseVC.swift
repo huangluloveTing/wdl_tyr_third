@@ -64,4 +64,13 @@ extension BaseVC {
         rightBadgeView.bgColor(bgColor: UIColor.clear)
         self.addRightBarbuttonItem(with: rightBadgeView)
     }
+    
+    // 添加下拉视图
+    /**
+     * drop 添加的下拉视图
+     * anchorView 锚点视图 -- 确定下拉视图的位置和大小
+     */
+    func addDropView(drop:UIView,anchorView:UIView) -> DropViewContainer {
+        return DropViewContainer(dropView: drop, anchorView: anchorView)
+    }
 }

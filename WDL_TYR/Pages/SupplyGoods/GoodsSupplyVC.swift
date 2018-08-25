@@ -11,6 +11,7 @@ import UIKit
 class GoodsSupplyVC: MainBaseVC {
     
     @IBOutlet weak var statusButton: MyButton!
+    @IBOutlet weak var dropAnchorView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +34,9 @@ class GoodsSupplyVC: MainBaseVC {
             .disposed(by: dispose)
     }
     
-    private lazy var statusView:GoodsSupplyStatusDropView = {
-        self.statusView = DropViewManager.showGoodsSupplyStatus(frame: CGRect(origin: CGPoint(x: 0, y: 45), size: CGSize(width: self.view.zt_width , height: self.view.zt_height - 45)), targetView: self.view) { (index) in
-            
-        }
-        
-        return self.statusView
+    private lazy var statusView:DropViewContainer = {
+       let statusView = GoodsSupplyStatusDropView(tags: ["不限","已成交","竞价中","已上架","未上架"])
+        return self.addDropView(drop: statusView, anchorView: self.dropAnchorView)
     }()
 }
 
@@ -49,9 +47,9 @@ extension GoodsSupplyVC {
     func showStatusDropView() {
         
         if self.statusView.isShow == false {
-            self.statusView.animationShow()
+            self.statusView.showDropViewAnimation()
         } else {
-            self.statusView.animationHidden()
+            self.statusView.hiddenDropView()
         }
     }
 }

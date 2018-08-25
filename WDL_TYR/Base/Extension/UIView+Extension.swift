@@ -135,6 +135,31 @@ extension UIView {
             return self.frame.size
         }
     }
+    
+    public var endX : CGFloat {
+        get {
+            return self.zt_x+self.zt_width
+        }
+    }
+    
+    public var endY : CGFloat {
+        get {
+            return self.zt_y+self.zt_height
+        }
+    }
+}
+
+extension UIView {
+    
+    //删除 指定的视图类型的所有视图
+    func removeSubTypeView(viewType:AnyClass) {
+        let subViews = self.subviews
+        for subView in subViews {
+            if subView.isKind(of: viewType) {
+                subView.removeFromSuperview()
+            }
+        }
+    }
 }
 
 

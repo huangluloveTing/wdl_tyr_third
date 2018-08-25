@@ -10,12 +10,23 @@ import UIKit
 
 class DropViewContainer: UIView {
     
+    typealias ShowCompleteClosure = () -> ()
+    typealias DismissCompleteClosure = () -> ()
+    
+    public var isShow:Bool = false
+    
     private var dropView:UIView
     private var anchorView:UIView
-    init(frame:CGRect , dropView:UIView , anchorView:UIView) {
+    
+    public var showCompleteClosure:ShowCompleteClosure!
+    public var dismissCompleteClosure:DismissCompleteClosure!
+    
+    init(dropView:UIView ,
+         anchorView:UIView) {
         self.dropView = dropView
         self.anchorView = anchorView
-        super.init(frame:frame)
+        super.init(frame:CGRect.zero)
+        self.configViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,8 +34,22 @@ class DropViewContainer: UIView {
     }
     
     func configViews() {
+        self.configDropView()
+    }
+    
+    // 根据锚点view 和 锚点view 的父视图 计算 当前下拉视图的位置
+    func configDropView() {
+        let anchorSuperView = self.anchorView.superview
+        let x = self.anchorView.zt_x
+        let y = self.anchorView.zt_y + self.anchorView.zt_height
+        let width = self.anchorView.zt_width
+        let height = (anchorSuperView?.zt_height)! - y
+        self.frame = CGRect(x: x, y: y, width: width, height: height)
+        anchorSuperView?.addSubview(self)
         self.maskOpacityView.frame = self.bounds
         self.addSubview(self.maskOpacityView)
+        self.maskOpacityView.addSubview(self.dropView)
+        self.maskOpacityView.zt_height = 0
     }
     
     private lazy var maskOpacityView:UIView = {
@@ -37,11 +62,25 @@ class DropViewContainer: UIView {
 
 extension DropViewContainer {
     
-    func showDropView() {
-        
+}
+
+extension DropViewContainer {
+    
+    func showDropViewAnimation() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.maskOpacityView.zt_height = self.zt_height
+        }) { (finish) in
+            self.isShow = true
+        }
     }
     
     func hiddenDropView() {
-        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.maskOpacityView.zt_height = 0
+        }) { (finish) in
+            if finish == true {
+                self.isShow = false
+            }
+        }
     }
 }
