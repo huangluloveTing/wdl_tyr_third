@@ -8,6 +8,7 @@
 
 import Foundation
 import SnapKit
+import RxSwift
 
 
 extension UIView {
@@ -64,4 +65,106 @@ extension UIView {
     }
 }
 
+// frame
+extension UIView {
+    
+    public var zt_x:CGFloat {
+        get {
+           return self.frame.origin.x
+        }
+        set {
+            var frame = self.frame
+            frame.origin.x = newValue
+            self.frame = frame
+        }
+    }
+    
+    public var zt_y:CGFloat {
+        get {
+            return self.frame.origin.y
+        }
+        set {
+            var frame = self.frame
+            frame.origin.y = newValue
+            self.frame = frame
+        }
+    }
+    
+    public var zt_width:CGFloat {
+        set {
+            var frame = self.frame
+            frame.size.width = newValue
+            self.frame = frame
+        }
+        get {
+            return self.frame.size.width
+        }
+    }
+    
+    public var zt_height:CGFloat {
+        set {
+            var frame = self.frame
+            frame.size.height = newValue
+            self.frame = frame
+        }
+        get {
+            return self.frame.size.height
+        }
+    }
+    
+    public var zt_origin:CGPoint {
+        set {
+            var frame = self.frame
+            frame.origin = newValue
+            self.frame = frame
+        }
+        
+        get {
+            return self.frame.origin
+        }
+    }
+    
+    public var zt_size:CGSize {
+        set {
+            var frame = self.frame
+            frame.size = newValue
+            self.frame = frame
+        }
+        
+        get {
+            return self.frame.size
+        }
+    }
+}
+
+
+// 添加点击事件
+var storeTapClosureKey = "storeTapClosureKey"
+extension UIView {
+    
+    typealias SingleTapAction = (UIView) -> ()
+    
+    private var singleTapClosure:SingleTapAction? {
+        set {
+            objc_setAssociatedObject(self, &storeTapClosureKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
+        }
+        get {
+            return (objc_getAssociatedObject(self, &storeTapClosureKey) as? UIView.SingleTapAction)
+        }
+    }
+    
+    func singleTap(closure:SingleTapAction?) -> Void {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(singleTapViewAction(sender:)))
+        self.isUserInteractionEnabled = true
+        self.singleTapClosure = closure
+        self.addGestureRecognizer(tap)
+    }
+    
+    
+    @objc private func singleTapViewAction(sender:UIView) {
+        if self.singleTapClosure != nil {
+            self.singleTapClosure!(sender)
+        }
+    }
+}
 

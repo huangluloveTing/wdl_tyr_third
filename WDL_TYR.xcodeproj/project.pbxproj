@@ -43,6 +43,11 @@
 		708150CB2131039C00D42723 /* SKTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 708150C52131039C00D42723 /* SKTag.m */; };
 		708150CC2131039C00D42723 /* SKTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 708150C72131039C00D42723 /* SKTagView.m */; };
 		708150CD2131039C00D42723 /* SKTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 708150CA2131039C00D42723 /* SKTagButton.m */; };
+		708150CF21311FA800D42723 /* DropViewManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150CE21311FA800D42723 /* DropViewManage.swift */; };
+		708150D5213122CA00D42723 /* ZTTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 708150D2213122C900D42723 /* ZTTagView.m */; };
+		708150D6213122CA00D42723 /* ZTTagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 708150D4213122CA00D42723 /* ZTTagItem.m */; };
+		708150D8213123A400D42723 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D7213123A400D42723 /* DropView.swift */; };
+		708150DA2131396700D42723 /* DropViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D92131396700D42723 /* DropViewContainer.swift */; };
 		70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524C212E5D75007F2ED5 /* BaseVC.swift */; };
 		70C25250212E5D8E007F2ED5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524E212E5D8E007F2ED5 /* LoginVC.swift */; };
@@ -102,6 +107,13 @@
 		708150C82131039C00D42723 /* SKTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTag.h; sourceTree = "<group>"; };
 		708150C92131039C00D42723 /* SKTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTagView.h; sourceTree = "<group>"; };
 		708150CA2131039C00D42723 /* SKTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTagButton.m; sourceTree = "<group>"; };
+		708150CE21311FA800D42723 /* DropViewManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewManage.swift; sourceTree = "<group>"; };
+		708150D1213122C900D42723 /* ZTTagItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTTagItem.h; sourceTree = "<group>"; };
+		708150D2213122C900D42723 /* ZTTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTTagView.m; sourceTree = "<group>"; };
+		708150D3213122CA00D42723 /* ZTTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTTagView.h; sourceTree = "<group>"; };
+		708150D4213122CA00D42723 /* ZTTagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTTagItem.m; sourceTree = "<group>"; };
+		708150D7213123A400D42723 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
+		708150D92131396700D42723 /* DropViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewContainer.swift; sourceTree = "<group>"; };
 		70C25246212E57D9007F2ED5 /* WDL_TYR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WDL_TYR-Bridging-Header.h"; sourceTree = "<group>"; };
 		70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
@@ -272,6 +284,8 @@
 			isa = PBXGroup;
 			children = (
 				708150C22130F53200D42723 /* BageView.swift */,
+				708150D7213123A400D42723 /* DropView.swift */,
+				708150D92131396700D42723 /* DropViewContainer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,19 +293,31 @@
 		708150C42131039C00D42723 /* SKTagView */ = {
 			isa = PBXGroup;
 			children = (
-				708150C52131039C00D42723 /* SKTag.m */,
-				708150C62131039C00D42723 /* SKTagButton.h */,
-				708150C72131039C00D42723 /* SKTagView.m */,
 				708150C82131039C00D42723 /* SKTag.h */,
+				708150C52131039C00D42723 /* SKTag.m */,
 				708150C92131039C00D42723 /* SKTagView.h */,
+				708150C72131039C00D42723 /* SKTagView.m */,
+				708150C62131039C00D42723 /* SKTagButton.h */,
 				708150CA2131039C00D42723 /* SKTagButton.m */,
 			);
 			path = SKTagView;
 			sourceTree = "<group>";
 		};
+		708150D0213122BF00D42723 /* ZTTagView */ = {
+			isa = PBXGroup;
+			children = (
+				708150D3213122CA00D42723 /* ZTTagView.h */,
+				708150D2213122C900D42723 /* ZTTagView.m */,
+				708150D1213122C900D42723 /* ZTTagItem.h */,
+				708150D4213122CA00D42723 /* ZTTagItem.m */,
+			);
+			path = ZTTagView;
+			sourceTree = "<group>";
+		};
 		70C25242212E5701007F2ED5 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				708150D0213122BF00D42723 /* ZTTagView */,
 				708150C42131039C00D42723 /* SKTagView */,
 				70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */,
 				70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */,
@@ -340,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				7058BD20212E8B4B00B53DF6 /* Util.swift */,
+				708150CE21311FA800D42723 /* DropViewManage.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -514,6 +541,7 @@
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,
 				705926D5212A5DE800BE8BB4 /* AppDelegate.swift in Sources */,
+				708150DA2131396700D42723 /* DropViewContainer.swift in Sources */,
 				7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
@@ -524,6 +552,7 @@
 				708150CD2131039C00D42723 /* SKTagButton.m in Sources */,
 				702D2CCA21305FC70007A11F /* GoodsSupplyVC.swift in Sources */,
 				70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */,
+				708150D8213123A400D42723 /* DropView.swift in Sources */,
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
 				706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */,
@@ -531,8 +560,10 @@
 				70C2525D212E75B2007F2ED5 /* RegisterVC.swift in Sources */,
 				708150B62130E4E000D42723 /* BaseCell.swift in Sources */,
 				708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */,
+				708150CF21311FA800D42723 /* DropViewManage.swift in Sources */,
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,
+				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,
 				708150CC2131039C00D42723 /* SKTagView.m in Sources */,
@@ -544,6 +575,7 @@
 				708150BD2130E85400D42723 /* MyButton.swift in Sources */,
 				705926F0212A5E5500BE8BB4 /* API.swift in Sources */,
 				702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */,
+				708150D6213122CA00D42723 /* ZTTagItem.m in Sources */,
 				7058BD2C212E990100B53DF6 /* ZTTransitionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
