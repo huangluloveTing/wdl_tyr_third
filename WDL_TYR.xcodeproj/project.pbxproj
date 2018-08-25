@@ -36,6 +36,8 @@
 		705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705926EA212A5E5500BE8BB4 /* BaseModel.swift */; };
 		705926F0212A5E5500BE8BB4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705926EB212A5E5500BE8BB4 /* API.swift */; };
 		706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */; };
+		70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D712131B12000E12CEC /* UIViewController+Location.swift */; };
+		70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D732131B20500E12CEC /* AMapHandleManager.swift */; };
 		708150B62130E4E000D42723 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150B52130E4E000D42723 /* BaseCell.swift */; };
 		708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150BA2130E7CF00D42723 /* UIButton+Extension.swift */; };
 		708150BD2130E85400D42723 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150BC2130E85400D42723 /* MyButton.swift */; };
@@ -98,6 +100,8 @@
 		705926EA212A5E5500BE8BB4 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		705926EB212A5E5500BE8BB4 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarVC.swift; sourceTree = "<group>"; };
+		70721D712131B12000E12CEC /* UIViewController+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Location.swift"; sourceTree = "<group>"; };
+		70721D732131B20500E12CEC /* AMapHandleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMapHandleManager.swift; sourceTree = "<group>"; };
 		708150B52130E4E000D42723 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		708150BA2130E7CF00D42723 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		708150BC2130E85400D42723 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 				708150BA2130E7CF00D42723 /* UIButton+Extension.swift */,
 				708150BC2130E85400D42723 /* MyButton.swift */,
 				708150BE2130F18C00D42723 /* MySearchBar.swift */,
+				70721D712131B12000E12CEC /* UIViewController+Location.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 			children = (
 				7058BD20212E8B4B00B53DF6 /* Util.swift */,
 				708150CE21311FA800D42723 /* DropViewManage.swift */,
+				70721D732131B20500E12CEC /* AMapHandleManager.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -515,12 +521,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
+				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/ZTHExtension/ZTExtension/HZExtension/ZTExtension.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZTExtension.bundle",
@@ -540,6 +548,7 @@
 				702B40E021314A2400D3D27A /* DropHintView.swift in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
+				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
 				70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */,
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
@@ -566,6 +575,7 @@
 				708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */,
 				708150CF21311FA800D42723 /* DropViewManage.swift in Sources */,
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
+				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
@@ -735,7 +745,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yinli.b2c.WDL-TYR";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WDL_TYR/WDL_TYR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -758,7 +768,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yinli.b2c.WDL-TYR";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WDL_TYR/WDL_TYR-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

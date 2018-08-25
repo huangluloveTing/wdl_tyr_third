@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>应用$(PRODUCT_NAME)需要请求定位，请允许使用</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>应用$(PRODUCT_NAME)需要请求定位，请允许使用</string>
+	<key>NSLocationUsageDescription</key>
+	<string>应用$(PRODUCT_NAME)需要请求定位，请允许使用</string>
+	<key>NSCameraUsageDescription</key>
+	<string>为了方便使用$(PRODUCT_NAME)，请允许使用</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

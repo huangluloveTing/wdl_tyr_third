@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         self.configIQKeyboard()
+        self.configGAODEMap()
         
         return true
     }
@@ -36,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configGlobalNavigationBar() {
         
+    }
+    
+    func configGAODEMap() {
+        AMapServices.shared().apiKey = GAODE_MAP_KEY
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

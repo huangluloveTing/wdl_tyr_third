@@ -10,6 +10,8 @@ pod 'ZTHExtension', '~> 1.3.5'
 pod 'TYPagerController'
 pod 'IQKeyboardManagerSwift'
 pod 'SnapKit'
+pod 'AMapLocation'
+pod 'AMap2DMap'
 
 end
 

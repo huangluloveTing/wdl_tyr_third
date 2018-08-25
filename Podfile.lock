@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (4.7.3)
+  - AMap2DMap (5.6.0):
+    - AMapFoundation (~> 1.4)
+  - AMapFoundation (1.5.3)
+  - AMapLocation (2.6.0):
+    - AMapFoundation (~> 1.4)
   - Differentiator (3.0.2)
   - FLAnimatedImage (1.0.12)
   - HandyJSON (4.1.3)
@@ -53,6 +58,8 @@ PODS:
     - ZTHExtension/Extension
 
 DEPENDENCIES:
+  - AMap2DMap
+  - AMapLocation
   - HandyJSON
   - IQKeyboardManagerSwift
   - Moya/RxSwift (~> 11.0)
@@ -65,6 +72,9 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AMap2DMap
+    - AMapFoundation
+    - AMapLocation
     - Differentiator
     - FLAnimatedImage
     - HandyJSON
@@ -84,6 +94,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AMap2DMap: cf0bfd6ae97951b55cc061903b814f924ba6c221
+  AMapFoundation: 58f883c80754c659cf626deb3150936bfe8f1772
+  AMapLocation: 55116a2c8956eab7550cbb56e989aa5cdcc424e3
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   HandyJSON: bc81fbeb62d65ae5d5942ed29bc4a8265d18c1e8
@@ -101,6 +114,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZTHExtension: 924db453c38d748321023af4d5d637eeae45828f
 
-PODFILE CHECKSUM: a4534f1bcc2e12722085048019e9a3f4dcbc5d15
+PODFILE CHECKSUM: 8bbe1969fe5c13d00b1d1052ee9bc7f0c2811e9e
 
 COCOAPODS: 1.5.3
