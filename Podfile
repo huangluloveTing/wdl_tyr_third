@@ -12,6 +12,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'SnapKit'
 pod 'AMapLocation'
 pod 'AMap2DMap'
+pod 'DZNEmptyDataSet'
 
 end
 

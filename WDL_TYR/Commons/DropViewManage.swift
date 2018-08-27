@@ -11,7 +11,9 @@ import Foundation
 
 class DropViewManager {
     
-    static func showGoodsSupplyStatus(frame:CGRect, targetView:UIView , tapItemClosure:((Int) -> ()))  -> GoodsSupplyStatusDropView {
+    static func showGoodsSupplyStatus(frame:CGRect,
+                                      targetView:UIView ,
+                                      tapItemClosure:((Int) -> ()))  -> GoodsSupplyStatusDropView {
         let statusDropView = GoodsSupplyStatusDropView(frame: frame, titles: ["不限","已成交","竞价中","已上架","未上架"] , targetView:targetView)
         return statusDropView
     }

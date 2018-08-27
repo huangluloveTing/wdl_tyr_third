@@ -10,6 +10,8 @@ import UIKit
 
 class PersonalVC: MainBaseVC , DropHintViewDataSource{
     
+    private let manager:AMapHandleManager! = AMapHandleManager.shared()
+    
     @IBOutlet weak var dropHintView: DropHintView!
     
     override func viewDidLoad() {
@@ -24,7 +26,9 @@ class PersonalVC: MainBaseVC , DropHintViewDataSource{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        AMapHandleManager.shared().startSingleLocation { (location, rego, error) in
+            
+        }
     }
     
     override func viewDidLayoutSubviews() {

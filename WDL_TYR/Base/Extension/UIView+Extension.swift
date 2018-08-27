@@ -53,6 +53,7 @@ extension UIView {
         self.snp.updateConstraints { (maker) in
             maker.height.equalTo(height)
         }
+        self.updateConstraintsIfNeeded()
         return self
     }
     
@@ -192,4 +193,5 @@ extension UIView {
         }
     }
 }
+
 

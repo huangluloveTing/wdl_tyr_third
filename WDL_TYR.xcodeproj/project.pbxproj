@@ -51,6 +51,8 @@
 		708150D6213122CA00D42723 /* ZTTagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 708150D4213122CA00D42723 /* ZTTagItem.m */; };
 		708150D8213123A400D42723 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D7213123A400D42723 /* DropView.swift */; };
 		708150DA2131396700D42723 /* DropViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D92131396700D42723 /* DropViewContainer.swift */; };
+		70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */; };
+		70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */; };
 		70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524C212E5D75007F2ED5 /* BaseVC.swift */; };
 		70C25250212E5D8E007F2ED5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524E212E5D8E007F2ED5 /* LoginVC.swift */; };
@@ -120,6 +122,8 @@
 		708150D4213122CA00D42723 /* ZTTagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTTagItem.m; sourceTree = "<group>"; };
 		708150D7213123A400D42723 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 		708150D92131396700D42723 /* DropViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewContainer.swift; sourceTree = "<group>"; };
+		70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyCell.swift; sourceTree = "<group>"; };
+		70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyCell.xib; sourceTree = "<group>"; };
 		70C25246212E57D9007F2ED5 /* WDL_TYR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WDL_TYR-Bridging-Header.h"; sourceTree = "<group>"; };
 		70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
@@ -269,6 +273,8 @@
 		708150B72130E4F700D42723 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */,
+				70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -453,6 +459,11 @@
 					705926D0212A5DE800BE8BB4 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -488,6 +499,7 @@
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
+				70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */,
 				702D2CD3213060190007A11F /* PersonalVC.xib in Resources */,
 				70C2525E212E75B2007F2ED5 /* RegisterVC.xib in Resources */,
 			);
@@ -562,6 +574,7 @@
 				705926EE212A5E5500BE8BB4 /* ResponseHandle.swift in Sources */,
 				702D2CD2213060190007A11F /* PersonalVC.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
+				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
 				708150CD2131039C00D42723 /* SKTagButton.m in Sources */,
 				702D2CCA21305FC70007A11F /* GoodsSupplyVC.swift in Sources */,
 				70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */,
@@ -737,7 +750,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 7RES3B3RSU;
 				INFOPLIST_FILE = WDL_TYR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -747,6 +761,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0ebccd71-4d17-4deb-9103-0720e39c45fd";
+				PROVISIONING_PROFILE_SPECIFIER = wdl_tyr;
 				SWIFT_OBJC_BRIDGING_HEADER = "WDL_TYR/WDL_TYR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -760,7 +776,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 7RES3B3RSU;
 				INFOPLIST_FILE = WDL_TYR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -770,6 +787,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0ebccd71-4d17-4deb-9103-0720e39c45fd";
+				PROVISIONING_PROFILE_SPECIFIER = wdl_tyr;
 				SWIFT_OBJC_BRIDGING_HEADER = "WDL_TYR/WDL_TYR-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

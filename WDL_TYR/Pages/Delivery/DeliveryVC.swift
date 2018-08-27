@@ -37,7 +37,7 @@ class DeliveryVC: MainBaseVC {
     }
     
     override func currentConfig() {
-        self.title = "发布货源"
+        self.navigationItem.title = "发布货源"
         self.placeContentView.addBorder(color: nil,radius:10)
         self.startPlaceTextField.leftImage(image: #imageLiteral(resourceName: "start_point"))
         self.endTextField.leftImage(image: #imageLiteral(resourceName: "end_point"))

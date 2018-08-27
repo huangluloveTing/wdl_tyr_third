@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configGAODEMap() {
         AMapServices.shared().apiKey = GAODE_MAP_KEY
+        AMapServices.shared().enableHTTPS = false
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

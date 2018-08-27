@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="dropAnchorView" destination="TfV-nD-Vge" id="NW4-fj-bxc"/>
                 <outlet property="statusButton" destination="qjM-Ee-qWd" id="P1s-tx-K81"/>
+                <outlet property="tableView" destination="5Vy-xj-ZTO" id="2W9-JO-Zfp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -90,12 +91,20 @@
                         <constraint firstItem="64q-jJ-mOC" firstAttribute="trailing" secondItem="30b-S1-QFu" secondAttribute="trailing" constant="-10" id="zPZ-c6-qXO"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Vy-xj-ZTO">
+                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="TfV-nD-Vge" secondAttribute="trailing" id="Noc-Ab-fER"/>
                 <constraint firstItem="TfV-nD-Vge" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Xm2-98-B6E"/>
+                <constraint firstItem="5Vy-xj-ZTO" firstAttribute="top" secondItem="TfV-nD-Vge" secondAttribute="bottom" id="Yvt-AM-GXG"/>
+                <constraint firstAttribute="trailing" secondItem="5Vy-xj-ZTO" secondAttribute="trailing" id="dx9-ZL-3cC"/>
                 <constraint firstItem="TfV-nD-Vge" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rtj-6I-a6z"/>
+                <constraint firstItem="5Vy-xj-ZTO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="w02-dN-IKT"/>
+                <constraint firstAttribute="bottom" secondItem="5Vy-xj-ZTO" secondAttribute="bottom" id="xb4-i4-kCr"/>
             </constraints>
             <point key="canvasLocation" x="49.5" y="53.5"/>
         </view>

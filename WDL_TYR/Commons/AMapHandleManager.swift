@@ -14,16 +14,17 @@ class AMapHandleManager : NSObject , AMapLocationManagerDelegate  {
     
     private var resultClosure:LocationResultClosure?
     
-    private lazy var locationManager:AMapLocationManager = {
-        let amapManager = AMapLocationManager.init()
-        amapManager.delegate = self
-        return amapManager
-    }()
+    private lazy var locationManager:AMapLocationManager = AMapLocationManager()
     
-    private override init() {}
+    private static let manager = AMapHandleManager.init()
     
-    public func shared() -> AMapHandleManager {
-        return AMapHandleManager.init()
+    private override init() {
+        super.init()
+        self.configLocationManager()
+    }
+    
+    public static func shared() -> AMapHandleManager {
+        return manager
     }
     
     
@@ -35,23 +36,48 @@ class AMapHandleManager : NSObject , AMapLocationManagerDelegate  {
         }
     }
     
+    func amapLocationManager(_ manager: AMapLocationManager!, didChange status: CLAuthorizationStatus) {
+        print("auto:\(status)")
+    }
+    
     func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!, reGeocode: AMapLocationReGeocode!) {
-        self.stopLocation()
-        if let closure = self.resultClosure {
-            closure(location , nil , nil)
+        if reGeocode == nil {
+            self.locationManager.requestLocation(withReGeocode: true) { [weak self](loca, rege, error) in
+                if let closure = self?.resultClosure {
+                    closure(location , reGeocode , error)
+                }
+            }
         }
     }
 }
 
 extension AMapHandleManager {
     
-    func startLocation(result closure:LocationResultClosure?) {
+    func startSerialLocation(result closure:LocationResultClosure?) {
         self.resultClosure = closure
+        self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
     }
     
-    func stopLocation() {
+    func stopSerialLocation() {
+        self.locationManager.delegate = nil
         self.locationManager.stopUpdatingLocation()
+    }
+    
+    func startSingleLocation(result closure:LocationResultClosure?) -> Void {
+        self.locationManager.requestLocation(withReGeocode: true) {(location, reGeo, error) in
+            if let closure = closure {
+                closure(location , reGeo , error)
+            }
+        }
+    }
+    
+    func configLocationManager() {
+        self.locationManager.locatingWithReGeocode = true
+        self.locationManager.pausesLocationUpdatesAutomatically = false
+        self.locationManager.reGeocodeTimeout = 5
+        self.locationManager.locationTimeout = 5
+        self.locationManager.allowsBackgroundLocationUpdates = true
     }
 }
 

@@ -50,6 +50,9 @@ class DropViewContainer: UIView {
         self.addSubview(self.maskOpacityView)
         self.maskOpacityView.addSubview(self.dropView)
         self.maskOpacityView.zt_height = 0
+        self.maskOpacityView.singleTap { (view) in
+            self.hiddenDropView()
+        }
     }
     
     private lazy var maskOpacityView:UIView = {

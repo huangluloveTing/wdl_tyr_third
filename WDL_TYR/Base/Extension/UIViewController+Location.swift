@@ -10,13 +10,14 @@ import Foundation
 
 extension UIViewController {
     
-    func startLocation() -> Void {
-        
+    private var aMapLocationManager:AMapHandleManager {
+        get {
+            return AMapHandleManager.shared()
+        }
     }
     
-    func stopLocation() -> Void {
-        
+    func startSingleLocation(result closure:AMapHandleManager.LocationResultClosure?) -> Void {
+        self.aMapLocationManager.startSingleLocation(result: closure)
     }
-    
     
 }
