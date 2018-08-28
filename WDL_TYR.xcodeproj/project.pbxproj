@@ -53,6 +53,13 @@
 		708150DA2131396700D42723 /* DropViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D92131396700D42723 /* DropViewContainer.swift */; };
 		70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */; };
 		70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */; };
+		70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1300A2134D592002A473F /* GoodSupplyBean.swift */; };
+		70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1300C2134D8AE002A473F /* BaseBean.swift */; };
+		70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301221354DA5002A473F /* GoodsSupplyDetailVC.swift */; };
+		70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B1301321354DA5002A473F /* GoodsSupplyDetailVC.xib */; };
+		70B1301821354E44002A473F /* GoodsSupplyDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B1301721354E44002A473F /* GoodsSupplyDetailHeader.xib */; };
+		70B1301A21355021002A473F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301921355021002A473F /* TimerView.swift */; };
+		70B1301C21355BA0002A473F /* GoodsSupplyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301B21355BA0002A473F /* GoodsSupplyDetailHeader.swift */; };
 		70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524C212E5D75007F2ED5 /* BaseVC.swift */; };
 		70C25250212E5D8E007F2ED5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524E212E5D8E007F2ED5 /* LoginVC.swift */; };
@@ -124,6 +131,13 @@
 		708150D92131396700D42723 /* DropViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewContainer.swift; sourceTree = "<group>"; };
 		70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyCell.swift; sourceTree = "<group>"; };
 		70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyCell.xib; sourceTree = "<group>"; };
+		70B1300A2134D592002A473F /* GoodSupplyBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodSupplyBean.swift; sourceTree = "<group>"; };
+		70B1300C2134D8AE002A473F /* BaseBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBean.swift; sourceTree = "<group>"; };
+		70B1301221354DA5002A473F /* GoodsSupplyDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyDetailVC.swift; sourceTree = "<group>"; };
+		70B1301321354DA5002A473F /* GoodsSupplyDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyDetailVC.xib; sourceTree = "<group>"; };
+		70B1301721354E44002A473F /* GoodsSupplyDetailHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyDetailHeader.xib; sourceTree = "<group>"; };
+		70B1301921355021002A473F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		70B1301B21355BA0002A473F /* GoodsSupplyDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyDetailHeader.swift; sourceTree = "<group>"; };
 		70C25246212E57D9007F2ED5 /* WDL_TYR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WDL_TYR-Bridging-Header.h"; sourceTree = "<group>"; };
 		70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
@@ -227,6 +241,7 @@
 		706C5A5D212EBECD00C037F2 /* SupplyGoods */ = {
 			isa = PBXGroup;
 			children = (
+				70B1301621354E23002A473F /* Views */,
 				708150B92130E50900D42723 /* VCS */,
 				708150B82130E50100D42723 /* Models */,
 				708150B72130E4F700D42723 /* Cells */,
@@ -282,6 +297,7 @@
 		708150B82130E50100D42723 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				70B1300A2134D592002A473F /* GoodSupplyBean.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +305,8 @@
 		708150B92130E50900D42723 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				70B1301221354DA5002A473F /* GoodsSupplyDetailVC.swift */,
+				70B1301321354DA5002A473F /* GoodsSupplyDetailVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -326,6 +344,16 @@
 				708150D4213122CA00D42723 /* ZTTagItem.m */,
 			);
 			path = ZTTagView;
+			sourceTree = "<group>";
+		};
+		70B1301621354E23002A473F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				70B1301721354E44002A473F /* GoodsSupplyDetailHeader.xib */,
+				70B1301B21355BA0002A473F /* GoodsSupplyDetailHeader.swift */,
+				70B1301921355021002A473F /* TimerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		70C25242212E5701007F2ED5 /* Vendors */ = {
@@ -394,6 +422,7 @@
 				7058BD28212E94FE00B53DF6 /* VCTransition */,
 				70C2524C212E5D75007F2ED5 /* BaseVC.swift */,
 				708150B52130E4E000D42723 /* BaseCell.swift */,
+				70B1300C2134D8AE002A473F /* BaseBean.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -492,12 +521,14 @@
 			files = (
 				7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */,
 				70C25251212E5D8E007F2ED5 /* LoginVC.xib in Resources */,
+				70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */,
 				705926DF212A5DEA00BE8BB4 /* LaunchScreen.storyboard in Resources */,
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
 				70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
+				70B1301821354E44002A473F /* GoodsSupplyDetailHeader.xib in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
 				70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */,
 				702D2CD3213060190007A11F /* PersonalVC.xib in Resources */,
@@ -568,18 +599,22 @@
 				705926D5212A5DE800BE8BB4 /* AppDelegate.swift in Sources */,
 				708150DA2131396700D42723 /* DropViewContainer.swift in Sources */,
 				7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */,
+				70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
 				70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */,
 				705926EE212A5E5500BE8BB4 /* ResponseHandle.swift in Sources */,
 				702D2CD2213060190007A11F /* PersonalVC.swift in Sources */,
+				70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
 				708150CD2131039C00D42723 /* SKTagButton.m in Sources */,
 				702D2CCA21305FC70007A11F /* GoodsSupplyVC.swift in Sources */,
 				70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */,
 				708150D8213123A400D42723 /* DropView.swift in Sources */,
+				70B1301A21355021002A473F /* TimerView.swift in Sources */,
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
+				70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
 				706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */,
 				702D2CC721305CCE0007A11F /* NormalBaseVC.swift in Sources */,
@@ -590,6 +625,7 @@
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,
+				70B1301C21355BA0002A473F /* GoodsSupplyDetailHeader.swift in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,

@@ -7,23 +7,27 @@
 //
 
 import UIKit
-import RxDataSources
 import RxSwift
+import RxCocoa
+import RxDataSources
 
 let goodsSupplyCellIdentity = "\(GoodsSupplyCell.self)"
 
 class GoodsSupplyVC: MainBaseVC {
     
+//    private var _items:[AnimatableSectionModel<String, String>]?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var statusButton: MyButton!
     @IBOutlet weak var dropAnchorView: UIView!
+    
+//    private var deleteCommand:?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.wr_setNavBarShadowImageHidden(true)
         self.addNaviHeader()
         self.addMessageRihgtItem()
-        self.toConfigDataSource()
     }
     
     override func currentConfig() {
@@ -39,7 +43,6 @@ class GoodsSupplyVC: MainBaseVC {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -48,6 +51,37 @@ class GoodsSupplyVC: MainBaseVC {
             .subscribe(onNext: { () in
                 self.showStatusDropView()
             })
+            .disposed(by: dispose)
+        
+        let ds = GoodsSupplyVC.getDataSource()
+        
+        tableView.rx.willDisplayCell
+            .subscribe(onNext:{ (tc , index) in
+                let cell = tc as! GoodsSupplyCell
+                cell.containerView.shadowBorder(radius: 5 , bgColor: UIColor.white, width:IPHONE_WIDTH - 40)
+            })
+            .disposed(by: dispose)
+        
+        let deleteCommand = tableView.rx.itemDeleted
+            .map(SupplyGoodsCommand.ItemDelete)
+        let itemCommand = tableView.rx.itemSelected
+            .map(SupplyGoodsCommand.TapItem)
+        let initailState = GoodsSupplyState(sections: [
+                MyHeaderSections(header: "", items: [
+                    "不限","已成交","竞价中","已上架","未上架"
+                    ])
+            ])
+        Observable.of(deleteCommand , itemCommand)
+            .merge()
+            .scan(initailState) { (state, command) -> GoodsSupplyState in
+                return state.excute(command: command)
+            }
+            .startWith(initailState)
+            .map { (state) in
+                state.sections
+            }
+            .share(replay: 1)
+            .bind(to: tableView.rx.items(dataSource: ds))
             .disposed(by: dispose)
     }
     
@@ -58,18 +92,10 @@ class GoodsSupplyVC: MainBaseVC {
     }()
 }
 
-
-
-extension GoodsSupplyVC {
-    
-}
-
-
 // 添加 下拉选项 操作
 extension GoodsSupplyVC {
     
     func showStatusDropView() {
-        
         if self.statusView.isShow == false {
             self.statusView.showDropViewAnimation()
         } else {
@@ -78,42 +104,71 @@ extension GoodsSupplyVC {
     }
 }
 
-//TODO: 模拟数据
+
 extension GoodsSupplyVC {
-    func toConfigDataSource() {
-        let items = Observable.just([
-                AnimatableSectionModel(model: "", items: [
-                    "1","2","3","1","2","3","1","2","3","1","2","3"
-                ])
-            ])
-        
-        let dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String , String>>(animationConfiguration: AnimationConfiguration(insertAnimation: .top,
-                                                                                                                                              reloadAnimation: .fade,
-                                                                                                                                              deleteAnimation: .left)
-            ,configureCell: {
-            (dataSource, tv, indexPath, element) in
-                let cell = tv.dequeueReusableCell(withIdentifier: goodsSupplyCellIdentity)! as! GoodsSupplyCell
-                return cell
+    // 获取DataSource
+    static func getDataSource() -> RxTableViewSectionedAnimatedDataSource<MyHeaderSections> {
+        let _dataSource = RxTableViewSectionedAnimatedDataSource<MyHeaderSections>(animationConfiguration: AnimationConfiguration(insertAnimation: .top,
+                                                                                                                                                         reloadAnimation: .fade,
+                                                                                                                                                         deleteAnimation: .right)
+            ,
+                                                                                                          configureCell: {
+                                                                                                            (dataSource, tv, indexPath, element) in
+                                                                                                            let cell = tv.dequeueReusableCell(withIdentifier: goodsSupplyCellIdentity)! as! GoodsSupplyCell
+                                                                                                            return cell
+        },
+                                                                                                          canEditRowAtIndexPath : { (datasource , indexpath) in
+                                                                                                            return true
         })
-        
-        dataSource.canEditRowAtIndexPath = { (datasource , indexpath) in
-            return true
+        return _dataSource
+    }
+}
+
+enum SupplyGoodsCommand {
+    case TapItem(IndexPath)
+    case ItemDelete(IndexPath)
+//    case Refresh(items:[MyHeaderSections])
+//    case LoadMore(moreItems:[String])
+}
+
+struct GoodsSupplyState {
+    var sections:[MyHeaderSections]
+    
+    init(sections:[MyHeaderSections]) {
+        self.sections = sections
+    }
+    
+    func excute(command:SupplyGoodsCommand) -> GoodsSupplyState {
+        switch command {
+            case .TapItem( _):
+                return self
+            case .ItemDelete(let indexPath):
+                var sections = self.sections
+                var section = self.sections[indexPath.section]
+                var items = section.items
+                items.remove(at: indexPath.row)
+                section.items = items
+                sections[indexPath.section] = section
+                return GoodsSupplyState(sections: sections)
         }
-        
-        tableView.rx.willDisplayCell
-            .subscribe(onNext:{ (tc , index) in
-                let cell = tc as! GoodsSupplyCell
-                cell.containerView.shadowBorder(radius: 5 , bgColor: UIColor.white, width:IPHONE_WIDTH - 40)
-            })
-            .disposed(by: dispose)
-        
-        tableView.rx.itemDeleted.asObservable()
-            .subscribe(onNext: { (index) in
-                
-            })
-            .disposed(by: dispose)
-        
-        items.bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: dispose)
+    }
+    
+}
+
+struct MyHeaderSections  {
+    var header:String
+    var items:[String]
+}
+
+extension MyHeaderSections : AnimatableSectionModelType {
+    var identity: String {
+        return header
+    }
+
+    typealias Item = String
+
+    init(original: MyHeaderSections, items: [Item]) {
+        self = original
+        self.items = items
     }
 }
