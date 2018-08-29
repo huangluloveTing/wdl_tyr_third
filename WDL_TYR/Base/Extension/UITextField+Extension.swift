@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 extension UITextField {
     
@@ -75,6 +76,7 @@ extension UITextField {
         datePicker.datePickerMode = mode
         let _ =  datePicker.rx.date
             .skip(1)
+            .takeUntil(self.rx.deallocated)
             .map { (date) in
                 Util.dateFormatter(date: date)
             }

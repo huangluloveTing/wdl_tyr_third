@@ -29,6 +29,11 @@ extension BaseVC {
         UIApplication.shared.keyWindow?.rootViewController = RootTabBarVC()
     }
     
+    func toGoodsSupplyDetail() {
+        let detailSupplu = GoodsSupplyDetailVC()
+        self.push(vc: detailSupplu, title: "详情")
+    }
+    
     //TODO: todo
     func toDelivery() {
 //        let deliveryVC = DeliveryVC()
@@ -42,6 +47,7 @@ extension BaseVC {
             if let title = title {
                 vc.title = title
             }
+            vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: animated)
         }
         else {

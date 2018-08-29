@@ -15,13 +15,9 @@ let goodsSupplyCellIdentity = "\(GoodsSupplyCell.self)"
 
 class GoodsSupplyVC: MainBaseVC {
     
-//    private var _items:[AnimatableSectionModel<String, String>]?
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var statusButton: MyButton!
     @IBOutlet weak var dropAnchorView: UIView!
-    
-//    private var deleteCommand:?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +51,9 @@ class GoodsSupplyVC: MainBaseVC {
         
         let ds = GoodsSupplyVC.getDataSource()
         
+        self.tableView.pullRefresh()
+        self.tableView.upRefresh()
+        
         tableView.rx.willDisplayCell
             .subscribe(onNext:{ (tc , index) in
                 let cell = tc as! GoodsSupplyCell
@@ -62,16 +61,40 @@ class GoodsSupplyVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
-        let deleteCommand = tableView.rx.itemDeleted
+        let deleteCommand = tableView.rx.itemDeleted.asDriver()
             .map(SupplyGoodsCommand.ItemDelete)
-        let itemCommand = tableView.rx.itemSelected
-            .map(SupplyGoodsCommand.TapItem)
+        let itemCommand = tableView.rx.itemSelected.asDriver()
+            .map { (indexPath) in
+                SupplyGoodsCommand.TapItem(indexPath, self)
+            }
         let initailState = GoodsSupplyState(sections: [
                 MyHeaderSections(header: "", items: [
                     "不限","已成交","竞价中","已上架","未上架"
                     ])
             ])
-        Observable.of(deleteCommand , itemCommand)
+        
+        /**
+         * rxSwfit 主要是观察者和被观察者的关系
+         * Observer(观察者) 观察 Observable（被观察者） 的变化，并作出对应的响应
+         * rxSwift 主要理解 函数式编程的思想 ， 所有的信息都是信息流，一层一层往下走
+         */
+        let refreshCommand = self.tableView.refreshState.asObservable()
+            .distinctUntilChanged()
+            .flatMap { (state) -> Driver<BaseResponseModel<String>> in
+                let dataObserval = BaseApi.request(target: API.login("", ""), type: BaseResponseModel<String>.self)
+                    .observeOn(MainScheduler.instance)
+                    .asDriver(onErrorJustReturn: BaseResponseModel<String>())
+                return dataObserval
+            }
+            .asDriver(onErrorJustReturn: BaseResponseModel<String>())
+            .map { (model) -> SupplyGoodsCommand in
+                self.tableView.endRefresh()
+                return SupplyGoodsCommand.Refresh(items: [MyHeaderSections(header: "", items: [
+                        "不限","已成交","竞价中","已上架","未s上架","不s限","已成s交","s竞价中","未上架s"
+                        ])])
+            }
+        
+        Observable.of(deleteCommand , itemCommand , refreshCommand)
             .merge()
             .scan(initailState) { (state, command) -> GoodsSupplyState in
                 return state.excute(command: command)
@@ -108,27 +131,26 @@ extension GoodsSupplyVC {
 extension GoodsSupplyVC {
     // 获取DataSource
     static func getDataSource() -> RxTableViewSectionedAnimatedDataSource<MyHeaderSections> {
-        let _dataSource = RxTableViewSectionedAnimatedDataSource<MyHeaderSections>(animationConfiguration: AnimationConfiguration(insertAnimation: .top,
-                                                                                                                                                         reloadAnimation: .fade,
-                                                                                                                                                         deleteAnimation: .right)
-            ,
-                                                                                                          configureCell: {
-                                                                                                            (dataSource, tv, indexPath, element) in
-                                                                                                            let cell = tv.dequeueReusableCell(withIdentifier: goodsSupplyCellIdentity)! as! GoodsSupplyCell
-                                                                                                            return cell
-        },
-                                                                                                          canEditRowAtIndexPath : { (datasource , indexpath) in
-                                                                                                            return true
-        })
+        let _dataSource = RxTableViewSectionedAnimatedDataSource<MyHeaderSections>(animationConfiguration: AnimationConfiguration(
+                insertAnimation: .top,
+                reloadAnimation: .fade,
+                deleteAnimation: .top),
+                configureCell: {
+                    (dataSource, tv, indexPath, element) in
+                    let cell = tv.dequeueReusableCell(withIdentifier: goodsSupplyCellIdentity)! as! GoodsSupplyCell
+                    return cell
+                },
+                canEditRowAtIndexPath : { (datasource , indexpath) in
+                    return true
+                })
         return _dataSource
     }
 }
 
 enum SupplyGoodsCommand {
-    case TapItem(IndexPath)
+    case TapItem(IndexPath , GoodsSupplyVC)
     case ItemDelete(IndexPath)
-//    case Refresh(items:[MyHeaderSections])
-//    case LoadMore(moreItems:[String])
+    case Refresh(items:[MyHeaderSections])
 }
 
 struct GoodsSupplyState {
@@ -140,7 +162,8 @@ struct GoodsSupplyState {
     
     func excute(command:SupplyGoodsCommand) -> GoodsSupplyState {
         switch command {
-            case .TapItem( _):
+        case .TapItem( _ , let vc):
+                vc.toGoodsSupplyDetail()
                 return self
             case .ItemDelete(let indexPath):
                 var sections = self.sections
@@ -150,9 +173,10 @@ struct GoodsSupplyState {
                 section.items = items
                 sections[indexPath.section] = section
                 return GoodsSupplyState(sections: sections)
+            case .Refresh(items: let items):
+                return GoodsSupplyState(sections: items)
         }
     }
-    
 }
 
 struct MyHeaderSections  {

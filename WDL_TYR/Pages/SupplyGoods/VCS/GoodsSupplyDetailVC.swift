@@ -10,6 +10,7 @@ import UIKit
 
 class GoodsSupplyDetailVC: NormalBaseVC {
 
+    @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -23,5 +24,12 @@ class GoodsSupplyDetailVC: NormalBaseVC {
         
     }
 
+    @IBAction func moreAction(_ sender: Any) {
+        if (self.textLabel.text?.count)! <= 5 {
+            self.textLabel.text = "发哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好"
+        } else {
+            self.textLabel.text = "fja"
+        }
+    }
     
 }

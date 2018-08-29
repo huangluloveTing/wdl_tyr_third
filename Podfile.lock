@@ -64,6 +64,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - HandyJSON
   - IQKeyboardManagerSwift
+  - MJRefresh
   - Moya/RxSwift (~> 11.0)
   - RxCocoa
   - RxDataSources
@@ -118,6 +119,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZTHExtension: 924db453c38d748321023af4d5d637eeae45828f
 
-PODFILE CHECKSUM: ef701074aecf3e22cbcceb9aea0f9d770a4e5eb0
+PODFILE CHECKSUM: 3ea2a62472fb7339fea2c5d9fece6b930d962bd7
 
 COCOAPODS: 1.5.3

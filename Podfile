@@ -13,6 +13,7 @@ pod 'SnapKit'
 pod 'AMapLocation'
 pod 'AMap2DMap'
 pod 'DZNEmptyDataSet'
+pod 'MJRefresh'
 
 end
 

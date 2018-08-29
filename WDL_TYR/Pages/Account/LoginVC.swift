@@ -13,7 +13,6 @@ import RxCocoa
 class LoginVC: BaseVC {
     
     @IBOutlet weak var phoneTextField: UITextField!
-    
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passworldTextField: UITextField!
@@ -31,7 +30,7 @@ class LoginVC: BaseVC {
             .subscribe(onNext: {[weak self] in
                 self?.toRegisterVC(title: nil)
             })
-            .disposed(by: dispose)
+            .disposed(by: dispose) 
     }
     
     override func viewDidLoad() {
