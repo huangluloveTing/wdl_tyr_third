@@ -10,3 +10,5 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MJRefresh.h>
+#import <YYText.h>
+#import "XHStarRateView.h"

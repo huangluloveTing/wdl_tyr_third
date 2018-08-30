@@ -8,11 +8,16 @@
 
 import UIKit
 
-class GoodsSupplyDetailVC: NormalBaseVC {
+enum GoodsSupplyStatus {
+    case InBidding // 竞标中
+    case OffShelve // 已下架
+    case InShelveOnTime // 定时上架
+    case Deal       // 已成交
+}
 
-    @IBOutlet weak var textLabel: UILabel!
+class GoodsSupplyDetailVC: NormalBaseVC  {
+
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var dropHintView: DropHintView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +25,13 @@ class GoodsSupplyDetailVC: NormalBaseVC {
     
     override func currentConfig() {
         self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
-        self.dropHintView.tabTitles(titles: ["报价金额","报价时间"])
-        self.dropHintView.dropTapClosure = { index in
-            
-        }
+        self.toAddHeader(status: .InBidding)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        let footerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: 60)))
+        footerView.backgroundColor = UIColor.clear
+        self.tableView.tableFooterView = footerView
+        self.registerAllCells()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,12 +39,69 @@ class GoodsSupplyDetailVC: NormalBaseVC {
         
     }
 
-    @IBAction func moreAction(_ sender: Any) {
-        if (self.textLabel.text?.count)! <= 5 {
-            self.textLabel.text = "发哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好哈佛half哈积分哈克龙发哈开机后付款啦话费卡后福利卡话费卡立方哈客户发联合发客服哈孔令辉发考虑好"
-        } else {
-            self.textLabel.text = "fja"
-        }
+    @IBAction func moreAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
     }
+    
+    
+    //MARK: lazy
+    private lazy var bidingHeader:GSDetailBidingHeader = {
+        return GoodsSupplyDetailVC.biddingHeaderInfoView()
+    }()
+    private var offShelveHeader:UIView?
+    private var shelveTimerHeader:UIView?
+}
+
+// header
+extension GoodsSupplyDetailVC {
+    
+    func toAddHeader(status:GoodsSupplyStatus) {
+        self.bidingHeader.frame = CGRect(origin: .zero, size:CGSize(width: IPHONE_WIDTH, height:self.bidingHeader.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height))
+        self.tableView.contentInset = UIEdgeInsetsMake(self.bidingHeader.zt_height, 0, 0, 0)
+        self.view.addSubview(self.bidingHeader)
+    }
+}
+
+
+// header view
+extension GoodsSupplyDetailVC {
+    
+    // 当是竞标中的订单时 ，显示的头部竞标信息视图
+    private static func biddingHeaderInfoView() -> GSDetailBidingHeader {
+        let header = Bundle.main.loadNibNamed("\(GSDetailBidingHeader.self)", owner: nil, options: nil)?.first as! GSDetailBidingHeader
+        header.foldHeader(isFolder: false)
+        return header
+    }
+    
+}
+
+// cells
+extension GoodsSupplyDetailVC {
+    func registerAllCells() {
+        self.registerCell(nibName: "\(GSDealedCell.self)")      // 已成交cell
+        self.registerCell(nibName: "\(GSDetailInfoCell.self)")  // 货源详情
+        self.registerCell(nibName: "\(GSTimerShelveCell.self)") // 按时上架cell
+        self.registerCell(nibName: "\(GSOffShelveCell.self)")   // 竞价超时
+    }
+    
+    func registerCell(nibName:String) {
+        self.tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
+    }
+}
+
+extension GoodsSupplyDetailVC : UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.textLabel?.text = "113131"
+        return cell
+    }
+}
+
+extension GoodsSupplyDetailVC : UITableViewDelegate {
     
 }

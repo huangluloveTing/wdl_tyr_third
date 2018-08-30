@@ -53,15 +53,32 @@
 		708150D8213123A400D42723 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D7213123A400D42723 /* DropView.swift */; };
 		708150DA2131396700D42723 /* DropViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D92131396700D42723 /* DropViewContainer.swift */; };
 		70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B52137B55C00017356 /* ZTFoldTableView.swift */; };
+		70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B92137D3EC00017356 /* XHStarRateView.m */; };
+		70A319C12137D4C700017356 /* bad_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BB2137D4C700017356 /* bad_star@2x.png */; };
+		70A319C22137D4C700017356 /* good_star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BC2137D4C700017356 /* good_star@3x.png */; };
+		70A319C32137D4C700017356 /* bad_star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BD2137D4C700017356 /* bad_star@3x.png */; };
+		70A319C42137D4C700017356 /* bad_star@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BE2137D4C700017356 /* bad_star@1x.png */; };
+		70A319C52137D4C700017356 /* good_star@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BF2137D4C700017356 /* good_star@1x.png */; };
+		70A319C62137D4C700017356 /* good_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319C02137D4C700017356 /* good_star@2x.png */; };
+		70A319C82137DDBE00017356 /* GoodsSupplyFoldInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319C72137DDBE00017356 /* GoodsSupplyFoldInfoView.swift */; };
+		70A319CD2137EFD400017356 /* GSDealedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319CB2137EFD400017356 /* GSDealedCell.swift */; };
+		70A319CE2137EFD400017356 /* GSDealedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A319CC2137EFD400017356 /* GSDealedCell.xib */; };
+		70A319D12137F27000017356 /* GSDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319CF2137F27000017356 /* GSDetailInfoCell.swift */; };
+		70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A319D02137F27000017356 /* GSDetailInfoCell.xib */; };
+		70A319D52137F43A00017356 /* GSTimerShelveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319D32137F43A00017356 /* GSTimerShelveCell.swift */; };
+		70A319D62137F43A00017356 /* GSTimerShelveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A319D42137F43A00017356 /* GSTimerShelveCell.xib */; };
+		70A319D92137F7A500017356 /* GSOffShelveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319D72137F7A500017356 /* GSOffShelveCell.swift */; };
+		70A319DA2137F7A500017356 /* GSOffShelveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A319D82137F7A500017356 /* GSOffShelveCell.xib */; };
+		70A319DD2137FA4C00017356 /* GSQutationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319DB2137FA4C00017356 /* GSQutationCell.swift */; };
+		70A319DE2137FA4C00017356 /* GSQutationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A319DC2137FA4C00017356 /* GSQutationCell.xib */; };
 		70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */; };
 		70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */; };
 		70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1300A2134D592002A473F /* GoodSupplyBean.swift */; };
 		70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1300C2134D8AE002A473F /* BaseBean.swift */; };
 		70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301221354DA5002A473F /* GoodsSupplyDetailVC.swift */; };
 		70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B1301321354DA5002A473F /* GoodsSupplyDetailVC.xib */; };
-		70B1301821354E44002A473F /* GoodsSupplyDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B1301721354E44002A473F /* GoodsSupplyDetailHeader.xib */; };
-		70B1301A21355021002A473F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301921355021002A473F /* TimerView.swift */; };
-		70B1301C21355BA0002A473F /* GoodsSupplyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301B21355BA0002A473F /* GoodsSupplyDetailHeader.swift */; };
+		70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B1301721354E44002A473F /* GSDetailBidingHeader.xib */; };
+		70B1301C21355BA0002A473F /* GSDetailBidingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301B21355BA0002A473F /* GSDetailBidingHeader.swift */; };
 		70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524C212E5D75007F2ED5 /* BaseVC.swift */; };
 		70C25250212E5D8E007F2ED5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524E212E5D8E007F2ED5 /* LoginVC.swift */; };
@@ -133,15 +150,33 @@
 		708150D7213123A400D42723 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 		708150D92131396700D42723 /* DropViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewContainer.swift; sourceTree = "<group>"; };
 		70A319B52137B55C00017356 /* ZTFoldTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTFoldTableView.swift; sourceTree = "<group>"; };
+		70A319B82137D3EC00017356 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
+		70A319B92137D3EC00017356 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
+		70A319BB2137D4C700017356 /* bad_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bad_star@2x.png"; sourceTree = "<group>"; };
+		70A319BC2137D4C700017356 /* good_star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good_star@3x.png"; sourceTree = "<group>"; };
+		70A319BD2137D4C700017356 /* bad_star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bad_star@3x.png"; sourceTree = "<group>"; };
+		70A319BE2137D4C700017356 /* bad_star@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bad_star@1x.png"; sourceTree = "<group>"; };
+		70A319BF2137D4C700017356 /* good_star@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good_star@1x.png"; sourceTree = "<group>"; };
+		70A319C02137D4C700017356 /* good_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good_star@2x.png"; sourceTree = "<group>"; };
+		70A319C72137DDBE00017356 /* GoodsSupplyFoldInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyFoldInfoView.swift; sourceTree = "<group>"; };
+		70A319CB2137EFD400017356 /* GSDealedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSDealedCell.swift; sourceTree = "<group>"; };
+		70A319CC2137EFD400017356 /* GSDealedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSDealedCell.xib; sourceTree = "<group>"; };
+		70A319CF2137F27000017356 /* GSDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSDetailInfoCell.swift; sourceTree = "<group>"; };
+		70A319D02137F27000017356 /* GSDetailInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSDetailInfoCell.xib; sourceTree = "<group>"; };
+		70A319D32137F43A00017356 /* GSTimerShelveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTimerShelveCell.swift; sourceTree = "<group>"; };
+		70A319D42137F43A00017356 /* GSTimerShelveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSTimerShelveCell.xib; sourceTree = "<group>"; };
+		70A319D72137F7A500017356 /* GSOffShelveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSOffShelveCell.swift; sourceTree = "<group>"; };
+		70A319D82137F7A500017356 /* GSOffShelveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSOffShelveCell.xib; sourceTree = "<group>"; };
+		70A319DB2137FA4C00017356 /* GSQutationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSQutationCell.swift; sourceTree = "<group>"; };
+		70A319DC2137FA4C00017356 /* GSQutationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSQutationCell.xib; sourceTree = "<group>"; };
 		70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyCell.swift; sourceTree = "<group>"; };
 		70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyCell.xib; sourceTree = "<group>"; };
 		70B1300A2134D592002A473F /* GoodSupplyBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodSupplyBean.swift; sourceTree = "<group>"; };
 		70B1300C2134D8AE002A473F /* BaseBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBean.swift; sourceTree = "<group>"; };
 		70B1301221354DA5002A473F /* GoodsSupplyDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyDetailVC.swift; sourceTree = "<group>"; };
 		70B1301321354DA5002A473F /* GoodsSupplyDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyDetailVC.xib; sourceTree = "<group>"; };
-		70B1301721354E44002A473F /* GoodsSupplyDetailHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyDetailHeader.xib; sourceTree = "<group>"; };
-		70B1301921355021002A473F /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		70B1301B21355BA0002A473F /* GoodsSupplyDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyDetailHeader.swift; sourceTree = "<group>"; };
+		70B1301721354E44002A473F /* GSDetailBidingHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSDetailBidingHeader.xib; sourceTree = "<group>"; };
+		70B1301B21355BA0002A473F /* GSDetailBidingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSDetailBidingHeader.swift; sourceTree = "<group>"; };
 		70C25246212E57D9007F2ED5 /* WDL_TYR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WDL_TYR-Bridging-Header.h"; sourceTree = "<group>"; };
 		70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
@@ -176,7 +211,6 @@
 		7058BD28212E94FE00B53DF6 /* VCTransition */ = {
 			isa = PBXGroup;
 			children = (
-				70C25242212E5701007F2ED5 /* Vendors */,
 				7058BD29212E952700B53DF6 /* ZTTransition.swift */,
 				7058BD2B212E990100B53DF6 /* ZTTransitionManager.swift */,
 			);
@@ -295,6 +329,16 @@
 			children = (
 				70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */,
 				70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */,
+				70A319CB2137EFD400017356 /* GSDealedCell.swift */,
+				70A319CC2137EFD400017356 /* GSDealedCell.xib */,
+				70A319CF2137F27000017356 /* GSDetailInfoCell.swift */,
+				70A319D02137F27000017356 /* GSDetailInfoCell.xib */,
+				70A319D32137F43A00017356 /* GSTimerShelveCell.swift */,
+				70A319D42137F43A00017356 /* GSTimerShelveCell.xib */,
+				70A319D72137F7A500017356 /* GSOffShelveCell.swift */,
+				70A319D82137F7A500017356 /* GSOffShelveCell.xib */,
+				70A319DB2137FA4C00017356 /* GSQutationCell.swift */,
+				70A319DC2137FA4C00017356 /* GSQutationCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -352,12 +396,27 @@
 			path = ZTTagView;
 			sourceTree = "<group>";
 		};
+		70A319B72137D3EC00017356 /* XHStarRateView */ = {
+			isa = PBXGroup;
+			children = (
+				70A319BE2137D4C700017356 /* bad_star@1x.png */,
+				70A319BB2137D4C700017356 /* bad_star@2x.png */,
+				70A319BD2137D4C700017356 /* bad_star@3x.png */,
+				70A319BF2137D4C700017356 /* good_star@1x.png */,
+				70A319C02137D4C700017356 /* good_star@2x.png */,
+				70A319BC2137D4C700017356 /* good_star@3x.png */,
+				70A319B82137D3EC00017356 /* XHStarRateView.h */,
+				70A319B92137D3EC00017356 /* XHStarRateView.m */,
+			);
+			path = XHStarRateView;
+			sourceTree = "<group>";
+		};
 		70B1301621354E23002A473F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				70B1301721354E44002A473F /* GoodsSupplyDetailHeader.xib */,
-				70B1301B21355BA0002A473F /* GoodsSupplyDetailHeader.swift */,
-				70B1301921355021002A473F /* TimerView.swift */,
+				70B1301721354E44002A473F /* GSDetailBidingHeader.xib */,
+				70B1301B21355BA0002A473F /* GSDetailBidingHeader.swift */,
+				70A319C72137DDBE00017356 /* GoodsSupplyFoldInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,6 +424,7 @@
 		70C25242212E5701007F2ED5 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				70A319B72137D3EC00017356 /* XHStarRateView */,
 				708150D0213122BF00D42723 /* ZTTagView */,
 				708150C42131039C00D42723 /* SKTagView */,
 				70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */,
@@ -425,6 +485,7 @@
 			children = (
 				708150C12130F51B00D42723 /* Views */,
 				708150B42130E4B600D42723 /* Extension */,
+				70C25242212E5701007F2ED5 /* Vendors */,
 				7058BD28212E94FE00B53DF6 /* VCTransition */,
 				70C2524C212E5D75007F2ED5 /* BaseVC.swift */,
 				708150B52130E4E000D42723 /* BaseCell.swift */,
@@ -525,19 +586,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70A319DA2137F7A500017356 /* GSOffShelveCell.xib in Resources */,
+				70A319D62137F43A00017356 /* GSTimerShelveCell.xib in Resources */,
+				70A319C22137D4C700017356 /* good_star@3x.png in Resources */,
+				70A319C32137D4C700017356 /* bad_star@3x.png in Resources */,
 				7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */,
+				70A319DE2137FA4C00017356 /* GSQutationCell.xib in Resources */,
+				70A319C62137D4C700017356 /* good_star@2x.png in Resources */,
 				70C25251212E5D8E007F2ED5 /* LoginVC.xib in Resources */,
 				70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */,
 				705926DF212A5DEA00BE8BB4 /* LaunchScreen.storyboard in Resources */,
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
 				70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
+				70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
-				70B1301821354E44002A473F /* GoodsSupplyDetailHeader.xib in Resources */,
+				70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
+				70A319C42137D4C700017356 /* bad_star@1x.png in Resources */,
 				70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */,
+				70A319CE2137EFD400017356 /* GSDealedCell.xib in Resources */,
 				702D2CD3213060190007A11F /* PersonalVC.xib in Resources */,
+				70A319C12137D4C700017356 /* bad_star@2x.png in Resources */,
+				70A319C52137D4C700017356 /* good_star@1x.png in Resources */,
 				70C2525E212E75B2007F2ED5 /* RegisterVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,10 +667,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				702B40E021314A2400D3D27A /* DropHintView.swift in Sources */,
+				70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
 				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
+				70A319DD2137FA4C00017356 /* GSQutationCell.swift in Sources */,
+				70A319CD2137EFD400017356 /* GSDealedCell.swift in Sources */,
 				70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */,
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,
@@ -614,25 +689,28 @@
 				70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
+				70A319D12137F27000017356 /* GSDetailInfoCell.swift in Sources */,
 				708150CD2131039C00D42723 /* SKTagButton.m in Sources */,
 				702D2CCA21305FC70007A11F /* GoodsSupplyVC.swift in Sources */,
 				70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */,
 				708150D8213123A400D42723 /* DropView.swift in Sources */,
-				70B1301A21355021002A473F /* TimerView.swift in Sources */,
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
 				70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
 				70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */,
+				70A319C82137DDBE00017356 /* GoodsSupplyFoldInfoView.swift in Sources */,
 				706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */,
 				702D2CC721305CCE0007A11F /* NormalBaseVC.swift in Sources */,
 				70C2525D212E75B2007F2ED5 /* RegisterVC.swift in Sources */,
 				708150B62130E4E000D42723 /* BaseCell.swift in Sources */,
+				70A319D52137F43A00017356 /* GSTimerShelveCell.swift in Sources */,
 				708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */,
 				708150CF21311FA800D42723 /* DropViewManage.swift in Sources */,
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
+				70A319D92137F7A500017356 /* GSOffShelveCell.swift in Sources */,
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,
-				70B1301C21355BA0002A473F /* GoodsSupplyDetailHeader.swift in Sources */,
+				70B1301C21355BA0002A473F /* GSDetailBidingHeader.swift in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,

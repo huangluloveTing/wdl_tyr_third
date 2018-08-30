@@ -31,5 +31,9 @@ class Util {
         dateFormater.dateFormat = formatter
         return dateFormater.string(from: date)
     }
+}
+
+// 富文本 YYText
+extension Util {
 
 }

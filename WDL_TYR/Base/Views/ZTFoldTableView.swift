@@ -19,6 +19,8 @@ class ZTFoldTableView: UIView {
     
     private var _maxWidth:CGFloat = IPHONE_WIDTH
     
+    private var loadCells:[UITableViewCell] = []
+    
     public var maxWidth:CGFloat {
         set {
             self._maxWidth = newValue
@@ -28,6 +30,16 @@ class ZTFoldTableView: UIView {
         }
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(self.tableView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.addSubview(self.tableView)
+    }
+    
     private var totalHeight : CGFloat = 0
     
     private lazy var tableView:UITableView = {
@@ -35,39 +47,62 @@ class ZTFoldTableView: UIView {
     }()
     
     override var intrinsicContentSize: CGSize {
-        self.addSubview(self.tableView)
-        self.tableView.reloadData()
-        self.tableView.frame = CGRect(x: 0, y: 0, width: self.maxWidth, height: self.totalHeight)
+//        self.tableView.frame = CGRect(x: 0, y: 0, width: self.maxWidth, height: self.totalHeight)
         return CGSize(width: self.maxWidth, height: self.totalHeight)
+    }
+    
+    
+    public func reload() {
+        self.tableView.reloadData()
+        self.invalidateIntrinsicContentSize()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+    }
+}
+
+// reuse cell
+extension ZTFoldTableView {
+    func registerCell(nib:UINib? , for identifier:String) {
+        self.tableView.register(nib, forCellReuseIdentifier: identifier)
+    }
+    
+    func registerCell(cellClass:AnyClass , for identifier:String) {
+        self.tableView.register(cellClass, forCellReuseIdentifier: identifier)
+    }
+    
+    func dequeueReusableCell(with identifier: String) -> UITableViewCell? {
+        return  self.tableView.dequeueReusableCell(withIdentifier: identifier)
     }
 }
 
 extension ZTFoldTableView : UITableViewDataSource {
     
     func configTableView() -> UITableView {
-        let tableView = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
+        let tableView = UITableView(frame: self.bounds, style: UITableViewStyle.plain)
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.loadCells = []
         return self.dataSource.tableView(self)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.dataSource.tableView(self, cellForRowAt: indexPath)
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.dataSource.tableView(self, cellForRowAt: indexPath)
+        self.loadCells.append(cell)
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell = tableView.cellForRow(at: indexPath)
-        let cellHeight = cell?.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+    internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let cell = self.loadCells[indexPath.row]
+        let cellHeight = cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
         let showSeperate = tableView.separatorStyle != .none
-        let height = cellHeight! + (showSeperate ? CGFloat(1) : CGFloat(0))
+        let height = cellHeight + (showSeperate ? CGFloat(1) : CGFloat(0))
         self.totalHeight += height
         return height
     }
