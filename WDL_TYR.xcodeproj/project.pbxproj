@@ -52,6 +52,7 @@
 		708150D6213122CA00D42723 /* ZTTagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 708150D4213122CA00D42723 /* ZTTagItem.m */; };
 		708150D8213123A400D42723 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D7213123A400D42723 /* DropView.swift */; };
 		708150DA2131396700D42723 /* DropViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150D92131396700D42723 /* DropViewContainer.swift */; };
+		70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B52137B55C00017356 /* ZTFoldTableView.swift */; };
 		70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */; };
 		70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */; };
 		70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1300A2134D592002A473F /* GoodSupplyBean.swift */; };
@@ -131,6 +132,7 @@
 		708150D4213122CA00D42723 /* ZTTagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTTagItem.m; sourceTree = "<group>"; };
 		708150D7213123A400D42723 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 		708150D92131396700D42723 /* DropViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewContainer.swift; sourceTree = "<group>"; };
+		70A319B52137B55C00017356 /* ZTFoldTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTFoldTableView.swift; sourceTree = "<group>"; };
 		70AD82AC213245D200A6715A /* GoodsSupplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSupplyCell.swift; sourceTree = "<group>"; };
 		70AD82AD213245D200A6715A /* GoodsSupplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyCell.xib; sourceTree = "<group>"; };
 		70B1300A2134D592002A473F /* GoodSupplyBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodSupplyBean.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				708150D7213123A400D42723 /* DropView.swift */,
 				708150D92131396700D42723 /* DropViewContainer.swift */,
 				702B40DF21314A2400D3D27A /* DropHintView.swift */,
+				70A319B52137B55C00017356 /* ZTFoldTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
 				70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
+				70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */,
 				706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */,
 				702D2CC721305CCE0007A11F /* NormalBaseVC.swift in Sources */,
 				70C2525D212E75B2007F2ED5 /* RegisterVC.swift in Sources */,

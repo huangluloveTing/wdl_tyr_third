@@ -34,6 +34,7 @@ class DropViewContainer: UIView {
     }
     
     func configViews() {
+        self.isHidden = true
         self.configDropView()
     }
     
@@ -48,11 +49,11 @@ class DropViewContainer: UIView {
         anchorSuperView?.addSubview(self)
         self.maskOpacityView.frame = self.bounds
         self.addSubview(self.maskOpacityView)
-        self.maskOpacityView.addSubview(self.dropView)
-        self.maskOpacityView.zt_height = 0
         self.maskOpacityView.singleTap { (view) in
             self.hiddenDropView()
         }
+        self.maskOpacityView.addSubview(self.dropView)
+        self.maskOpacityView.zt_height = 0
     }
     
     private lazy var maskOpacityView:UIView = {
@@ -70,10 +71,14 @@ extension DropViewContainer {
 extension DropViewContainer {
     
     func showDropViewAnimation() {
+        self.isHidden = false
         UIView.animate(withDuration: 0.25, animations: {
             self.maskOpacityView.zt_height = self.zt_height
         }) { (finish) in
             self.isShow = true
+            if let closure = self.showCompleteClosure {
+                closure()
+            }
         }
     }
     
@@ -82,7 +87,12 @@ extension DropViewContainer {
             self.maskOpacityView.zt_height = 0
         }) { (finish) in
             if finish == true {
+                self.isHidden = true
                 self.isShow = false
+                
+                if  let closure = self.dismissCompleteClosure {
+                    closure()
+                }
             }
         }
     }

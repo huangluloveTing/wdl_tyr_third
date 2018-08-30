@@ -11,6 +11,7 @@ import Foundation
 
 let COLOR_BUTTON = "06C06F" //按钮颜色
 let COLOR_BORDER = "DDDDDD" //边框颜色
+let COLOR_BACKGROUND = "EEEEEE" //背景颜色
 
 let TEXTFIELD_TITLECOLOR = "666666"
 let TEXTFIELD_TEXTCOLOR  = "333333"

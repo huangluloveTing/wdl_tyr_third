@@ -17,6 +17,10 @@ class PersonalVC: MainBaseVC , DropHintViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dropHintView.dataSource = self
+        self.dropHintView.tabTitles(titles: ["消息时间","全部"])
+        self.dropHintView.dropTapClosure = {(index) in
+            print("current tap index ： \(index)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,17 +30,13 @@ class PersonalVC: MainBaseVC , DropHintViewDataSource{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        AMapHandleManager.shared().startSingleLocation { (location, rego, error) in
-            
-        }
+//        AMapHandleManager.shared().startSingleLocation { (location, rego, error) in
+//            
+//        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.dropHintView.tabTitles(titles: ["消息时间","全部"])
-        self.dropHintView.dropTapClosure = {(index) in
-            print("current tap index ： \(index)")
-        }
     }
     
     func dropHintView(dropHint: DropHintView, index: Int) -> UIView {

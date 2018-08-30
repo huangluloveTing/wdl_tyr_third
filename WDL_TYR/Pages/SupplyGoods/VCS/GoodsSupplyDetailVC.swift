@@ -12,11 +12,18 @@ class GoodsSupplyDetailVC: NormalBaseVC {
 
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var dropHintView: DropHintView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func currentConfig() {
+        self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
+        self.dropHintView.tabTitles(titles: ["报价金额","报价时间"])
+        self.dropHintView.dropTapClosure = { index in
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
