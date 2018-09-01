@@ -8,7 +8,16 @@
 
 import UIKit
 
+enum GSTapActionState {
+    case GSTapExpand(Bool)
+    case GSTapOffShelve
+}
+
 class GSDetailBidingHeader: UIView {
+    
+    typealias BidingTapClosure = (GSTapActionState) -> ()
+    
+    public var bidingTapClosure:BidingTapClosure?
     
     @IBOutlet weak var goodsSummaryTitleLabel: UILabel!
     @IBOutlet weak var goodsSummaryLabel: UILabel!
@@ -24,6 +33,9 @@ class GSDetailBidingHeader: UIView {
     @IBAction func enpandAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         self.foldHeader(isFolder: sender.isSelected)
+        if let closure = self.bidingTapClosure {
+            closure(.GSTapExpand(sender.isSelected))
+        }
     }
 }
 

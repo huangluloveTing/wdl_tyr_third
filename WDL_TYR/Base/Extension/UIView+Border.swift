@@ -40,13 +40,16 @@ extension UIView {
                       width:CGFloat = UIScreen.main.bounds.size.width ,
                       shadowColor:UIColor = UIColor(hex: "C9C9C9") ,
                       shadowOffset:CGSize = CGSize(width: 1, height: 2) ,
-                      shadowOpacity:CGFloat = 0.6) {
+                      shadowOpacity:CGFloat = 0.6 ,
+                      insets:UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)) {
         if self.shadowAdded {
             return;
         }
         let shadowBorderLayer = CALayer()
         let size = self.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-        shadowBorderLayer.frame = CGRect(origin: .zero, size: CGSize(width: width, height: size.height))
+        self.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
+        let shadowBunds = CGRect(x: insets.left, y: insets.top, width: width - insets.left - insets.right, height: size.height - insets.top - insets.bottom)
+        shadowBorderLayer.frame = shadowBunds
         shadowBorderLayer.cornerRadius = radius
         shadowBorderLayer.backgroundColor = bgColor.cgColor
         shadowBorderLayer.masksToBounds = false

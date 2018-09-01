@@ -24,17 +24,13 @@ class GoodsSupplyVC: MainBaseVC {
         self.wr_setNavBarShadowImageHidden(true)
         self.addNaviHeader()
         self.addMessageRihgtItem()
+        self.emptyTitle(title: "暂无货源", to: self.tableView)
     }
     
     override func currentConfig() {
         self.tableView.register(UINib.init(nibName: goodsSupplyCellIdentity, bundle: nil), forCellReuseIdentifier: goodsSupplyCellIdentity)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        let headerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: 10)))
-        let footerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: 10)))
-        headerView.backgroundColor = UIColor(hex: "EEEEEE")
-        footerView.backgroundColor = UIColor(hex: "EEEEEE")
-        self.tableView.tableHeaderView = headerView
-        self.tableView.tableFooterView = footerView
+        self.bottomButtom(titles: ["取消" ,"确定"], targetView: self.tableView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,10 +58,10 @@ class GoodsSupplyVC: MainBaseVC {
             .disposed(by: dispose)
         
         let deleteCommand = tableView.rx.itemDeleted.asDriver()
-            .map(SupplyGoodsCommand.ItemDelete)
+            .map(SupplyGoodsCommand<MyHeaderSections>.ItemDelete)
         let itemCommand = tableView.rx.itemSelected.asDriver()
             .map { (indexPath) in
-                SupplyGoodsCommand.TapItem(indexPath, self)
+                SupplyGoodsCommand<MyHeaderSections>.TapItem(indexPath, self)
             }
         let initailState = GoodsSupplyState(sections: [
                 MyHeaderSections(header: "", items: [
@@ -87,7 +83,7 @@ class GoodsSupplyVC: MainBaseVC {
                 return dataObserval
             }
             .asDriver(onErrorJustReturn: BaseResponseModel<String>())
-            .map { (model) -> SupplyGoodsCommand in
+            .map { (model) -> SupplyGoodsCommand<MyHeaderSections> in
                 self.tableView.endRefresh()
                 return SupplyGoodsCommand.Refresh(items: [MyHeaderSections(header: "", items: [
                         "不限","已成交","竞价中","已上架","未s上架","不s限","已成s交","s竞价中","未上架s"
@@ -97,7 +93,7 @@ class GoodsSupplyVC: MainBaseVC {
         Observable.of(deleteCommand , itemCommand , refreshCommand)
             .merge()
             .scan(initailState) { (state, command) -> GoodsSupplyState in
-                return state.excute(command: command)
+                return state.excute(command:command)
             }
             .startWith(initailState)
             .map { (state) in
@@ -147,12 +143,6 @@ extension GoodsSupplyVC {
     }
 }
 
-enum SupplyGoodsCommand {
-    case TapItem(IndexPath , GoodsSupplyVC)
-    case ItemDelete(IndexPath)
-    case Refresh(items:[MyHeaderSections])
-}
-
 struct GoodsSupplyState {
     var sections:[MyHeaderSections]
     
@@ -160,11 +150,11 @@ struct GoodsSupplyState {
         self.sections = sections
     }
     
-    func excute(command:SupplyGoodsCommand) -> GoodsSupplyState {
+    func excute(command:SupplyGoodsCommand<MyHeaderSections>) -> GoodsSupplyState {
         switch command {
-        case .TapItem( _ , let vc):
-                vc.toGoodsSupplyDetail()
-                return self
+            case .TapItem( _ , let vc):
+                    vc.toGoodsSupplyDetail()
+                    return self
             case .ItemDelete(let indexPath):
                 var sections = self.sections
                 var section = self.sections[indexPath.section]
@@ -175,6 +165,8 @@ struct GoodsSupplyState {
                 return GoodsSupplyState(sections: sections)
             case .Refresh(items: let items):
                 return GoodsSupplyState(sections: items)
+            default:
+                return GoodsSupplyState(sections: self.sections)
         }
     }
 }

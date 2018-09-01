@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WayBillVC" customModule="WDL_TYR" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="vfV-AG-5ZH" id="Qhn-Uw-4tQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +19,95 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0z-rI-5c7">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2Q-3o-a5k" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
+                            <rect key="frame" x="20" y="13" width="68" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="新都区" image="down_header">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="selected" title="新都区"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m22-IE-ena" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
+                            <rect key="frame" x="178" y="13" width="68" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="新都区" image="down_header">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="selected" title="新都区"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0n-x8-63V" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
+                            <rect key="frame" x="287" y="13" width="68" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="状态" image="down_header">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="selected" title="新都区"/>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvw-qi-UMv">
+                            <rect key="frame" x="266" y="12" width="1" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="6fp-UY-eOE"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vq2-HU-2wq">
+                            <rect key="frame" x="108" y="21.5" width="40" height="1"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="gd4-a3-LNb"/>
+                                <constraint firstAttribute="height" constant="1" id="pOD-2M-NeS"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="toRight_header" translatesAutoresizingMaskIntoConstraints="NO" id="o8i-GC-OkT">
+                            <rect key="frame" x="142" y="14" width="16" height="16"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.023529411760000001" green="0.75294117650000003" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="vq2-HU-2wq" firstAttribute="leading" secondItem="H2Q-3o-a5k" secondAttribute="trailing" constant="20" id="3tF-7n-u1D"/>
+                        <constraint firstItem="R0n-x8-63V" firstAttribute="width" secondItem="H2Q-3o-a5k" secondAttribute="width" id="4Hl-Td-EmT"/>
+                        <constraint firstItem="m22-IE-ena" firstAttribute="centerY" secondItem="H2Q-3o-a5k" secondAttribute="centerY" id="AhX-DT-KxV"/>
+                        <constraint firstItem="H2Q-3o-a5k" firstAttribute="leading" secondItem="F0z-rI-5c7" secondAttribute="leading" constant="20" id="G3r-XV-NL0"/>
+                        <constraint firstItem="o8i-GC-OkT" firstAttribute="centerY" secondItem="H2Q-3o-a5k" secondAttribute="centerY" id="GXI-Qw-Gtr"/>
+                        <constraint firstItem="mvw-qi-UMv" firstAttribute="leading" secondItem="m22-IE-ena" secondAttribute="trailing" constant="20" id="K9t-Mc-vyN"/>
+                        <constraint firstItem="H2Q-3o-a5k" firstAttribute="centerY" secondItem="F0z-rI-5c7" secondAttribute="centerY" id="QZl-Vp-OYI"/>
+                        <constraint firstItem="R0n-x8-63V" firstAttribute="leading" secondItem="mvw-qi-UMv" secondAttribute="trailing" constant="20" id="S52-EV-ctX"/>
+                        <constraint firstItem="vq2-HU-2wq" firstAttribute="centerY" secondItem="H2Q-3o-a5k" secondAttribute="centerY" id="TaW-rc-aNX"/>
+                        <constraint firstItem="m22-IE-ena" firstAttribute="width" secondItem="H2Q-3o-a5k" secondAttribute="width" id="VuI-5S-tjz"/>
+                        <constraint firstItem="R0n-x8-63V" firstAttribute="centerY" secondItem="m22-IE-ena" secondAttribute="centerY" id="Y5a-q8-ClB"/>
+                        <constraint firstItem="m22-IE-ena" firstAttribute="leading" secondItem="o8i-GC-OkT" secondAttribute="trailing" constant="20" id="dKt-Mf-tVc"/>
+                        <constraint firstAttribute="trailing" secondItem="R0n-x8-63V" secondAttribute="trailing" constant="20" id="hEN-Wc-t3o"/>
+                        <constraint firstItem="R0n-x8-63V" firstAttribute="height" secondItem="H2Q-3o-a5k" secondAttribute="height" id="jXQ-vD-Zz5"/>
+                        <constraint firstItem="vq2-HU-2wq" firstAttribute="trailing" secondItem="o8i-GC-OkT" secondAttribute="trailing" constant="-10" id="joE-oX-WFz"/>
+                        <constraint firstAttribute="height" constant="45" id="mda-MX-5pB"/>
+                        <constraint firstItem="m22-IE-ena" firstAttribute="height" secondItem="H2Q-3o-a5k" secondAttribute="height" id="r3F-Or-dvL"/>
+                        <constraint firstItem="mvw-qi-UMv" firstAttribute="top" secondItem="F0z-rI-5c7" secondAttribute="top" constant="12" id="toD-FP-FBp"/>
+                        <constraint firstAttribute="bottom" secondItem="mvw-qi-UMv" secondAttribute="bottom" constant="12" id="zAC-Wk-Od9"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vfV-AG-5ZH">
+                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="F0z-rI-5c7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4T3-p5-mpm"/>
+                <constraint firstItem="F0z-rI-5c7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="H5u-OJ-yas"/>
+                <constraint firstItem="vfV-AG-5ZH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LHi-UM-dSz"/>
+                <constraint firstItem="vfV-AG-5ZH" firstAttribute="top" secondItem="F0z-rI-5c7" secondAttribute="bottom" id="MoU-6b-Vby"/>
+                <constraint firstAttribute="trailing" secondItem="vfV-AG-5ZH" secondAttribute="trailing" id="jSi-eg-uvy"/>
+                <constraint firstAttribute="bottom" secondItem="vfV-AG-5ZH" secondAttribute="bottom" id="jd1-h4-GzP"/>
+                <constraint firstAttribute="trailing" secondItem="F0z-rI-5c7" secondAttribute="trailing" id="vRN-Q1-0sP"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="down_header" width="16" height="16"/>
+        <image name="toRight_header" width="16" height="16"/>
+    </resources>
 </document>

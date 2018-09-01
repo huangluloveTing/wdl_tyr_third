@@ -9,6 +9,14 @@
 import UIKit
 import RxSwift
 
+// 页面操作  -> tableView 的相关操作
+enum SupplyGoodsCommand<T> {
+    case TapItem(IndexPath , GoodsSupplyVC) // 点击item
+    case ItemDelete(IndexPath)              // 删除item
+    case Refresh(items:[T])                 // 刷新数据
+    case LoadMore(items:[T])                // 加载更多
+}
+
 class BaseVC: UIViewController {
     
     public let dispose = DisposeBag()
@@ -16,6 +24,7 @@ class BaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
+        self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         self.currentConfig()
         self.bindViewModel()
     }
@@ -72,5 +81,20 @@ extension BaseVC {
      */
     func addDropView(drop:UIView,anchorView:UIView) -> DropViewContainer {
         return DropViewContainer(dropView: drop, anchorView: anchorView)
+    }
+}
+
+
+// 处理tableView
+extension BaseVC {
+    
+    // 注册cell
+    func registerCell(nibName:String , for tableView:UITableView) {
+        tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
+    }
+    
+    // 隐藏tableViewCell分割线
+    func hiddenTableViewSeperate(tableView:UITableView) {
+        tableView.separatorStyle = .none
     }
 }

@@ -29,9 +29,16 @@ extension BaseVC {
         UIApplication.shared.keyWindow?.rootViewController = RootTabBarVC()
     }
     
+    // 去 货物供应详情
     func toGoodsSupplyDetail() {
         let detailSupplu = GoodsSupplyDetailVC()
         self.push(vc: detailSupplu, title: "详情")
+    }
+    
+    // 去运单详情
+    func toWayBillDetail() {
+        let wayBillDetail = WayBillDetailVC()
+        self.push(vc: wayBillDetail, title: "运单详情")
     }
     
     //TODO: todo
