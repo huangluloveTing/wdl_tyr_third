@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="224" id="KGk-i7-Jjw" customClass="PersonalInfoHeader" customModule="WDL_TYR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="391" height="224"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="391" height="223.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FRk-pq-Pma">
+                        <rect key="frame" x="311" y="134" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="0Hx-WK-77Q"/>
+                            <constraint firstAttribute="width" secondItem="FRk-pq-Pma" secondAttribute="height" multiplier="1:1" id="hGm-OO-lil"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宏图面粉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-a9-ybp">
+                        <rect key="frame" x="20" y="65" width="281" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="19087654321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmv-od-F5x">
+                        <rect key="frame" x="20" y="101" width="281" height="93"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="RAC-a9-ybp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Ikm-Xo-dYb"/>
+                    <constraint firstAttribute="bottom" secondItem="FRk-pq-Pma" secondAttribute="bottom" constant="30" id="KIb-UG-2O5"/>
+                    <constraint firstItem="Rmv-od-F5x" firstAttribute="leading" secondItem="RAC-a9-ybp" secondAttribute="leading" id="Sad-aE-m7b"/>
+                    <constraint firstAttribute="trailing" secondItem="FRk-pq-Pma" secondAttribute="trailing" constant="20" id="VZU-oe-l25"/>
+                    <constraint firstItem="FRk-pq-Pma" firstAttribute="leading" secondItem="Rmv-od-F5x" secondAttribute="trailing" constant="10" id="bJA-fm-oTU"/>
+                    <constraint firstItem="Rmv-od-F5x" firstAttribute="top" secondItem="RAC-a9-ybp" secondAttribute="bottom" constant="15" id="eQP-iz-GMe"/>
+                    <constraint firstItem="RAC-a9-ybp" firstAttribute="width" secondItem="Rmv-od-F5x" secondAttribute="width" id="hcW-d0-8Ms"/>
+                    <constraint firstItem="RAC-a9-ybp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="65" id="lMa-O9-b6f"/>
+                    <constraint firstItem="Rmv-od-F5x" firstAttribute="bottom" secondItem="FRk-pq-Pma" secondAttribute="bottom" id="yC5-QR-ADI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="52" y="88"/>
+        </tableViewCell>
+    </objects>
+</document>

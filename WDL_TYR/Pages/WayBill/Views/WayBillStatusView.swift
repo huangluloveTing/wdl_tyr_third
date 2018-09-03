@@ -43,13 +43,6 @@ class WayBillStatusView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    init(frame:CGRect , status:WayBillStatus)  {
-//        super.init(frame: frame)
-//        self.status = status
-//        self.initialProcessItems()
-//        self.initialProcessView()
-//    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.toConfigProcessView()
@@ -147,6 +140,7 @@ fileprivate class WayBillProcessView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addHoriLineProcess()
+        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -192,20 +186,20 @@ fileprivate class WayBillProcessView: UIView {
         if rate >= 1 {
             rate = 1
         }
-        let currentWidth = self.zt_width * rate
-        self.currentProcessLine.zt_width = currentWidth
+        let paddingProcessWidth = (self.zt_width + self.padding) * rate - self.padding / 2.0
+        self.currentProcessLine.zt_width = paddingProcessWidth
         self.loadProcessViews()
     }
     
     
     private lazy var allProcessLine:UIView = {
-        let line = UIView(frame: CGRect(x: 0, y: (self.zt_height - 1) / 2.0 , width: self.zt_width, height: 1))
+        let line = UIView(frame: CGRect(x: 0, y: 19 , width: self.zt_width, height: 2))
         line.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         return line
     }()
     
     private lazy var currentProcessLine:UIView = {
-        let line = UIView(frame: CGRect(x: 0, y: (self.zt_height - 1) / 2.0 , width: 0, height: 1))
+        let line = UIView(frame: CGRect(x: 0, y: 19 , width: 0, height: 2))
         line.backgroundColor = UIColor(hex: COLOR_BUTTON)
         return line
     }()
@@ -265,7 +259,7 @@ fileprivate class ProcessItemView:UIView {
         self.titleLabel.textColor = self.item.focus ? UIColor(hex: TEXTFIELD_TEXTCOLOR) : UIColor(hex: TEXTCOLOR_EMPTY)
         self.titleLabel.sizeToFit()
         self.titleLabel.frame = CGRect(origin: CGPoint(x: 0, y: item_height - self.titleLabel.zt_height), size: CGSize(width: width, height: self.titleLabel.zt_height))
-        self.imageView.frame = CGRect(origin: .zero, size: CGSize(width: self.zt_width, height: self.titleLabel.zt_height - 10))
+        self.imageView.frame = CGRect(origin: .zero, size: CGSize(width: self.zt_width, height: self.zt_width))
         self.imageView.image = self.item.focus ? self.item.focusImage : self.item.normalImage
     }
 }

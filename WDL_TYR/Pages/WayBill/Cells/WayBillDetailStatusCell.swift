@@ -19,7 +19,7 @@ class WayBillDetailStatusCell: BaseCell {
         super.awakeFromNib()
         self.wayBillStatusView = WayBillStatusView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 80, height: 64))
         self.wayBillStatusView?.status = WayBillStatus.ToReceive
-        self.addSubview(self.wayBillStatusView!)
+        self.statusView.addSubview(self.wayBillStatusView!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
