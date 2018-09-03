@@ -30,6 +30,8 @@
 		7037B0D8213C264E00BDC718 /* PersonalInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7037B0D6213C264E00BDC718 /* PersonalInfoHeader.xib */; };
 		7037B0DB213C27F300BDC718 /* PersonalExcuteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B0D9213C27F300BDC718 /* PersonalExcuteCell.swift */; };
 		7037B0DC213C27F300BDC718 /* PersonalExcuteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7037B0DA213C27F300BDC718 /* PersonalExcuteCell.xib */; };
+		7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */; };
+		7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */; };
 		70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */; };
 		7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058BD1C212E849800B53DF6 /* RegisterAgreeView.swift */; };
 		7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7058BD1E212E84A900B53DF6 /* RegisterAgreeView.xib */; };
@@ -134,6 +136,8 @@
 		7037B0D6213C264E00BDC718 /* PersonalInfoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoHeader.xib; sourceTree = "<group>"; };
 		7037B0D9213C27F300BDC718 /* PersonalExcuteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalExcuteCell.swift; sourceTree = "<group>"; };
 		7037B0DA213C27F300BDC718 /* PersonalExcuteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalExcuteCell.xib; sourceTree = "<group>"; };
+		7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+navigation.swift"; sourceTree = "<group>"; };
+		7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneChooseInputView.swift; sourceTree = "<group>"; };
 		70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RefreshExtension.swift"; sourceTree = "<group>"; };
 		7058BD1C212E849800B53DF6 /* RegisterAgreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAgreeView.swift; sourceTree = "<group>"; };
 		7058BD1E212E84A900B53DF6 /* RegisterAgreeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterAgreeView.xib; sourceTree = "<group>"; };
@@ -282,6 +286,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7037B113213D1ADD00BDC718 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7058BD28212E94FE00B53DF6 /* VCTransition */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +356,7 @@
 		706C5A5A212EBE4D00C037F2 /* Delivery */ = {
 			isa = PBXGroup;
 			children = (
+				7037B113213D1ADD00BDC718 /* Views */,
 				70ED0878212F0236001DCCB2 /* DeliveryVC.swift */,
 				70ED0879212F0236001DCCB2 /* DeliveryVC.xib */,
 			);
@@ -401,6 +414,7 @@
 				70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */,
 				70ECEEE8213842A10015CA7D /* BaseVC+Empty.swift */,
 				7037B0BE2139903100BDC718 /* BaseVC+Bottom.swift */,
+				7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -730,7 +744,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
-				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/ZTHExtension/ZTExtension/HZExtension/ZTExtension.bundle",
 			);
@@ -767,10 +781,12 @@
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,
 				705926D5212A5DE800BE8BB4 /* AppDelegate.swift in Sources */,
+				7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */,
 				708150DA2131396700D42723 /* DropViewContainer.swift in Sources */,
 				7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */,
 				70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */,
 				7037B0C8213A1F3700BDC718 /* WayBillDetailVC.swift in Sources */,
+				7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
 				70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */,

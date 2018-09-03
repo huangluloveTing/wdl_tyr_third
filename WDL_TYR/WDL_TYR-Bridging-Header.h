@@ -13,3 +13,4 @@
 #import <YYText.h>
 #import "XHStarRateView.h"
 #import <UIScrollView+EmptyDataSet.h>
+#import <IQKeyboardManager.h>

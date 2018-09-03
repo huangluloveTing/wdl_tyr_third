@@ -64,6 +64,12 @@ class DeliveryVC: MainBaseVC {
                 
             })
             .disposed(by: dispose)
+        
+        self.goodsCategoryTextField.oneChooseInputView(titles: ["玉米","玉米","玉米","玉米","玉米","玉米","玉米"])
+            .asObservable()
+            .subscribe(onNext: { (index) in
+            })
+            .disposed(by: dispose)
     }
     
     override func updateViewConstraints() {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,8 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configIQKeyboard() {
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "完成"
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared().toolbarDoneBarButtonItemText = "确定"
+        IQKeyboardManager.shared().toolbarBarTintColor = UIColor(hex: INPUTVIEW_TINCOLOR)
+        IQKeyboardManager.shared().toolbarTintColor = UIColor(hex: COLOR_BUTTON)
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
     }
     
     func configGlobalNavigationBar() {

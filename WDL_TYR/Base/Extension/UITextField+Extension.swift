@@ -69,8 +69,10 @@ extension UITextField {
     }
 }
 
+// inputView
 extension UITextField {
     
+    /*时间选择弹出*/
     func datePickerInput(mode:UIDatePickerMode , dateFormatter:String = "yyyy-MM-dd") {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = mode
@@ -81,7 +83,41 @@ extension UITextField {
                 Util.dateFormatter(date: date)
             }
             .bind(to: self.rx.text)
-        
         self.inputView = datePicker
     }
+    
+    func customerInputView(inputView:UIView? , height:CGFloat) {
+        inputView?.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: height)
+        self.inputView = inputView
+    }
+}
+
+// 单选弹出 的 inputView
+extension UITextField {
+    func oneChooseInputView(titles:[String]?) -> PublishSubject<Int> {
+        let ob = PublishSubject<Int>()
+        var items:[OneChooseItem] = []
+        if let titles = titles {
+            items = titles.map { (title) -> OneChooseItem in
+                let oneItem = OneChooseItem(item: title, id: "", selected: false)
+                return oneItem
+            }
+        }
+        
+        let chooseView = OneChooseInputView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_HEIGHT * 0.39), items: items)
+        
+        self.customerInputView(inputView: chooseView, height: chooseView.zt_height)
+        chooseView.tapClosure = { index in
+            ob.onNext(index)
+        }
+        return ob
+    }
+}
+
+extension Reactive where Base : UITextField {
+    
+    public var tap:ControlEvent<Void> {
+        return controlEvent(.allTouchEvents)
+    }
+    
 }

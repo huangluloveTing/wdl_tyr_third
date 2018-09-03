@@ -28,6 +28,7 @@ class BaseVC: UIViewController {
         self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         self.currentConfig()
         self.bindViewModel()
+        self.configNavigationBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,8 +44,19 @@ class BaseVC: UIViewController {
     func bindViewModel() {
         
     }
+    
+    // MARK: 导航栏的操作
+    override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
+        
+    }
+    
+    override func zt_leftBarButtonAction(_ sender: UIBarButtonItem!) {
+        self.pop()
+    }
 }
 
+
+// 搜索及消息
 extension BaseVC {
     
     // 添加头部搜索条
@@ -75,13 +87,20 @@ extension BaseVC {
         self.addRightBarbuttonItem(with: rightBadgeView)
     }
     
-    // 添加下拉视图
+    // 添加下拉展开视图
     /**
      * drop 添加的下拉视图
      * anchorView 锚点视图 -- 确定下拉视图的位置和大小
      */
     func addDropView(drop:UIView,anchorView:UIView) -> DropViewContainer {
         return DropViewContainer(dropView: drop, anchorView: anchorView)
+    }
+}
+
+// navigationBar
+extension BaseVC {
+    private func configNavigationBar() {
+        self.backBarButtonItem()
     }
 }
 
