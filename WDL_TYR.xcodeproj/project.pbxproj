@@ -58,9 +58,9 @@
 		7068E0E6213F830700929337 /* DeliveryPlaceTabHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0E4213F830700929337 /* DeliveryPlaceTabHeader.swift */; };
 		7068E0E7213F830700929337 /* DeliveryPlaceTabHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7068E0E5213F830700929337 /* DeliveryPlaceTabHeader.xib */; };
 		7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0E9213F979D00929337 /* UITextField+PlaceInput.swift */; };
-		7068E0EC213F9D4800929337 /* ZTDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0EB213F9D4800929337 /* ZTDismissTransition.swift */; };
 		7068E0EE213FADE400929337 /* DeliveryPlaceChooiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0ED213FADE400929337 /* DeliveryPlaceChooiceView.swift */; };
 		7068E0F0213FAE0700929337 /* XIBViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7068E0EF213FAE0700929337 /* XIBViews.xib */; };
+		7068E0F2213FB83300929337 /* PlaceChooiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0F1213FB83300929337 /* PlaceChooiceView.swift */; };
 		706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */; };
 		70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D712131B12000E12CEC /* UIViewController+Location.swift */; };
 		70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D732131B20500E12CEC /* AMapHandleManager.swift */; };
@@ -179,9 +179,9 @@
 		7068E0E4213F830700929337 /* DeliveryPlaceTabHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryPlaceTabHeader.swift; sourceTree = "<group>"; };
 		7068E0E5213F830700929337 /* DeliveryPlaceTabHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryPlaceTabHeader.xib; sourceTree = "<group>"; };
 		7068E0E9213F979D00929337 /* UITextField+PlaceInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceInput.swift"; sourceTree = "<group>"; };
-		7068E0EB213F9D4800929337 /* ZTDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTDismissTransition.swift; sourceTree = "<group>"; };
 		7068E0ED213FADE400929337 /* DeliveryPlaceChooiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryPlaceChooiceView.swift; sourceTree = "<group>"; };
 		7068E0EF213FAE0700929337 /* XIBViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XIBViews.xib; sourceTree = "<group>"; };
+		7068E0F1213FB83300929337 /* PlaceChooiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceChooiceView.swift; sourceTree = "<group>"; };
 		706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarVC.swift; sourceTree = "<group>"; };
 		70721D712131B12000E12CEC /* UIViewController+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Location.swift"; sourceTree = "<group>"; };
 		70721D732131B20500E12CEC /* AMapHandleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMapHandleManager.swift; sourceTree = "<group>"; };
@@ -317,6 +317,7 @@
 			children = (
 				7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */,
 				7068E0ED213FADE400929337 /* DeliveryPlaceChooiceView.swift */,
+				7068E0F1213FB83300929337 /* PlaceChooiceView.swift */,
 				7068E0EF213FAE0700929337 /* XIBViews.xib */,
 			);
 			path = Views;
@@ -327,7 +328,6 @@
 			children = (
 				7058BD29212E952700B53DF6 /* ZTTransition.swift */,
 				7058BD2B212E990100B53DF6 /* ZTTransitionManager.swift */,
-				7068E0EB213F9D4800929337 /* ZTDismissTransition.swift */,
 			);
 			path = VCTransition;
 			sourceTree = "<group>";
@@ -865,6 +865,7 @@
 				702D2CD2213060190007A11F /* PersonalVC.swift in Sources */,
 				70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */,
 				70FD7A05213D9E3300E6AA05 /* DeliveryTruckTypeVC.swift in Sources */,
+				7068E0F2213FB83300929337 /* PlaceChooiceView.swift in Sources */,
 				7037B0DB213C27F300BDC718 /* PersonalExcuteCell.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
@@ -876,7 +877,6 @@
 				708150D8213123A400D42723 /* DropView.swift in Sources */,
 				7037B0CE213A238600BDC718 /* images.swift in Sources */,
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
-				7068E0EC213F9D4800929337 /* ZTDismissTransition.swift in Sources */,
 				70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
 				7037B0D7213C264E00BDC718 /* PersonalInfoHeader.swift in Sources */,
