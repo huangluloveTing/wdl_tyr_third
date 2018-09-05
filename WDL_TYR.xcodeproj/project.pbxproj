@@ -51,6 +51,16 @@
 		705926EE212A5E5500BE8BB4 /* ResponseHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705926E9212A5E5500BE8BB4 /* ResponseHandle.swift */; };
 		705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705926EA212A5E5500BE8BB4 /* BaseModel.swift */; };
 		705926F0212A5E5500BE8BB4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705926EB212A5E5500BE8BB4 /* API.swift */; };
+		7068E0D9213F6EC700929337 /* DeliveryPlaceChooiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0D7213F6EC700929337 /* DeliveryPlaceChooiceVC.swift */; };
+		7068E0DA213F6EC700929337 /* DeliveryPlaceChooiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7068E0D8213F6EC700929337 /* DeliveryPlaceChooiceVC.xib */; };
+		7068E0DE213F798800929337 /* DeliveryPlaceChooiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0DC213F798800929337 /* DeliveryPlaceChooiceCell.swift */; };
+		7068E0DF213F798800929337 /* DeliveryPlaceChooiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7068E0DD213F798800929337 /* DeliveryPlaceChooiceCell.xib */; };
+		7068E0E6213F830700929337 /* DeliveryPlaceTabHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0E4213F830700929337 /* DeliveryPlaceTabHeader.swift */; };
+		7068E0E7213F830700929337 /* DeliveryPlaceTabHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7068E0E5213F830700929337 /* DeliveryPlaceTabHeader.xib */; };
+		7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0E9213F979D00929337 /* UITextField+PlaceInput.swift */; };
+		7068E0EC213F9D4800929337 /* ZTDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0EB213F9D4800929337 /* ZTDismissTransition.swift */; };
+		7068E0EE213FADE400929337 /* DeliveryPlaceChooiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068E0ED213FADE400929337 /* DeliveryPlaceChooiceView.swift */; };
+		7068E0F0213FAE0700929337 /* XIBViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7068E0EF213FAE0700929337 /* XIBViews.xib */; };
 		706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */; };
 		70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D712131B12000E12CEC /* UIViewController+Location.swift */; };
 		70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D732131B20500E12CEC /* AMapHandleManager.swift */; };
@@ -108,6 +118,9 @@
 		70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED0878212F0236001DCCB2 /* DeliveryVC.swift */; };
 		70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ED0879212F0236001DCCB2 /* DeliveryVC.xib */; };
 		70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */; };
+		70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */; };
+		70FD7A05213D9E3300E6AA05 /* DeliveryTruckTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FD7A03213D9E3300E6AA05 /* DeliveryTruckTypeVC.swift */; };
+		70FD7A06213D9E3300E6AA05 /* DeliveryTruckTypeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70FD7A04213D9E3300E6AA05 /* DeliveryTruckTypeVC.xib */; };
 		EEA24EACC7D289FEEC3F2AA9 /* libPods-WDL_TYR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +172,16 @@
 		705926E9212A5E5500BE8BB4 /* ResponseHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandle.swift; sourceTree = "<group>"; };
 		705926EA212A5E5500BE8BB4 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		705926EB212A5E5500BE8BB4 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		7068E0D7213F6EC700929337 /* DeliveryPlaceChooiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryPlaceChooiceVC.swift; sourceTree = "<group>"; };
+		7068E0D8213F6EC700929337 /* DeliveryPlaceChooiceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryPlaceChooiceVC.xib; sourceTree = "<group>"; };
+		7068E0DC213F798800929337 /* DeliveryPlaceChooiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryPlaceChooiceCell.swift; sourceTree = "<group>"; };
+		7068E0DD213F798800929337 /* DeliveryPlaceChooiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryPlaceChooiceCell.xib; sourceTree = "<group>"; };
+		7068E0E4213F830700929337 /* DeliveryPlaceTabHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryPlaceTabHeader.swift; sourceTree = "<group>"; };
+		7068E0E5213F830700929337 /* DeliveryPlaceTabHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryPlaceTabHeader.xib; sourceTree = "<group>"; };
+		7068E0E9213F979D00929337 /* UITextField+PlaceInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceInput.swift"; sourceTree = "<group>"; };
+		7068E0EB213F9D4800929337 /* ZTDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTDismissTransition.swift; sourceTree = "<group>"; };
+		7068E0ED213FADE400929337 /* DeliveryPlaceChooiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryPlaceChooiceView.swift; sourceTree = "<group>"; };
+		7068E0EF213FAE0700929337 /* XIBViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XIBViews.xib; sourceTree = "<group>"; };
 		706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarVC.swift; sourceTree = "<group>"; };
 		70721D712131B12000E12CEC /* UIViewController+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Location.swift"; sourceTree = "<group>"; };
 		70721D732131B20500E12CEC /* AMapHandleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMapHandleManager.swift; sourceTree = "<group>"; };
@@ -224,6 +247,9 @@
 		70ED0878212F0236001DCCB2 /* DeliveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryVC.swift; sourceTree = "<group>"; };
 		70ED0879212F0236001DCCB2 /* DeliveryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryVC.xib; sourceTree = "<group>"; };
 		70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBaseVC.swift; sourceTree = "<group>"; };
+		70FD7A03213D9E3300E6AA05 /* DeliveryTruckTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTruckTypeVC.swift; sourceTree = "<group>"; };
+		70FD7A04213D9E3300E6AA05 /* DeliveryTruckTypeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryTruckTypeVC.xib; sourceTree = "<group>"; };
 		7B98DB91CC1D21DD721D7197 /* Pods-WDL_TYR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.release.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.release.xcconfig"; sourceTree = "<group>"; };
 		EF69E9CA55EB87BF8CE7D10E /* Pods-WDL_TYR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -290,6 +316,8 @@
 			isa = PBXGroup;
 			children = (
 				7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */,
+				7068E0ED213FADE400929337 /* DeliveryPlaceChooiceView.swift */,
+				7068E0EF213FAE0700929337 /* XIBViews.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +327,7 @@
 			children = (
 				7058BD29212E952700B53DF6 /* ZTTransition.swift */,
 				7058BD2B212E990100B53DF6 /* ZTTransitionManager.swift */,
+				7068E0EB213F9D4800929337 /* ZTDismissTransition.swift */,
 			);
 			path = VCTransition;
 			sourceTree = "<group>";
@@ -353,9 +382,31 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		7068E0DB213F795400929337 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7068E0DC213F798800929337 /* DeliveryPlaceChooiceCell.swift */,
+				7068E0DD213F798800929337 /* DeliveryPlaceChooiceCell.xib */,
+				7068E0E4213F830700929337 /* DeliveryPlaceTabHeader.swift */,
+				7068E0E5213F830700929337 /* DeliveryPlaceTabHeader.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7068E0E8213F977A00929337 /* vender */ = {
+			isa = PBXGroup;
+			children = (
+				7068E0E9213F979D00929337 /* UITextField+PlaceInput.swift */,
+			);
+			path = vender;
+			sourceTree = "<group>";
+		};
 		706C5A5A212EBE4D00C037F2 /* Delivery */ = {
 			isa = PBXGroup;
 			children = (
+				7068E0E8213F977A00929337 /* vender */,
+				7068E0DB213F795400929337 /* Cells */,
+				70FD79FC213D93AE00E6AA05 /* VCs */,
 				7037B113213D1ADD00BDC718 /* Views */,
 				70ED0878212F0236001DCCB2 /* DeliveryVC.swift */,
 				70ED0879212F0236001DCCB2 /* DeliveryVC.xib */,
@@ -539,6 +590,7 @@
 				706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */,
 				702D2CC421305CA80007A11F /* MainBaseVC.swift */,
 				702D2CC621305CCE0007A11F /* NormalBaseVC.swift */,
+				70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -597,6 +649,17 @@
 				7037B0CD213A238600BDC718 /* images.swift */,
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		70FD79FC213D93AE00E6AA05 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				70FD7A03213D9E3300E6AA05 /* DeliveryTruckTypeVC.swift */,
+				70FD7A04213D9E3300E6AA05 /* DeliveryTruckTypeVC.xib */,
+				7068E0D7213F6EC700929337 /* DeliveryPlaceChooiceVC.swift */,
+				7068E0D8213F6EC700929337 /* DeliveryPlaceChooiceVC.xib */,
+			);
+			path = VCs;
 			sourceTree = "<group>";
 		};
 		9F031BF2BF0C258847DB5383 /* Pods */ = {
@@ -682,6 +745,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7068E0F0213FAE0700929337 /* XIBViews.xib in Resources */,
+				7068E0E7213F830700929337 /* DeliveryPlaceTabHeader.xib in Resources */,
 				70A319DA2137F7A500017356 /* GSOffShelveCell.xib in Resources */,
 				70A319D62137F43A00017356 /* GSTimerShelveCell.xib in Resources */,
 				70A319C22137D4C700017356 /* good_star@3x.png in Resources */,
@@ -689,6 +754,7 @@
 				7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */,
 				70A319DE2137FA4C00017356 /* GSQutationCell.xib in Resources */,
 				7037B0C9213A1F3700BDC718 /* WayBillDetailVC.xib in Resources */,
+				7068E0DA213F6EC700929337 /* DeliveryPlaceChooiceVC.xib in Resources */,
 				70A319C62137D4C700017356 /* good_star@2x.png in Resources */,
 				70C25251212E5D8E007F2ED5 /* LoginVC.xib in Resources */,
 				70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */,
@@ -698,12 +764,14 @@
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
 				70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
+				70FD7A06213D9E3300E6AA05 /* DeliveryTruckTypeVC.xib in Resources */,
 				70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
 				70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
 				70A319C42137D4C700017356 /* bad_star@1x.png in Resources */,
+				7068E0DF213F798800929337 /* DeliveryPlaceChooiceCell.xib in Resources */,
 				70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */,
 				7037B0DC213C27F300BDC718 /* PersonalExcuteCell.xib in Resources */,
 				70A319CE2137EFD400017356 /* GSDealedCell.xib in Resources */,
@@ -771,6 +839,7 @@
 				70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */,
 				70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
+				7068E0DE213F798800929337 /* DeliveryPlaceChooiceCell.swift in Sources */,
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
 				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
@@ -787,6 +856,7 @@
 				70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */,
 				7037B0C8213A1F3700BDC718 /* WayBillDetailVC.swift in Sources */,
 				7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */,
+				7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
 				70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */,
@@ -794,9 +864,11 @@
 				705926EE212A5E5500BE8BB4 /* ResponseHandle.swift in Sources */,
 				702D2CD2213060190007A11F /* PersonalVC.swift in Sources */,
 				70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */,
+				70FD7A05213D9E3300E6AA05 /* DeliveryTruckTypeVC.swift in Sources */,
 				7037B0DB213C27F300BDC718 /* PersonalExcuteCell.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
+				7068E0E6213F830700929337 /* DeliveryPlaceTabHeader.swift in Sources */,
 				70A319D12137F27000017356 /* GSDetailInfoCell.swift in Sources */,
 				708150CD2131039C00D42723 /* SKTagButton.m in Sources */,
 				702D2CCA21305FC70007A11F /* GoodsSupplyVC.swift in Sources */,
@@ -804,10 +876,12 @@
 				708150D8213123A400D42723 /* DropView.swift in Sources */,
 				7037B0CE213A238600BDC718 /* images.swift in Sources */,
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
+				7068E0EC213F9D4800929337 /* ZTDismissTransition.swift in Sources */,
 				70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
 				7037B0D7213C264E00BDC718 /* PersonalInfoHeader.swift in Sources */,
 				70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */,
+				70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */,
 				70A319C82137DDBE00017356 /* GoodsSupplyFoldInfoView.swift in Sources */,
 				706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */,
 				702D2CC721305CCE0007A11F /* NormalBaseVC.swift in Sources */,
@@ -822,6 +896,7 @@
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,
 				70B1301C21355BA0002A473F /* GSDetailBidingHeader.swift in Sources */,
 				7037B0BF2139903100BDC718 /* BaseVC+Bottom.swift in Sources */,
+				7068E0D9213F6EC700929337 /* DeliveryPlaceChooiceVC.swift in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,
@@ -838,6 +913,7 @@
 				7037B0CC213A1F7A00BDC718 /* WayBillStatusView.swift in Sources */,
 				708150D6213122CA00D42723 /* ZTTagItem.m in Sources */,
 				7058BD2C212E990100B53DF6 /* ZTTransitionManager.swift in Sources */,
+				7068E0EE213FADE400929337 /* DeliveryPlaceChooiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

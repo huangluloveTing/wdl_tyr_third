@@ -86,6 +86,10 @@ extension BaseVC : UIViewControllerTransitioningDelegate {
         return ZTTransitionManager.halfTransparentTransition(duration: 0.25, topHeight: self._topHeight)
     }
     
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ZTTransitionManager.halfDissmissTransition(duration: 0.25)
+    }
+    
     func smallSheetPresent(vc:UIViewController) {
         vc.transitioningDelegate = self
         vc.modalPresentationStyle = .custom
@@ -96,7 +100,7 @@ extension BaseVC : UIViewControllerTransitioningDelegate {
     func bigSheetPresent(vc:UIViewController) {
         vc.transitioningDelegate = self
         vc.modalPresentationStyle = .custom
-        self._topHeight = IPHONE_HEIGHT*0.7
+        self._topHeight = IPHONE_HEIGHT*0.3
         self.present(vc, animated: true, completion: nil)
     }
 }

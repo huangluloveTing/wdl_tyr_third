@@ -1,21 +1,17 @@
 //
-//  ZTTransition.swift
+//  ZTDismissTransition.swift
 //  WDL_TYR
 //
-//  Created by 黄露 on 2018/8/23.
+//  Created by 黄露 on 2018/9/5.
 //  Copyright © 2018年 yingli. All rights reserved.
 //
 
 import UIKit
 
-fileprivate let TransitionMaskColor = UIColor(hex: "292B2A").withAlphaComponent(0.6)
+class ZTDismissTransition: NSObject {
 
-class ZTTransition: NSObject , UIViewControllerAnimatedTransitioning {
-    
     private var _duration:TimeInterval = 0.4
     private var _topHeight:CGFloat = IPHONE_HEIGHT / 3.0
-    
-    public var isDismiss:Bool = false
     
     public var duration:TimeInterval {
         set {
@@ -40,42 +36,12 @@ class ZTTransition: NSObject , UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        if self.isDismiss == true {
-            self.dismissAnimationTransition(transitionContext: transitionContext)
-            return
-        }
-        self.presentAnimationTransition(transitionContext: transitionContext)
-    }
-    
-    
-    func dismissAnimationTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let containerView = transitionContext.containerView
-        let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)?.view
-        let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)?.view
         
-        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
-//        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
-        
-        containerView.addSubview(toView!)
-        containerView.addSubview(fromView!)
-        
-        let toFrame = transitionContext.finalFrame(for: toVC)
-        toView!.frame = toFrame
-        
-        UIView.animate(withDuration: self.duration, animations: {
-            fromView?.zt_y = (toView?.zt_height)!
-        }) { (finish) in
-            transitionContext.completeTransition(finish)
-            fromView?.removeFromSuperview()
-        }
-    }
-
-    func presentAnimationTransition(transitionContext:UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)?.view
         let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)?.view
         let maskView = UIView(frame: containerView.bounds)
-        maskView.backgroundColor = TransitionMaskColor
+//        maskView.backgroundColor = TransitionMaskColor
         
         containerView.backgroundColor = UIColor.clear
         containerView.addSubview(fromView!)
@@ -97,4 +63,5 @@ class ZTTransition: NSObject , UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
+    
 }

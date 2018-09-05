@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="DeliveryPlaceTabHeader" customModule="WDL_TYR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="409" height="147"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjO-ze-sam">
+                    <rect key="frame" x="12" y="15" width="121.5" height="132"/>
+                    <state key="normal" title="省">
+                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="省">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bg0-em-epi">
+                    <rect key="frame" x="143.5" y="15" width="122" height="132"/>
+                    <state key="normal" title="市">
+                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="市">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9a-Sc-jtF">
+                    <rect key="frame" x="275.5" y="15" width="121.5" height="132"/>
+                    <state key="normal" title="区">
+                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" title="区">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="e9a-Sc-jtF" firstAttribute="leading" secondItem="Bg0-em-epi" secondAttribute="trailing" constant="10" id="F2F-I1-EVb"/>
+                <constraint firstAttribute="bottom" secondItem="jjO-ze-sam" secondAttribute="bottom" id="IfX-b0-Yr3"/>
+                <constraint firstItem="e9a-Sc-jtF" firstAttribute="centerY" secondItem="Bg0-em-epi" secondAttribute="centerY" id="JYU-dm-Kvh"/>
+                <constraint firstItem="Bg0-em-epi" firstAttribute="height" secondItem="jjO-ze-sam" secondAttribute="height" id="NcD-wh-jun"/>
+                <constraint firstItem="Bg0-em-epi" firstAttribute="width" secondItem="jjO-ze-sam" secondAttribute="width" id="Rji-ZY-TvM"/>
+                <constraint firstItem="jjO-ze-sam" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="12" id="T0b-QW-Qhc"/>
+                <constraint firstItem="jjO-ze-sam" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="15" id="Uc5-HC-Qbx"/>
+                <constraint firstAttribute="trailing" secondItem="e9a-Sc-jtF" secondAttribute="trailing" constant="12" id="eV9-E8-o3I"/>
+                <constraint firstItem="Bg0-em-epi" firstAttribute="centerY" secondItem="jjO-ze-sam" secondAttribute="centerY" id="kaj-Im-8Pe"/>
+                <constraint firstItem="e9a-Sc-jtF" firstAttribute="height" secondItem="jjO-ze-sam" secondAttribute="height" id="oYO-22-zag"/>
+                <constraint firstItem="e9a-Sc-jtF" firstAttribute="width" secondItem="jjO-ze-sam" secondAttribute="width" id="tnf-Bq-It6"/>
+                <constraint firstItem="Bg0-em-epi" firstAttribute="leading" secondItem="jjO-ze-sam" secondAttribute="trailing" constant="10" id="w7X-Dt-Cjj"/>
+            </constraints>
+            <connections>
+                <outlet property="cityTab" destination="Bg0-em-epi" id="lv1-Ih-eyh"/>
+                <outlet property="provinceTab" destination="jjO-ze-sam" id="dA5-Om-PkE"/>
+                <outlet property="strictTab" destination="e9a-Sc-jtF" id="jcS-bI-kS4"/>
+            </connections>
+            <point key="canvasLocation" x="78.5" y="102.5"/>
+        </collectionReusableView>
+    </objects>
+</document>

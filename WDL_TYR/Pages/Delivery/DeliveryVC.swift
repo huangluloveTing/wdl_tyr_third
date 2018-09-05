@@ -56,6 +56,8 @@ class DeliveryVC: MainBaseVC {
         
         self.timerPostButton.addBorder(color: nil, width: 0, radius: 22)
         self.surePostButton.addBorder(color: nil, width: 0, radius: 22)
+        
+        self.addRightBarbuttonItem(withTitle: "tap")
     }
 
     override func bindViewModel() {
@@ -70,12 +72,34 @@ class DeliveryVC: MainBaseVC {
             .subscribe(onNext: { (index) in
             })
             .disposed(by: dispose)
+        
+        self.packageTextField.oneChooseInputView(titles: ["无包装","木桶","纸箱","铁桶","塑料桶"])
+            .asObservable()
+            .subscribe(onNext: { (index) in
+                
+            }).disposed(by: dispose)
+        
+        self.loadGoodsTimeTextField.datePickerInput(mode: .dateAndTime)
+            .asObservable()
+            .subscribe(onNext: { (time) in
+            
+            })
+            .disposed(by: dispose)
+        
+        self.startPlaceTextField.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.startPlaceTextField.resignFirstResponder()
+                
+            })
+            .disposed(by: dispose)
+            
     }
     
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
+    override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
+        let navi = UINavigationController(rootViewController: DeliveryPlaceChooiceVC())
+        self.bigSheetPresent(vc: navi)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

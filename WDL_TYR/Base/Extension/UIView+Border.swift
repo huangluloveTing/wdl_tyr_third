@@ -61,4 +61,11 @@ extension UIView {
         self.shadowAdded = true
     }
     
+    
+    func topBroader(rect:CGRect , radius:CGFloat) {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [UIRectCorner(rawValue: UIRectCorner.RawValue(UInt8(UIRectCorner.topLeft.rawValue) | UInt8(UIRectCorner.topRight.rawValue)))] , cornerRadii: CGSize(width: radius, height: radius))
+        let boarderLayer = CAShapeLayer()
+        boarderLayer.path = path.cgPath
+        self.layer.mask = boarderLayer
+    }
 }

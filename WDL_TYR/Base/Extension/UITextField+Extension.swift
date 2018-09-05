@@ -37,6 +37,7 @@ extension UITextField {
             let imageView = self.modeImageView()
             imageView.image = #imageLiteral(resourceName: "right")
             imageView.sizeToFit()
+            imageView.zt_width = imageView.zt_width + 10
             self.rightViewMode = UITextFieldViewMode.always
             self.rightView = imageView
         }
@@ -73,17 +74,25 @@ extension UITextField {
 extension UITextField {
     
     /*时间选择弹出*/
-    func datePickerInput(mode:UIDatePickerMode , dateFormatter:String = "yyyy-MM-dd") {
+    func datePickerInput(mode:UIDatePickerMode , dateFormatter:String = "yyyy-MM-dd") -> PublishSubject<TimeInterval>{
+        let timeObservable = PublishSubject<TimeInterval>()
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = mode
         let _ =  datePicker.rx.date
             .skip(1)
             .takeUntil(self.rx.deallocated)
+            .share(replay: 1)
+            .flatMap({ (date) -> Observable<Date> in
+                timeObservable.onNext(date.timeIntervalSince1970)
+                return Observable.just(date)
+            })
             .map { (date) in
                 Util.dateFormatter(date: date)
             }
             .bind(to: self.rx.text)
         self.inputView = datePicker
+        
+        return timeObservable
     }
     
     func customerInputView(inputView:UIView? , height:CGFloat) {
@@ -104,12 +113,17 @@ extension UITextField {
             }
         }
         
-        let chooseView = OneChooseInputView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_HEIGHT * 0.39), items: items)
+        let chooseView = OneChooseInputView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_HEIGHT * 0.4), items: items)
         
         self.customerInputView(inputView: chooseView, height: chooseView.zt_height)
-        chooseView.tapClosure = { index in
+        chooseView.tapClosure = { (index) in
             ob.onNext(index)
+            let title = titles![index]
+            let _ = Observable.just(title).asObservable()
+                .takeUntil(self.rx.deallocated)
+                .bind(to: self.rx.text)
         }
+        
         return ob
     }
 }
@@ -117,7 +131,7 @@ extension UITextField {
 extension Reactive where Base : UITextField {
     
     public var tap:ControlEvent<Void> {
-        return controlEvent(.allTouchEvents)
+        return controlEvent(.editingDidBegin)
     }
     
 }

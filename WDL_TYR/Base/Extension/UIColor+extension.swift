@@ -44,5 +44,17 @@ extension UIColor {
             blue: CGFloat(b) / 0xff, alpha: 1
         )
     }
-    
+}
+
+extension UIColor {
+    func captureImage(size:CGSize) -> UIImage? {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContext(size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(self.cgColor)
+        context?.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
