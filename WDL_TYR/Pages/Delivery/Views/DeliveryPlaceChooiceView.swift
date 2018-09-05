@@ -17,7 +17,7 @@ class DeliveryPlaceChooiceView: UIView {
     @IBOutlet weak var sureButton: UIButton!
     @IBOutlet weak var contentView: UIView!
     
-    private var targetTextField:UITextField?
+    private weak var targetTextField:UITextField?
     
     private var closure: InputSureClosure?
     
@@ -39,13 +39,13 @@ class DeliveryPlaceChooiceView: UIView {
         
         let _ = self.sureButton.rx.tap.asObservable()
             .takeUntil(self.rx.deallocated)
-            .subscribe { () in
+            .subscribe(onNext: { () in
                 if let closure = self.closure {
                     closure()
                 }
                 self.resignTextFieldResponser()
-            }
-        }
+            })
+    }
     
     func resignTextFieldResponser() {
         if let target = self.targetTextField {

@@ -92,17 +92,48 @@ class DeliveryVC: MainBaseVC {
                 
             })
             .disposed(by: dispose)
-            
+        
+        self.endTextField.placeInputView(items: self.initialProinve()).asObservable()
+            .subscribe(onNext: { (province , city , strct) in
+                
+            })
+            .disposed(by: dispose)
+        
     }
     
-    override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
-        let navi = UINavigationController(rootViewController: DeliveryPlaceChooiceVC())
-        self.bigSheetPresent(vc: navi)
-    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension DeliveryVC {
+    
+    //MARK: TODO
+    func initialProinve() -> [PlaceChooiceItem] {
+        var item_1 :[PlaceChooiceItem] = []
+        for index in 0...6 {
+            var placeItem = PlaceChooiceItem(title: "四川", id: String(format: "index+%d", index), selected: false, subItems: nil, level: 0)
+            var items_2:[PlaceChooiceItem] = []
+            
+            for index_2 in 0...9 {
+                var placeItem_2 = PlaceChooiceItem(title: "成都", id: String(format: "index2+%d", index_2), selected: false, subItems: nil, level: 0)
+                var item_3 : [PlaceChooiceItem] = []
+                for index_3 in 0...5 {
+                    let placeItem_3 = PlaceChooiceItem(title: "龙泉", id: String(format: "index2+%d", index_3), selected: false, subItems: nil, level: 0)
+                    item_3.append(placeItem_3)
+                }
+                placeItem_2.subItems = item_3
+                items_2.append(placeItem_2)
+            }
+            
+            placeItem.subItems = items_2
+            item_1.append(placeItem)
+        }
+        return item_1
+    }
 }
