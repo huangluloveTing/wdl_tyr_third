@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GoodsSupplyStatusDropView: UIView , ZTTagViewDelegate , ZTTagViewDataSource {
+class GoodsSupplyStatusDropView: UIView {
     
     public var isShow:Bool = false
     private var tagTitles:[String]?
@@ -83,22 +83,22 @@ class GoodsSupplyStatusDropView: UIView , ZTTagViewDelegate , ZTTagViewDataSourc
     
     
     //MARK: dataSource
-    func isAutoLayout(for tagView: ZTTagView!) -> Bool {
+    override func isAutoLayout(for tagView: ZTTagView!) -> Bool {
         return false
     }
     
-    func perCount(for tagView: ZTTagView!) -> Int {
+    override func perCount(for tagView: ZTTagView!) -> Int {
         return 3
     }
     
-    func tagView(_ tagView: ZTTagView!, backgroundColorFor state: UIControlState, at index: Int) -> UIColor! {
+    override func tagView(_ tagView: ZTTagView!, backgroundColorFor state: UIControlState, at index: Int) -> UIColor! {
         if state == .selected {
             return UIColor(hex: "DCF7E8")
         }
         return UIColor(hex: "F0F0F0")
     }
     
-    func itemHeight(for tagView: ZTTagView!) -> CGFloat {
+    override func itemHeight(for tagView: ZTTagView!) -> CGFloat {
         return 33
     }
 }

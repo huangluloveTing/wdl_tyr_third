@@ -52,3 +52,8 @@ extension BaseCell {
         label.font = UIFont.systemFont(ofSize: 15)
     }
 }
+
+// 处理ZTTagView 
+extension BaseCell {
+    
+}

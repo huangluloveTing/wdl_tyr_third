@@ -99,6 +99,7 @@ class DeliveryVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
+        self.cartTypeTextField.truckTypeInputView(truckTypes: [])
     }
     
     
