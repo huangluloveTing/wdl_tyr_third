@@ -35,6 +35,7 @@ extension UITextField {
         let placeChooiceView = PlaceChooiceView(items: items)
         placeInputView.insertContentView(inputView: placeChooiceView, targetTextField: self)
         self.inputView = placeInputView
+        placeInputView.shadow(color: UIColor(hex: COLOR_SHADOW), offset: CGSize(width: 0, height: -2), opacity: 0.5, radius: 2)
         placeChooiceView.placeClosure = { (province , city , strict) in
             ob.onNext((province , city , strict))
         }
@@ -48,6 +49,7 @@ extension UITextField {
         truckTypeInputView.frame = CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: IPHONE_WIDTH * 1.2))
         let truckTypeView = DeliveryTruckTypeView(frame: truckTypeInputView.bounds, truckItems: truckTypes)
         truckTypeInputView.insertContentView(inputView: truckTypeView, targetTextField: self)
+        truckTypeInputView.shadow(color: UIColor(hex: COLOR_SHADOW), offset: CGSize(width: 0, height: -2), opacity: 0.5, radius: 2)
         self.inputView = truckTypeInputView
     }
 }

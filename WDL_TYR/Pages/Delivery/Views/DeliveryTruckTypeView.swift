@@ -53,11 +53,12 @@ extension DeliveryTruckTypeView : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(DeliveryTruckTypeCell.self)") as! DeliveryTruckTypeCell
-        cell.showTruckType(type: TruckTypeItem(typeName: "车长", specs: [TruckSpecItem(specName: "123", id: "34", selected: false),TruckSpecItem(specName: "123", id: "34", selected: false),TruckSpecItem(specName: "123", id: "34", selected: false),TruckSpecItem(specName: "123", id: "34", selected: false),TruckSpecItem(specName: "123", id: "34", selected: false),TruckSpecItem(specName: "123", id: "34", selected: false)]))
+        let type = self.specs[indexPath.row]
+        cell.showTruckType(type: type)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.specs.count
     }
 }

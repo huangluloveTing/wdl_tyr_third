@@ -16,6 +16,13 @@ extension UIView {
         self.layer.borderWidth = CGFloat(borderWidth)
         self.layer.cornerRadius = CGFloat(borderRadius)
     }
+    
+    func shadow(color:UIColor , offset:CGSize , opacity:CGFloat , radius:CGFloat) {
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = radius
+        self.layer.shadowOpacity = Float(opacity)
+    }
 }
 
 var shadowBorderKey = "shadowBorderKey-shadow"

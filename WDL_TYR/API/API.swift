@@ -22,23 +22,23 @@ enum API {
 extension API :TargetType {
     
     var baseURL: URL {
-        return URL.init(string: "http://test.ylfood.com/scm-web/")!
+        return URL.init(string: HOST)!
     }
     
     var path: String {
         switch self {
             case .login(_, _):
-                return "scmApp/login"
-        case .getTaskList(_, _, _):
-            return "scmApp/getTaskList"
-        case .getQuotaTaskItemList(_):
-            return "scmApp/getQuotaTaskItemList"
+                return "/auth/login"
+            case .getTaskList(_, _, _):
+                return "scmApp/getTaskList"
+            case .getQuotaTaskItemList(_):
+                return "scmApp/getQuotaTaskItemList"
             
-        case .getOrderList(_, _, _):
-            return "scmApp/getOrderList"
+            case .getOrderList(_, _, _):
+                return "scmApp/getOrderList"
             
-        case .getOrderDetailItems(_, _):
-            return "scmApp/getOrderDetailItems"
+            case .getOrderDetailItems(_, _):
+                return "scmApp/getOrderDetailItems"
         }
     }
         
@@ -63,7 +63,7 @@ extension API :TargetType {
             params["status"] = status
             return  .requestParameters(parameters: params, encoding: URLEncoding.default)
         case .login(let account , let pwd):
-            return .requestParameters(parameters: ["loginName":account,"loginPasswd":pwd], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["username":account,"passwd":pwd], encoding: JSONEncoding.default)
         case .getQuotaTaskItemList(let planCode):
             return .requestParameters(parameters: ["planCode":planCode], encoding: URLEncoding.default)
             
@@ -78,7 +78,9 @@ extension API :TargetType {
     }
     
     var headers: [String : String]? {
-        return ["content-type":"application/json" , "deviceType":"ios" , "token": "quyali_297_83fa7221f1b0436546af6c8c1ade4e59"];
+        return ["content-type":"application/json" ,
+                "deviceType":"ios" ,
+                "token": "quyali_297_83fa7221f1b0436546af6c8c1ade4e59"];
     }
     
     

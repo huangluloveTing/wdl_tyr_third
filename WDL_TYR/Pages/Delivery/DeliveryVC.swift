@@ -56,8 +56,7 @@ class DeliveryVC: MainBaseVC {
         
         self.timerPostButton.addBorder(color: nil, width: 0, radius: 22)
         self.surePostButton.addBorder(color: nil, width: 0, radius: 22)
-        
-        self.addRightBarbuttonItem(withTitle: "tap")
+        self.addMessageRihgtItem()
     }
 
     override func bindViewModel() {

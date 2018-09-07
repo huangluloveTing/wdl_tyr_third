@@ -13,6 +13,7 @@ let COLOR_BUTTON = "06C06F" //按钮颜色 , 点击时的颜色
 let COLOR_BORDER = "DDDDDD" //边框颜色
 let COLOR_BACKGROUND = "EEEEEE" //背景颜色
 let COLOR_NORMAL = "F0F0F0"     //非点击状态颜色
+let COLOR_SHADOW = "BBBBBB"     //阴影颜色
 
 
 let TEXTFIELD_TITLECOLOR = "666666"

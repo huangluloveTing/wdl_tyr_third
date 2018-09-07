@@ -49,17 +49,25 @@ class DropViewContainer: UIView {
         anchorSuperView?.addSubview(self)
         self.maskOpacityView.frame = self.bounds
         self.addSubview(self.maskOpacityView)
-        self.maskOpacityView.singleTap { (view) in
-            self.hiddenDropView()
-        }
         self.maskOpacityView.addSubview(self.dropView)
         self.maskOpacityView.zt_height = 0
+        self.maskOpacityView.addSubview(self.bottomHandleView)
+        self.bottomHandleView.frame = CGRect(x: 0, y: self.dropView.zt_height, width: IPHONE_WIDTH, height: self.zt_height - self.dropView.zt_height)
     }
     
     private lazy var maskOpacityView:UIView = {
        let view = UIView()
         view.backgroundColor = UIColor(hex: "292B2A").withAlphaComponent(0.4)
         view.clipsToBounds = true
+        return view
+    }()
+    
+    private lazy var bottomHandleView:UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        view.singleTap(closure: { (view) in
+            self.hiddenDropView()
+        })
         return view
     }()
 }

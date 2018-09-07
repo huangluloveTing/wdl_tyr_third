@@ -35,14 +35,14 @@ class BageView: UIView {
         self.imageView.image = image
     }
     
-    func textFont(font:UIFont = UIFont.systemFont(ofSize: 11)) {
+    func textFont(font:UIFont = UIFont.systemFont(ofSize: 10)) {
         self.badgeLabel.font = font
         self.badgeLabel.sizeToFit()
     }
     
     private lazy var imageView:UIImageView = {
-        var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        
+        var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         return imageView
     }()
     

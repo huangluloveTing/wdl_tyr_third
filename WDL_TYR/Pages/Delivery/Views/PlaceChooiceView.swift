@@ -43,11 +43,13 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
     
     init(items:[PlaceChooiceItem]) {
         super.init(frame:.zero)
-        self.showItems = self.initialItems(items: items)
-        self.provinceItem = self.showItems.first
-        self.currentProvinces = items
-        self.currentShowItems = items
-//        self.updateCollectionWhenTap(tabIndex: self.tabIndex, row: self.provinceTapIndex)
+        self.toConfig(items: items)
+    }
+    
+    public func showItems(items:[PlaceChooiceItem]) {
+        self.toConfig(items: items)
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
     }
     
     private func initialItems(items:[PlaceChooiceItem]) -> [PlaceChooiceItem] {
@@ -64,20 +66,27 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
         return newItems
     }
     
+    private func toConfig(items:[PlaceChooiceItem]) {
+        self.showItems = self.initialItems(items: items)
+        self.provinceItem = self.showItems.first
+        self.currentProvinces = items
+        self.currentShowItems = items
+    }
+    
     private lazy var collectionView:UICollectionView = {
         let flow = UICollectionViewFlowLayout()
-        let width = (IPHONE_WIDTH - 3.0) / 4.0
+        let width = (IPHONE_WIDTH - 0.0) / 4.0
         let height = CGFloat(40.0)
         flow.itemSize = CGSize(width: width, height: height)
-        flow.minimumLineSpacing = 1
-        flow.minimumInteritemSpacing = 1
-        flow.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0)
+        flow.minimumLineSpacing = 0
+        flow.minimumInteritemSpacing = 0
+        flow.sectionInset = UIEdgeInsetsMake(1, 0, 1, -1)
         flow.headerReferenceSize = CGSize(width: IPHONE_WIDTH, height: 50)
         flow.scrollDirection = UICollectionViewScrollDirection.vertical
        let collection = UICollectionView(frame: self.bounds, collectionViewLayout: flow)
         collection.dataSource = self
         collection.delegate = self
-        collection.backgroundColor = UIColor(hex: COLOR_BORDER)
+        collection.backgroundColor = UIColor.white
         collection.register(UINib.init(nibName: "\(DeliveryPlaceChooiceCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(DeliveryPlaceChooiceCell.self)")
         collection.register(UINib.init(nibName: "\(DeliveryPlaceTabHeader.self)", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "\(DeliveryPlaceTabHeader.self)")
         

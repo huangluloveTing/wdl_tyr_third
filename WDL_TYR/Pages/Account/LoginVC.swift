@@ -12,6 +12,8 @@ import RxCocoa
 
 class LoginVC: BaseVC {
     
+    let loginVM = LoginVModel(username: PublishSubject<String>(), passwd: PublishSubject<String>())
+    
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
@@ -30,7 +32,24 @@ class LoginVC: BaseVC {
             .subscribe(onNext: {[weak self] in
                 self?.toRegisterVC(title: nil)
             })
-            .disposed(by: dispose) 
+            .disposed(by: dispose)
+        
+        self.loginButton.rx.tap.asObservable()
+            .flatMap({ () ->  Observable<LoginInfo?> in
+                return self.loginHandle()
+            })
+            .subscribe(onNext: { (valid) in
+                
+            })
+            .disposed(by: dispose)
+        
+        self.phoneTextField.rx.text.orEmpty
+            .bind(to: self.loginVM.username)
+            .disposed(by: dispose)
+        
+        self.passworldTextField.rx.text.orEmpty
+            .bind(to: self.loginVM.passwd)
+            .disposed(by: dispose)
     }
     
     override func viewDidLoad() {
@@ -51,4 +70,24 @@ class LoginVC: BaseVC {
     @IBAction func toLinkCustomerServiceAction(_ sender: Any) {
         self.toLinkKF()
     }
+}
+
+extension LoginVC {
+    
+    func loginHandle() -> Observable<LoginInfo?> {
+        return Observable<LoginInfo?>.create({ (obser) -> Disposable in
+            return BaseApi.request(target: API.login("admin", "123"), type: BaseResponseModel<LoginInfo>.self)
+                    .subscribe(onNext: { (model) in
+                        print("respone = \(model.toJSON() ?? "")")
+                        WDLCoreManager.shared().userInfo = model.data
+                        obser.onNext(model.data)
+                        obser.onCompleted()
+                    })
+        })
+    }
+}
+
+struct LoginVModel {
+    var username:PublishSubject<String>
+    var passwd:PublishSubject<String>
 }

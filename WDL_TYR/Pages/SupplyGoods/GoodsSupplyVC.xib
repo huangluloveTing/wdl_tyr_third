@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoodsSupplyVC" customModule="WDL_TYR" customModuleProvider="target">
             <connections>
                 <outlet property="dropAnchorView" destination="TfV-nD-Vge" id="NW4-fj-bxc"/>
+                <outlet property="endButton" destination="hxQ-Pw-2ra" id="9SP-Mu-ks5"/>
+                <outlet property="startButton" destination="6Nc-pq-ANR" id="vf8-F7-4JH"/>
                 <outlet property="statusButton" destination="qjM-Ee-qWd" id="P1s-tx-K81"/>
                 <outlet property="tableView" destination="5Vy-xj-ZTO" id="2W9-JO-Zfp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

@@ -116,6 +116,10 @@
 		70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C25259212E7382007F2ED5 /* UIColor+extension.swift */; };
 		70C2525D212E75B2007F2ED5 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2525B212E75B2007F2ED5 /* RegisterVC.swift */; };
 		70C2525E212E75B2007F2ED5 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70C2525C212E75B2007F2ED5 /* RegisterVC.xib */; };
+		70E2754821414D9D00E1A92B /* APIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E2754721414D9D00E1A92B /* APIPath.swift */; };
+		70E2754A2141513600E1A92B /* DropPlaceChooiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E275492141513600E1A92B /* DropPlaceChooiceView.swift */; };
+		70E2754E21415E8500E1A92B /* DropPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70E2754D21415E8500E1A92B /* DropPlaceView.xib */; };
+		70E2755121425F2000E1A92B /* WDLCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E2755021425F2000E1A92B /* WDLCoreDataManager.swift */; };
 		70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECEEE8213842A10015CA7D /* BaseVC+Empty.swift */; };
 		70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED0878212F0236001DCCB2 /* DeliveryVC.swift */; };
 		70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ED0879212F0236001DCCB2 /* DeliveryVC.xib */; };
@@ -245,6 +249,10 @@
 		70C25259212E7382007F2ED5 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		70C2525B212E75B2007F2ED5 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		70C2525C212E75B2007F2ED5 /* RegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
+		70E2754721414D9D00E1A92B /* APIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPath.swift; sourceTree = "<group>"; };
+		70E275492141513600E1A92B /* DropPlaceChooiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPlaceChooiceView.swift; sourceTree = "<group>"; };
+		70E2754D21415E8500E1A92B /* DropPlaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropPlaceView.xib; sourceTree = "<group>"; };
+		70E2755021425F2000E1A92B /* WDLCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDLCoreDataManager.swift; sourceTree = "<group>"; };
 		70ECEEE8213842A10015CA7D /* BaseVC+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+Empty.swift"; sourceTree = "<group>"; };
 		70ED0878212F0236001DCCB2 /* DeliveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryVC.swift; sourceTree = "<group>"; };
 		70ED0879212F0236001DCCB2 /* DeliveryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryVC.xib; sourceTree = "<group>"; };
@@ -354,6 +362,7 @@
 		705926D3212A5DE800BE8BB4 /* WDL_TYR */ = {
 			isa = PBXGroup;
 			children = (
+				70E2754F21425F0700E1A92B /* CoreData */,
 				70C25252212E5E0E007F2ED5 /* Configs */,
 				70C2524B212E5B23007F2ED5 /* Base */,
 				70C2524A212E5B0F007F2ED5 /* Commons */,
@@ -379,6 +388,7 @@
 				705926E9212A5E5500BE8BB4 /* ResponseHandle.swift */,
 				705926EA212A5E5500BE8BB4 /* BaseModel.swift */,
 				705926EB212A5E5500BE8BB4 /* API.swift */,
+				70E2754721414D9D00E1A92B /* APIPath.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -567,6 +577,8 @@
 				70B1301721354E44002A473F /* GSDetailBidingHeader.xib */,
 				70B1301B21355BA0002A473F /* GSDetailBidingHeader.swift */,
 				70A319C72137DDBE00017356 /* GoodsSupplyFoldInfoView.swift */,
+				70E275492141513600E1A92B /* DropPlaceChooiceView.swift */,
+				70E2754D21415E8500E1A92B /* DropPlaceView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -653,6 +665,14 @@
 				7037B0CD213A238600BDC718 /* images.swift */,
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		70E2754F21425F0700E1A92B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				70E2755021425F2000E1A92B /* WDLCoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		70FD79FC213D93AE00E6AA05 /* VCs */ = {
@@ -767,6 +787,7 @@
 				70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
+				70E2754E21415E8500E1A92B /* DropPlaceView.xib in Resources */,
 				70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
 				70A319C42137D4C700017356 /* bad_star@1x.png in Resources */,
@@ -852,6 +873,7 @@
 				7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */,
 				708150DA2131396700D42723 /* DropViewContainer.swift in Sources */,
 				7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */,
+				70E2755121425F2000E1A92B /* WDLCoreDataManager.swift in Sources */,
 				70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */,
 				7037B0C8213A1F3700BDC718 /* WayBillDetailVC.swift in Sources */,
 				7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */,
@@ -865,6 +887,7 @@
 				70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */,
 				70B588F92140B12F00EF704E /* DeliveryTruckTypeCell.swift in Sources */,
 				7068E0F2213FB83300929337 /* PlaceChooiceView.swift in Sources */,
+				70E2754821414D9D00E1A92B /* APIPath.swift in Sources */,
 				7037B0DB213C27F300BDC718 /* PersonalExcuteCell.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
@@ -913,6 +936,7 @@
 				7037B0CC213A1F7A00BDC718 /* WayBillStatusView.swift in Sources */,
 				708150D6213122CA00D42723 /* ZTTagItem.m in Sources */,
 				7058BD2C212E990100B53DF6 /* ZTTransitionManager.swift in Sources */,
+				70E2754A2141513600E1A92B /* DropPlaceChooiceView.swift in Sources */,
 				7068E0EE213FADE400929337 /* DeliveryPlaceChooiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

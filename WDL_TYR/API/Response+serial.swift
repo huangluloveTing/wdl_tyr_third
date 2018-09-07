@@ -22,12 +22,12 @@ extension ObservableType where E == Response {
             }
             
             do {
-                let _ = try HandleResponse.handleResponse(response: resModel)
+                let _ = try HandleResponse.handleResponse(response: reuslt)
             }
             catch let error {
                 throw error
             }
-            return Observable.just(reuslt)
+            return Observable.just(resModel!)
         }
     }
 }

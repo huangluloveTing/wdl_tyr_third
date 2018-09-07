@@ -20,17 +20,17 @@ struct HandleResponse {
             throw CustomerError.businessError("网络异常，请重试...")
         }
         if let code = res.code {
-            if code == 902 {
-                throw CustomerError.globalError(res.remark, 902)
+            if code == 1 {
+                throw CustomerError.globalError(res.message, 1)
             }
-            else if code == 903 {
-                throw CustomerError.businessError(res.remark)
+            else if code == 3 {
+                throw CustomerError.businessError(res.message)
             }
-            else if code >= 200 && code <= 299 {
+            else if code == 0 {
                 return res
             }
             else {
-                throw CustomerError.businessError(res.remark)
+                throw CustomerError.businessError(res.message)
             }
         }
         return res

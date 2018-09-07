@@ -15,12 +15,34 @@ import HandyJSON
 
 struct BaseApi {
     
-    private static let provider = MoyaProvider<API>(plugins: [])
+    private static let provider = MoyaProvider<API>( requestClosure:requestClosure,plugins: [])
     
     static func request<T: BaseResponse>(target:API, type:T.Type) -> Observable<T> {
         let observable = provider.rx.request(target).asObservable()
             .mapModel(T.self)
         return observable
+    }
+}
+
+func myEndPoint(target:TargetType) -> Endpoint {
+    let endPoint = Endpoint(url: target.baseURL.absoluteString,
+                            sampleResponseClosure: { () -> EndpointSampleResponse in
+                                return .networkResponse(200, target.sampleData)
+                            },
+                            method: target.method,
+                            task: target.task,
+                            httpHeaderFields: [String: String]())
+    return endPoint
+}
+
+func requestClosure(endPoint:Endpoint , done:MoyaProvider<API>.RequestResultClosure ) -> Void {
+    do {
+     var request = try endPoint.urlRequest()
+        request.timeoutInterval = 10.0
+        done(.success(request))
+    }
+    catch let error {
+        done(.failure(MoyaError.underlying(error, nil)))
     }
 }
 

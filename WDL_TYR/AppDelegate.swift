@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().toolbarBarTintColor = UIColor(hex: INPUTVIEW_TINCOLOR)
         IQKeyboardManager.shared().toolbarTintColor = UIColor(hex: COLOR_BUTTON)
         IQKeyboardManager.shared().shouldResignOnTouchOutside = true
-        IQKeyboardManager.shared().keyboardDistanceFromTextField = 20
+        IQKeyboardManager.shared().keyboardDistanceFromTextField = 10
     }
     
     func configGlobalNavigationBar() {

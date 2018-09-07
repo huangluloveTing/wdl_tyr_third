@@ -78,7 +78,7 @@ extension BaseVC {
     
     // 添加头部信息
     func addMessageRihgtItem() {
-        let rightBadgeView = BageView(frame: CGRect(x: 0, y: 0, width: 33, height: 33))
+        let rightBadgeView = BageView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
         rightBadgeView.bgImage(image: #imageLiteral(resourceName: "message"))
         rightBadgeView.badgeValue(text: "99")
         rightBadgeView.textFont()

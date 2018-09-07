@@ -14,19 +14,18 @@ public protocol BaseResponse: HandyJSON {
     associatedtype Element
 
     var code:Int?{ get set }
-    var remark:String?{ get set }
-    var result:Element? { get set }
+    var message:String?{ get set }
+    var data:Element? { get set }
 }
 
 struct BaseResponseModel<T:Any> : BaseResponse {
-    
     typealias Element = T
     
-    var result: T?
+    var data: T?
     
     var code: Int?
     
-    var remark: String?
+    var message: String?
 }
 
 public enum CustomerError : Error{
