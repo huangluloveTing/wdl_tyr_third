@@ -120,6 +120,7 @@
 		70E2754A2141513600E1A92B /* DropPlaceChooiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E275492141513600E1A92B /* DropPlaceChooiceView.swift */; };
 		70E2754E21415E8500E1A92B /* DropPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70E2754D21415E8500E1A92B /* DropPlaceView.xib */; };
 		70E2755121425F2000E1A92B /* WDLCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E2755021425F2000E1A92B /* WDLCoreDataManager.swift */; };
+		70E2755321427A5800E1A92B /* BaseVC+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E2755221427A5800E1A92B /* BaseVC+Toast.swift */; };
 		70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ECEEE8213842A10015CA7D /* BaseVC+Empty.swift */; };
 		70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED0878212F0236001DCCB2 /* DeliveryVC.swift */; };
 		70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ED0879212F0236001DCCB2 /* DeliveryVC.xib */; };
@@ -253,6 +254,7 @@
 		70E275492141513600E1A92B /* DropPlaceChooiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPlaceChooiceView.swift; sourceTree = "<group>"; };
 		70E2754D21415E8500E1A92B /* DropPlaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropPlaceView.xib; sourceTree = "<group>"; };
 		70E2755021425F2000E1A92B /* WDLCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDLCoreDataManager.swift; sourceTree = "<group>"; };
+		70E2755221427A5800E1A92B /* BaseVC+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+Toast.swift"; sourceTree = "<group>"; };
 		70ECEEE8213842A10015CA7D /* BaseVC+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+Empty.swift"; sourceTree = "<group>"; };
 		70ED0878212F0236001DCCB2 /* DeliveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryVC.swift; sourceTree = "<group>"; };
 		70ED0879212F0236001DCCB2 /* DeliveryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryVC.xib; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 				7037B0BE2139903100BDC718 /* BaseVC+Bottom.swift */,
 				7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */,
 				70B588FB2140B20E00EF704E /* UIView+ZTTagView.swift */,
+				70E2755221427A5800E1A92B /* BaseVC+Toast.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				7037B0D1213ADD3A00BDC718 /* WayBillDetailStatusCell.swift in Sources */,
 				70A319DD2137FA4C00017356 /* GSQutationCell.swift in Sources */,
 				70A319CD2137EFD400017356 /* GSDealedCell.swift in Sources */,
+				70E2755321427A5800E1A92B /* BaseVC+Toast.swift in Sources */,
 				70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */,
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,

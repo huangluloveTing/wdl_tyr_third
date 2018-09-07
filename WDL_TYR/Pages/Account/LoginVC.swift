@@ -35,11 +35,18 @@ class LoginVC: BaseVC {
             .disposed(by: dispose)
         
         self.loginButton.rx.tap.asObservable()
+            .filter({ () -> Bool in
+                if self.phoneTextField.text?.count == 0 && self.passworldTextField.text?.count == 0 {
+                    return false
+                    
+                }
+                return true
+            })
             .flatMap({ () ->  Observable<LoginInfo?> in
                 return self.loginHandle()
             })
             .subscribe(onNext: { (valid) in
-                
+                self.toMainVC()
             })
             .disposed(by: dispose)
         
@@ -63,7 +70,7 @@ class LoginVC: BaseVC {
 
     // 点击我是承运人
     @IBAction func toCYRAction(_ sender: Any) {
-        self.toMainVC()
+        
     }
     
     // 点击联系客服
@@ -76,9 +83,9 @@ extension LoginVC {
     
     func loginHandle() -> Observable<LoginInfo?> {
         return Observable<LoginInfo?>.create({ (obser) -> Disposable in
-            return BaseApi.request(target: API.login("admin", "123"), type: BaseResponseModel<LoginInfo>.self)
+            return BaseApi.request(target: API.login(self.phoneTextField.text ?? "", self.passworldTextField.text ?? ""), type: BaseResponseModel<LoginInfo>.self)
                     .subscribe(onNext: { (model) in
-                        print("respone = \(model.toJSON() ?? "")")
+                        print("respone = \(model.toJSON() ?? ["s":""])")
                         WDLCoreManager.shared().userInfo = model.data
                         obser.onNext(model.data)
                         obser.onCompleted()

@@ -9,9 +9,9 @@
 import Foundation
 import HandyJSON
 
-struct LoginInfo {
-    var userCode:String?
-    var returnToken : String?
+struct LoginInfo : HandyJSON {
+   public var userCode:String?
+   public var returnToken:String?
 }
 
 class WDLCoreManager: NSObject {
