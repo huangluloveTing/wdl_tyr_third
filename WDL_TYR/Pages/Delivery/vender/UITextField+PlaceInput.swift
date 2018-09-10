@@ -43,13 +43,46 @@ extension UITextField {
         return ob
     }
     
-    func truckTypeInputView(truckTypes:[TruckTypeItem])  {
+    func truckTypeInputView(truckTypes:[TruckTypeItem]) -> PublishSubject<[TruckTypeItem]> {
+        let observable = PublishSubject<[TruckTypeItem]>()
         self.keyboardToolbar.isHidden = true
         let truckTypeInputView = Bundle.main.loadNibNamed("XIBViews", owner: nil, options: nil)?.first as! DeliveryPlaceChooiceView
         truckTypeInputView.frame = CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: IPHONE_WIDTH * 1.1))
         let truckTypeView = DeliveryTruckTypeView(frame: truckTypeInputView.bounds, truckItems: truckTypes)
+        var newTypes:[TruckTypeItem] = truckTypes
+        truckTypeView.truckClosure = { (section , row) in
+            newTypes = self.toConfigTruckItem(section: section, row: row, types: newTypes)
+        }
         truckTypeInputView.insertContentView(inputView: truckTypeView, targetTextField: self)
         truckTypeInputView.shadow(color: UIColor(hex: COLOR_SHADOW), offset: CGSize(width: 0, height: -2), opacity: 0.5, radius: 2)
         self.inputView = truckTypeInputView
+        truckTypeInputView.closure = {
+            observable.onNext(newTypes)
+        }
+        return observable
+    }
+    
+    private func toConfigTruckItem(section:Int , row:Int , types:[TruckTypeItem]) -> [TruckTypeItem] {
+        var items = types
+        items = items.enumerated().map { (offset , item) -> TruckTypeItem in
+            var newItem = item
+            let specs = newItem.specs
+            if offset == section {
+                let newSpecs = specs.enumerated().map({ (offset , spec) -> TruckSpecItem in
+                    var newSpec = spec
+                    if offset == row {
+                        newSpec.selected = true
+                    } else {
+                        newSpec.selected = false
+                    }
+                    return newSpec
+                })
+                
+                newItem.specs = newSpecs
+            }
+            return newItem
+        }
+        
+        return items
     }
 }

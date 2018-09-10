@@ -21,6 +21,10 @@ struct TruckSpecItem {
 
 class DeliveryTruckTypeView: UIView {
 
+    typealias DeliveryTruckClosure = (Int , Int) -> ()
+    
+    public var truckClosure:DeliveryTruckClosure?
+    
     private var specs:[TruckTypeItem]!
     
     init(frame:CGRect , truckItems:[TruckTypeItem]) {
@@ -80,5 +84,8 @@ extension DeliveryTruckTypeView : UITableViewDelegate , UITableViewDataSource {
         type.specs = newSpecs
         self.specs[section] = type
         self.tableView.reloadData()
+        if let closure = self.truckClosure {
+            closure(section , row)
+        }
     }
 }

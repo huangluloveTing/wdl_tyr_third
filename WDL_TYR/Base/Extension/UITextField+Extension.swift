@@ -133,5 +133,4 @@ extension Reactive where Base : UITextField {
     public var tap:ControlEvent<Void> {
         return controlEvent(.editingDidBegin)
     }
-    
 }

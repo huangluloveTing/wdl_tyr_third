@@ -35,7 +35,7 @@ extension UIView : ZTTagViewDelegate , ZTTagViewDataSource {
         if state == .normal {
             return UIColor(hex: COLOR_NORMAL)
         }
-        return UIColor(hex: COLOR_BUTTON)
+        return UIColor(hex: COLOR_BUTTON).withAlphaComponent(0.3)
     }
     
     public func cornerRadius(for tagView: ZTTagView!) -> CGFloat {
@@ -60,9 +60,9 @@ extension UIView : ZTTagViewDelegate , ZTTagViewDataSource {
     
     public func tagView(_ tagView: ZTTagView!, titleColorFor state: UIControlState) -> UIColor! {
         if state == .normal {
-            return UIColor(hex: COLOR_BUTTON)
+            return UIColor(hex: TEXTFIELD_TITLECOLOR)
         }
-        return UIColor(hex: TEXTFIELD_TITLECOLOR)
+        return UIColor(hex: COLOR_BUTTON)
     }
     
     public func textFont(for tagView: ZTTagView!) -> UIFont! {

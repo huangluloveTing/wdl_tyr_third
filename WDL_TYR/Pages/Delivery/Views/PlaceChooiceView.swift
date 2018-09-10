@@ -207,16 +207,20 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
         }
         if tabIndex == 2 {
             let provinceSelected = self.showItems[self.provinceTapIndex]
-            let citySelected = provinceSelected.subItems![self.cityTapIndex]
-            let stricts = citySelected.subItems ?? []
-            for (index , strict) in stricts.enumerated() {
-                var newStrict = strict
-                if index == row {
-                    newStrict.selected = true
-                } else {
-                    newStrict.selected = false
+            if let cities = provinceSelected.subItems {
+                if cities.count > self.cityTapIndex {
+                    let citySelected = cities[self.cityTapIndex]
+                    let stricts = citySelected.subItems ?? []
+                    for (index , strict) in stricts.enumerated() {
+                        var newStrict = strict
+                        if index == row {
+                            newStrict.selected = true
+                        } else {
+                            newStrict.selected = false
+                        }
+                        newItems.append(newStrict)
+                    }
                 }
-                newItems.append(newStrict)
             }
         }
         
@@ -224,6 +228,9 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
     }
     
     func getSelectedArea() {
+        self.provinceItem = nil
+        self.cityItem = nil
+        self.strictItem = nil
         self.provinceItem = self.showItems[self.provinceTapIndex]
         let cities = self.showItems[self.provinceTapIndex].subItems
         if let cities = cities {

@@ -38,6 +38,7 @@ class OneChooseInputView: UIView {
         tableView.separatorInset = UIEdgeInsetsMake(0, -100, 0, 0)
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorColor = UIColor(hex: COLOR_BORDER)
+        tableView.tableFooterView = UIView()
         return tableView
     }()
 }

@@ -19,7 +19,7 @@ class DeliveryPlaceChooiceView: UIView {
     
     private weak var targetTextField:UITextField?
     
-    private var closure: InputSureClosure?
+    public var closure: InputSureClosure?
     
     private var contentInputView:UIView?
     

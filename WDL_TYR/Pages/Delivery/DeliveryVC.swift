@@ -16,12 +16,34 @@ struct PlaceCheckModel { // 省市区
     var strict:PlaceChooiceItem?
 }
 
+enum DeliveryMethod { // 成交方式
+    case Delivery_Auto // 自动成交
+    case Delivery_Manul// 手动成交
+}
+
+struct DeliveryCommitModel {
+    var vehicleWidth:String?        // 车宽
+    var vehicleLength:String?       // 车长
+    var vehicleType:String?         // 车型
+    var goodsCate:String?           // 货品分类
+    var packageType:String?         // 包装类型
+    var goodsWeight:String?         // 货物重量
+    var loadTime:String?            // 装货时间
+    var validTime:String?           // 货物有效期
+    var postType:DeliveryMethod?    // 成交方式
+    var dealTime:String?            // 成交时间 --- 自动成交方式
+    var remark:String?              // 备注
+    var unit:String?                // 单价
+    var total:String?               // 总价
+}
+
 class DeliveryVC: MainBaseVC {
     
     private var startPlace:PlaceCheckModel = PlaceCheckModel()
     private var endPlace:PlaceCheckModel = PlaceCheckModel()
     
     private var hallItems:HallModels?
+    private var deliveryData:DeliveryCommitModel? = DeliveryCommitModel()
     
     @IBOutlet weak var endTextField: UITextField!
     @IBOutlet weak var startPlaceTextField: UITextField!
@@ -73,24 +95,6 @@ class DeliveryVC: MainBaseVC {
     }
 
     override func bindViewModel() {
-        self.timerPostButton.rx.tap
-            .subscribe(onNext: { () in
-                
-            })
-            .disposed(by: dispose)
-        
-        self.goodsCategoryTextField.oneChooseInputView(titles: ["玉米","玉米","玉米","玉米","玉米","玉米","玉米"])
-            .asObservable()
-            .subscribe(onNext: { (index) in
-            })
-            .disposed(by: dispose)
-        
-        self.packageTextField.oneChooseInputView(titles: ["无包装","木桶","纸箱","铁桶","塑料桶"])
-            .asObservable()
-            .subscribe(onNext: { (index) in
-                
-            }).disposed(by: dispose)
-        
         self.loadGoodsTimeTextField.datePickerInput(mode: .dateAndTime)
             .asObservable()
             .subscribe(onNext: { (time) in
@@ -98,11 +102,32 @@ class DeliveryVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
-        self.cartTypeTextField.truckTypeInputView(truckTypes: [])
+        self.autoPostButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.autoPostButton.isSelected = true
+                self.isAutoPost(auto: self.autoPostButton.isSelected)
+            })
+            .disposed(by: dispose)
+        
+        self.manualPostButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.autoPostButton.isSelected = false
+                self.isAutoPost(auto: self.autoPostButton.isSelected)
+            })
+            .disposed(by: dispose)
     }
     
     
-    
+    func isAutoPost(auto:Bool) { // 是否自动提交
+        self.manualPostButton.isSelected = !auto
+        self.autoPostButton.isSelected = auto
+        self.deliveryData?.postType = auto ? DeliveryMethod.Delivery_Auto : DeliveryMethod.Delivery_Manul
+        if auto == true {
+            self.dealTimeTextField.updateHeight(height: 48).isHidden = false
+        }else {
+            self.dealTimeTextField.hiddenByUpdateHeight()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,47 +137,49 @@ class DeliveryVC: MainBaseVC {
 }
 
 extension DeliveryVC {
-    /**
-     VEHICLE_TYPE("VehicleType", "车型"),
-     VEHICLE_LENGTH("VehicleLength", "车长"),
-     VEHICLE_WIDTH("VehicleWidth", "车宽"),
-     MATERIAL_TYPE("MaterialType", "物料分类"),
-     PACKAGE_TYPE("PACKAGE_TYPE", "包装类型"),
-     HALL_PERIOD("HYYXQ", "货源有效期"),
-     AUTO_DEAL_SPACE("auto_deal_space", "货源自动成交时间间隔");
-     */
-    // 配置选项
+    
+    // 车长车宽车型
     private func toConfigSingleInput() {
         self.cartTypeTextField.truckTypeInputView(truckTypes: self.cartSpec() ?? [])
+            .subscribe(onNext: { (selected) in
+                self.configTruckType(types: selected)
+            })
+            .disposed(by: dispose)
     }
     
-    //
-    
-    // 配置车长车型的数据
-    private func cartSpec() -> [TruckTypeItem]? {
-        var length = TruckTypeItem(typeName: "车长", specs: [])
-        let length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
-            let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
-            return spec_item
-        })
-        length.specs = length_items ?? []
-        var width = TruckTypeItem(typeName: "车宽", specs: [])
-        let width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
-            let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
-            return spec_item
-        })
-        width.specs = width_items ?? []
-        
-        var cartType = TruckTypeItem(typeName: "车型", specs: [])
-        let type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
-            let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
-            return spec_item
-        })
-        cartType.specs = type_items ?? []
-        
-        return [length , width , cartType]
+    // 货品分类
+    private func toConfigCate() {
+        self.goodsCategoryTextField.oneChooseInputView(titles: self.toConfigGoodsCate())
+            .subscribe(onNext: { (index) in
+                
+            })
+            .disposed(by: dispose)
     }
     
+    // 包装类型
+    private func toConfigPackage() {
+        self.packageTextField.oneChooseInputView(titles: self.toConfigPackageTypeData())
+            .subscribe(onNext: { (index) in
+                
+            }).disposed(by: dispose)
+    }
+    
+    // 货源有效期
+    private func toConfigValid() {
+        self.goodsValidTextField.oneChooseInputView(titles: self.toConfigValidTime())
+            .subscribe(onNext: { (index) in
+                
+            })
+            .disposed(by: dispose)
+    }
+    
+    private func toConfigAutoPost() {
+        self.dealTimeTextField.oneChooseInputView(titles: self.toConfigAutoPostTimeData())
+            .subscribe(onNext: { (index) in
+                
+            })
+            .disposed(by: dispose)
+    }
     
     // 配置地点输入的弹出
     private func toConfigAreaInput() {
@@ -194,7 +221,7 @@ extension DeliveryVC {
         self.endTextField.text = (province?.title ?? "") + (city?.title ?? "") + (strict?.title ?? "")
     }
     
-    //MARK: TODO
+    //MARK: 配置省市区
     func initialProinve() -> Observable<[PlaceChooiceItem]> {
         let observable = Observable<[PlaceChooiceItem]>.create { (obser) -> Disposable in
              let areas = Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
@@ -203,6 +230,34 @@ extension DeliveryVC {
             return Disposables.create()
         }
         return observable
+    }
+    
+    // 配置车长车型
+    private func configTruckType(types:[TruckTypeItem]) {
+        let length = types.first?.specs.filter({ (item) -> Bool in
+            return item.selected
+        }).first
+        let width = types[1].specs.filter { (item) -> Bool in
+            return item.selected
+        }.first
+        let type = types.last?.specs.filter({ (item) -> Bool in
+            return item.selected
+        }).first
+        
+        self.deliveryData?.vehicleLength = length?.specName
+        self.deliveryData?.vehicleWidth = width?.specName
+        self.deliveryData?.vehicleType = type?.specName
+        var truckTitle = ""
+        if let length = length {
+            truckTitle = truckTitle + length.specName + "、"
+        }
+        if let width = width {
+            truckTitle = truckTitle + width.specName + "、"
+        }
+        if let type = type {
+            truckTitle = truckTitle + type.specName
+        }
+        self.cartTypeTextField.text = truckTitle
     }
 }
 
@@ -221,20 +276,74 @@ extension DeliveryVC {
                 WDLCoreManager.shared().regionAreas = regions.data
                 self?.toConfigAreaInput()
                 self?.toConfigSingleInput()
+                self?.toConfigCate()
+                self?.toConfigValid()
+                self?.toConfigPackage()
+                self?.toConfigAutoPost()
             }, onError: { [weak self](error) in
                 self?.hiddenToast()
                 self?.loadAllBasicInfo()
             })
             .disposed(by: dispose)
     }
+    
+    // 配置车长车型的数据
+    private func cartSpec() -> [TruckTypeItem]? {
+        var length = TruckTypeItem(typeName: "车长", specs: [])
+        let length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
+            let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
+            return spec_item
+        })
+        length.specs = length_items ?? []
+        var width = TruckTypeItem(typeName: "车宽", specs: [])
+        let width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
+            let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
+            return spec_item
+        })
+        width.specs = width_items ?? []
+        
+        var cartType = TruckTypeItem(typeName: "车型", specs: [])
+        let type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
+            let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
+            return spec_item
+        })
+        cartType.specs = type_items ?? []
+        
+        return [length , width , cartType]
+    }
+    
+    // 货品分类数据
+    func toConfigGoodsCate() -> [String] {
+        var items : [String] = []
+        self.hallItems?.MaterialType?.forEach({ (item) in
+            items.append(item.dictionaryName ?? " ")
+        })
+        return items
+    }
+    
+    // 包装类型数据
+    func toConfigPackageTypeData() -> [String] {
+        var items : [String] = []
+        self.hallItems?.PACKAGE_TYPE?.forEach({ (item) in
+            items.append(item.dictionaryName ?? " ")
+        })
+        return items
+    }
+    
+    // 货物有效期时间
+    func toConfigValidTime() -> [String] {
+        var items: [String] = []
+        self.hallItems?.HYYXQ?.forEach({ (item) in
+            items.append(item.dictionaryName ?? " ")
+        })
+        return items
+    }
+    
+    func toConfigAutoPostTimeData() -> [String] {
+        var items: [String] = []
+        self.hallItems?.auto_deal_space?.forEach({ (item) in
+            items.append(item.dictionaryName ?? " ")
+        })
+        return items
+    }
 }
-
-/**
- VEHICLE_TYPE("VehicleType", "车型"),
- VEHICLE_LENGTH("VehicleLength", "车长"),
- VEHICLE_WIDTH("VehicleWidth", "车宽"),
- MATERIAL_TYPE("MaterialType", "物料分类"),
- PACKAGE_TYPE("PACKAGE_TYPE", "包装类型"),
- HALL_PERIOD("HYYXQ", "货源有效期"),
- AUTO_DEAL_SPACE("auto_deal_space", "货源自动成交时间间隔");
- */
