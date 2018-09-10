@@ -26,7 +26,7 @@ struct HandleResponse {
             else if code == 3 {
                 throw CustomerError.businessError(res.message)
             }
-            else if code == 0 {
+            else if code == 0 || code == 200 {
                 return res
             }
             else {

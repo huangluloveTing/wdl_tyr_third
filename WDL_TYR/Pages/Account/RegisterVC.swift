@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+let dueTime = 10
+
 class RegisterVC: BaseVC {
     
     @IBOutlet weak var registerButton: UIButton!
@@ -24,6 +26,8 @@ class RegisterVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        self.fd_interactivePopDisabled = true
     }
     
     override func currentConfig() {
@@ -66,7 +70,18 @@ class RegisterVC: BaseVC {
                 return handle
             })
             .subscribe(onNext: { () in
-                
+                self.toRegisterAccount()
+            })
+            .disposed(by: dispose)
+        
+        self.verifyButton.rx.tap
+            .subscribe(onNext:{
+                if isPhone(phone: self.registerInfo.phone) {
+                    self.obtainVeryCode(phone: self.registerInfo.phone!)
+                }
+                else {
+                    self.showWarn(warn: "请输入正确的手机号码")
+                }
             })
             .disposed(by: dispose)
     }
@@ -83,23 +98,84 @@ class RegisterVC: BaseVC {
         self.pop()
     }
     @IBAction func toTYRAction(_ sender: Any) { // 去我是承运人
-        
+        self.toMainVC()
     }
     @IBAction func toLinkCustomerSerAction(_ sender: Any) { // 联系客服
         self.toLinkKF()
     }
+    
+    
 }
 
 extension RegisterVC {
     
+    func toRegisterAccount() {
+        if !isPhone(phone: self.registerInfo.phone) {
+            self.showWarn(warn: "手机号码不正确")
+            return
+        }
+        if self.registerInfo.veryCode?.count == 0 {
+            self.showWarn(warn: "请填写验证码")
+            return
+        }
+        if !isCorrectPwd(pwd: self.registerInfo.pwd)  {
+            self.showWarn(warn: "请填写正确的密码")
+            return
+        }
+        if self.registerInfo.confirmPwd != self.registerInfo.pwd {
+            self.showWarn(warn: "确认密码与第一次输入的密码不一致")
+            return
+        }
+        if self.registerInfo.readedProtocol == false || self.registerInfo.readedProtocol == nil {
+            self.showWarn(warn: "请阅读织布鸟注册协议", complete: nil)
+            return
+        }
+        
+        self.showLoading(title: "正在提交", complete: nil)
+        BaseApi.request(target: API.register(self.registerInfo.pwd!, self.registerInfo.phone!, self.registerInfo.veryCode!, self.registerInfo.confirmPwd!), type: BaseResponseModel<AnyObject>.self)
+            .subscribe(onNext: { (model) in
+                self.showSuccess(success: "注册成功", complete: {[weak self] in
+                    self?.pop()
+                })
+            }, onError: { (error) in
+                self.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
+    }
+    
+    func obtainVeryCode(phone:String) {
+        self.showLoading()
+        self.verifyButton.isEnabled = false
+        BaseApi.request(target: API.registerSms(phone), type: BaseResponseModel<Any>.self)
+            .subscribe(onNext: { (model) in
+                self.showSuccess(success: "获取验证码成功", complete: nil)
+                self.timedownVeryCodeButton()
+            },
+                       onError: { (eror) in
+                self.verifyButton.isEnabled = true
+                self.showFail(fail: eror.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
+    }
+    
+    func timedownVeryCodeButton()  {
+        Observable<Int>.interval(1, scheduler: MainScheduler.instance)
+            .take(RxTimeInterval(dueTime), scheduler: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] (time) in
+                self?.verifyButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+                self?.verifyButton.setTitle(String(format: "%ds", time), for: UIControlState.normal)
+            }, onCompleted: { [weak self] in
+                self?.verifyButton.isEnabled = true
+                self?.verifyButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                self?.verifyButton.setTitle("重新获取", for: UIControlState.normal)
+            })
+            .disposed(by: dispose)
+    }
 }
 
 
 
 class RegisterVModel: NSObject {
-    
-    let disponse = DisposeBag()
-    
     var phone:String?
     var veryCode:String?
     var pwd:String?

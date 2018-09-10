@@ -15,7 +15,7 @@ import HandyJSON
 
 struct BaseApi {
     
-    private static let provider = MoyaProvider<API>( requestClosure:requestClosure,plugins: [])
+    private static let provider = MoyaProvider<API>( requestClosure:requestClosure,plugins: [MyPlugins()])
     
     static func request<T: BaseResponse>(target:API, type:T.Type) -> Observable<T> {
         let observable = provider.rx.request(target).asObservable()
@@ -39,8 +39,8 @@ func requestClosure(endPoint:Endpoint , done:MoyaProvider<API>.RequestResultClos
     do {
      var request = try endPoint.urlRequest()
         request.timeoutInterval = 10.0
-        request.addValue("Token", forHTTPHeaderField: WDLCoreManager.shared().userInfo?.returnToken ?? "")
-        request.addValue("consignorToken", forHTTPHeaderField: "")
+        request.addValue(WDLCoreManager.shared().userInfo?.returnToken ?? "", forHTTPHeaderField:"Token" )
+        request.addValue("", forHTTPHeaderField: "consignorToken")
         
         done(.success(request))
     }

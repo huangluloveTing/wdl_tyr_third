@@ -31,6 +31,19 @@ class Util {
         dateFormater.dateFormat = formatter
         return dateFormater.string(from: date)
     }
+    
+    static func configServerRegions(regions:[RegionModel]) -> [PlaceChooiceItem] {
+        var items:[PlaceChooiceItem] = []
+        for model_1 in regions {
+            var item_1 = PlaceChooiceItem(title: model_1.label ?? "", id: model_1.value ?? "", selected: false, subItems: nil, level: 0)
+            if let children = model_1.children {
+                let sub_items_1 = self.configServerRegions(regions: children)
+                item_1.subItems = sub_items_1
+            }
+            items.append(item_1)
+        }
+        return items
+    }
 }
 
 // 富文本 YYText

@@ -15,10 +15,7 @@ enum API {
     case login(String , String) // 登录接口
     case register(String , String , String , String) // 注册
     case registerSms(String)    // 获取验证码
-    case getTaskList(Int , Int , Int)
-    case getQuotaTaskItemList(String)
-    case getOrderList(Int , Int , Int)
-    case getOrderDetailItems(String , String)
+    case loadTaskInfo()
 }
 
 
@@ -26,21 +23,13 @@ enum API {
 func apiPath(api:API) -> String {
     switch api {
     case .login(_, _):
-        return ""
+        return "/auth/login"
     case .register(_, _, _, _):
         return "/consignor/consignorRegister"
     case .registerSms(_):
         return "/consignor/consignorRegisterSms"
-    case .getTaskList(_, _, _):
-        return "scmApp/getTaskList"
-    case .getQuotaTaskItemList(_):
-        return "scmApp/getQuotaTaskItemList"
-        
-    case .getOrderList(_, _, _):
-        return "scmApp/getOrderList"
-        
-    case .getOrderDetailItems(_, _):
-        return "scmApp/getOrderDetailItems"
+    case .loadTaskInfo():
+        return "/app/common/getAllCityAreaList"
     }
 }
 
@@ -48,25 +37,14 @@ func apiPath(api:API) -> String {
 func apiTask(api:API) -> Task {
     switch api {
     case .registerSms(let phpne):
-        return .requestParameters(parameters: ["cellphone":phpne], encoding:JSONEncoding.default)
+        return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["cellphone":phpne])
     case .register(let pwd, let phone, let vcode, let vpwd):
         return .requestParameters(parameters: ["password": pwd,"phone": phone,"verificationCode": vcode,"verificationPassword": vpwd], encoding: JSONEncoding.default)
-    case .getTaskList(let start , let limit, let status):
-        var params = getPageParams(start: start, limit: limit)
-        params["status"] = status
-        return  .requestParameters(parameters: params, encoding: URLEncoding.default)
     case .login(let account , let pwd):
         return .requestParameters(parameters: ["username":account,"passwd":pwd], encoding: JSONEncoding.default)
-    case .getQuotaTaskItemList(let planCode):
-        return .requestParameters(parameters: ["planCode":planCode], encoding: URLEncoding.default)
         
-    case .getOrderList(let start, let limit, let status):
-        var params = getPageParams(start: start, limit: limit)
-        params["status"] = status
-        return  .requestParameters(parameters: params, encoding: URLEncoding.default)
-        
-    case .getOrderDetailItems(let orderCode, let planCode):
-        return .requestParameters(parameters: ["planCode":planCode , "orderCode":orderCode], encoding: URLEncoding.default)
+    case .loadTaskInfo():
+        return .requestPlain
     }
 }
 
@@ -104,7 +82,8 @@ extension API :TargetType {
     }
     
     var headers: [String : String]? {
-        return [String:String]();
+        return ["Content-Type": "application/json",
+                "Accept": "application/json"];
     }
     
 }

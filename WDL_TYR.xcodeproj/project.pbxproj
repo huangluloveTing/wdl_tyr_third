@@ -125,6 +125,8 @@
 		70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED0878212F0236001DCCB2 /* DeliveryVC.swift */; };
 		70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ED0879212F0236001DCCB2 /* DeliveryVC.xib */; };
 		70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */; };
+		70F72AF72144A6AE00C9156E /* Regx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF62144A6AE00C9156E /* Regx.swift */; };
+		70F72AF92145F80A00C9156E /* RegionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF82145F80A00C9156E /* RegionModel.swift */; };
 		70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */; };
 		EEA24EACC7D289FEEC3F2AA9 /* libPods-WDL_TYR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */; };
 /* End PBXBuildFile section */
@@ -259,6 +261,8 @@
 		70ED0878212F0236001DCCB2 /* DeliveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryVC.swift; sourceTree = "<group>"; };
 		70ED0879212F0236001DCCB2 /* DeliveryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryVC.xib; sourceTree = "<group>"; };
 		70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		70F72AF62144A6AE00C9156E /* Regx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regx.swift; sourceTree = "<group>"; };
+		70F72AF82145F80A00C9156E /* RegionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionModel.swift; sourceTree = "<group>"; };
 		70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBaseVC.swift; sourceTree = "<group>"; };
 		7B98DB91CC1D21DD721D7197 /* Pods-WDL_TYR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.release.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.release.xcconfig"; sourceTree = "<group>"; };
 		EF69E9CA55EB87BF8CE7D10E /* Pods-WDL_TYR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.debug.xcconfig"; sourceTree = "<group>"; };
@@ -425,6 +429,7 @@
 				7037B113213D1ADD00BDC718 /* Views */,
 				70ED0878212F0236001DCCB2 /* DeliveryVC.swift */,
 				70ED0879212F0236001DCCB2 /* DeliveryVC.xib */,
+				70F72AF82145F80A00C9156E /* RegionModel.swift */,
 			);
 			path = Delivery;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 				7058BD20212E8B4B00B53DF6 /* Util.swift */,
 				708150CE21311FA800D42723 /* DropViewManage.swift */,
 				70721D732131B20500E12CEC /* AMapHandleManager.swift */,
+				70F72AF62144A6AE00C9156E /* Regx.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -837,6 +843,7 @@
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 				"${PODS_ROOT}/ZTHExtension/ZTExtension/HZExtension/ZTExtension.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -844,6 +851,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZTExtension.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -921,6 +929,7 @@
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
 				70A319D92137F7A500017356 /* GSOffShelveCell.swift in Sources */,
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,
+				70F72AF72144A6AE00C9156E /* Regx.swift in Sources */,
 				70B1301C21355BA0002A473F /* GSDetailBidingHeader.swift in Sources */,
 				7037B0BF2139903100BDC718 /* BaseVC+Bottom.swift in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
@@ -936,6 +945,7 @@
 				708150BD2130E85400D42723 /* MyButton.swift in Sources */,
 				705926F0212A5E5500BE8BB4 /* API.swift in Sources */,
 				70B588FC2140B20E00EF704E /* UIView+ZTTagView.swift in Sources */,
+				70F72AF92145F80A00C9156E /* RegionModel.swift in Sources */,
 				702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */,
 				7037B0CC213A1F7A00BDC718 /* WayBillStatusView.swift in Sources */,
 				708150D6213122CA00D42723 /* ZTTagItem.m in Sources */,

@@ -16,6 +16,8 @@ struct LoginInfo : HandyJSON {
 
 class WDLCoreManager: NSObject {
     
+    public var regionAreas:[RegionModel]?
+    
     public var userInfo: LoginInfo?
     
     private static let instance = WDLCoreManager()

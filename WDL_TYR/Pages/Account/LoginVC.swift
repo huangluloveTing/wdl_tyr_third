@@ -37,6 +37,7 @@ class LoginVC: BaseVC {
         self.loginButton.rx.tap.asObservable()
             .filter({ () -> Bool in
                 if self.phoneTextField.text?.count == 0 && self.passworldTextField.text?.count == 0 {
+                    self.showWarn(warn: "请输入手机号或者密码", complete: nil)
                     return false
                     
                 }
@@ -82,13 +83,18 @@ class LoginVC: BaseVC {
 extension LoginVC {
     
     func loginHandle() -> Observable<LoginInfo?> {
+        self.showLoading()
         return Observable<LoginInfo?>.create({ (obser) -> Disposable in
             return BaseApi.request(target: API.login(self.phoneTextField.text ?? "", self.passworldTextField.text ?? ""), type: BaseResponseModel<LoginInfo>.self)
                     .subscribe(onNext: { (model) in
+                        self.showSuccess()
                         print("respone = \(model.toJSON() ?? ["s":""])")
                         WDLCoreManager.shared().userInfo = model.data
                         obser.onNext(model.data)
                         obser.onCompleted()
+                    },
+                               onError:{(error) in
+                        self.showFail(fail: error.localizedDescription, complete: nil)
                     })
         })
     }

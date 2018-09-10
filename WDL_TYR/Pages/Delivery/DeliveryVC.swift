@@ -8,8 +8,18 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+
+struct PlaceCheckModel { // 省市区
+    var province:PlaceChooiceItem?
+    var city:PlaceChooiceItem?
+    var strict:PlaceChooiceItem?
+}
 
 class DeliveryVC: MainBaseVC {
+    
+    private var startPlace:PlaceCheckModel = PlaceCheckModel()
+    private var endPlace:PlaceCheckModel = PlaceCheckModel()
     
     @IBOutlet weak var endTextField: UITextField!
     @IBOutlet weak var startPlaceTextField: UITextField!
@@ -34,6 +44,7 @@ class DeliveryVC: MainBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadAllBasicInfo()
     }
     
     override func currentConfig() {
@@ -92,12 +103,6 @@ class DeliveryVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
-        self.endTextField.placeInputView(items: self.initialProinve()).asObservable()
-            .subscribe(onNext: { (province , city , strct) in
-                
-            })
-            .disposed(by: dispose)
-        
         self.cartTypeTextField.truckTypeInputView(truckTypes: [])
     }
     
@@ -113,27 +118,69 @@ class DeliveryVC: MainBaseVC {
 
 extension DeliveryVC {
     
-    //MARK: TODO
-    func initialProinve() -> [PlaceChooiceItem] {
-        var item_1 :[PlaceChooiceItem] = []
-        for index in 0...6 {
-            var placeItem = PlaceChooiceItem(title: "四川", id: String(format: "index+%d", index), selected: false, subItems: nil, level: 0)
-            var items_2:[PlaceChooiceItem] = []
-            
-            for index_2 in 0...9 {
-                var placeItem_2 = PlaceChooiceItem(title: "成都", id: String(format: "index2+%d", index_2), selected: false, subItems: nil, level: 0)
-                var item_3 : [PlaceChooiceItem] = []
-                for index_3 in 0...5 {
-                    let placeItem_3 = PlaceChooiceItem(title: "龙泉", id: String(format: "index2+%d", index_3), selected: false, subItems: nil, level: 0)
-                    item_3.append(placeItem_3)
-                }
-                placeItem_2.subItems = item_3
-                items_2.append(placeItem_2)
+    func toConfigAreaInput() {
+        let items = self.initialProinve().share(replay: 1)
+        items.map { (areas) -> PublishSubject<(PlaceChooiceItem?,PlaceChooiceItem?,PlaceChooiceItem?)> in
+                return self.startPlaceTextField.placeInputView(items: areas)
             }
-            
-            placeItem.subItems = items_2
-            item_1.append(placeItem)
+            .subscribe(onNext: { [weak self](input) in
+                input.subscribe(onNext: { (arg0) in
+                    let (province, city, strict) = arg0
+                    self?.toRefreshStartPlace(province: province, city: city, strict: strict)
+                })
+                    .disposed(by: (self?.dispose)!)
+            })
+            .disposed(by: dispose)
+        items.map { (areas) -> PublishSubject<(PlaceChooiceItem?,PlaceChooiceItem?,PlaceChooiceItem?)> in
+            return self.endTextField.placeInputView(items: areas)
+            }
+            .subscribe(onNext: { [weak self](input) in
+                input.subscribe(onNext: { (arg0) in
+                    let (province, city, strict) = arg0
+                    self?.toRefreshStartPlace(province: province, city: city, strict: strict)
+                })
+                    .disposed(by: (self?.dispose)!)
+            })
+            .disposed(by: dispose)
+        
+    }
+    
+    // 刷新视图
+    // 开始地点
+    func toRefreshStartPlace(province:PlaceChooiceItem? , city:PlaceChooiceItem? , strict:PlaceChooiceItem?) {
+        self.startPlace = PlaceCheckModel(province: province, city: city, strict: strict)
+        self.startPlaceTextField.text = strict?.title
+    }
+    // 终点
+    func toRefreshEndPlace(province:PlaceChooiceItem? , city:PlaceChooiceItem? , strict:PlaceChooiceItem?) {
+        self.endPlace = PlaceCheckModel(province: province, city: city, strict: strict)
+        self.endTextField.text = strict?.title
+    }
+    
+    //MARK: TODO
+    func initialProinve() -> Observable<[PlaceChooiceItem]> {
+        let observable = Observable<[PlaceChooiceItem]>.create { (obser) -> Disposable in
+             let areas = Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
+            obser.onNext(areas)
+            obser.onCompleted()
+            return Disposables.create()
         }
-        return item_1
+        return observable
+    }
+}
+
+extension DeliveryVC {
+    
+    func loadAllBasicInfo() {
+        self.showLoading(title: "正在拉取，请稍等...", canInterface: true)
+        BaseApi.request(target: API.loadTaskInfo(), type: BaseResponseModel<[RegionModel]>.self)
+            .subscribe(onNext: { (model) in
+                WDLCoreManager.shared().regionAreas = model.data
+                self.hiddenToast()
+                self.toConfigAreaInput()
+            }, onError: { (error) in
+                self.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
     }
 }

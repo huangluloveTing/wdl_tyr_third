@@ -11,6 +11,8 @@ import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let dispose = DisposeBag()
 
     var window: UIWindow?
 
@@ -25,26 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.configIQKeyboard()
         self.configGAODEMap()
+        self.configHUD()
         
         return true
-    }
-    
-    func configIQKeyboard() {
-        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
-        IQKeyboardManager.shared().toolbarDoneBarButtonItemText = "确定"
-        IQKeyboardManager.shared().toolbarBarTintColor = UIColor(hex: INPUTVIEW_TINCOLOR)
-        IQKeyboardManager.shared().toolbarTintColor = UIColor(hex: COLOR_BUTTON)
-        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
-        IQKeyboardManager.shared().keyboardDistanceFromTextField = 10
-    }
-    
-    func configGlobalNavigationBar() {
-        
-    }
-    
-    func configGAODEMap() {
-        AMapServices.shared().apiKey = GAODE_MAP_KEY
-        AMapServices.shared().enableHTTPS = false
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -73,5 +58,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIInterfaceOrientationMask.landscape
     }
 
+}
+
+extension AppDelegate {
+    
+    // 获取基础信息
+    static func loadNormalInfo()  {
+        
+    }
+    
+    func configIQKeyboard() {
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared().toolbarDoneBarButtonItemText = "确定"
+        IQKeyboardManager.shared().toolbarBarTintColor = UIColor(hex: INPUTVIEW_TINCOLOR)
+        IQKeyboardManager.shared().toolbarTintColor = UIColor(hex: COLOR_BUTTON)
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared().keyboardDistanceFromTextField = 10
+    }
+    
+    func configGlobalNavigationBar() {
+        
+    }
+    
+    func configGAODEMap() {
+        AMapServices.shared().apiKey = GAODE_MAP_KEY
+        AMapServices.shared().enableHTTPS = false
+    }
+    
+    func configHUD() {
+        SVProgressHUD.setDefaultMaskType(.custom)
+        SVProgressHUD.setDefaultStyle(.light)
+        SVProgressHUD.setFont(UIFont.systemFont(ofSize: 16))
+        SVProgressHUD.setRingRadius(5)
+    }
 }
 
