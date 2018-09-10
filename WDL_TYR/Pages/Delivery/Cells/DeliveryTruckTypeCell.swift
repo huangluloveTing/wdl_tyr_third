@@ -10,6 +10,9 @@ import UIKit
 
 class DeliveryTruckTypeCell: BaseCell {
     
+    typealias TruckTypeTapClosure = (Int) -> ()
+    
+    public var tapClosure:TruckTypeTapClosure?
     
     @IBOutlet weak var truckTypeName: UILabel!
     
@@ -18,10 +21,17 @@ class DeliveryTruckTypeCell: BaseCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.configTagView(tagView: self.tagView)
+        self.tagView.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func tagView(_ tagView: ZTTagView!, didTap index: Int) {
+        if let closure = self.tapClosure {
+            closure(index)
+        }
     }
 }
 
@@ -43,6 +53,11 @@ extension DeliveryTruckTypeCell {
         
         self.tagView.showTags(tags)
     }
+}
+
+extension DeliveryTruckTypeView {
+    
+    
 }
 
 

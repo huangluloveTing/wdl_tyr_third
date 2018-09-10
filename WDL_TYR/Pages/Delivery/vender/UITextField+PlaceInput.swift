@@ -46,7 +46,7 @@ extension UITextField {
     func truckTypeInputView(truckTypes:[TruckTypeItem])  {
         self.keyboardToolbar.isHidden = true
         let truckTypeInputView = Bundle.main.loadNibNamed("XIBViews", owner: nil, options: nil)?.first as! DeliveryPlaceChooiceView
-        truckTypeInputView.frame = CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: IPHONE_WIDTH * 1.2))
+        truckTypeInputView.frame = CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: IPHONE_WIDTH * 1.1))
         let truckTypeView = DeliveryTruckTypeView(frame: truckTypeInputView.bounds, truckItems: truckTypes)
         truckTypeInputView.insertContentView(inputView: truckTypeView, targetTextField: self)
         truckTypeInputView.shadow(color: UIColor(hex: COLOR_SHADOW), offset: CGSize(width: 0, height: -2), opacity: 0.5, radius: 2)

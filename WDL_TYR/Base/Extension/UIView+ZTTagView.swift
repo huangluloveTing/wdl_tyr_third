@@ -60,9 +60,9 @@ extension UIView : ZTTagViewDelegate , ZTTagViewDataSource {
     
     public func tagView(_ tagView: ZTTagView!, titleColorFor state: UIControlState) -> UIColor! {
         if state == .normal {
-            return UIColor(hex: TEXTFIELD_TITLECOLOR)
+            return UIColor(hex: COLOR_BUTTON)
         }
-        return UIColor(hex: COLOR_BUTTON)
+        return UIColor(hex: TEXTFIELD_TITLECOLOR)
     }
     
     public func textFont(for tagView: ZTTagView!) -> UIFont! {

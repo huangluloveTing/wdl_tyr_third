@@ -55,10 +55,30 @@ extension DeliveryTruckTypeView : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(DeliveryTruckTypeCell.self)") as! DeliveryTruckTypeCell
         let type = self.specs[indexPath.row]
         cell.showTruckType(type: type)
+        cell.tapClosure = { [weak self](row) in
+            let section = indexPath.row
+            self?.selected(section: section, row: row)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.specs.count
+    }
+    
+    func selected(section:Int , row:Int) {
+        var type = self.specs[section]
+        let newSpecs = type.specs.enumerated().map { (offset , item) -> TruckSpecItem in
+            var newItem = item
+            if offset == row {
+                newItem.selected = true
+            } else {
+                newItem.selected = false
+            }
+            return newItem
+        }
+        type.specs = newSpecs
+        self.specs[section] = type
+        self.tableView.reloadData()
     }
 }
