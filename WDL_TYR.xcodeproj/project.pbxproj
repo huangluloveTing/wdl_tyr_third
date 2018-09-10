@@ -126,7 +126,7 @@
 		70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ED0879212F0236001DCCB2 /* DeliveryVC.xib */; };
 		70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */; };
 		70F72AF72144A6AE00C9156E /* Regx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF62144A6AE00C9156E /* Regx.swift */; };
-		70F72AF92145F80A00C9156E /* RegionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF82145F80A00C9156E /* RegionModel.swift */; };
+		70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF82145F80A00C9156E /* DeliveryModels.swift */; };
 		70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */; };
 		EEA24EACC7D289FEEC3F2AA9 /* libPods-WDL_TYR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */; };
 /* End PBXBuildFile section */
@@ -262,7 +262,7 @@
 		70ED0879212F0236001DCCB2 /* DeliveryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryVC.xib; sourceTree = "<group>"; };
 		70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		70F72AF62144A6AE00C9156E /* Regx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regx.swift; sourceTree = "<group>"; };
-		70F72AF82145F80A00C9156E /* RegionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionModel.swift; sourceTree = "<group>"; };
+		70F72AF82145F80A00C9156E /* DeliveryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryModels.swift; sourceTree = "<group>"; };
 		70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBaseVC.swift; sourceTree = "<group>"; };
 		7B98DB91CC1D21DD721D7197 /* Pods-WDL_TYR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.release.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.release.xcconfig"; sourceTree = "<group>"; };
 		EF69E9CA55EB87BF8CE7D10E /* Pods-WDL_TYR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.debug.xcconfig"; sourceTree = "<group>"; };
@@ -280,6 +280,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7017ABFC21462E4E00EB7ED3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				70F72AF82145F80A00C9156E /* DeliveryModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7037B0C0213A139700BDC718 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,13 +431,13 @@
 		706C5A5A212EBE4D00C037F2 /* Delivery */ = {
 			isa = PBXGroup;
 			children = (
+				7017ABFC21462E4E00EB7ED3 /* Models */,
 				7068E0E8213F977A00929337 /* vender */,
 				7068E0DB213F795400929337 /* Cells */,
 				70FD79FC213D93AE00E6AA05 /* VCs */,
 				7037B113213D1ADD00BDC718 /* Views */,
 				70ED0878212F0236001DCCB2 /* DeliveryVC.swift */,
 				70ED0879212F0236001DCCB2 /* DeliveryVC.xib */,
-				70F72AF82145F80A00C9156E /* RegionModel.swift */,
 			);
 			path = Delivery;
 			sourceTree = "<group>";
@@ -945,7 +953,7 @@
 				708150BD2130E85400D42723 /* MyButton.swift in Sources */,
 				705926F0212A5E5500BE8BB4 /* API.swift in Sources */,
 				70B588FC2140B20E00EF704E /* UIView+ZTTagView.swift in Sources */,
-				70F72AF92145F80A00C9156E /* RegionModel.swift in Sources */,
+				70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */,
 				702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */,
 				7037B0CC213A1F7A00BDC718 /* WayBillStatusView.swift in Sources */,
 				708150D6213122CA00D42723 /* ZTTagItem.m in Sources */,

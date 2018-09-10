@@ -12,6 +12,7 @@ class RootTabBarVC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBar.barTintColor = UIColor.white
         self.tabBar.tintColor = UIColor(hex: "06C06F")
         self.addControllers()
     }

@@ -12,10 +12,11 @@ import Moya
 import Alamofire
 
 enum API {
-    case login(String , String) // 登录接口
+    case login(String , String)     // 登录接口
     case register(String , String , String , String) // 注册
-    case registerSms(String)    // 获取验证码
-    case loadTaskInfo()
+    case registerSms(String)        // 获取验证码
+    case loadTaskInfo()             // 获取省市区
+    case getCreateHallDictionary()  // 获取数据字典
 }
 
 
@@ -30,6 +31,8 @@ func apiPath(api:API) -> String {
         return "/consignor/consignorRegisterSms"
     case .loadTaskInfo():
         return "/app/common/getAllCityAreaList"
+    case .getCreateHallDictionary():
+        return "/app/common/getCreateHallDictionary"
     }
 }
 
@@ -42,15 +45,21 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: ["password": pwd,"phone": phone,"verificationCode": vcode,"verificationPassword": vpwd], encoding: JSONEncoding.default)
     case .login(let account , let pwd):
         return .requestParameters(parameters: ["username":account,"passwd":pwd], encoding: JSONEncoding.default)
-        
     case .loadTaskInfo():
+        return .requestPlain
+    case .getCreateHallDictionary():
         return .requestPlain
     }
 }
 
 // METHOD
 func apiMethod(api:API) -> Moya.Method {
-    return .post
+    switch api {
+    case .getCreateHallDictionary():
+        return .get
+    default:
+        return .post
+    }
 }
 
 // 分页

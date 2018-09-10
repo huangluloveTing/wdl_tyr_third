@@ -167,8 +167,11 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
             if self.strictTapIndex != row {
                 self.strictTapIndex = row
                 self.updateCollectionWhenTap(tabIndex: self.tabIndex, row: row)
+                self.strictItem = self.currentShowItems[self.strictTapIndex]
             }
         }
+        
+        self.getSelectedArea()
     }
     
     private func updateCollectionWhenTap(tabIndex:Int , row:Int) {
@@ -220,5 +223,19 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
         return newItems
     }
     
+    func getSelectedArea() {
+        self.provinceItem = self.showItems[self.provinceTapIndex]
+        let cities = self.showItems[self.provinceTapIndex].subItems
+        if let cities = cities {
+            self.cityItem = cities.count > self.cityTapIndex ? cities[self.cityTapIndex] : nil
+            let stricts = self.cityItem?.subItems
+            if  let stricts = stricts {
+                self.strictItem = stricts.count > self.strictTapIndex ? stricts[self.strictTapIndex] : nil
+            }
+        }
+        if let closure = self.placeClosure {
+            closure(self.provinceItem , self.cityItem , self.strictItem)
+        }
+    }
 
 }
