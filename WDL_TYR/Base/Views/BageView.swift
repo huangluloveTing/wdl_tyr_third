@@ -35,7 +35,7 @@ class BageView: UIView {
         self.imageView.image = image
     }
     
-    func textFont(font:UIFont = UIFont.systemFont(ofSize: 10)) {
+    func textFont(font:UIFont = UIFont.systemFont(ofSize: 9)) {
         self.badgeLabel.font = font
         self.badgeLabel.sizeToFit()
     }
@@ -58,7 +58,8 @@ class BageView: UIView {
         self.addSubview(self.badgeLabel)
         let frame = self.bounds
         var labelFrame = self.badgeLabel.frame
-        labelFrame.origin.x = frame.size.width - labelFrame.size.width
+        labelFrame.origin.x = frame.size.width - labelFrame.size.width / 2
+        labelFrame.origin.y =  -labelFrame.size.height / 2
         labelFrame.size.height = labelFrame.size.width
         self.badgeLabel.frame = labelFrame
         self.badgeLabel.addBorder(color: nil, width: 0, radius: Float(labelFrame.size.height / 2.0))
