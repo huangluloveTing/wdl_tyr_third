@@ -166,7 +166,7 @@ extension GoodsSupplyVC {
     func showEndPlaceDropView() {
         self.statusView.hiddenDropView()
         self.placeChooseView.hiddenDropView()
-        if self.placeChooseView.isShow == false {
+        if self.endPlaceChooseView.isShow == false {
             self.endPlaceChooseView.showDropViewAnimation()
         } else {
             self.endPlaceChooseView.hiddenDropView()
