@@ -51,6 +51,16 @@ class Util {
         }
         return items
     }
+    
+    static func isEmptyString(str:String?) -> Bool {
+        guard let newStr = str else {
+            return true
+        }
+        if newStr.count == 0 {
+            return true
+        }
+        return false
+    }
 }
 
 // 富文本 YYText

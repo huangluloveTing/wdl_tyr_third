@@ -33,6 +33,10 @@
 		7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */; };
 		7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */; };
 		70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */; };
+		70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70505EEC21478E3300CEE672 /* OnTimePostView.swift */; };
+		70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF02147A94800CEE672 /* UIActionSheet+Blocks.m */; };
+		70505EF32147A94800CEE672 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF12147A94800CEE672 /* UIAlertView+Blocks.m */; };
+		70505EF52147A99A00CEE672 /* BaseVC+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF42147A99A00CEE672 /* BaseVC+Alert.swift */; };
 		7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058BD1C212E849800B53DF6 /* RegisterAgreeView.swift */; };
 		7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7058BD1E212E84A900B53DF6 /* RegisterAgreeView.xib */; };
 		7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058BD20212E8B4B00B53DF6 /* Util.swift */; };
@@ -128,6 +132,7 @@
 		70F72AF72144A6AE00C9156E /* Regx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF62144A6AE00C9156E /* Regx.swift */; };
 		70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF82145F80A00C9156E /* DeliveryModels.swift */; };
 		70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */; };
+		70FE54852147F53C0095CEFD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FE54842147F53C0095CEFD /* String+Extension.swift */; };
 		EEA24EACC7D289FEEC3F2AA9 /* libPods-WDL_TYR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +164,12 @@
 		7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+navigation.swift"; sourceTree = "<group>"; };
 		7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneChooseInputView.swift; sourceTree = "<group>"; };
 		70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RefreshExtension.swift"; sourceTree = "<group>"; };
+		70505EEC21478E3300CEE672 /* OnTimePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTimePostView.swift; sourceTree = "<group>"; };
+		70505EEE2147A94800CEE672 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		70505EEF2147A94800CEE672 /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
+		70505EF02147A94800CEE672 /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
+		70505EF12147A94800CEE672 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		70505EF42147A99A00CEE672 /* BaseVC+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+Alert.swift"; sourceTree = "<group>"; };
 		7058BD1C212E849800B53DF6 /* RegisterAgreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAgreeView.swift; sourceTree = "<group>"; };
 		7058BD1E212E84A900B53DF6 /* RegisterAgreeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterAgreeView.xib; sourceTree = "<group>"; };
 		7058BD20212E8B4B00B53DF6 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -264,6 +275,7 @@
 		70F72AF62144A6AE00C9156E /* Regx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regx.swift; sourceTree = "<group>"; };
 		70F72AF82145F80A00C9156E /* DeliveryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryModels.swift; sourceTree = "<group>"; };
 		70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBaseVC.swift; sourceTree = "<group>"; };
+		70FE54842147F53C0095CEFD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7B98DB91CC1D21DD721D7197 /* Pods-WDL_TYR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.release.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.release.xcconfig"; sourceTree = "<group>"; };
 		EF69E9CA55EB87BF8CE7D10E /* Pods-WDL_TYR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -342,6 +354,7 @@
 				7068E0F1213FB83300929337 /* PlaceChooiceView.swift */,
 				7068E0EF213FAE0700929337 /* XIBViews.xib */,
 				70B588F52140303800EF704E /* DeliveryTruckTypeView.swift */,
+				70505EEC21478E3300CEE672 /* OnTimePostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -496,6 +509,8 @@
 				7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */,
 				70B588FB2140B20E00EF704E /* UIView+ZTTagView.swift */,
 				70E2755221427A5800E1A92B /* BaseVC+Toast.swift */,
+				70505EF42147A99A00CEE672 /* BaseVC+Alert.swift */,
+				70FE54842147F53C0095CEFD /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -607,6 +622,10 @@
 				708150C42131039C00D42723 /* SKTagView */,
 				70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */,
 				70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */,
+				70505EEF2147A94800CEE672 /* UIActionSheet+Blocks.h */,
+				70505EF02147A94800CEE672 /* UIActionSheet+Blocks.m */,
+				70505EEE2147A94800CEE672 /* UIAlertView+Blocks.h */,
+				70505EF12147A94800CEE672 /* UIAlertView+Blocks.m */,
 			);
 			path = Vendors;
 			sourceTree = "<group>";
@@ -881,6 +900,7 @@
 				7068E0DE213F798800929337 /* DeliveryPlaceChooiceCell.swift in Sources */,
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
 				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
+				70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
 				7037B0D1213ADD3A00BDC718 /* WayBillDetailStatusCell.swift in Sources */,
 				70A319DD2137FA4C00017356 /* GSQutationCell.swift in Sources */,
@@ -898,12 +918,14 @@
 				7037B0C8213A1F3700BDC718 /* WayBillDetailVC.swift in Sources */,
 				7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */,
 				7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */,
+				70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
 				70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */,
 				7037B0C3213A13B400BDC718 /* WayBillCell.swift in Sources */,
 				705926EE212A5E5500BE8BB4 /* ResponseHandle.swift in Sources */,
 				702D2CD2213060190007A11F /* PersonalVC.swift in Sources */,
+				70505EF52147A99A00CEE672 /* BaseVC+Alert.swift in Sources */,
 				70B1301421354DA5002A473F /* GoodsSupplyDetailVC.swift in Sources */,
 				70B588F92140B12F00EF704E /* DeliveryTruckTypeCell.swift in Sources */,
 				7068E0F2213FB83300929337 /* PlaceChooiceView.swift in Sources */,
@@ -932,6 +954,7 @@
 				708150B62130E4E000D42723 /* BaseCell.swift in Sources */,
 				70A319D52137F43A00017356 /* GSTimerShelveCell.swift in Sources */,
 				708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */,
+				70505EF32147A94800CEE672 /* UIAlertView+Blocks.m in Sources */,
 				708150CF21311FA800D42723 /* DropViewManage.swift in Sources */,
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
@@ -941,6 +964,7 @@
 				70B1301C21355BA0002A473F /* GSDetailBidingHeader.swift in Sources */,
 				7037B0BF2139903100BDC718 /* BaseVC+Bottom.swift in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
+				70FE54852147F53C0095CEFD /* String+Extension.swift in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,
 				70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */,

@@ -46,7 +46,11 @@ class GoodsSupplyVC: MainBaseVC {
                 self.showStatusDropView()
             })
             .disposed(by: dispose)
-        
+        self.endButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.showEndPlaceDropView()
+            })
+            .disposed(by: dispose)
         self.startButton.rx.tap.asObservable()
             .subscribe(onNext: { () in
                 self.showPlaceDropView()
@@ -119,8 +123,16 @@ class GoodsSupplyVC: MainBaseVC {
         return self.addDropView(drop: statusView, anchorView: self.dropAnchorView)
     }()
     
-    //选择地区的下拉视图
+    //选择开始地区的下拉视图
     private lazy var placeChooseView:DropViewContainer = {
+        let placeView = Bundle.main.loadNibNamed("DropPlaceView", owner: nil, options: nil)?.first as! DropPlaceChooiceView
+        placeView.placeItems = self.initialProinve()
+        placeView.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_WIDTH)
+        return self.addDropView(drop: placeView, anchorView: dropAnchorView)
+    }()
+    
+    //选择终点地区的下拉视图
+    private lazy var endPlaceChooseView:DropViewContainer = {
         let placeView = Bundle.main.loadNibNamed("DropPlaceView", owner: nil, options: nil)?.first as! DropPlaceChooiceView
         placeView.placeItems = self.initialProinve()
         placeView.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_WIDTH)
@@ -133,6 +145,7 @@ extension GoodsSupplyVC {
     
     func showStatusDropView() {
         self.placeChooseView.hiddenDropView()
+        self.endPlaceChooseView.hiddenDropView()
         if self.statusView.isShow == false {
             self.statusView.showDropViewAnimation()
         } else {
@@ -142,10 +155,21 @@ extension GoodsSupplyVC {
     
     func showPlaceDropView() {
         self.statusView.hiddenDropView()
+        self.endPlaceChooseView.hiddenDropView()
         if self.placeChooseView.isShow == false {
             self.placeChooseView.showDropViewAnimation()
         } else {
             self.placeChooseView.hiddenDropView()
+        }
+    }
+    
+    func showEndPlaceDropView() {
+        self.statusView.hiddenDropView()
+        self.placeChooseView.hiddenDropView()
+        if self.placeChooseView.isShow == false {
+            self.endPlaceChooseView.showDropViewAnimation()
+        } else {
+            self.endPlaceChooseView.hiddenDropView()
         }
     }
 }
@@ -169,28 +193,9 @@ extension GoodsSupplyVC {
         return _dataSource
     }
     
-    //MARK: TODO
+    //MARK: 
     func initialProinve() -> [PlaceChooiceItem] {
-        var item_1 :[PlaceChooiceItem] = []
-        for index in 0...6 {
-            var placeItem = PlaceChooiceItem(title: "四川", id: String(format: "index+%d", index), selected: false, subItems: nil, level: 0)
-            var items_2:[PlaceChooiceItem] = []
-            
-            for index_2 in 0...9 {
-                var placeItem_2 = PlaceChooiceItem(title: "成都", id: String(format: "index2+%d", index_2), selected: false, subItems: nil, level: 0)
-                var item_3 : [PlaceChooiceItem] = []
-                for index_3 in 0...5 {
-                    let placeItem_3 = PlaceChooiceItem(title: "龙泉", id: String(format: "index2+%d", index_3), selected: false, subItems: nil, level: 0)
-                    item_3.append(placeItem_3)
-                }
-                placeItem_2.subItems = item_3
-                items_2.append(placeItem_2)
-            }
-            
-            placeItem.subItems = items_2
-            item_1.append(placeItem)
-        }
-        return item_1
+        return Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
     }
 }
 

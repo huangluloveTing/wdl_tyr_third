@@ -20,6 +20,8 @@ class WDLCoreManager: NSObject {
     
     public var userInfo: LoginInfo?
     
+    public var token:String?
+    
     private static let instance = WDLCoreManager()
     private override init() {}
     

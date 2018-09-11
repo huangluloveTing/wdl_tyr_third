@@ -36,6 +36,7 @@ extension ObservableType where E == Response {
 extension Response {
     func mapModel<T:BaseResponse>(type:T.Type) -> T? {
         let json = String.init(data: data, encoding: .utf8)
+        print("\(json ?? "")")
         let res = JSONDeserializer<T>.deserializeFrom(json: json)
         return res
     }

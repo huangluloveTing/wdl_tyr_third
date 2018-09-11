@@ -74,12 +74,12 @@ extension UITextField {
 extension UITextField {
     
     /*时间选择弹出*/
-    func datePickerInput(mode:UIDatePickerMode , dateFormatter:String = "yyyy-MM-dd") -> PublishSubject<TimeInterval>{
+    func datePickerInput(mode:UIDatePickerMode , dateFormatter:String = "yyyy-MM-dd" , skip:Int = 1) -> PublishSubject<TimeInterval>{
         let timeObservable = PublishSubject<TimeInterval>()
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = mode
         let _ =  datePicker.rx.date
-            .skip(1)
+            .skip(skip)
             .takeUntil(self.rx.deallocated)
             .share(replay: 1)
             .flatMap({ (date) -> Observable<Date> in

@@ -17,7 +17,8 @@ enum API {
     case registerSms(String)        // 获取验证码
     case loadTaskInfo()             // 获取省市区
     case getCreateHallDictionary()  // 获取数据字典
-    case releaseSource(ReleaseDeliverySourceModel)            // 发布货源
+    case releaseSource(ReleaseDeliverySourceModel)       // 发布货源
+    case ownOrderHall(GoodsSupplyQueryBean) // 我的货源接口
 }
 
 
@@ -25,7 +26,7 @@ enum API {
 func apiPath(api:API) -> String {
     switch api {
     case .login(_, _):
-        return "/auth/login"
+        return "/consignor/login"
     case .register(_, _, _, _):
         return "/consignor/consignorRegister"
     case .registerSms(_):
@@ -36,6 +37,8 @@ func apiPath(api:API) -> String {
         return "/app/common/getCreateHallDictionary"
     case .releaseSource(_):
         return "/orderHall/releaseSource"
+    case .ownOrderHall(_):
+        return "/orderHall/ownOrderHall"
     }
 }
 
@@ -47,13 +50,15 @@ func apiTask(api:API) -> Task {
     case .register(let pwd, let phone, let vcode, let vpwd):
         return .requestParameters(parameters: ["password": pwd,"phone": phone,"verificationCode": vcode,"verificationPassword": vpwd], encoding: JSONEncoding.default)
     case .login(let account , let pwd):
-        return .requestParameters(parameters: ["username":account,"passwd":pwd], encoding: JSONEncoding.default)
+        return .requestParameters(parameters: ["cellphone":account,"password":pwd], encoding: JSONEncoding.default)
     case .loadTaskInfo():
         return .requestPlain
     case .getCreateHallDictionary():
         return .requestPlain
     case .releaseSource(let resource):
         return .requestParameters(parameters: resource.toJSON()!, encoding: JSONEncoding.default)
+    case .ownOrderHall(let query):
+        return .requestParameters(parameters: query.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     }
 }
 

@@ -37,92 +37,7 @@ struct DeliveryCommitModel : HandyJSON {
     var remark:String?              // 备注
     var unit:String?                // 单价
     var total:String?               // 总价
-}
-
-extension DeliveryVC {
-    
-    // 确认发布
-    private func toPostDelivery() {
-        if self.canCommit() == true {
-            self.showLoading(title: "正在发布货源")
-            var sourceModel = ReleaseDeliverySourceModel()
-            sourceModel.dealTotalPrice = self.deliveryData?.total
-            sourceModel.dealWay = "0"
-            sourceModel.dealUnitPrice = self.deliveryData?.unit
-            sourceModel.endCity = self.endPlace.city?.title
-            sourceModel.endProvince = self.endPlace.province?.title
-            sourceModel.goodsName = self.deliveryData?.goodsName
-            sourceModel.goodsType = self.deliveryData?.goodsCate
-            sourceModel.goodsWeight = self.deliveryData?.goodsWeight
-            sourceModel.loadingTime = self.deliveryData?.loadTime
-            sourceModel.orderAvailabilityPeriod = self.deliveryData?.validTime
-            sourceModel.packageType = self.deliveryData?.packageType
-            sourceModel.publishTime = self.deliveryData?.dealTime
-            sourceModel.startCity = self.startPlace.city?.title
-            sourceModel.startProvince = self.startPlace.province?.title
-            sourceModel.vehicleType = self.deliveryData?.vehicleType
-            sourceModel.vehicleWidth = self.deliveryData?.vehicleWidth
-            sourceModel.vehicleLength = self.deliveryData?.vehicleLength
-            BaseApi.request(target: API.releaseSource(sourceModel), type: BaseResponseModel<String>.self)
-                .subscribe(onNext: { (model) in
-                    self.showSuccess()
-                    
-                }, onError: { (error) in
-                    self.showFail(fail: error.localizedDescription, complete: nil)
-                })
-                .disposed(by: dispose)
-        }
-    }
-    
-    // 是否满足发布条件
-    private func canCommit() -> Bool {
-        if self.startPlace.city == nil || self.startPlace.province == nil {
-            self.showWarn(warn: "请选择开始城市", complete: nil)
-            return false
-        }
-        if self.endPlace.city == nil || self.endPlace.province == nil {
-            self.showWarn(warn: "请选择终点城市", complete: nil)
-            return false
-        }
-        if self.deliveryData?.goodsName?.count == 0 {
-            self.showWarn(warn: "请填写货品名称", complete: nil)
-            return false
-        }
-        if self.deliveryData?.goodsCate?.count == 0 {
-            self.showWarn(warn: "请选择货品分类", complete: nil)
-            return false
-        }
-        if self.deliveryData?.packageType?.count == 0 {
-            self.showWarn(warn: "请选择包装类型", complete: nil)
-            return false
-        }
-        if self.deliveryData?.vehicleLength?.count == 0 || self.deliveryData?.vehicleWidth?.count == 0 || self.deliveryData?.vehicleType?.count == 0 {
-            self.showWarn(warn: "请填写车长车型", complete: nil)
-            return false
-        }
-        if self.deliveryData?.goodsWeight?.count == 0 {
-            self.showWarn(warn: "请填写货物重量", complete: nil)
-            return false
-        }
-        if self.deliveryData?.loadTime?.count == 0 {
-            self.showWarn(warn: "请选择装货时间", complete: nil)
-            return false
-        }
-        if self.deliveryData?.validTime?.count == 0 {
-            self.showWarn(warn: "请选择货物有效期", complete: nil)
-            return false
-        }
-        if self.deliveryData?.postType == nil {
-            self.showWarn(warn: "请选择成交方式", complete: nil)
-            return false
-        }
-        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && self.deliveryData?.dealTime?.count == 0 {
-            self.showWarn(warn: "请选择成交时间", complete: nil)
-            return false
-        }
-        return true
-    }
-    
+    var publishTime:String?         // 发布时间
 }
 
 class DeliveryVC: MainBaseVC {
@@ -183,10 +98,10 @@ class DeliveryVC: MainBaseVC {
     }
 
     override func bindViewModel() {
-        self.loadGoodsTimeTextField.datePickerInput(mode: .dateAndTime)
+        self.loadGoodsTimeTextField.datePickerInput(mode: .date)
             .asObservable()
             .subscribe(onNext: { (time) in
-            
+                self.deliveryData?.loadTime = String(format: "%.f", time * 1000)
             })
             .disposed(by: dispose)
         
@@ -216,27 +131,25 @@ class DeliveryVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
+        self.goodsCategoryTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.goodsCate = text
+            })
+            .disposed(by: dispose)
+        
         self.goodsWeightTextField.rx.text.orEmpty
             .subscribe(onNext: { (text) in
                 self.deliveryData?.goodsWeight = text
             })
             .disposed(by: dispose)
         
-        self.loadGoodsTimeTextField.rx.text.orEmpty
-            .subscribe(onNext: { (text) in
-                self.deliveryData?.loadTime = String(format: "%.f", Util.timeIntervalFromDateStr(date: text))
-            })
-            .disposed(by: dispose)
-        
         self.goodsValidTextField.rx.text.orEmpty
             .subscribe(onNext: { (text) in
-                self.deliveryData?.validTime = text
             })
             .disposed(by: dispose)
         
         self.dealTimeTextField.rx.text.orEmpty
             .subscribe(onNext: { (text) in
-                self.deliveryData?.dealTime = text
             })
             .disposed(by: dispose)
         
@@ -260,7 +173,13 @@ class DeliveryVC: MainBaseVC {
         
         self.surePostButton.rx.tap.asObservable()
             .subscribe(onNext: { () in
-                print("commit data: \(String(describing: self.deliveryData?.toJSON()))")
+                self.toConfirmCommit()
+            })
+            .disposed(by: dispose)
+        
+        self.timerPostButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.toPostOnTime()
             })
             .disposed(by: dispose)
     }
@@ -284,9 +203,158 @@ class DeliveryVC: MainBaseVC {
 
 }
 
+// MARK: 提交数据
 extension DeliveryVC {
     
-    // 车长车宽车型
+    //MARK: 定时发布
+    private func toPostOnTime() {
+        self.showOnTimeView { (time, sure) in
+            if sure == true {
+                if time == nil {
+                    self.showWarn(warn: "请选择发布时间", complete: nil)
+                    return
+                }
+                self.deliveryData?.publishTime = String(format: "%.f", time! * 1000)
+                self.toPostDelivery()
+            } else {
+                self.deliveryData?.publishTime = nil
+            }
+        }
+    }
+    
+    private func toConfirmCommit() {
+        self.showAlert(title: "提示", message: "确认提交") { (index) in
+            if index == 1 {
+                self.deliveryData?.publishTime = nil
+                self.toPostDelivery()
+            }
+        }
+    }
+    
+    
+    //MARK: 发布
+    private func toPostDelivery() {
+        if self.canCommit() == true {
+            var sourceModel = ReleaseDeliverySourceModel()
+            sourceModel.dealTotalPrice = Float(self.deliveryData?.total ?? "0")
+            sourceModel.dealWay = self.deliveryData?.postType == .Delivery_Auto ? 0 : 1
+            sourceModel.dealUnitPrice = Float(self.deliveryData?.unit ?? "0")
+            sourceModel.endCity = self.endPlace.city?.title
+            sourceModel.endProvince = self.endPlace.province?.title
+            sourceModel.goodsName = self.deliveryData?.goodsName
+            sourceModel.goodsType = self.deliveryData?.goodsCate
+            sourceModel.goodsWeight = Float(self.deliveryData?.goodsWeight ?? "0")
+            sourceModel.loadingTime = self.deliveryData?.loadTime
+            sourceModel.orderAvailabilityPeriod = self.deliveryData?.validTime
+            sourceModel.packageType = self.deliveryData?.packageType
+            sourceModel.autoTimeInterval = self.deliveryData?.dealTime
+            sourceModel.startCity = self.startPlace.city?.title
+            sourceModel.startProvince = self.startPlace.province?.title
+            sourceModel.vehicleType = self.deliveryData?.vehicleType
+            sourceModel.vehicleWidth = self.deliveryData?.vehicleWidth
+            sourceModel.vehicleLength = self.deliveryData?.vehicleLength
+            sourceModel.publishTime = self.deliveryData?.publishTime
+            sourceModel.startDistrict = self.startPlace.strict?.title
+            sourceModel.endDistrict = self.endPlace.strict?.title
+            sourceModel.remark = self.deliveryData?.remark
+            
+            self.showLoading()
+            BaseApi.request(target: API.releaseSource(sourceModel), type: BaseResponseModel<String>.self)
+                .subscribe(onNext: { (model) in
+                    self.showSuccess(success: model.message, complete: nil)
+                    self.clearAllInput()
+                }, onError: { (error) in
+                    self.showFail(fail: error.localizedDescription, complete: nil)
+                })
+                .disposed(by: dispose)
+        }
+    }
+    
+    //MARK: 是否满足发布条件
+    private func canCommit() -> Bool {
+        if self.startPlace.province == nil {
+            self.showWarn(warn: "请选择开始城市", complete: nil)
+            return false
+        }
+        if self.endPlace.province == nil  {
+            self.showWarn(warn: "请选择终点城市", complete: nil)
+            return false
+        }
+        if Util.isEmptyString(str: self.deliveryData?.goodsName)  {
+            self.showWarn(warn: "请填写货品名称", complete: nil)
+            return false
+        }
+        if Util.isEmptyString(str: self.deliveryData?.goodsCate) {
+            self.showWarn(warn: "请选择货品分类", complete: nil)
+            return false
+        }
+        if Util.isEmptyString(str: self.deliveryData?.packageType) {
+            self.showWarn(warn: "请选择包装类型", complete: nil)
+            return false
+        }
+        if Util.isEmptyString(str: self.deliveryData?.vehicleLength)  ||
+            Util.isEmptyString(str: self.deliveryData?.vehicleWidth) ||
+            Util.isEmptyString(str: self.deliveryData?.vehicleType) {
+            self.showWarn(warn: "请填写车长车型", complete: nil)
+            return false
+        }
+        if Util.isEmptyString(str: self.deliveryData?.goodsWeight) {
+            self.showWarn(warn: "请填写货物重量", complete: nil)
+            return false
+        }
+        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
+            self.showWarn(warn: "请选择装货时间", complete: nil)
+            return false
+        }
+        if Util.isEmptyString(str: self.deliveryData?.validTime) {
+            self.showWarn(warn: "请选择货物有效期", complete: nil)
+            return false
+        }
+        if self.deliveryData?.postType == nil {
+            self.showWarn(warn: "请选择成交方式", complete: nil)
+            return false
+        }
+        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
+            self.showWarn(warn: "请选择成交时间", complete: nil)
+            return false
+        }
+        return true
+    }
+    
+    func showOnTimeView(closure:((TimeInterval? , Bool) -> ())?) {
+        let onTimeView = OnTimePostView.instance()
+        onTimeView.showOnWindow()
+        onTimeView.timeClosure = { (time , ok) in
+            if let closure = closure {
+                closure(time , ok)
+            }
+        }
+    }
+    
+    //MARK: 清楚所有的数据
+    private func clearAllInput()  {
+        self.endTextField.text = nil
+        self.startPlaceTextField.text = nil
+        self.goodsNameTextField.text = nil
+        self.goodsCategoryTextField.text = nil
+        self.goodsWeightTextField.text = nil
+        self.loadGoodsTimeTextField.text = nil
+        self.goodsValidTextField.text = nil
+        self.dealTimeTextField.text = nil
+        self.amountTextField.text = nil
+        self.unitTextField.text = nil
+        self.remarkTextField.text = nil
+        self.cartTypeTextField.text = nil
+        self.packageTextField.text = nil
+        self.deliveryData = DeliveryCommitModel()
+        self.startPlace = PlaceCheckModel()
+        self.endPlace = PlaceCheckModel()
+    }
+}
+
+extension DeliveryVC {
+    
+    //MARK: 车长车宽车型
     private func toConfigSingleInput() {
         self.cartTypeTextField.truckTypeInputView(truckTypes: self.cartSpec() ?? [])
             .subscribe(onNext: { (selected) in
@@ -295,7 +363,7 @@ extension DeliveryVC {
             .disposed(by: dispose)
     }
     
-    // 货品分类
+    //MARK: 货品分类
     private func toConfigCate() {
         self.goodsCategoryTextField.oneChooseInputView(titles: self.toConfigGoodsCate())
             .subscribe(onNext: { (index) in
@@ -304,7 +372,7 @@ extension DeliveryVC {
             .disposed(by: dispose)
     }
     
-    // 包装类型
+    //MARK: 包装类型
     private func toConfigPackage() {
         self.packageTextField.oneChooseInputView(titles: self.toConfigPackageTypeData())
             .subscribe(onNext: { (index) in
@@ -312,11 +380,11 @@ extension DeliveryVC {
             }).disposed(by: dispose)
     }
     
-    // 货源有效期
+    //MARK: 货源有效期
     private func toConfigValid() {
         self.goodsValidTextField.oneChooseInputView(titles: self.toConfigValidTime())
             .subscribe(onNext: { (index) in
-                
+                self.deliveryData?.validTime = self.hallItems?.HYYXQ![index].dictionaryCode
             })
             .disposed(by: dispose)
     }
@@ -324,12 +392,12 @@ extension DeliveryVC {
     private func toConfigAutoPost() {
         self.dealTimeTextField.oneChooseInputView(titles: self.toConfigAutoPostTimeData())
             .subscribe(onNext: { (index) in
-                
+                self.deliveryData?.dealTime = self.hallItems?.auto_deal_space![index].dictionaryCode
             })
             .disposed(by: dispose)
     }
     
-    // 配置地点输入的弹出
+    //MARK: 配置地点输入的弹出
     private func toConfigAreaInput() {
         let items = self.initialProinve().share(replay: 1)
         items.map { (areas) -> PublishSubject<(PlaceChooiceItem?,PlaceChooiceItem?,PlaceChooiceItem?)> in
@@ -358,12 +426,12 @@ extension DeliveryVC {
     }
     
     // 刷新视图
-    // 开始地点
+    //MARK: 开始地点
     func toRefreshStartPlace(province:PlaceChooiceItem? , city:PlaceChooiceItem? , strict:PlaceChooiceItem?) {
         self.startPlace = PlaceCheckModel(province: province, city: city, strict: strict)
         self.startPlaceTextField.text = (province?.title ?? "") + (city?.title ?? "") + (strict?.title ?? "")
     }
-    // 终点
+    //MARK: 终点
     func toRefreshEndPlace(province:PlaceChooiceItem? , city:PlaceChooiceItem? , strict:PlaceChooiceItem?) {
         self.endPlace = PlaceCheckModel(province: province, city: city, strict: strict)
         self.endTextField.text = (province?.title ?? "") + (city?.title ?? "") + (strict?.title ?? "")
@@ -380,7 +448,7 @@ extension DeliveryVC {
         return observable
     }
     
-    // 配置车长车型
+    //MARK: 配置车长车型
     private func configTruckType(types:[TruckTypeItem]) {
         let length = types.first?.specs.filter({ (item) -> Bool in
             return item.selected

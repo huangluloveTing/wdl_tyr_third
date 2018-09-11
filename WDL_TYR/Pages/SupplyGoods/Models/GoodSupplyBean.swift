@@ -10,6 +10,14 @@ import Foundation
 import RxDataSources
 import HandyJSON
 
+struct GoodsSupplyQueryBean : HandyJSON {
+    var endCity : String?
+    var endProvince: String?
+    var isDeal:Int?
+    var startCity : String?
+    var startProvince : String?
+}
+
 struct GoodsSupplyItemBean  : HandyJSON {
     public var start:String?
     public var end:String?
@@ -17,6 +25,9 @@ struct GoodsSupplyItemBean  : HandyJSON {
     public var content:String?
     public var goodsSpec:String?
     public var cartSpec:String?
+    public var pageNum : Int = 0
+    public var pageSize : Int = 20
+
 }
 
 extension GoodsSupplyItemBean : IdentifiableType , Equatable {

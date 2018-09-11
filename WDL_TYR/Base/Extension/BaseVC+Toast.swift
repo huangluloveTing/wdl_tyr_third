@@ -8,7 +8,7 @@
 
 import Foundation
 
-let toastDuration = 0.5
+let toastDuration = 1.0
 
 extension BaseVC {
     
