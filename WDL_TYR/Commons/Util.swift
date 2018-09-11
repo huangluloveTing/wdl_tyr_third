@@ -32,6 +32,13 @@ class Util {
         return dateFormater.string(from: date)
     }
     
+    static func timeIntervalFromDateStr(date:String , formatter:String = "yyyy-MM-dd") -> TimeInterval {
+        let dateFomatter = DateFormatter()
+        dateFomatter.dateFormat = formatter
+        let dateTime = dateFomatter.date(from: date)
+        return (dateTime?.timeIntervalSince1970 ?? 0) * 1000
+    }
+    
     static func configServerRegions(regions:[RegionModel]) -> [PlaceChooiceItem] {
         var items:[PlaceChooiceItem] = []
         for model_1 in regions {

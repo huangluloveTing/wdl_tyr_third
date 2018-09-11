@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import RxSwift
+import HandyJSON
 
 struct PlaceCheckModel { // 省市区
     var province:PlaceChooiceItem?
@@ -21,7 +22,8 @@ enum DeliveryMethod { // 成交方式
     case Delivery_Manul// 手动成交
 }
 
-struct DeliveryCommitModel {
+struct DeliveryCommitModel : HandyJSON {
+    var goodsName:String?           // 货品名称
     var vehicleWidth:String?        // 车宽
     var vehicleLength:String?       // 车长
     var vehicleType:String?         // 车型
@@ -35,6 +37,92 @@ struct DeliveryCommitModel {
     var remark:String?              // 备注
     var unit:String?                // 单价
     var total:String?               // 总价
+}
+
+extension DeliveryVC {
+    
+    // 确认发布
+    private func toPostDelivery() {
+        if self.canCommit() == true {
+            self.showLoading(title: "正在发布货源")
+            var sourceModel = ReleaseDeliverySourceModel()
+            sourceModel.dealTotalPrice = self.deliveryData?.total
+            sourceModel.dealWay = "0"
+            sourceModel.dealUnitPrice = self.deliveryData?.unit
+            sourceModel.endCity = self.endPlace.city?.title
+            sourceModel.endProvince = self.endPlace.province?.title
+            sourceModel.goodsName = self.deliveryData?.goodsName
+            sourceModel.goodsType = self.deliveryData?.goodsCate
+            sourceModel.goodsWeight = self.deliveryData?.goodsWeight
+            sourceModel.loadingTime = self.deliveryData?.loadTime
+            sourceModel.orderAvailabilityPeriod = self.deliveryData?.validTime
+            sourceModel.packageType = self.deliveryData?.packageType
+            sourceModel.publishTime = self.deliveryData?.dealTime
+            sourceModel.startCity = self.startPlace.city?.title
+            sourceModel.startProvince = self.startPlace.province?.title
+            sourceModel.vehicleType = self.deliveryData?.vehicleType
+            sourceModel.vehicleWidth = self.deliveryData?.vehicleWidth
+            sourceModel.vehicleLength = self.deliveryData?.vehicleLength
+            BaseApi.request(target: API.releaseSource(sourceModel), type: BaseResponseModel<String>.self)
+                .subscribe(onNext: { (model) in
+                    self.showSuccess()
+                    
+                }, onError: { (error) in
+                    self.showFail(fail: error.localizedDescription, complete: nil)
+                })
+                .disposed(by: dispose)
+        }
+    }
+    
+    // 是否满足发布条件
+    private func canCommit() -> Bool {
+        if self.startPlace.city == nil || self.startPlace.province == nil {
+            self.showWarn(warn: "请选择开始城市", complete: nil)
+            return false
+        }
+        if self.endPlace.city == nil || self.endPlace.province == nil {
+            self.showWarn(warn: "请选择终点城市", complete: nil)
+            return false
+        }
+        if self.deliveryData?.goodsName?.count == 0 {
+            self.showWarn(warn: "请填写货品名称", complete: nil)
+            return false
+        }
+        if self.deliveryData?.goodsCate?.count == 0 {
+            self.showWarn(warn: "请选择货品分类", complete: nil)
+            return false
+        }
+        if self.deliveryData?.packageType?.count == 0 {
+            self.showWarn(warn: "请选择包装类型", complete: nil)
+            return false
+        }
+        if self.deliveryData?.vehicleLength?.count == 0 || self.deliveryData?.vehicleWidth?.count == 0 || self.deliveryData?.vehicleType?.count == 0 {
+            self.showWarn(warn: "请填写车长车型", complete: nil)
+            return false
+        }
+        if self.deliveryData?.goodsWeight?.count == 0 {
+            self.showWarn(warn: "请填写货物重量", complete: nil)
+            return false
+        }
+        if self.deliveryData?.loadTime?.count == 0 {
+            self.showWarn(warn: "请选择装货时间", complete: nil)
+            return false
+        }
+        if self.deliveryData?.validTime?.count == 0 {
+            self.showWarn(warn: "请选择货物有效期", complete: nil)
+            return false
+        }
+        if self.deliveryData?.postType == nil {
+            self.showWarn(warn: "请选择成交方式", complete: nil)
+            return false
+        }
+        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && self.deliveryData?.dealTime?.count == 0 {
+            self.showWarn(warn: "请选择成交时间", complete: nil)
+            return false
+        }
+        return true
+    }
+    
 }
 
 class DeliveryVC: MainBaseVC {
@@ -113,6 +201,66 @@ class DeliveryVC: MainBaseVC {
             .subscribe(onNext: { () in
                 self.autoPostButton.isSelected = false
                 self.isAutoPost(auto: self.autoPostButton.isSelected)
+            })
+            .disposed(by: dispose)
+        
+        self.goodsNameTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.goodsName = text
+            })
+            .disposed(by: dispose)
+        
+        self.packageTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.packageType = text
+            })
+            .disposed(by: dispose)
+        
+        self.goodsWeightTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.goodsWeight = text
+            })
+            .disposed(by: dispose)
+        
+        self.loadGoodsTimeTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.loadTime = String(format: "%.f", Util.timeIntervalFromDateStr(date: text))
+            })
+            .disposed(by: dispose)
+        
+        self.goodsValidTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.validTime = text
+            })
+            .disposed(by: dispose)
+        
+        self.dealTimeTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.dealTime = text
+            })
+            .disposed(by: dispose)
+        
+        self.remarkTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.remark = text
+            })
+            .disposed(by: dispose)
+        
+        self.unitTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.unit = text
+            })
+            .disposed(by: dispose)
+        
+        self.amountTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.total = text
+            })
+            .disposed(by: dispose)
+        
+        self.surePostButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                print("commit data: \(String(describing: self.deliveryData?.toJSON()))")
             })
             .disposed(by: dispose)
     }

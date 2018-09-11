@@ -32,6 +32,47 @@ struct HallItem : HandyJSON {
 }
 
 /**
+ {
+ "dealTotalPrice": 0,
+ "dealUnitPrice": 0,
+ "dealWay": 0,
+ "endCity": "string",
+ "endProvince": "string",
+ "goodsName": "string",
+ "goodsType": "string",
+ "goodsWeight": 0,
+ "loadingTime": "2018-09-11T01:03:19.593Z",
+ "orderAvailabilityPeriod": "string",
+ "packageType": "string",
+ "publishTime": "2018-09-11T01:03:19.593Z",
+ "startCity": "string",
+ "startProvince": "string",
+ "vehicleLength": "string",
+ "vehicleType": "string",
+ "vehicleWidth": "string"
+ }
+ */
+struct ReleaseDeliverySourceModel : HandyJSON { // 发布货源的对象
+    var dealTotalPrice:String?  //总价
+    var dealUnitPrice:String?   // 单价
+    var dealWay:String?         // 提交方式
+    var endCity:String?
+    var endProvince:String?
+    var goodsName:String?
+    var goodsType:String?
+    var goodsWeight:String?
+    var loadingTime:String?
+    var orderAvailabilityPeriod:String?
+    var startProvince:String?
+    var vehicleLength:String?
+    var vehicleType:String?
+    var vehicleWidth:String?
+    var packageType:String?
+    var publishTime:String?
+    var startCity:String?
+}
+
+/**
  VEHICLE_TYPE("VehicleType", "车型"),
  VEHICLE_LENGTH("VehicleLength", "车长"),
  VEHICLE_WIDTH("VehicleWidth", "车宽"),

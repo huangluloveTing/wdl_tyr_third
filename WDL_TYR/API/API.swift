@@ -17,6 +17,7 @@ enum API {
     case registerSms(String)        // 获取验证码
     case loadTaskInfo()             // 获取省市区
     case getCreateHallDictionary()  // 获取数据字典
+    case releaseSource(ReleaseDeliverySourceModel)            // 发布货源
 }
 
 
@@ -33,6 +34,8 @@ func apiPath(api:API) -> String {
         return "/app/common/getAllCityAreaList"
     case .getCreateHallDictionary():
         return "/app/common/getCreateHallDictionary"
+    case .releaseSource(_):
+        return "/orderHall/releaseSource"
     }
 }
 
@@ -49,6 +52,8 @@ func apiTask(api:API) -> Task {
         return .requestPlain
     case .getCreateHallDictionary():
         return .requestPlain
+    case .releaseSource(let resource):
+        return .requestParameters(parameters: resource.toJSON()!, encoding: JSONEncoding.default)
     }
 }
 
