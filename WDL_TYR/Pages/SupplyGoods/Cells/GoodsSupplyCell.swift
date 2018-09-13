@@ -32,3 +32,36 @@ class GoodsSupplyCell: BaseCell {
     }
     
 }
+
+extension GoodsSupplyCell {
+    func showContent(item:GoodsSupplyListItem)  {
+        
+    }
+    
+    func configStatusLabel(status:GoodsSupplyStatus) {
+        /**
+         case InBidding // 竞标中
+         case OffShelve // 已下架
+         case InShelveOnTime // 定时上架
+         case Deal       // 已成交
+         */
+        switch status {
+        case .Deal:
+            self.statusLabel.text = ""
+            self.statusLabel.textColor = UIColor(hex: "")
+            break
+        case .InBidding:
+            self.statusLabel.text = ""
+            self.statusLabel.textColor = UIColor(hex: "")
+            break
+        case .InShelveOnTime:
+            self.statusLabel.text = ""
+            self.statusLabel.textColor = UIColor(hex: "")
+            break
+        default:
+            self.statusLabel.text = ""
+            self.statusLabel.textColor = UIColor(hex: "")
+            break
+        }
+    }
+}

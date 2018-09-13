@@ -42,7 +42,7 @@ extension UITableView {
     
     func pullRefresh() {
         self.mj_header = MJRefreshNormalHeader(refreshingBlock: {[weak self]() in
-                self?.refreshState.onNext(TableViewState.Refresh)
+            self?.refreshState.onNext(TableViewState.Refresh)
         })
     }
     
@@ -59,7 +59,7 @@ extension UITableView {
     }
     
     func upRefresh() {
-        self.mj_header = MJRefreshNormalHeader(refreshingBlock: {[weak self] in
+        self.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {[weak self] in
             self?.refreshState.onNext(.LoadMore)
         })
     }

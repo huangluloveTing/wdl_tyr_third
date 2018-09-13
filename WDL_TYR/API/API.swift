@@ -65,7 +65,7 @@ func apiTask(api:API) -> Task {
 // METHOD
 func apiMethod(api:API) -> Moya.Method {
     switch api {
-    case .getCreateHallDictionary():
+    case .getCreateHallDictionary() ,.loadTaskInfo():
         return .get
     default:
         return .post

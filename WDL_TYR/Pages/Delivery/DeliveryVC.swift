@@ -17,9 +17,9 @@ struct PlaceCheckModel { // 省市区
     var strict:PlaceChooiceItem?
 }
 
-enum DeliveryMethod { // 成交方式
-    case Delivery_Auto // 自动成交
-    case Delivery_Manul// 手动成交
+enum DeliveryMethod : Int { // 成交方式
+    case Delivery_Auto = 0 // 自动成交
+    case Delivery_Manul = 1// 手动成交
 }
 
 struct DeliveryCommitModel : HandyJSON {
@@ -237,7 +237,7 @@ extension DeliveryVC {
         if self.canCommit() == true {
             var sourceModel = ReleaseDeliverySourceModel()
             sourceModel.dealTotalPrice = Float(self.deliveryData?.total ?? "0")
-            sourceModel.dealWay = self.deliveryData?.postType == .Delivery_Auto ? 0 : 1
+            sourceModel.dealWay = self.deliveryData?.postType?.rawValue
             sourceModel.dealUnitPrice = Float(self.deliveryData?.unit ?? "0")
             sourceModel.endCity = self.endPlace.city?.title
             sourceModel.endProvince = self.endPlace.province?.title
@@ -498,7 +498,9 @@ extension DeliveryVC {
                 self?.toConfigAutoPost()
             }, onError: { [weak self](error) in
                 self?.hiddenToast()
-                self?.loadAllBasicInfo()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                  self?.loadAllBasicInfo()
+                })
             })
             .disposed(by: dispose)
     }

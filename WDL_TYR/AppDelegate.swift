@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let naviVC = UINavigationController(rootViewController: login)
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = naviVC
-        window?.backgroundColor = UIColor.white
+        window?.backgroundColor = UIColor.red
         window?.makeKeyAndVisible()
         
         self.configIQKeyboard()

@@ -66,6 +66,7 @@
 		706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */; };
 		70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D712131B12000E12CEC /* UIViewController+Location.swift */; };
 		70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70721D732131B20500E12CEC /* AMapHandleManager.swift */; };
+		7074C91D2148DAF000E689CB /* UITableView+ProxyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074C91C2148DAF000E689CB /* UITableView+ProxyDelegate.swift */; };
 		708150B62130E4E000D42723 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150B52130E4E000D42723 /* BaseCell.swift */; };
 		708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150BA2130E7CF00D42723 /* UIButton+Extension.swift */; };
 		708150BD2130E85400D42723 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708150BC2130E85400D42723 /* MyButton.swift */; };
@@ -177,7 +178,7 @@
 		7058BD24212E8D2600B53DF6 /* ForgetPwdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPwdVC.swift; sourceTree = "<group>"; };
 		7058BD25212E8D2600B53DF6 /* ForgetPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetPwdVC.xib; sourceTree = "<group>"; };
 		7058BD29212E952700B53DF6 /* ZTTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTTransition.swift; sourceTree = "<group>"; };
-		7058BD2B212E990100B53DF6 /* ZTTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTTransitionManager.swift; sourceTree = "<group>"; };
+		7058BD2B212E990100B53DF6 /* ZTTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTTransitionManager.swift; sourceTree = "<group>"; tabWidth = 4; };
 		705926D1212A5DE800BE8BB4 /* WDL_TYR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDL_TYR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		705926D4212A5DE800BE8BB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		705926D6212A5DE800BE8BB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 		706C5A5B212EBE7D00C037F2 /* RootTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarVC.swift; sourceTree = "<group>"; };
 		70721D712131B12000E12CEC /* UIViewController+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Location.swift"; sourceTree = "<group>"; };
 		70721D732131B20500E12CEC /* AMapHandleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMapHandleManager.swift; sourceTree = "<group>"; };
+		7074C91C2148DAF000E689CB /* UITableView+ProxyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ProxyDelegate.swift"; sourceTree = "<group>"; };
 		708150B52130E4E000D42723 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		708150BA2130E7CF00D42723 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		708150BC2130E85400D42723 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				70E2755221427A5800E1A92B /* BaseVC+Toast.swift */,
 				70505EF42147A99A00CEE672 /* BaseVC+Alert.swift */,
 				70FE54842147F53C0095CEFD /* String+Extension.swift */,
+				7074C91C2148DAF000E689CB /* UITableView+ProxyDelegate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				70E2754821414D9D00E1A92B /* APIPath.swift in Sources */,
 				7037B0DB213C27F300BDC718 /* PersonalExcuteCell.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
+				7074C91D2148DAF000E689CB /* UITableView+ProxyDelegate.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
 				7068E0E6213F830700929337 /* DeliveryPlaceTabHeader.swift in Sources */,
 				70A319D12137F27000017356 /* GSDetailInfoCell.swift in Sources */,

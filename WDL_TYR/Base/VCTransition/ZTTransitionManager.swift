@@ -8,17 +8,20 @@
 
 import UIKit
 
+let staict_trasition = ZTTransition()
+
 class ZTTransitionManager: NSObject {
     
     static func halfTransparentTransition(duration:TimeInterval = 0.4 , topHeight:CGFloat = IPHONE_HEIGHT / 3.0) -> UIViewControllerAnimatedTransitioning? {
-        let transition = ZTTransition()
+        let transition = staict_trasition
         transition.duration = duration
         transition.topHeight = topHeight
+        transition.isDismiss = false
         return transition
     }
     
     static func halfDissmissTransition(duration:TimeInterval = 0.4) -> UIViewControllerAnimatedTransitioning? {
-        let transition = ZTTransition()
+        let transition = staict_trasition
         transition.duration = duration
         transition.isDismiss = true
         return transition

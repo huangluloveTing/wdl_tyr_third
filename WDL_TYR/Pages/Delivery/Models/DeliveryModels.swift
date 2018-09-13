@@ -33,27 +33,6 @@ struct HallItem : HandyJSON {
     var dictionaryCode:String?
 }
 
-/**
- {
- "dealTotalPrice": 0,
- "dealUnitPrice": 0,
- "dealWay": 0,
- "endCity": "string",
- "endProvince": "string",
- "goodsName": "string",
- "goodsType": "string",
- "goodsWeight": 0,
- "loadingTime": "2018-09-11T01:03:19.593Z",
- "orderAvailabilityPeriod": "string",
- "packageType": "string",
- "publishTime": "2018-09-11T01:03:19.593Z",
- "startCity": "string",
- "startProvince": "string",
- "vehicleLength": "string",
- "vehicleType": "string",
- "vehicleWidth": "string"
- }
- */
 struct ReleaseDeliverySourceModel : HandyJSON { // 发布货源的对象
     var autoTimeInterval:String?    // 自动成交时间
     var dealTotalPrice:Float?  //总价
@@ -78,12 +57,3 @@ struct ReleaseDeliverySourceModel : HandyJSON { // 发布货源的对象
     var remark:String?
 }
 
-/**
- VEHICLE_TYPE("VehicleType", "车型"),
- VEHICLE_LENGTH("VehicleLength", "车长"),
- VEHICLE_WIDTH("VehicleWidth", "车宽"),
- MATERIAL_TYPE("MaterialType", "物料分类"),
- PACKAGE_TYPE("PACKAGE_TYPE", "包装类型"),
- HALL_PERIOD("HYYXQ", "货源有效期"),
- AUTO_DEAL_SPACE("auto_deal_space", "货源自动成交时间间隔");
- */

@@ -12,6 +12,8 @@ fileprivate let TransitionMaskColor = UIColor(hex: "292B2A").withAlphaComponent(
 
 class ZTTransition: NSObject , UIViewControllerAnimatedTransitioning {
     
+    public var currentTransitionContext:UIViewControllerContextTransitioning?
+    
     private var _duration:TimeInterval = 0.4
     private var _topHeight:CGFloat = IPHONE_HEIGHT / 3.0
     
@@ -41,60 +43,59 @@ class ZTTransition: NSObject , UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if self.isDismiss == true {
-            self.dismissAnimationTransition(transitionContext: transitionContext)
+            animationForDismissedView(transitionContext: transitionContext)
             return
         }
-        self.presentAnimationTransition(transitionContext: transitionContext)
+        animationForPresentedView(transitionContext: transitionContext)
     }
     
-    
-    func dismissAnimationTransition(transitionContext: UIViewControllerContextTransitioning) {
+    /// 定义显示动画
+    func animationForPresentedView(transitionContext: UIViewControllerContextTransitioning) {
+        self.currentTransitionContext = transitionContext
+        // 1.取出弹出的View
+        // Key有两个值可以选 UITransitionContextFromViewKey(消失的View), and UITransitionContextToViewKey(显示的View)
+        let presentedView = transitionContext.viewController(forKey: .to)?.view
         let containerView = transitionContext.containerView
-        let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)?.view
-        let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)?.view
-        
-        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
-//        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
-        
-        containerView.addSubview(toView!)
-        containerView.addSubview(fromView!)
-        
-        let toFrame = transitionContext.finalFrame(for: toVC)
-        toView!.frame = toFrame
-        
-        UIView.animate(withDuration: self.duration, animations: {
-            fromView?.zt_y = (toView?.zt_height)!
-        }) { (finish) in
-            transitionContext.completeTransition(finish)
-            fromView?.removeFromSuperview()
-        }
-    }
-
-    func presentAnimationTransition(transitionContext:UIViewControllerContextTransitioning) {
-        let containerView = transitionContext.containerView
-        let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)?.view
-        let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) ?? transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)?.view
+        // 2.将presentedView添加到容器视图containerView中
         let maskView = UIView(frame: containerView.bounds)
         maskView.backgroundColor = TransitionMaskColor
-        
-        containerView.backgroundColor = UIColor.clear
-        containerView.addSubview(fromView!)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(singleTap))
+        maskView.addGestureRecognizer(tap)
         containerView.addSubview(maskView)
-        containerView.addSubview(toView!)
+        containerView.addSubview(presentedView!)
         
-        fromView!.frame = containerView.bounds
-        toView!.frame = containerView.bounds
+        presentedView?.frame = transitionContext.containerView.bounds
+        presentedView?.zt_y = containerView.zt_height
+        presentedView?.zt_height = containerView.zt_height - self.topHeight
+        // 3.执行动画
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            // 执行的动画内容
+            presentedView?.zt_y = self.topHeight
+        }) { (_) in
+            // 告诉上下文已完成动画
+            transitionContext.completeTransition(true)
+        }
+    }
+    
+    @objc func singleTap() {
+        let toVC = self.currentTransitionContext?.viewController(forKey: .to)
+        toVC?.dismiss(animated: true, completion: nil)
+    }
+    
+    /// 定义消失动画
+    func animationForDismissedView(transitionContext: UIViewControllerContextTransitioning) {
+        // 1.取出消失的View
+        let dismissedView = transitionContext.view(forKey: UITransitionContextViewKey.from)
+        let containerView = transitionContext.containerView
         
-        var toViewFrame = toView!.frame
-        toViewFrame.origin.y = toViewFrame.size.height
-        toViewFrame.size.height = toViewFrame.size.height - self.topHeight
-        toView!.frame = toViewFrame
-        
-        UIView.animate(withDuration: self.duration, animations: {
-            toViewFrame.origin.y = self.topHeight
-            toView!.frame = toViewFrame
-        }) { (finish) in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        // 2.执行动画
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            // 执行的动画内容
+            dismissedView?.zt_y = containerView.zt_height
+        }) { (_) in
+            // 将消失的view从父控制器里移除
+            dismissedView?.removeFromSuperview()
+            transitionContext.completeTransition(true)
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxCocoa
 
 class ForgetPwdVC: NormalBaseVC {
 
@@ -20,6 +21,14 @@ class ForgetPwdVC: NormalBaseVC {
         self.saveButton.addBorder(color: nil)
     }
 
+    
+    override func bindViewModel() {
+        self.saveButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: dispose)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

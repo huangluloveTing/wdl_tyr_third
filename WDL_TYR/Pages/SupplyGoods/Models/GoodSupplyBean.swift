@@ -10,35 +10,69 @@ import Foundation
 import RxDataSources
 import HandyJSON
 
+enum GoodsSupplyListStatus : Int {
+    case status_bidding = 0     //竞价中
+    case status_deal = 1        // 成交
+    case status_putway = 2      // 上架
+    case status_soldout = 3     // 下架
+}
+
+
 struct GoodsSupplyQueryBean : HandyJSON {
     var endCity : String?
     var endProvince: String?
     var isDeal:Int?
     var startCity : String?
     var startProvince : String?
+    var pageNum : Int = 1
+    var pageSize : Int = 20
 }
 
-struct GoodsSupplyItemBean  : HandyJSON {
-    public var start:String?
-    public var end:String?
-    public var status:String?
-    public var content:String?
-    public var goodsSpec:String?
-    public var cartSpec:String?
-    public var pageNum : Int = 0
-    public var pageSize : Int = 20
 
+struct GoodsSupplyList :HandyJSON {
+    var pageNum:Int?
+    var pageSize:Int?
+    var size:Int?
+    var list:[GoodsSupplyListItem]?
 }
 
-extension GoodsSupplyItemBean : IdentifiableType , Equatable {
+struct GoodsSupplyListItem : HandyJSON{
+    var id:String?
+    var consignorNo:String?
+    var startProvince:String?
+    var startCity:String?
+    var endProvince:String?
+    var endCity:String?
+    var goodsName:String?
+    var goodsType:String?
+    var packageType:String?
+    var vehicleType:String?
+    var vehicleLength:String?
+    var vehicleWidth:String?
+    var publishTime:String?
+    var loadingTime:String?
+    var orderAvailabilityPeriod:String?
+    var dealWay:Int?
+    var autoTimeInterval:CGFloat?
+    var isDeal:GoodsSupplyListStatus?
+    var isEnable:Int?
+    var remark:String?
+    var startDistrict:String?
+    var endDistrict:String?
+    var dealUnitPrice:CGFloat?
+    var dealTotalPrice:CGFloat?
+    var goodsWeight:CGFloat?
+}
+
+extension GoodsSupplyListItem : IdentifiableType , Equatable {
     var identity: String {
-        return self.end!
+        return self.id ?? ""
     }
     
     typealias Identity = String
 }
 
-func ==  (lhs: GoodsSupplyItemBean, rhs: GoodsSupplyItemBean) -> Bool {
+func ==  (lhs: GoodsSupplyListItem, rhs: GoodsSupplyListItem) -> Bool {
     return lhs.toJSONString() == rhs.toJSONString()
 }
 

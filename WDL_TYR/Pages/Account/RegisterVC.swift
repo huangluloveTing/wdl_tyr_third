@@ -98,7 +98,7 @@ class RegisterVC: BaseVC {
         self.pop()
     }
     @IBAction func toTYRAction(_ sender: Any) { // 去我是承运人
-        self.toMainVC()
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func toLinkCustomerSerAction(_ sender: Any) { // 联系客服
         self.toLinkKF()

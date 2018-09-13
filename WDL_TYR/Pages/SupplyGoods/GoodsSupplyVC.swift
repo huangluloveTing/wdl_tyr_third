@@ -13,6 +13,12 @@ import RxDataSources
 
 let goodsSupplyCellIdentity = "\(GoodsSupplyCell.self)"
 
+struct SupplyPlaceModel {
+    var province:PlaceChooiceItem?
+    var city : PlaceChooiceItem?
+    var strict : PlaceChooiceItem?
+}
+
 class GoodsSupplyVC: MainBaseVC {
     
     @IBOutlet weak var endButton: MyButton!
@@ -21,11 +27,22 @@ class GoodsSupplyVC: MainBaseVC {
     @IBOutlet weak var statusButton: MyButton!
     @IBOutlet weak var dropAnchorView: UIView!
     
+    private var startModel:SupplyPlaceModel = SupplyPlaceModel()
+    private var endModel:SupplyPlaceModel = SupplyPlaceModel()
+    private var listStatus:GoodsSupplyStatus?
+    
+    private var requestBean:GoodsSupplyQueryBean = GoodsSupplyQueryBean()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.wr_setNavBarShadowImageHidden(true)
         self.addNaviHeader()
         self.addMessageRihgtItem()
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+        } else {
+            self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        }
         self.emptyTitle(title: "暂无货源", to: self.tableView)
     }
     
@@ -33,6 +50,12 @@ class GoodsSupplyVC: MainBaseVC {
         self.tableView.register(UINib.init(nibName: goodsSupplyCellIdentity, bundle: nil), forCellReuseIdentifier: goodsSupplyCellIdentity)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.bottomButtom(titles: ["取消" ,"确定"], targetView: self.tableView)
+        self.tableView.pullRefresh()
+        self.tableView.upRefresh()
+        self.tableView.delegate = self
+        self.tableView.estimatedRowHeight = 0
+        self.tableView.estimatedSectionFooterHeight = 0
+        self.tableView.estimatedSectionHeaderHeight = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,9 +81,6 @@ class GoodsSupplyVC: MainBaseVC {
             .disposed(by: dispose)
         
         let ds = GoodsSupplyVC.getDataSource()
-        
-        self.tableView.pullRefresh()
-        self.tableView.upRefresh()
     
         tableView.rx.willDisplayCell
             .subscribe(onNext:{ (tc , index) in
@@ -76,10 +96,10 @@ class GoodsSupplyVC: MainBaseVC {
                 SupplyGoodsCommand<MyHeaderSections>.TapItem(indexPath, self)
             }
         let initailState = GoodsSupplyState(sections: [
-                MyHeaderSections(header: "", items: [
-                    "不限","已成交","竞价中","已上架","未上架"
-                    ])
+                MyHeaderSections(header: "", items: [])
             ])
+        
+        
         
         /**
          * rxSwfit 主要是观察者和被观察者的关系
@@ -88,18 +108,19 @@ class GoodsSupplyVC: MainBaseVC {
          */
         let refreshCommand = self.tableView.refreshState.asObservable()
             .distinctUntilChanged()
-            .flatMap { (state) -> Driver<BaseResponseModel<String>> in
-                let dataObserval = BaseApi.request(target: API.login("", ""), type: BaseResponseModel<String>.self)
-                    .observeOn(MainScheduler.instance)
-                    .asDriver(onErrorJustReturn: BaseResponseModel<String>())
+            .filter({ (state) -> Bool in
+                return state != TableViewState.EndRefresh
+            })
+            .flatMap { (state) -> Observable<BaseResponseModel<GoodsSupplyList>> in
+                let dataObserval = BaseApi.request(target: API.ownOrderHall(self.requestBean), type: BaseResponseModel<GoodsSupplyList>.self)
+                    .subscribeOn(MainScheduler.instance)
+                    .catchErrorJustReturn(BaseResponseModel<GoodsSupplyList>())
                 return dataObserval
             }
-            .asDriver(onErrorJustReturn: BaseResponseModel<String>())
+            .asDriver(onErrorJustReturn: BaseResponseModel<GoodsSupplyList>())
             .map { (model) -> SupplyGoodsCommand<MyHeaderSections> in
                 self.tableView.endRefresh()
-                return SupplyGoodsCommand.Refresh(items: [MyHeaderSections(header: "", items: [
-                        "不限","已成交","竞价中","已上架","未s上架","不s限","已成s交","s竞价中","未上架s"
-                        ])])
+                return SupplyGoodsCommand.Refresh(items: [MyHeaderSections(header: "", items: model.data?.list ?? [])])
             }
         
         Observable.of(deleteCommand , itemCommand , refreshCommand)
@@ -128,6 +149,12 @@ class GoodsSupplyVC: MainBaseVC {
         let placeView = Bundle.main.loadNibNamed("DropPlaceView", owner: nil, options: nil)?.first as! DropPlaceChooiceView
         placeView.placeItems = self.initialProinve()
         placeView.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_WIDTH)
+        placeView.dropClosure = { (province , city , strict) in
+            self.startModel.province = province
+            self.startModel.city = city
+            self.startModel.strict = strict
+            self.startButton.setTitle(strict?.title, for: .normal)
+        }
         return self.addDropView(drop: placeView, anchorView: dropAnchorView)
     }()
     
@@ -136,8 +163,22 @@ class GoodsSupplyVC: MainBaseVC {
         let placeView = Bundle.main.loadNibNamed("DropPlaceView", owner: nil, options: nil)?.first as! DropPlaceChooiceView
         placeView.placeItems = self.initialProinve()
         placeView.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_WIDTH)
+        placeView.dropClosure = { (province , city , strict) in
+            self.endModel.province = province
+            self.endModel.city = city
+            self.endModel.strict = strict
+            self.endButton.setTitle(strict?.title, for: .normal)
+        }
         return self.addDropView(drop: placeView, anchorView: dropAnchorView)
     }()
+}
+
+// 获取数据
+extension GoodsSupplyVC : UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.heightForRow(at: indexPath)
+    }
 }
 
 // 添加 下拉选项 操作
@@ -229,7 +270,7 @@ struct GoodsSupplyState {
 
 struct MyHeaderSections  {
     var header:String
-    var items:[String]
+    var items:[GoodsSupplyListItem]
 }
 
 extension MyHeaderSections : AnimatableSectionModelType {
@@ -237,7 +278,7 @@ extension MyHeaderSections : AnimatableSectionModelType {
         return header
     }
 
-    typealias Item = String
+    typealias Item = GoodsSupplyListItem
 
     init(original: MyHeaderSections, items: [Item]) {
         self = original
