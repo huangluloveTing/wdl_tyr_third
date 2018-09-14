@@ -32,6 +32,62 @@ struct SupplyOfferBean {
     var vehicleNo : String? //车牌号
 }
 
+struct OrderAndOffer : HandyJSON {
+    var offerPage: SupplyOfferDetailBean?
+    var zbnOrderHall : OderHallBean?
+}
+
+struct OderHallBean : HandyJSON {
+    var autoTimeInterval : TimeInterval? // 自动成交时间间隔 ,
+    var bidPriceWay: Int?
+    var carrierType : String?
+    var consigneeName : String?
+    var consigneePhone :String?
+    var consignorName :String? // (string): 拖运人名称 ,
+    var consignorNo :String? // (string): 托运人ID ,
+    var createTime :String? // (string, optional),
+    var dealTime : String? // (string): 成交时间 ,
+    var dealTotalPrice :CGFloat? // (number): 成交总价 ,
+    var dealUnitPrice : CGFloat? // (number): 成交单价 ,
+    var dealWay : Int? // (integer): 成交方式 1=自动 2=手动 ,
+    var endAddress : String? // (string, optional),
+    var endCity : String? // (string): 收货地市 ,
+    var endDistrict : String? // (string): 收货区 ,
+    var endProvince : String? // (string): 收货地省 ,
+    var endTime: String? // (string): 结束时间 ,
+    var freightunit : String? // (string, optional),
+    var goodsName : String? // (string): 货品名称 ,
+    var goodsType : String? // (string): 货品分类 ,
+    var goodsWeight : String? // (number): 货源总重 ,
+    var id : String? // (string, optional),
+    var infoFee : String? // (number): 服务费 ,
+    var isDeal : Int? // (integer): 订单状态0=竞价中 1=成交 2=未上架 3=已下架 ,
+    var isEnable : Int? // (integer, optional),
+    var isVisable : Int? // (integer): 是否可见 ,
+    var loadingTime : String? // (string): 装货时间 ,
+    var offerType : Int? // (integer, optional),
+    var offerWay : Int? // (integer): 报价方式[1：有车报价 2：无车报价] ,
+    var orderAvailabilityPeriod : String? // (string): 货源有效期 ,
+    var packageType : String? // (string): 包装类型 ,
+    var pageNum : Int? // (integer): 当前页数 ,
+    var pageSize : Int? // (integer): 页面大小 ,
+    var payType : String? // (string, optional),
+    var publishTime : String? // (string): 发布时间 ,
+    var refercneceTotalPrice : CGFloat? // (number): 参考总价 ,
+    var refercneceUnitPrice : CGFloat? // (number): 参考单价 ,
+    var remark : String? // (string, optional),
+    var startAddress : String? // (string, optional),
+    var startCity : String? // (string): 发货地市 ,
+    var startDistrict : String? // (string): 发货区 ,
+    var startProvince : String? // (string): 发货地省 ,
+    var startTime : String? // (string): 开始时间 ,
+    var stowageNo : String? // (string): 配载单号 ,
+    var unableReason : String? // (string): 下架原因 ,
+    var vehicleLength : String? // (string): 车长 ,
+    var vehicleType :String? // (string): 车型 ,
+    var vehicleWidth : String? // (string): 车宽
+}
+
 struct SupplyOfferDetailBean : HandyJSON {
     var list : [SupplyOfferBean]?
     var pageNum : Int?
@@ -39,16 +95,16 @@ struct SupplyOfferDetailBean : HandyJSON {
     var total : Int?
 }
 
-enum QueryDetailOrderBy : Int {
-    case OrderBy_Price_reverse = 0  //金额倒序
-    case OrderBy_Price_ascend = 1   // 金额升序
-    case OrderBy_Time_reverse = 2  // 时间倒序
-    case OrderBy_Time_ascend  = 3  // 时间升序
+enum QueryDetailOrderBy : String , HandyJSONEnum {
+    
+    case OrderBy_DESC   = "DESC"  // 倒序
+    case OrderBy_ASC    = "ASC"  // 升序
 }
 
 struct QuerySupplyDetailBean : HandyJSON {
     var hallId:String?
     var pageNum:Int = 1
     var pageSize:Int = 20
-    var orderBy:QueryDetailOrderBy?
+    var amountSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
+    var timeSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
 }

@@ -19,9 +19,14 @@ enum GoodsSupplyStatus {
 
 class GoodsSupplyDetailVC: NormalBaseVC  {
     
+    // 上级页面传过来的数据
     public var supplyDetail:GoodsSupplyListItem?
 
+    // 请求的bean
     private var offerQueyBean:QuerySupplyDetailBean = QuerySupplyDetailBean()
+    
+    // 获取的数据
+    private var pageContentInfo:OrderAndOffer?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,6 +34,8 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.offerQueyBean.hallId = self.supplyDetail?.id
+        self.loadAllOffers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -136,15 +143,23 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
 // load data
 extension GoodsSupplyDetailVC : UITableViewDelegate {
     
+    //MARK: 获取数据
     func loadAllOffers() {
         self.showLoading()
-        BaseApi.request(target: API.getOfferByOrderHallId(self.offerQueyBean), type: BaseResponseModel<SupplyOfferDetailBean?>.self)
+        BaseApi.request(target: API.getOfferByOrderHallId(self.offerQueyBean), type: BaseResponseModel<OrderAndOffer?>.self)
             .subscribe(onNext: { (data) in
                 self.showSuccess()
+                self.pageContentInfo = data.data!
                 
             }, onError: { (error) in
                 self.showFail(fail: error.localizedDescription, complete: nil)
             })
             .disposed(by: dispose)
+    }
+    
+    //MARK: 配置头部信息
+    func toConfigHeaderInfo() {
+        let hall = self.pageContentInfo?.zbnOrderHall
+        let start = (hall?.startProvince ?? "")+(hall?.startCity ?? "")+(hall?.startDistrict ?? "")
     }
 }

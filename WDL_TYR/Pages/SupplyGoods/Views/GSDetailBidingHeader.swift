@@ -13,6 +13,18 @@ enum GSTapActionState {
     case GSTapOffShelve
 }
 
+struct BidingContentItem {
+    var autoDealTime:TimeInterval? // 自动成交时间
+    var supplyCode:String?  //货源编码
+    var startPlace:String?  //发货地
+    var endPlace:String?    //收货地
+    var loadTime:String?    //装货时间
+    var goodsName:String?   //货品名称
+    var goodsType:String?   //货品分类
+    var goodsSummer:String? // 货品简介
+    var remark:String?      //备注
+}
+
 class GSDetailBidingHeader: UIView {
     
     typealias BidingTapClosure = (GSTapActionState) -> ()
@@ -29,6 +41,8 @@ class GSDetailBidingHeader: UIView {
     @IBOutlet weak var transTimeLabel: UILabel!
     @IBOutlet weak var obtainPlaceLabel: UILabel!
     @IBOutlet weak var sendPlaceLabel: UILabel!
+    
+    private var contentItem:BidingContentItem?
 
     @IBAction func enpandAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -54,10 +68,10 @@ extension GSDetailBidingHeader {
         }
         else {
             self.goodsSummaryTitleLabel.text = "货品简介："
-            self.goodsSummaryLabel.text = "发哈合法化"
+            self.goodsSummaryLabel.text = self.contentItem?.goodsSummer
             self.cateTitleLabel.text = "货品分类："
-            self.goodsCategoryLabel.text = "卡发开发发放"
-            self.remarkLabel.text = "af按了回复拉风half哈喽哈发卡号发来客户发了回复"
+            self.goodsCategoryLabel.text = self.contentItem?.goodsType
+            self.remarkLabel.text = self.contentItem?.remark
             self.remarkTitleLabel.text = "备      注："
             self.cateTitleLabel.isHidden = false
             self.goodsSummaryTitleLabel.isHidden = false
@@ -66,5 +80,13 @@ extension GSDetailBidingHeader {
         }
     }
     
-    
+    func headerContent(item:BidingContentItem?) -> Void {
+        if let item = item {
+            self.contentItem = item
+            self.goodsNameLabel.text = item.goodsName
+            self.transTimeLabel.text = item.loadTime
+            self.obtainPlaceLabel.text = item.startPlace
+            self.sendPlaceLabel.text = item.endPlace
+        }
+    }
 }

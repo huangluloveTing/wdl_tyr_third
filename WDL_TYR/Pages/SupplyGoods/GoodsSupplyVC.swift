@@ -250,8 +250,9 @@ struct GoodsSupplyState {
     
     func excute(command:SupplyGoodsCommand<MyHeaderSections>) -> GoodsSupplyState {
         switch command {
-            case .TapItem( _ , let vc):
-                    vc.toGoodsSupplyDetail()
+            case .TapItem(let indexPath , let vc):
+                    let item = self.sections[indexPath.section].items[indexPath.row]
+                    vc.toGoodsSupplyDetail(item: item)
                     return self
             case .ItemDelete(let indexPath):
                 var sections = self.sections
