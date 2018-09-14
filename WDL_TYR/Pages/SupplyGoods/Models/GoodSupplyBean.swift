@@ -49,8 +49,8 @@ struct GoodsSupplyListItem : HandyJSON{
     var vehicleType:String?
     var vehicleLength:String?
     var vehicleWidth:String?
-    var publishTime:String?
-    var loadingTime:String?
+    var publishTime:TimeInterval?
+    var loadingTime:TimeInterval?
     var orderAvailabilityPeriod:String?
     var dealWay:Int?
     var autoTimeInterval:CGFloat?
@@ -62,6 +62,13 @@ struct GoodsSupplyListItem : HandyJSON{
     var dealUnitPrice:CGFloat?
     var dealTotalPrice:CGFloat?
     var goodsWeight:CGFloat?
+    var offer:GoodsSupplyOfferModel?
+}
+
+struct GoodsSupplyOfferModel : HandyJSON {
+    var hallId:String?
+    var offerNumber:Int?
+    var quotedPrice:CGFloat?
 }
 
 extension GoodsSupplyListItem : IdentifiableType , Equatable {

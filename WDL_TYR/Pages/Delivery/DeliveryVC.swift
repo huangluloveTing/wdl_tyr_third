@@ -499,7 +499,7 @@ extension DeliveryVC {
             }, onError: { [weak self](error) in
                 self?.hiddenToast()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                  self?.loadAllBasicInfo()
+//                  self?.loadAllBasicInfo()
                 })
             })
             .disposed(by: dispose)

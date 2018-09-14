@@ -30,7 +30,7 @@ extension BaseVC {
     }
     
     // 去 货物供应详情
-    func toGoodsSupplyDetail() {
+    func toGoodsSupplyDetail(item:GoodsSupplyListItem) {
         let detailSupplu = GoodsSupplyDetailVC()
         self.push(vc: detailSupplu, title: "详情")
     }

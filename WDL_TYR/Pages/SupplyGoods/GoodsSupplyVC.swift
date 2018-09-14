@@ -226,6 +226,7 @@ extension GoodsSupplyVC {
                 configureCell: {
                     (dataSource, tv, indexPath, element) in
                     let cell = tv.dequeueReusableCell(withIdentifier: goodsSupplyCellIdentity)! as! GoodsSupplyCell
+                    cell.showContent(item: element)
                     return cell
                 },
                 canEditRowAtIndexPath : { (datasource , indexpath) in

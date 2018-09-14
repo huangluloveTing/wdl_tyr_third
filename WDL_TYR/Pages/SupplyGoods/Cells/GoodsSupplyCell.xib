@@ -22,19 +22,19 @@
                         <rect key="frame" x="20" y="10" width="390" height="232.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="成都市新都区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-RV-LOO">
-                                <rect key="frame" x="20" y="20" width="104" height="21"/>
+                                <rect key="frame" x="20" y="20" width="135.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="河南心连心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbe-03-H1R">
-                                <rect key="frame" x="161" y="20" width="167" height="21"/>
+                                <rect key="frame" x="192.5" y="20" width="135.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_to" translatesAutoresizingMaskIntoConstraints="NO" id="tek-uo-uxk">
-                                <rect key="frame" x="134" y="25" width="17" height="11"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" image="right_to" translatesAutoresizingMaskIntoConstraints="NO" id="tek-uo-uxk">
+                                <rect key="frame" x="165.5" y="25" width="17" height="11"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="竞价中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGS-aO-G8X">
                                 <rect key="frame" x="333" y="24" width="37" height="14.5"/>
@@ -94,6 +94,7 @@
                             <constraint firstItem="bjy-RV-LOO" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" constant="20" id="llT-fD-Eah"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="centerY" secondItem="tek-uo-uxk" secondAttribute="centerY" id="qxm-cv-43u"/>
                             <constraint firstItem="dGS-aO-G8X" firstAttribute="leading" secondItem="mbe-03-H1R" secondAttribute="trailing" constant="5" id="uSA-S1-XHv"/>
+                            <constraint firstItem="mbe-03-H1R" firstAttribute="width" secondItem="bjy-RV-LOO" secondAttribute="width" id="wYI-LW-QdC"/>
                             <constraint firstItem="XnH-HI-kPo" firstAttribute="trailing" secondItem="dGS-aO-G8X" secondAttribute="trailing" id="xlr-KX-ctV"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="leading" secondItem="tek-uo-uxk" secondAttribute="trailing" constant="10" id="zYL-Bk-hBe"/>
                             <constraint firstItem="7y3-0a-P2N" firstAttribute="leading" secondItem="NIM-Sc-2fO" secondAttribute="trailing" constant="5" id="zlu-a0-pfe"/>

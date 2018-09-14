@@ -43,7 +43,7 @@ class LoginVC: BaseVC {
                 }
                 return true
             })
-            .flatMap({ () ->  Observable<String> in
+            .flatMap({ () ->  Observable<LoginInfo> in
                 return self.loginHandle()
             })
             .subscribe(onNext: { (valid) in
@@ -82,15 +82,15 @@ class LoginVC: BaseVC {
 
 extension LoginVC {
     
-    func loginHandle() -> Observable<String> {
+    func loginHandle() -> Observable<LoginInfo> {
         self.showLoading()
-        return Observable<String>.create({ (obser) -> Disposable in
-            return BaseApi.request(target: API.login(self.phoneTextField.text ?? "", self.passworldTextField.text ?? ""), type: BaseResponseModel<String>.self)
+        return Observable<LoginInfo>.create({ (obser) -> Disposable in
+            return BaseApi.request(target: API.login(self.phoneTextField.text ?? "", self.passworldTextField.text ?? ""), type: BaseResponseModel<LoginInfo>.self)
                     .subscribe(onNext: { (model) in
                         self.showSuccess()
                         print("respone = \(model.toJSON() ?? ["s":""])")
-                        WDLCoreManager.shared().token = model.data
-                        obser.onNext(model.data ?? "")
+                        WDLCoreManager.shared().userInfo = model.data
+                        obser.onNext(model.data ?? LoginInfo())
                         obser.onCompleted()
                     },
                                onError:{(error) in

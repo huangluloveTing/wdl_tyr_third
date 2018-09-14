@@ -130,6 +130,7 @@
 		70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED0878212F0236001DCCB2 /* DeliveryVC.swift */; };
 		70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ED0879212F0236001DCCB2 /* DeliveryVC.xib */; };
 		70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */; };
+		70F40F2E214B7C110054A175 /* GoodsOfferDetailBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F40F2D214B7C110054A175 /* GoodsOfferDetailBean.swift */; };
 		70F72AF72144A6AE00C9156E /* Regx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF62144A6AE00C9156E /* Regx.swift */; };
 		70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF82145F80A00C9156E /* DeliveryModels.swift */; };
 		70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */; };
@@ -253,7 +254,6 @@
 		70B588F72140B12F00EF704E /* DeliveryTruckTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTruckTypeCell.swift; sourceTree = "<group>"; };
 		70B588F82140B12F00EF704E /* DeliveryTruckTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryTruckTypeCell.xib; sourceTree = "<group>"; };
 		70B588FB2140B20E00EF704E /* UIView+ZTTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ZTTagView.swift"; sourceTree = "<group>"; };
-		70C25246212E57D9007F2ED5 /* WDL_TYR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WDL_TYR-Bridging-Header.h"; sourceTree = "<group>"; };
 		70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		70C2524C212E5D75007F2ED5 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -274,6 +274,8 @@
 		70ED0878212F0236001DCCB2 /* DeliveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryVC.swift; sourceTree = "<group>"; };
 		70ED0879212F0236001DCCB2 /* DeliveryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryVC.xib; sourceTree = "<group>"; };
 		70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		70F40F1A214B431B0054A175 /* WDL_TYR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WDL_TYR-Bridging-Header.h"; sourceTree = "<group>"; };
+		70F40F2D214B7C110054A175 /* GoodsOfferDetailBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsOfferDetailBean.swift; sourceTree = "<group>"; };
 		70F72AF62144A6AE00C9156E /* Regx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regx.swift; sourceTree = "<group>"; };
 		70F72AF82145F80A00C9156E /* DeliveryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryModels.swift; sourceTree = "<group>"; };
 		70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBaseVC.swift; sourceTree = "<group>"; };
@@ -401,10 +403,10 @@
 				705926D4212A5DE800BE8BB4 /* AppDelegate.swift */,
 				705926D6212A5DE800BE8BB4 /* ViewController.swift */,
 				705926D8212A5DE800BE8BB4 /* Main.storyboard */,
-				70C25246212E57D9007F2ED5 /* WDL_TYR-Bridging-Header.h */,
 				705926DB212A5DEA00BE8BB4 /* Assets.xcassets */,
 				705926DD212A5DEA00BE8BB4 /* LaunchScreen.storyboard */,
 				705926E0212A5DEA00BE8BB4 /* Info.plist */,
+				70F40F1A214B431B0054A175 /* WDL_TYR-Bridging-Header.h */,
 			);
 			path = WDL_TYR;
 			sourceTree = "<group>";
@@ -541,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				70B1300A2134D592002A473F /* GoodSupplyBean.swift */,
+				70F40F2D214B7C110054A175 /* GoodsOfferDetailBean.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				7068E0F2213FB83300929337 /* PlaceChooiceView.swift in Sources */,
 				70E2754821414D9D00E1A92B /* APIPath.swift in Sources */,
 				7037B0DB213C27F300BDC718 /* PersonalExcuteCell.swift in Sources */,
+				70F40F2E214B7C110054A175 /* GoodsOfferDetailBean.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				7074C91D2148DAF000E689CB /* UITableView+ProxyDelegate.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,

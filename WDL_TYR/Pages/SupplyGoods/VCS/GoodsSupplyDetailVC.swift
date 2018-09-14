@@ -18,7 +18,10 @@ enum GoodsSupplyStatus {
 }
 
 class GoodsSupplyDetailVC: NormalBaseVC  {
+    
+    public var supplyDetail:GoodsSupplyListItem?
 
+    private var offerQueyBean:QuerySupplyDetailBean = QuerySupplyDetailBean()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -130,6 +133,18 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
     }
 }
 
+// load data
 extension GoodsSupplyDetailVC : UITableViewDelegate {
     
+    func loadAllOffers() {
+        self.showLoading()
+        BaseApi.request(target: API.getOfferByOrderHallId(self.offerQueyBean), type: BaseResponseModel<SupplyOfferDetailBean?>.self)
+            .subscribe(onNext: { (data) in
+                self.showSuccess()
+                
+            }, onError: { (error) in
+                self.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
+    }
 }

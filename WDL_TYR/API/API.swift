@@ -19,6 +19,7 @@ enum API {
     case getCreateHallDictionary()  // 获取数据字典
     case releaseSource(ReleaseDeliverySourceModel)       // 发布货源
     case ownOrderHall(GoodsSupplyQueryBean) // 我的货源接口
+    case getOfferByOrderHallId(QuerySupplyDetailBean)    // 获取报价详情
 }
 
 
@@ -39,6 +40,8 @@ func apiPath(api:API) -> String {
         return "/orderHall/releaseSource"
     case .ownOrderHall(_):
         return "/orderHall/ownOrderHall"
+    case .getOfferByOrderHallId(_):
+        return "/orderHall/getOfferByOrderHallId"
     }
 }
 
@@ -59,13 +62,15 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: resource.toJSON()!, encoding: JSONEncoding.default)
     case .ownOrderHall(let query):
         return .requestParameters(parameters: query.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+    case .getOfferByOrderHallId(let query):
+        return .requestParameters(parameters: query.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     }
 }
 
 // METHOD
 func apiMethod(api:API) -> Moya.Method {
     switch api {
-    case .getCreateHallDictionary() ,.loadTaskInfo():
+    case .getCreateHallDictionary():
         return .get
     default:
         return .post
