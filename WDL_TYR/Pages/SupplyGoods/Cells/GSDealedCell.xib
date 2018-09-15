@@ -195,6 +195,15 @@
                     <constraint firstItem="tNG-gM-0H0" firstAttribute="top" secondItem="CF9-p6-caR" secondAttribute="bottom" id="uY2-pE-KjU"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="amountLabel" destination="Ovu-E7-N0M" id="7Ii-k1-OhU"/>
+                <outlet property="cyLabel" destination="byT-2p-aUG" id="3zi-Gt-idi"/>
+                <outlet property="dealTimeLabel" destination="Ac4-s4-O9O" id="SFf-w0-oSt"/>
+                <outlet property="driverLabel" destination="g1a-Br-O1v" id="7oH-WD-5Wu"/>
+                <outlet property="offerTimeLabel" destination="LUH-Jf-bSf" id="6yh-Kp-dIK"/>
+                <outlet property="priceLabel" destination="ozE-03-Igb" id="06g-L3-9FF"/>
+                <outlet property="truckInfoLabel" destination="UYz-mK-9SX" id="hj4-Gz-vJj"/>
+            </connections>
             <point key="canvasLocation" x="32" y="65.5"/>
         </tableViewCell>
     </objects>

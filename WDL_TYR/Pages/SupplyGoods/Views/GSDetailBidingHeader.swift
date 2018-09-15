@@ -31,6 +31,7 @@ class GSDetailBidingHeader: UIView {
     
     public var bidingTapClosure:BidingTapClosure?
     
+    @IBOutlet weak var goodsCodeLabel: UILabel!
     @IBOutlet weak var goodsSummaryTitleLabel: UILabel!
     @IBOutlet weak var goodsSummaryLabel: UILabel!
     @IBOutlet weak var remarkTitleLabel: UILabel!
@@ -44,6 +45,12 @@ class GSDetailBidingHeader: UIView {
     
     private var contentItem:BidingContentItem?
 
+    @IBAction func offShelveAction(_ sender: Any) {
+        if let closure = self.bidingTapClosure {
+            closure(.GSTapOffShelve)
+        }
+    }
+    
     @IBAction func enpandAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         self.foldHeader(isFolder: sender.isSelected)
@@ -84,9 +91,10 @@ extension GSDetailBidingHeader {
         if let item = item {
             self.contentItem = item
             self.goodsNameLabel.text = item.goodsName
-            self.transTimeLabel.text = item.loadTime
+            self.transTimeLabel.text = Util.dateFormatter(date: Double(item.loadTime ?? "0")! / 1000, formatter: "yyyy-MM-dd")
             self.obtainPlaceLabel.text = item.startPlace
             self.sendPlaceLabel.text = item.endPlace
+            self.goodsCodeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , item.supplyCode , ")")
         }
     }
 }

@@ -46,6 +46,11 @@ class GoodsSupplyVC: MainBaseVC {
         self.emptyTitle(title: "暂无货源", to: self.tableView)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.beginRefresh()
+    }
+    
     override func currentConfig() {
         self.tableView.register(UINib.init(nibName: goodsSupplyCellIdentity, bundle: nil), forCellReuseIdentifier: goodsSupplyCellIdentity)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none

@@ -41,6 +41,7 @@ func requestClosure(endPoint:Endpoint , done:MoyaProvider<API>.RequestResultClos
         request.timeoutInterval = 10.0
         request.addValue(WDLCoreManager.shared().userInfo?.token ?? "", forHTTPHeaderField:"Token" )
         request.addValue("", forHTTPHeaderField: "consignorToken")
+        print(request.allHTTPHeaderFields ?? Dictionary())
         done(.success(request))
     }
     catch let error {

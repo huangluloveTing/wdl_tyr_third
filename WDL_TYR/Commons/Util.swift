@@ -61,6 +61,27 @@ class Util {
         }
         return false
     }
+    
+    static func concatSeperateStr(seperete:String? = " | " , strs:String? ...) -> String {
+        var valueStr = ""
+        strs.enumerated().forEach { (index ,st) in
+            if let st = st {
+                if st.count > 0 {
+                    if index != (strs.count - 1) {
+                        valueStr = valueStr + st + (seperete ?? "")
+                    } else {
+                        valueStr = valueStr + st
+                    }
+                }
+            }
+        }
+        return valueStr
+    }
+    
+    static func showMoney(money:CGFloat , after point:Int = 2) -> String {
+        let newMony = String(format: "%.\(point)f", money)
+        return newMony
+    }
 }
 
 // 富文本 YYText

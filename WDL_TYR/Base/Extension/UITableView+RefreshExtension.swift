@@ -46,6 +46,20 @@ extension UITableView {
         })
     }
     
+    func beginRefresh() {
+        let headr = self.mj_header
+        if let header = headr {
+            header.beginRefreshing()
+        }
+    }
+    
+    func beginLoadMore() {
+        let footer = self.mj_footer
+        if let footer = footer {
+            footer.beginRefreshing()
+        }
+    }
+    
     func endRefresh() {
         let header = self.mj_header
         let footer = self.mj_footer

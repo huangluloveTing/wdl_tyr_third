@@ -13,7 +13,7 @@ import HandyJSON
 enum GoodsSupplyListStatus : Int , HandyJSONEnum {
     case status_bidding = 0     //竞价中
     case status_deal = 1        // 成交
-    case status_putway = 2      // 上架
+    case status_putway = 2      // 未上架
     case status_soldout = 3     // 下架
 }
 

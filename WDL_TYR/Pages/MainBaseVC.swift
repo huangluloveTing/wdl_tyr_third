@@ -16,6 +16,7 @@ class MainBaseVC: BaseVC {
         self.wr_setNavBarBarTintColor(UIColor(hex: "06C06F"))
         self.wr_setNavBarTintColor(UIColor.white)
         self.wr_setNavBarTitleColor(UIColor.white)
+        self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
     }
 
     override func didReceiveMemoryWarning() {

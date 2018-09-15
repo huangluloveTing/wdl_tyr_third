@@ -240,6 +240,19 @@
                     <constraint firstItem="uZp-Xc-kYM" firstAttribute="trailing" secondItem="YAP-dV-pZR" secondAttribute="trailing" id="zH9-n7-bg1"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="amountLabel" destination="UfX-Cd-bd2" id="S3v-RX-QOf"/>
+                <outlet property="codeLabel" destination="w80-aV-qbj" id="GMh-en-KMZ"/>
+                <outlet property="endLabel" destination="oCw-3s-qx5" id="Xol-qn-qui"/>
+                <outlet property="goodsNameLabel" destination="YAP-dV-pZR" id="zLc-um-o3c"/>
+                <outlet property="goodsSummerLabel" destination="Owo-NZ-Bcr" id="LzN-gp-Ki4"/>
+                <outlet property="goodsTypeLabel" destination="uZp-Xc-kYM" id="izu-30-mHr"/>
+                <outlet property="loadTimeLabel" destination="hOH-mP-X1z" id="EeN-tS-fC6"/>
+                <outlet property="priceLabel" destination="xTQ-jn-yFt" id="WIj-yI-gbi"/>
+                <outlet property="remarkLabel" destination="F7G-cc-g3o" id="cRW-KO-miP"/>
+                <outlet property="startLabel" destination="LAH-NX-Pfi" id="9yJ-PZ-FcL"/>
+                <outlet property="statusLabel" destination="zdJ-hc-gu6" id="iWz-8h-mrA"/>
+            </connections>
             <point key="canvasLocation" x="139.5" y="101.5"/>
         </tableViewCell>
     </objects>

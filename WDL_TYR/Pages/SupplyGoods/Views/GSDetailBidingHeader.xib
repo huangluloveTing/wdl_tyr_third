@@ -294,9 +294,12 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-2N-ZGI">
                             <rect key="frame" x="160.5" y="0.0" width="159.5" height="40"/>
-                            <state key="normal" title="货源下架" image="detail_down">
+                            <state key="normal" title="货源下架" image="detail_shelve">
                                 <color key="titleColor" red="0.46666666666666667" green="0.58823529411764708" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="offShelveAction:" destination="H45-fg-Xce" eventType="touchUpInside" id="m41-Id-tJn"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hW0-x2-ScO">
                             <rect key="frame" x="0.0" y="40" width="320" height="1"/>
@@ -362,6 +365,7 @@
             <connections>
                 <outlet property="cateTitleLabel" destination="7Ki-Zg-f10" id="kBP-Yj-4Sn"/>
                 <outlet property="goodsCategoryLabel" destination="Bk8-XI-MCA" id="Qn1-fb-bpZ"/>
+                <outlet property="goodsCodeLabel" destination="JWH-9h-O0j" id="Wxe-KD-NaS"/>
                 <outlet property="goodsNameLabel" destination="hg5-pA-SCt" id="gok-IA-Acd"/>
                 <outlet property="goodsSummaryLabel" destination="Yoa-0t-68l" id="K7j-xx-ZAK"/>
                 <outlet property="goodsSummaryTitleLabel" destination="kQY-AM-8Jg" id="Jk7-o4-INd"/>
@@ -373,10 +377,58 @@
             </connections>
             <point key="canvasLocation" x="-194.5" y="-149.5"/>
         </view>
+        <view contentMode="scaleToFill" id="yaG-w0-9gT" customClass="GoodsInBidingHeader" customModule="WDL_TYR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPl-UW-IG2" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="67"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="报价金额" image="down_other">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" image="tab_up"/>
+                    <connections>
+                        <action selector="offerTapAction:" destination="yaG-w0-9gT" eventType="touchUpInside" id="Fnw-6Z-2mR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0PW-OJ-QeY" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
+                    <rect key="frame" x="160" y="0.0" width="160" height="67"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="报价时间" image="down_other">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected" image="tab_up"/>
+                    <connections>
+                        <action selector="timeTapAction:" destination="yaG-w0-9gT" eventType="touchUpInside" id="5Sb-JD-A0X"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="lPl-UW-IG2" firstAttribute="leading" secondItem="yaG-w0-9gT" secondAttribute="leading" id="3Mk-uq-Nsk"/>
+                <constraint firstItem="0PW-OJ-QeY" firstAttribute="height" secondItem="lPl-UW-IG2" secondAttribute="height" id="5vw-jC-fzn"/>
+                <constraint firstItem="0PW-OJ-QeY" firstAttribute="width" secondItem="lPl-UW-IG2" secondAttribute="width" id="G6c-3x-cOJ"/>
+                <constraint firstAttribute="bottom" secondItem="lPl-UW-IG2" secondAttribute="bottom" id="Yoc-JO-NlJ"/>
+                <constraint firstItem="lPl-UW-IG2" firstAttribute="top" secondItem="yaG-w0-9gT" secondAttribute="top" id="bcU-c2-E1g"/>
+                <constraint firstAttribute="trailing" secondItem="0PW-OJ-QeY" secondAttribute="trailing" id="hcQ-WV-rGp"/>
+                <constraint firstItem="0PW-OJ-QeY" firstAttribute="centerY" secondItem="lPl-UW-IG2" secondAttribute="centerY" id="neY-tt-Ofl"/>
+                <constraint firstItem="0PW-OJ-QeY" firstAttribute="leading" secondItem="lPl-UW-IG2" secondAttribute="trailing" id="tZu-B6-LTu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="offerButton" destination="lPl-UW-IG2" id="YNB-Ul-ZBa"/>
+                <outlet property="timeButton" destination="0PW-OJ-QeY" id="UY7-5G-I53"/>
+            </connections>
+            <point key="canvasLocation" x="-223" y="420"/>
+        </view>
     </objects>
     <resources>
         <image name="detail_down" width="13" height="12"/>
+        <image name="detail_shelve" width="16" height="16"/>
         <image name="detail_up" width="13" height="12"/>
+        <image name="down_other" width="16" height="16"/>
+        <image name="tab_up" width="16" height="16"/>
         <image name="timer" width="16" height="16"/>
     </resources>
 </document>

@@ -23,7 +23,7 @@ class GoodsSupplyCell: BaseCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = UITableViewCellSelectionStyle.none
-        self.containerView.backgroundColor = UIColor(hex: "EEEEEE")
+        self.containerView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -70,7 +70,7 @@ extension GoodsSupplyCell {
             self.statusLabel.textColor = UIColor(hex: COLOR_BUTTON)
             break
         case .status_putway:
-            self.statusLabel.text = "竞标中"
+            self.statusLabel.text = "未上架"
             self.statusLabel.textColor = UIColor(hex: "7876CF")
             break
         default:
@@ -85,8 +85,8 @@ extension GoodsSupplyCell {
         let type = item.vehicleType
         let package = item.packageType
         
-        let weightContent:String = (weight == nil) ? " " : (String(Float(weight!)) + "吨|")
-        let typeContent:String = (type == nil) ? " " : type! + "|"
+        let weightContent:String = (weight == nil) ? " " : (String(Float(weight!)) + "吨 | ")
+        let typeContent:String = (type == nil) ? " " : type! + " | "
         let packageContent : String = (package == nil) ? " " : package!
         return weightContent + typeContent + packageContent
     }
@@ -95,6 +95,6 @@ extension GoodsSupplyCell {
         let time = item.loadingTime ?? Date().timeIntervalSince1970 * 1000
         let type = item.goodsType
         let timeStr = Util.dateFormatter(date: time / 1000, formatter: "MM-dd")
-        return timeStr + "|" + (type ?? "")
+        return timeStr + " | " + (type ?? "")
     }
 }

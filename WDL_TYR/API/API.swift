@@ -20,6 +20,9 @@ enum API {
     case releaseSource(ReleaseDeliverySourceModel)       // 发布货源
     case ownOrderHall(GoodsSupplyQueryBean) // 我的货源接口
     case getOfferByOrderHallId(QuerySupplyDetailBean)    // 获取报价详情
+    case onShelf(String)                    // 手动上架
+    case undercarriage(String)              // 手动下架
+    case deleteOrderHall(String)            // 删除货源
 }
 
 
@@ -42,6 +45,12 @@ func apiPath(api:API) -> String {
         return "/orderHall/ownOrderHall"
     case .getOfferByOrderHallId(_):
         return "/orderHall/findOrderHallAndOffer"
+    case .onShelf(_):
+        return "/orderHall/onShelf"
+    case .undercarriage(_):
+        return "/orderHall/undercarriage"
+    case .deleteOrderHall(_):
+        return "/orderHall/deleteOrderHall"
     }
 }
 
@@ -64,13 +73,22 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: query.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     case .getOfferByOrderHallId(let query):
         return .requestParameters(parameters: query.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .onShelf(let id):
+        return .requestParameters(parameters: ["hallId" : id], encoding: URLEncoding.default)
+        
+    case .undercarriage(let id):
+        return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
+        
+    case .deleteOrderHall(let id):
+        return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
     }
 }
 
 // METHOD
 func apiMethod(api:API) -> Moya.Method {
     switch api {
-    case .getCreateHallDictionary():
+    case .getCreateHallDictionary() , .onShelf(_):
         return .get
     default:
         return .post

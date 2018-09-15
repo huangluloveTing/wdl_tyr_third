@@ -171,6 +171,17 @@
                     <constraint firstItem="yRp-xg-HDD" firstAttribute="leading" secondItem="98S-cs-GRk" secondAttribute="trailing" constant="5" id="xHn-eO-WGU"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="codeLabel" destination="mbV-99-fID" id="KAY-P2-pDZ"/>
+                <outlet property="endLabel" destination="yRp-xg-HDD" id="BPC-DX-1M1"/>
+                <outlet property="goodsNameLabel" destination="R3J-Si-bll" id="8U1-uA-K7h"/>
+                <outlet property="goodsSummerLabel" destination="GRQ-MP-rSL" id="wfJ-Sm-k0t"/>
+                <outlet property="goodsTypeLabel" destination="td8-VS-EL3" id="rDT-Qk-DdD"/>
+                <outlet property="loadTimeLabel" destination="MDJ-uH-Ap5" id="8aY-uX-FGB"/>
+                <outlet property="remarkLabel" destination="ahN-Aw-EdS" id="crz-BQ-hZE"/>
+                <outlet property="startLabel" destination="Nee-NC-cf5" id="oWx-DS-xFh"/>
+                <outlet property="statusLabel" destination="qHs-9U-o7y" id="nOD-b6-RUi"/>
+            </connections>
             <point key="canvasLocation" x="35" y="99.5"/>
         </tableViewCell>
     </objects>

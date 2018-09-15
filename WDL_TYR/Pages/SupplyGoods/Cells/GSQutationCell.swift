@@ -41,3 +41,16 @@ class GSQutationCell: BaseCell {
     }
     
 }
+
+extension GSQutationCell {
+    
+    func contentInfo(item:SupplyOfferBean?) -> Void {
+        if let item = item {
+            self.nameLabel.text = item.carrierName
+            self.phoneLabel.text = item.driverPhone
+            self.sumLabel.text = Util.concatSeperateStr(seperete: "", strs: "总价:", Util.showMoney(money: item.totalPrice ?? 0) , "元")
+            self.unitLabel.text = Util.concatSeperateStr(seperete: "/", strs: Util.showMoney(money: item.quotedPrice ?? 0 , after: 0)+"元" , "吨")
+            self.reportLabel.text = Util.dateFormatter(date: Double(item.offerTime ?? "0")!, formatter: "yyyy-MM-dd HH:mm:ss")
+        }
+    }
+}

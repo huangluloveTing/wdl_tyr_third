@@ -51,6 +51,30 @@ extension BaseCell {
         label.textColor = UIColor(hex: TITLE_VALUE_COLOR)
         label.font = UIFont.systemFont(ofSize: 15)
     }
+    
+    // 货源 货源详情中 状态的处理  0=竞价中 1=成交 2=未上架 3=已下
+    func goodsStauts(to label:UILabel , status:Int) -> Void {
+        label.addBorder(color: nil, width: 0, radius: 3)
+        label.isHidden = false
+        if status == 0 {
+            label.backgroundColor = UIColor(hex: "DCF6E8").withAlphaComponent(0.3)
+            label.textColor = UIColor(hex: "DCF6E8")
+            label.text = " 竞价中 "
+        }
+        if status == 1 {
+            label.isHidden = true
+        }
+        if status == 2 {
+            label.backgroundColor = UIColor(hex: "7876CF").withAlphaComponent(0.3)
+            label.textColor = UIColor(hex: "7876CF")
+            label.text = " 未上架 "
+        }
+        if status == 3 {
+            label.backgroundColor = UIColor(hex: "585060").withAlphaComponent(0.3)
+            label.textColor = UIColor(hex: "585060")
+            label.text = " 已下架 "
+        }
+    }
 }
 
 // 处理ZTTagView 

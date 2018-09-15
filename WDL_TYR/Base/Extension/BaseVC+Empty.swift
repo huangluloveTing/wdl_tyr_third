@@ -9,7 +9,7 @@
 import Foundation
 
 var emptyKey = "    "
-extension BaseVC : DZNEmptyDataSetSource {
+extension BaseVC : DZNEmptyDataSetSource , DZNEmptyDataSetDelegate {
     
     private var emptyTitle:String {
         set {
@@ -23,6 +23,7 @@ extension BaseVC : DZNEmptyDataSetSource {
     func emptyTitle(title:String , to scrollView:UIScrollView) {
         self.emptyTitle = title
         scrollView.emptyDataSetSource = self
+        scrollView.emptyDataSetDelegate = self
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -33,4 +34,9 @@ extension BaseVC : DZNEmptyDataSetSource {
         attStr.addAttributes(myAttribute, range: NSRangeFromString(self.emptyTitle))
         return attStr
     }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+
 }
