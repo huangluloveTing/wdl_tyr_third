@@ -32,7 +32,8 @@ class GSConfirmDealView: UIView {
     }
     
     static func showConfirmDealView() {
-        
+        let confirmView = Bundle.main.loadNibNamed("\(GSConfirmDealView.self)", owner: nil, options: nil)?.first as! GSConfirmDealView
+        confirmView.showOnWindow()
     }
     
     

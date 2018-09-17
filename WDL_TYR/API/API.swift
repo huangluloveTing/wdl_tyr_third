@@ -23,6 +23,7 @@ enum API {
     case onShelf(String)                    // 手动上架
     case undercarriage(String)              // 手动下架
     case deleteOrderHall(String)            // 删除货源
+    case ownTransportPage(QuerytTransportListBean) // 获取我的运单
 }
 
 
@@ -51,6 +52,8 @@ func apiPath(api:API) -> String {
         return "/orderHall/undercarriage"
     case .deleteOrderHall(_):
         return "/orderHall/deleteOrderHall"
+    case .ownTransportPage(_):
+        return "/transport/ownTransportPage"
     }
 }
 
@@ -82,6 +85,9 @@ func apiTask(api:API) -> Task {
         
     case .deleteOrderHall(let id):
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
+        
+    case .ownTransportPage(let bean):
+        return .requestParameters(parameters: bean.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     }
 }
 

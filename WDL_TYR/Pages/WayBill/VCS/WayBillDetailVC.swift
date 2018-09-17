@@ -36,6 +36,9 @@ class WayBillDetailVC: BaseVC {
     }
 }
 
+extension WayBillDetailVC {
+    
+}
 
 //DataSource
 extension WayBillDetailVC {
@@ -47,5 +50,4 @@ extension WayBillDetailVC {
             })
         return dataSource
     }
-    
 }

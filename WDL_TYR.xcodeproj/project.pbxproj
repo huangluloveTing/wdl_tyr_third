@@ -83,6 +83,8 @@
 		708D69E8214C888B00884A80 /* GoodsInBidingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69E7214C888B00884A80 /* GoodsInBidingHeader.swift */; };
 		708D69EA214D626300884A80 /* GSConfirmDealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69E9214D626300884A80 /* GSConfirmDealView.swift */; };
 		708D69EC214D628400884A80 /* GSConfirmDealView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D69EB214D628400884A80 /* GSConfirmDealView.xib */; };
+		708D69EF214E6E9400884A80 /* QuerytTransportListBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69EE214E6E9400884A80 /* QuerytTransportListBean.swift */; };
+		708D69F1214F2B4300884A80 /* WayBillPageBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69F0214F2B4300884A80 /* WayBillPageBean.swift */; };
 		70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B52137B55C00017356 /* ZTFoldTableView.swift */; };
 		70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B92137D3EC00017356 /* XHStarRateView.m */; };
 		70A319C12137D4C700017356 /* bad_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BB2137D4C700017356 /* bad_star@2x.png */; };
@@ -228,6 +230,8 @@
 		708D69E7214C888B00884A80 /* GoodsInBidingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsInBidingHeader.swift; sourceTree = "<group>"; };
 		708D69E9214D626300884A80 /* GSConfirmDealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSConfirmDealView.swift; sourceTree = "<group>"; };
 		708D69EB214D628400884A80 /* GSConfirmDealView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSConfirmDealView.xib; sourceTree = "<group>"; };
+		708D69EE214E6E9400884A80 /* QuerytTransportListBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerytTransportListBean.swift; sourceTree = "<group>"; };
+		708D69F0214F2B4300884A80 /* WayBillPageBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillPageBean.swift; sourceTree = "<group>"; };
 		70A319B52137B55C00017356 /* ZTFoldTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTFoldTableView.swift; sourceTree = "<group>"; };
 		70A319B82137D3EC00017356 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		70A319B92137D3EC00017356 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
@@ -481,6 +485,7 @@
 		706C5A5F212EBEE600C037F2 /* WayBill */ = {
 			isa = PBXGroup;
 			children = (
+				708D69ED214E6E6700884A80 /* Models */,
 				7037B0CA213A1F5B00BDC718 /* Views */,
 				7037B0C5213A1F1D00BDC718 /* VCS */,
 				7037B0C0213A139700BDC718 /* Cells */,
@@ -597,6 +602,15 @@
 				708150D4213122CA00D42723 /* ZTTagItem.m */,
 			);
 			path = ZTTagView;
+			sourceTree = "<group>";
+		};
+		708D69ED214E6E6700884A80 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				708D69EE214E6E9400884A80 /* QuerytTransportListBean.swift */,
+				708D69F0214F2B4300884A80 /* WayBillPageBean.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		70A319B72137D3EC00017356 /* XHStarRateView */ = {
@@ -910,6 +924,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				702B40E021314A2400D3D27A /* DropHintView.swift in Sources */,
+				708D69EF214E6E9400884A80 /* QuerytTransportListBean.swift in Sources */,
 				70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */,
 				70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
@@ -947,6 +962,7 @@
 				7068E0F2213FB83300929337 /* PlaceChooiceView.swift in Sources */,
 				70E2754821414D9D00E1A92B /* APIPath.swift in Sources */,
 				7037B0DB213C27F300BDC718 /* PersonalExcuteCell.swift in Sources */,
+				708D69F1214F2B4300884A80 /* WayBillPageBean.swift in Sources */,
 				70F40F2E214B7C110054A175 /* GoodsOfferDetailBean.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				7074C91D2148DAF000E689CB /* UITableView+ProxyDelegate.swift in Sources */,

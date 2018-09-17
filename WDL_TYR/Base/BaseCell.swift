@@ -75,6 +75,25 @@ extension BaseCell {
             label.text = " 已下架 "
         }
     }
+    
+    // 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝
+    func transportInfoStatusDisplay(status:Int , to label:UILabel) {
+        if status == 0 {
+            label.text = "待办单"
+        }
+        if status == 1 {
+            label.text = "待起运"
+        }
+        if status == 2 {
+            label.text = "运输中"
+        }
+        if status == 3 {
+            label.text = "已签收"
+        }
+        if status == 4 {
+            label.text = "被拒绝"
+        }
+    }
 }
 
 // 处理ZTTagView 

@@ -31,14 +31,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市新都区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biz-1q-TW5">
-                        <rect key="frame" x="30" y="68.5" width="104" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="成都市新都区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biz-1q-TW5">
+                        <rect key="frame" x="30" y="68.5" width="151.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="河南省新乡市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8a-jA-cxP">
-                        <rect key="frame" x="171" y="68.5" width="104" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="河南省新乡市" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8a-jA-cxP">
+                        <rect key="frame" x="221.5" y="68.5" width="151.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -74,7 +74,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_to" translatesAutoresizingMaskIntoConstraints="NO" id="UV6-BJ-eqR">
-                        <rect key="frame" x="144" y="73.5" width="17" height="11"/>
+                        <rect key="frame" x="191.5" y="73.5" width="20" height="11"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="DpQ-0P-7uS"/>
+                        </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5G-zA-OSC">
                         <rect key="frame" x="15" y="160.5" width="373" height="1"/>
@@ -127,8 +130,10 @@
                     <constraint firstItem="vz1-ea-RKL" firstAttribute="leading" secondItem="biz-1q-TW5" secondAttribute="leading" id="dl6-CI-fZw"/>
                     <constraint firstItem="M8a-jA-cxP" firstAttribute="centerY" secondItem="biz-1q-TW5" secondAttribute="centerY" id="fVd-9n-n9f"/>
                     <constraint firstItem="y5G-zA-OSC" firstAttribute="top" secondItem="GXf-dM-6px" secondAttribute="bottom" constant="15" id="ke9-2C-4bb"/>
+                    <constraint firstAttribute="trailing" secondItem="M8a-jA-cxP" secondAttribute="trailing" constant="30" id="koM-E4-Ize"/>
                     <constraint firstItem="xNg-dq-9xO" firstAttribute="leading" secondItem="GXf-dM-6px" secondAttribute="leading" id="nJr-bR-lOO"/>
                     <constraint firstAttribute="trailing" secondItem="y5G-zA-OSC" secondAttribute="trailing" constant="15" id="oE0-jh-HAH"/>
+                    <constraint firstItem="M8a-jA-cxP" firstAttribute="width" secondItem="biz-1q-TW5" secondAttribute="width" id="qL9-Xh-E7O"/>
                     <constraint firstItem="biz-1q-TW5" firstAttribute="top" secondItem="Ik3-u0-qwm" secondAttribute="bottom" constant="15" id="tvD-A5-f70"/>
                     <constraint firstItem="Ik3-u0-qwm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="uMn-nx-ajM"/>
                     <constraint firstItem="yzR-s4-xDO" firstAttribute="leading" secondItem="yL8-1B-qlO" secondAttribute="trailing" constant="30" id="uzP-c7-om7"/>
@@ -136,6 +141,17 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cyLabel" destination="yL8-1B-qlO" id="QP3-NM-JB5"/>
+                <outlet property="dealTimeLabel" destination="DWo-vJ-EjF" id="Ba2-WO-OkM"/>
+                <outlet property="endLabel" destination="M8a-jA-cxP" id="ADl-TU-BPk"/>
+                <outlet property="goodsInfoLabel" destination="vz1-ea-RKL" id="s7f-5Q-OCY"/>
+                <outlet property="phoneLabel" destination="yzR-s4-xDO" id="wuQ-e4-BFt"/>
+                <outlet property="priceLabel" destination="hy1-0k-fse" id="VB3-75-i9b"/>
+                <outlet property="startLabel" destination="biz-1q-TW5" id="kt9-QF-dXz"/>
+                <outlet property="statusLabel" destination="Z5D-kV-t7Y" id="g4e-n6-dOX"/>
+                <outlet property="tranportNoLabel" destination="Ik3-u0-qwm" id="fI5-ol-78s"/>
+            </connections>
             <point key="canvasLocation" x="-17.5" y="51.5"/>
         </tableViewCell>
     </objects>
