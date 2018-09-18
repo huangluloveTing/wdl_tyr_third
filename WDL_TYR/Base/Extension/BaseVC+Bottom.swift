@@ -30,7 +30,6 @@ extension BaseVC {
         self.bottomHandleView?.removeFromSuperview()
         if titles.count == 1 {
             let bottomItem = BottomHandleViewItem(bgColor: UIColor(hex: COLOR_BUTTON), conerRadius: 4, titleColor: UIColor(hex: "FFFFFF"), title: titles[0], titleFont:BUTTON_FONT, borderWidth: 0 , borderColor:nil)
-            self.bottomHandleView?.removeFromSuperview()
             self.bottomHandleView = BottomHandleView(frame: CGRect(x: 0, y: 0, width: targetView.zt_width, height: 60), bottomItems: [bottomItem])
             self.bottomHandleView?.zt_y = targetView.zt_height-60
             self.bottomHandleView?.handleClosure = { (index) in
@@ -43,7 +42,6 @@ extension BaseVC {
         if titles.count >= 2 {
             let bottomItem_1 = BottomHandleViewItem(bgColor: UIColor.white, conerRadius: 4, titleColor: UIColor(hex: COLOR_BUTTON) , title: titles[0], titleFont:BUTTON_FONT, borderWidth: 1 ,borderColor:UIColor(hex: COLOR_BUTTON))
             let bottomItem_2 = BottomHandleViewItem(bgColor: UIColor(hex: COLOR_BUTTON), conerRadius: 4, titleColor: UIColor(hex: "FFFFFF"), title: titles[1], titleFont:BUTTON_FONT, borderWidth: 0, borderColor:UIColor(hex: COLOR_BUTTON))
-            self.bottomHandleView?.removeFromSuperview()
             self.bottomHandleView = BottomHandleView(frame: CGRect(x: 0, y: 0, width: targetView.zt_width, height: 60), bottomItems: [bottomItem_1, bottomItem_2])
             self.bottomHandleView?.zt_y = targetView.zt_height-60
             targetView.superview?.insertSubview(self.bottomHandleView!, aboveSubview: targetView)

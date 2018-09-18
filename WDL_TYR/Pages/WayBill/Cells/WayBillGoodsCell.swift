@@ -44,7 +44,7 @@ extension WayBillGoodsCell {
             self.loadTimeLabel.text = Util.dateFormatter(date: Double(info.loadingTime ?? "0")!, formatter: "yyyy-MM-dd")
             self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endProvince,info.endCity,info.endDistrict)
             self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startProvince , info.startCity , info.startDistrict)
-            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编码(" , info.stowageNo , ")")
+            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编码(" , info.stowageCode , ")")
         }
     }
 }

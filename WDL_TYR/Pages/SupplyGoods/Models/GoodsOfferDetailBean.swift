@@ -82,6 +82,7 @@ struct OderHallBean : HandyJSON {
     var startDistrict : String?     // (string): 发货区 ,
     var startProvince : String?     // (string): 发货地省 ,
     var startTime : String?         // (string): 开始时间 ,
+    var stowageCode : String?
     var stowageNo : String?         // (string): 配载单号 ,
     var unableReason : String?      // (string): 下架原因 ,
     var vehicleLength : String?     // (string): 车长 ,

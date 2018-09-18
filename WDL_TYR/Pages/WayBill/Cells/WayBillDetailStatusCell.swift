@@ -18,7 +18,6 @@ class WayBillDetailStatusCell: BaseCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.wayBillStatusView = WayBillStatusView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 80, height: 64))
-        self.wayBillStatusView?.status = WayBillStatus.ToReceive
         self.statusView.addSubview(self.wayBillStatusView!)
     }
 
@@ -26,5 +25,27 @@ class WayBillDetailStatusCell: BaseCell {
         super.setSelected(selected, animated: animated)
 
     }
+}
+
+extension WayBillDetailStatusCell {
     
+    func showInfo(status:WayBillTransportStatus) -> Void {
+        switch status {
+        case .willToTransport:
+            self.wayBillStatusView?.status = WayBillStatus.Start
+            break
+        case .transporting:
+            self.wayBillStatusView?.status = WayBillStatus.Transporting
+            break
+        case .willToPickup:
+            self.wayBillStatusView?.status = WayBillStatus.ToReceive
+            break
+        case .done:
+            self.wayBillStatusView?.status = WayBillStatus.Done
+            break
+        default:
+            self.wayBillStatusView?.status = WayBillStatus.NOT_Start
+            break
+        }
+    }
 }

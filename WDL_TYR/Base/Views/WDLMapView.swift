@@ -26,8 +26,6 @@ class WDLMapView: UIView  {
         self.showMapViewArea()
         self.addPolylines()
     }
-    
-    
 }
 
 extension WDLMapView : MAMapViewDelegate {
@@ -41,6 +39,7 @@ extension WDLMapView : MAMapViewDelegate {
     func addPolylines() {
         self.mapView.remove(self.polyLines)
         if let coordinates = self.locations {
+            if coordinates.count == 0 {return}
             var locations = coordinates
             let lines : MAPolyline = MAPolyline(coordinates: &locations, count: UInt(coordinates.count))
             self.polyLines = lines

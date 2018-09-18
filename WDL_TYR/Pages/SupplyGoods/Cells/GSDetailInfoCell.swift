@@ -34,7 +34,7 @@ class GSDetailInfoCell: BaseCell {
 extension GSDetailInfoCell {
     func contentInfo(info:OderHallBean?) -> Void {
         if let info = info {
-            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , info.stowageNo , ")")
+            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , info.stowageCode , ")")
             self.goodsStauts(to: self.startLabel, status: info.isDeal ?? 0)
             self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startProvince , info.startCity , info.startDistrict)
             self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endProvince,info.endCity,info.endDistrict)

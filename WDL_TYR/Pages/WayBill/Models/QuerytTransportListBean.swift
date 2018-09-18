@@ -20,3 +20,9 @@ struct QuerytTransportListBean: HandyJSON {
     var startProvince : String? // (string): 发货地省 ,
     var transportStatus : Int? // (integer): 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝
 }
+
+struct WayBillDetailCommentInfo : HandyJSON {
+    var rate:Int?
+    var comment:String?
+    var commentTime:TimeInterval?
+}

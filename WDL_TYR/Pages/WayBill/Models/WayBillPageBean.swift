@@ -20,6 +20,7 @@ struct WayBillPageBean : HandyJSON {
 }
 
 enum WayBillTransportStatus : Int , HandyJSONEnum { // 运单状态
+    case noStart = 0           // 未开始
     case willToTransport = 1   // 待起运
     case transporting = 2      // 运输中
     case willToPickup = 3      // 待签收

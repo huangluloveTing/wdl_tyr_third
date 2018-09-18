@@ -20,7 +20,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成交信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3S-qw-EQp">
                         <rect key="frame" x="15" y="25" width="73.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -127,6 +127,14 @@
                     <constraint firstItem="ahZ-NG-TPX" firstAttribute="leading" secondItem="oqc-rJ-qyb" secondAttribute="trailing" constant="5" id="yAX-jy-Oyk"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="amountLabel" destination="9fp-Cy-xtn" id="LCb-Dd-MVK"/>
+                <outlet property="cyNameLabel" destination="ahZ-NG-TPX" id="cGc-xP-Mi4"/>
+                <outlet property="dealTimeLabel" destination="JzI-GO-hZ4" id="hbK-wq-Lt9"/>
+                <outlet property="driverLabel" destination="Wuz-er-3ex" id="P5D-RZ-4bc"/>
+                <outlet property="truckInfoLabel" destination="2UR-PO-xET" id="D3A-Ma-vfI"/>
+                <outlet property="unitLabel" destination="DO7-w9-O2J" id="lKt-Kb-heO"/>
+            </connections>
             <point key="canvasLocation" x="58" y="77.5"/>
         </tableViewCell>
     </objects>

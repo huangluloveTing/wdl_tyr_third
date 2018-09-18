@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class Util {
     
@@ -81,6 +82,11 @@ class Util {
     static func showMoney(money:CGFloat , after point:Int = 2) -> String {
         let newMony = String(format: "%.\(point)f", money)
         return newMony
+    }
+    
+    static func showImage(imageView:UIImageView , imageUrl:String , placeholder:UIImage = #imageLiteral(resourceName: "avator")) {
+        let imageResource = URL.init(string: imageUrl)
+        imageView.kf.setImage(with: imageResource, placeholder: placeholder)
     }
 }
 

@@ -15,6 +15,7 @@ pod 'AMap2DMap'
 pod 'DZNEmptyDataSet'
 pod 'MJRefresh'
 pod 'SVProgressHUD'
+pod 'Kingfisher'
 
 end
 
