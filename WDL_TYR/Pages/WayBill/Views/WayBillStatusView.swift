@@ -10,10 +10,10 @@ import UIKit
 
 enum WayBillStatus:Int {
     case NOT_Start   = 0  // 未开始
-    case Start          // 待起运
-    case Transporting   // 运输中
-    case ToReceive      // 待签收
-    case Done           // 完成
+    case Start = 1         // 待起运
+    case Transporting = 2   // 运输中
+    case ToReceive = 3      // 待签收
+    case Done = 4           // 完成
 }
 
 

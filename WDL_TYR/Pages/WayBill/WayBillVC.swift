@@ -37,6 +37,7 @@ class WayBillVC: MainBaseVC {
         self.tableView.estimatedRowHeight = 0
         self.tableView.estimatedSectionFooterHeight = 0
         self.tableView.estimatedSectionHeaderHeight = 0
+        self.tableView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,17 +50,18 @@ class WayBillVC: MainBaseVC {
         self.tableView.pullRefresh()
         self.tableView.rx.willDisplayCell
             .subscribe(onNext:{(cell , indexPath) in
-                cell.contentView.shadowBorder(radius: 4, bgColor: UIColor.white , insets:UIEdgeInsetsMake(20, 15, 0, 15))
+                cell.contentView.shadowBorder(radius: 4, bgColor: UIColor.white , insets:UIEdgeInsetsMake(15, 15, 0, 15))
             })
             .disposed(by: dispose)
         
         self.tableView.rx.itemSelected.asObservable()
             .subscribe(onNext: { (indexPath) in
-                self.toWayBillDetail()
             })
             .disposed(by: dispose)
         
-        let itemSelectCommand = self.tableView.rx.itemSelected.asObservable().map(WayBillExcuteCommand.selectedItem)
+        let itemSelectCommand = self.tableView.rx.itemSelected.asObservable().map { (indexPath) -> WayBillExcuteCommand in
+                return WayBillExcuteCommand.selectedItem(indexPath, self)
+            }
         let itemDeleteCommand = self.tableView.rx.itemDeleted.asObservable().map(WayBillExcuteCommand.deleteItem)
         let loadDataCommand = self.handleCommand().map { (lists) -> WayBillExcuteCommand in
             self.tableView.endRefresh()
@@ -69,10 +71,9 @@ class WayBillVC: MainBaseVC {
         
         Observable.of(itemDeleteCommand , itemSelectCommand , loadDataCommand)
             .merge()
-            .map { (command) -> WayBillExcuteState in
-                let wayState = WayBillExcuteState(sections: [])
-                return wayState.excute(command: command)
-            }
+            .scan(WayBillExcuteState(sections: []), accumulator: { (state, command) -> WayBillExcuteState in
+                state.excute(command: command)
+            })
             .map { (state) -> [WayBillSections] in
                 return state.sections
             }
@@ -132,7 +133,7 @@ extension WayBillVC {
 }
 
 enum WayBillExcuteCommand {
-    case selectedItem(IndexPath)
+    case selectedItem(IndexPath , BaseVC)
     case deleteItem(IndexPath)
     case refresh([WayBillSections])
     case loadMore([WayBillSections])
@@ -152,7 +153,8 @@ struct WayBillExcuteState {
             newSections[indexPath.section].items.remove(at: indexPath.row)
             return WayBillExcuteState(sections: newSections)
             
-        case .selectedItem(_):
+        case .selectedItem(let indexPath  ,let vc):
+            vc.toWayBillDetail(wayBillInfo: self.sections[indexPath.section].items[indexPath.row])
             return WayBillExcuteState(sections: self.sections)
             
         case .refresh(let newSections):

@@ -9,6 +9,7 @@
 #import "ZTTagView.h"
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MAMapKit/MAMapKit.h>
 #import <MJRefresh.h>
 #import <YYText.h>
 #import "XHStarRateView.h"

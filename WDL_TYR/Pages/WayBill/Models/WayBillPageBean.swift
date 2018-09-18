@@ -19,6 +19,14 @@ struct WayBillPageBean : HandyJSON {
     var total : Int?
 }
 
+enum WayBillTransportStatus : Int , HandyJSONEnum { // 运单状态
+    case willToTransport = 1   // 待起运
+    case transporting = 2      // 运输中
+    case willToPickup = 3      // 待签收
+    case done = 4              // 已签收
+    case reject = 5            // 被拒绝
+}
+
 struct WayBillInfoBean : HandyJSON {
     var autoTimeInterval : Int?// (integer): 自动成交时间间隔 ,
     var bidPriceWay : Int? // (integer, optional),
@@ -70,7 +78,7 @@ struct WayBillInfoBean : HandyJSON {
     var startTime : TimeInterval? // (string): 开始时间 ,
     var stowageCode : String? // (string): 运单编码 ,
     var stowageNo : String? // (string): 配载单号 ,
-    var transportStatus : Int? // (integer): 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝 ,
+    var transportStatus : WayBillTransportStatus? // (integer): 运单状态 1=待起运 2=运输中 3=待签收 4=已签收  5=被拒绝
     var transportWay : String? // (string, optional),
     var unableReason : String? // (string): 下架原因 ,
     var vehicleLength : String? // (string): 车长 ,

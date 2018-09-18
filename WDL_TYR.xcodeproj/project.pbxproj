@@ -85,6 +85,13 @@
 		708D69EC214D628400884A80 /* GSConfirmDealView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D69EB214D628400884A80 /* GSConfirmDealView.xib */; };
 		708D69EF214E6E9400884A80 /* QuerytTransportListBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69EE214E6E9400884A80 /* QuerytTransportListBean.swift */; };
 		708D69F1214F2B4300884A80 /* WayBillPageBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69F0214F2B4300884A80 /* WayBillPageBean.swift */; };
+		708D69F4214F8B3A00884A80 /* WayBillDealInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69F2214F8B3A00884A80 /* WayBillDealInfoCell.swift */; };
+		708D69F5214F8B3A00884A80 /* WayBillDealInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D69F3214F8B3A00884A80 /* WayBillDealInfoCell.xib */; };
+		708D69F8214FEBEA00884A80 /* WayBillGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69F6214FEBEA00884A80 /* WayBillGoodsCell.swift */; };
+		708D69F9214FEBEA00884A80 /* WayBillGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D69F7214FEBEA00884A80 /* WayBillGoodsCell.xib */; };
+		708D69FC214FFE9800884A80 /* WayBillTransLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69FA214FFE9800884A80 /* WayBillTransLocationCell.swift */; };
+		708D69FD214FFE9800884A80 /* WayBillTransLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D69FB214FFE9800884A80 /* WayBillTransLocationCell.xib */; };
+		708D69FF2150837000884A80 /* WDLMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D69FE2150837000884A80 /* WDLMapView.swift */; };
 		70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B52137B55C00017356 /* ZTFoldTableView.swift */; };
 		70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B92137D3EC00017356 /* XHStarRateView.m */; };
 		70A319C12137D4C700017356 /* bad_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BB2137D4C700017356 /* bad_star@2x.png */; };
@@ -232,6 +239,13 @@
 		708D69EB214D628400884A80 /* GSConfirmDealView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSConfirmDealView.xib; sourceTree = "<group>"; };
 		708D69EE214E6E9400884A80 /* QuerytTransportListBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerytTransportListBean.swift; sourceTree = "<group>"; };
 		708D69F0214F2B4300884A80 /* WayBillPageBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillPageBean.swift; sourceTree = "<group>"; };
+		708D69F2214F8B3A00884A80 /* WayBillDealInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillDealInfoCell.swift; sourceTree = "<group>"; };
+		708D69F3214F8B3A00884A80 /* WayBillDealInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillDealInfoCell.xib; sourceTree = "<group>"; };
+		708D69F6214FEBEA00884A80 /* WayBillGoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillGoodsCell.swift; sourceTree = "<group>"; };
+		708D69F7214FEBEA00884A80 /* WayBillGoodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillGoodsCell.xib; sourceTree = "<group>"; };
+		708D69FA214FFE9800884A80 /* WayBillTransLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillTransLocationCell.swift; sourceTree = "<group>"; };
+		708D69FB214FFE9800884A80 /* WayBillTransLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillTransLocationCell.xib; sourceTree = "<group>"; };
+		708D69FE2150837000884A80 /* WDLMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDLMapView.swift; sourceTree = "<group>"; };
 		70A319B52137B55C00017356 /* ZTFoldTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTFoldTableView.swift; sourceTree = "<group>"; };
 		70A319B82137D3EC00017356 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		70A319B92137D3EC00017356 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
@@ -321,6 +335,12 @@
 				7037B0C2213A13B400BDC718 /* WayBillCell.xib */,
 				7037B0CF213ADD3A00BDC718 /* WayBillDetailStatusCell.swift */,
 				7037B0D0213ADD3A00BDC718 /* WayBillDetailStatusCell.xib */,
+				708D69F2214F8B3A00884A80 /* WayBillDealInfoCell.swift */,
+				708D69F3214F8B3A00884A80 /* WayBillDealInfoCell.xib */,
+				708D69F6214FEBEA00884A80 /* WayBillGoodsCell.swift */,
+				708D69F7214FEBEA00884A80 /* WayBillGoodsCell.xib */,
+				708D69FA214FFE9800884A80 /* WayBillTransLocationCell.swift */,
+				708D69FB214FFE9800884A80 /* WayBillTransLocationCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -576,6 +596,7 @@
 				708150D92131396700D42723 /* DropViewContainer.swift */,
 				702B40DF21314A2400D3D27A /* DropHintView.swift */,
 				70A319B52137B55C00017356 /* ZTFoldTableView.swift */,
+				708D69FE2150837000884A80 /* WDLMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -836,16 +857,19 @@
 				70A319D62137F43A00017356 /* GSTimerShelveCell.xib in Resources */,
 				70A319C22137D4C700017356 /* good_star@3x.png in Resources */,
 				70B588FA2140B12F00EF704E /* DeliveryTruckTypeCell.xib in Resources */,
+				708D69FD214FFE9800884A80 /* WayBillTransLocationCell.xib in Resources */,
 				70A319C32137D4C700017356 /* bad_star@3x.png in Resources */,
 				7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */,
 				70A319DE2137FA4C00017356 /* GSQutationCell.xib in Resources */,
 				7037B0C9213A1F3700BDC718 /* WayBillDetailVC.xib in Resources */,
 				70A319C62137D4C700017356 /* good_star@2x.png in Resources */,
+				708D69F9214FEBEA00884A80 /* WayBillGoodsCell.xib in Resources */,
 				70C25251212E5D8E007F2ED5 /* LoginVC.xib in Resources */,
 				70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */,
 				705926DF212A5DEA00BE8BB4 /* LaunchScreen.storyboard in Resources */,
 				7037B0D2213ADD3A00BDC718 /* WayBillDetailStatusCell.xib in Resources */,
 				7037B0D8213C264E00BDC718 /* PersonalInfoHeader.xib in Resources */,
+				708D69F5214F8B3A00884A80 /* WayBillDealInfoCell.xib in Resources */,
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
 				70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
@@ -933,6 +957,7 @@
 				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
 				70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
+				708D69F4214F8B3A00884A80 /* WayBillDealInfoCell.swift in Sources */,
 				7037B0D1213ADD3A00BDC718 /* WayBillDetailStatusCell.swift in Sources */,
 				70A319DD2137FA4C00017356 /* GSQutationCell.swift in Sources */,
 				70A319CD2137EFD400017356 /* GSDealedCell.swift in Sources */,
@@ -941,6 +966,7 @@
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,
 				705926D5212A5DE800BE8BB4 /* AppDelegate.swift in Sources */,
+				708D69F8214FEBEA00884A80 /* WayBillGoodsCell.swift in Sources */,
 				7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */,
 				708150DA2131396700D42723 /* DropViewContainer.swift in Sources */,
 				7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */,
@@ -948,6 +974,7 @@
 				70B1300B2134D592002A473F /* GoodSupplyBean.swift in Sources */,
 				7037B0C8213A1F3700BDC718 /* WayBillDetailVC.swift in Sources */,
 				7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */,
+				708D69FF2150837000884A80 /* WDLMapView.swift in Sources */,
 				7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */,
 				70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
@@ -991,6 +1018,7 @@
 				708D69EA214D626300884A80 /* GSConfirmDealView.swift in Sources */,
 				708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */,
 				70505EF32147A94800CEE672 /* UIAlertView+Blocks.m in Sources */,
+				708D69FC214FFE9800884A80 /* WayBillTransLocationCell.swift in Sources */,
 				708150CF21311FA800D42723 /* DropViewManage.swift in Sources */,
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,

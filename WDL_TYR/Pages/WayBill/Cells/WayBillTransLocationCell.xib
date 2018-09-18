@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="343" id="KGk-i7-Jjw" customClass="WayBillTransLocationCell" customModule="WDL_TYR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="343"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="374" height="342.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4f7-DE-hSO">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="155.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkn-xK-HY8" customClass="WDLMapView" customModule="WDL_TYR" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="155.5" width="374" height="187"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="nkn-xK-HY8" secondAttribute="height" multiplier="2:1" id="BWl-ZF-nHI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="nkn-xK-HY8" secondAttribute="trailing" id="33m-qK-ps4"/>
+                    <constraint firstAttribute="bottom" secondItem="nkn-xK-HY8" secondAttribute="bottom" id="8cj-zB-R7O"/>
+                    <constraint firstItem="nkn-xK-HY8" firstAttribute="top" secondItem="4f7-DE-hSO" secondAttribute="bottom" id="CBO-Az-J1k"/>
+                    <constraint firstItem="nkn-xK-HY8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EUi-v4-Dd3"/>
+                    <constraint firstItem="4f7-DE-hSO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ztk-9v-awZ"/>
+                    <constraint firstItem="4f7-DE-hSO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hCE-68-6bP"/>
+                    <constraint firstAttribute="trailing" secondItem="4f7-DE-hSO" secondAttribute="trailing" id="viu-J1-HGt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="mapViewContainer" destination="nkn-xK-HY8" id="Spr-Df-pSX"/>
+            </connections>
+            <point key="canvasLocation" x="40" y="31.5"/>
+        </tableViewCell>
+    </objects>
+</document>

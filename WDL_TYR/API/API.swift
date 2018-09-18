@@ -24,6 +24,7 @@ enum API {
     case undercarriage(String)              // 手动下架
     case deleteOrderHall(String)            // 删除货源
     case ownTransportPage(QuerytTransportListBean) // 获取我的运单
+    case sinGletransaction(String)          // 获取运单详情
 }
 
 
@@ -54,6 +55,8 @@ func apiPath(api:API) -> String {
         return "/orderHall/deleteOrderHall"
     case .ownTransportPage(_):
         return "/transport/ownTransportPage"
+    case .sinGletransaction(_):
+        return "/transport/sinGletransaction"
     }
 }
 
@@ -88,13 +91,16 @@ func apiTask(api:API) -> Task {
         
     case .ownTransportPage(let bean):
         return .requestParameters(parameters: bean.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .sinGletransaction(let id):
+        return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
     }
 }
 
 // METHOD
 func apiMethod(api:API) -> Moya.Method {
     switch api {
-    case .getCreateHallDictionary() , .onShelf(_):
+    case .getCreateHallDictionary() , .onShelf(_) , .sinGletransaction(_):
         return .get
     default:
         return .post
