@@ -11,6 +11,13 @@ import RxDataSources
 import RxSwift
 import RxCocoa
 
+enum WayBillEvaluateStatus {
+    case noEvaluate         // 未评价
+    case myEvaluated        // 只有我评价
+    case toMe               // 只有对我的评价
+    case EvaluatedEachother // 已互评
+}
+
 class WayBillDetailVC: BaseVC {
 
     @IBOutlet weak var tableView: UITableView!
@@ -64,6 +71,10 @@ extension WayBillDetailVC {
             return self.willToTransportTableViewCell(tableView:tableView, indexPath:indexPath)
         case WayBillTransportStatus.transporting:
             return self.transportingCells(indexPath: indexPath, tableView: tableView)
+        case .willToPickup:
+            return self.willToPickCells(indexPath: indexPath, tableView: tableView)
+        case .done:
+            return self.pickupAndCommentCells(indexPath: indexPath, tableView: tableView)
         default:
             return self.willToTransportTableViewCell(tableView:tableView, indexPath:indexPath)
         }
@@ -157,7 +168,7 @@ extension WayBillDetailVC {
     }
     
     // 已签收
-    func pickupNotCommentCells(indexPath:IndexPath , tableView:UITableView) -> UITableViewCell {
+    func pickupAndCommentCells(indexPath:IndexPath , tableView:UITableView) -> UITableViewCell {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailStatusCell.self)") as! WayBillDetailStatusCell
@@ -186,18 +197,46 @@ extension WayBillDetailVC {
             cell.contentInfo(info: self.pageInfo)
             return cell
         }
-        return UITableViewCell(style: .default, reuseIdentifier: "cell")
+        // 有评价信息的展示
+        let wayBillStatus = self.currrentEvaluatedStatus()
+        switch wayBillStatus {
+        case .noEvaluate: // 未评价
+            return UITableViewCell(style: .default, reuseIdentifier: "cell")
+        case .EvaluatedEachother: // 已互评
+            return self.commentForEachOther(tableView: tableView)
+        case .myEvaluated:  // 我已评价
+            return commentForThird(tableView: tableView)
+        case .toMe:      // 已评价我
+            return self.commentInfoToMe(tableView: tableView)
+        }
     }
     
     // 已签收，我已评价，对方未评价
     func commentForThird(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillOneCommentCell.self)") as! WayBillOneCommentCell
+        let myComment = self.myComment(evaluteList: self.pageInfo?.evaluateList)
+        let commentInfo = WayBillDetailCommentInfo(rate: myComment?.evaluateScore, comment: nil, commentTime: myComment?.endTime)
+        cell.showComment(info: commentInfo)
+        return cell
+    }
+    
+    // 已签收，我未评价，对方已评价
+    func commentInfoToMe(tableView:UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillOneCommentCell.self)") as! WayBillOneCommentCell
+        let commentMe = self.myComment(evaluteList: self.pageInfo?.evaluateList)
+        let commentInfo = WayBillDetailCommentInfo(rate: commentMe?.evaluateScore, comment: nil, commentTime: commentMe?.endTime)
+        cell.showComment(info: commentInfo)
         return cell
     }
     
     // 已签收，双方互评
     func commentForEachOther(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillCommentAllCell.self)") as! WayBillCommentAllCell
+        let commentMe = self.myComment(evaluteList: self.pageInfo?.evaluateList)
+        let commentMeInfo = WayBillDetailCommentInfo(rate: commentMe?.evaluateScore, comment: nil, commentTime: commentMe?.endTime)
+        let myComment = self.myComment(evaluteList: self.pageInfo?.evaluateList)
+        let myCommentInfo = WayBillDetailCommentInfo(rate: myComment?.evaluateScore, comment: nil, commentTime: myComment?.endTime)
+        cell.showCommentInfo(toMeinfo: commentMeInfo, myCommentInfo: myCommentInfo)
         return cell
     }
     
@@ -231,7 +270,17 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
             return 3
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.done { // 已签收
-            return 3
+            let wayBillStatus = self.currrentEvaluatedStatus()
+            switch wayBillStatus {
+            case .noEvaluate:
+                return 3
+            case .EvaluatedEachother:
+                return 4
+            case .myEvaluated:
+                return 4
+            case .toMe:
+                return 4
+            }
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup { // 待签收
             return 3
@@ -289,17 +338,53 @@ extension WayBillDetailVC {
     
     // 取消运单
     func cancelWayBill() -> Void {
-        
+        AlertManager.showTitleAndContentAlert(title: "提示", content: "确认取消运单？") { (index) in
+            if index == 1 {
+                self.showLoading(title: "", complete: nil)
+                BaseApi.request(target: API.transportTransaction(self.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
+                    .subscribe(onNext: { (data) in
+                        self.showSuccess()
+                        self.loadDetailInfo()
+                    }, onError: { (error) in
+                        self.showFail(fail: error.localizedDescription, complete: nil)
+                    })
+                    .disposed(by: self.dispose)
+            }
+        }
     }
     
     // 确认起运
     func sureToTransport() -> Void {
-        
+        AlertManager.showTitleAndContentAlert(title: "确认起运", content: "确认起运？") { (index) in
+            if index == 1 {
+                self.showLoading(title: "", complete: nil)
+                BaseApi.request(target: API.transportTransaction(self.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
+                    .subscribe(onNext: { (data) in
+                        self.showSuccess()
+                        self.loadDetailInfo()
+                    }, onError: { (error) in
+                        self.showFail(fail: error.localizedDescription, complete: nil)
+                    })
+                    .disposed(by: self.dispose)
+            }
+        }
     }
     
     // 确认签收
     func toPickWayBill() -> Void {
-        
+        AlertManager.showTitleAndContentAlert(title: "确认签收", content: "确认签收？") { (index) in
+            if index == 1 {
+                self.showLoading(title: "", complete: nil)
+                BaseApi.request(target: API.transportSign(self.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
+                    .subscribe(onNext: { (data) in
+                        self.showSuccess()
+                        self.loadDetailInfo()
+                    }, onError: { (error) in
+                        self.showFail(fail: error.localizedDescription, complete: nil)
+                    })
+                    .disposed(by: self.dispose)
+            }
+        }
     }
     
     // 获取运单详情
@@ -318,6 +403,7 @@ extension WayBillDetailVC {
     }
     
     func addBottom() {
+        self.showBottom = false
         switch self.pageInfo?.transportStatus ?? .noStart {
         case .noStart:
             break
@@ -337,16 +423,17 @@ extension WayBillDetailVC {
             }
             self.showBottom = true
             break;
-        case .willToPickup:
+        case .willToPickup , .driverPickup:
             self.bottomButtom(titles: ["确认签收"], targetView: self.tableView) { (_) in
                 self.toPickWayBill()
             }
             self.showBottom = true
             break;
         case .done:
+            self.bottomButtom(titles: [], targetView: self.tableView)
             break
         default:
-            print("")
+            self.bottomButtom(titles: [], targetView: self.tableView)
         }
         self.tableViewFooterHeightChange()
     }
@@ -361,5 +448,56 @@ extension WayBillDetailVC {
             view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
             return view
         }()
+    }
+    
+    //MARK: - Evaluated
+    // 签收状态下，根据 返回的数据 ， 判断当前的评价状态
+    func currrentEvaluatedStatus() -> WayBillEvaluateStatus {
+        if self.pageInfo?.evaluateList == nil || self.pageInfo?.evaluateList?.count == 0 {
+            return .noEvaluate
+        }
+        let evaluatedList = self.pageInfo?.evaluateList
+        let myComment = self.myComment(evaluteList: evaluatedList)
+        let commetMe = self.commentToMe(evaluteList: evaluatedList)
+        if myComment != nil && commetMe != nil { // 互评
+            return .EvaluatedEachother
+        }
+        if myComment != nil && commetMe == nil { // 我已评价
+            return .myEvaluated
+        }
+        
+        if myComment == nil && commetMe != nil {
+            return .toMe
+        }
+        
+        return .noEvaluate
+    }
+    
+    // 获取我评价别人
+    func myComment(evaluteList:[ZbnEvaluate]?) -> ZbnEvaluate? {
+        var evaluted:ZbnEvaluate? = nil
+        if let evaluteList = evaluteList {
+            let filterEvaluate = evaluteList.filter { (value) -> Bool in
+                return value.evaluateTo == 1 || value.evaluateTo == 2
+            }
+            if filterEvaluate.count > 0 {
+                evaluted = filterEvaluate.first
+            }
+        }
+        return evaluted
+    }
+    
+    // 获取评价我的
+    func commentToMe(evaluteList : [ZbnEvaluate]?) -> ZbnEvaluate? {
+        var evaluted:ZbnEvaluate? = nil
+        if let evaluteList = evaluteList {
+            let filterEvaluate = evaluteList.filter { (value) -> Bool in
+                return value.evaluateTo == 3 || value.evaluateTo == 4
+            }
+            if filterEvaluate.count > 0 {
+                evaluted = filterEvaluate.first
+            }
+        }
+        return evaluted
     }
 }

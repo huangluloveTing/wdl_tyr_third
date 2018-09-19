@@ -12,19 +12,22 @@ import Moya
 import Alamofire
 
 enum API {
-    case login(String , String)     // 登录接口
+    case login(String , String)             // 登录接口
     case register(String , String , String , String) // 注册
-    case registerSms(String)        // 获取验证码
-    case loadTaskInfo()             // 获取省市区
-    case getCreateHallDictionary()  // 获取数据字典
+    case registerSms(String)                // 获取验证码
+    case loadTaskInfo()                     // 获取省市区
+    case getCreateHallDictionary()          // 获取数据字典
     case releaseSource(ReleaseDeliverySourceModel)       // 发布货源
     case ownOrderHall(GoodsSupplyQueryBean) // 我的货源接口
     case getOfferByOrderHallId(QuerySupplyDetailBean)    // 获取报价详情
     case onShelf(String)                    // 手动上架
     case undercarriage(String)              // 手动下架
+    case orderHallManualTransaction(String , String) // 手动成交
     case deleteOrderHall(String)            // 删除货源
     case ownTransportPage(QuerytTransportListBean) // 获取我的运单
     case sinGletransaction(String)          // 获取运单详情
+    case transportSign(String)              // 运单签收
+    case transportTransaction(String)       // 运单起运
 }
 
 
@@ -53,10 +56,16 @@ func apiPath(api:API) -> String {
         return "/orderHall/undercarriage"
     case .deleteOrderHall(_):
         return "/orderHall/deleteOrderHall"
+    case .orderHallManualTransaction(_, _):
+        return "/orderHall/manualTransaction"
     case .ownTransportPage(_):
         return "/transport/ownTransportPage"
     case .sinGletransaction(_):
         return "/transport/sinGletransaction"
+    case .transportSign(_):
+        return "/transport/sign"
+    case .transportTransaction(_):
+        return "/transport/transaction"
     }
 }
 
@@ -89,18 +98,31 @@ func apiTask(api:API) -> Task {
     case .deleteOrderHall(let id):
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
         
+    case .orderHallManualTransaction(let hallId, let offerId):
+        return .requestParameters(parameters: ["hallId": hallId , "offerId" : offerId], encoding: JSONEncoding.default)
+        
     case .ownTransportPage(let bean):
         return .requestParameters(parameters: bean.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
     case .sinGletransaction(let id):
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
+        
+    case .transportSign(let code):
+        return .requestParameters(parameters: ["stowageCode":code], encoding: URLEncoding.default)
+        
+    case .transportTransaction(let code):
+        return .requestParameters(parameters: ["stowageCode":code], encoding: URLEncoding.default)
     }
 }
 
 // METHOD
 func apiMethod(api:API) -> Moya.Method {
     switch api {
-    case .getCreateHallDictionary() , .onShelf(_) , .sinGletransaction(_):
+    case .getCreateHallDictionary() ,
+         .onShelf(_) ,
+         .sinGletransaction(_) ,
+         .transportSign(_) ,
+         .transportTransaction(_):
         return .get
     default:
         return .post

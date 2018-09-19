@@ -22,7 +22,7 @@ struct QuerytTransportListBean: HandyJSON {
 }
 
 struct WayBillDetailCommentInfo : HandyJSON {
-    var rate:Int?
+    var rate:CGFloat?
     var comment:String?
     var commentTime:TimeInterval?
 }

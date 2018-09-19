@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 /**
  *详情报价
  */
 class GSQutationCell: BaseCell {
+    
+    let dispose = DisposeBag()
+    
+    typealias GSQutationDealClosure = (SupplyOfferBean?) -> ()
     
     @IBOutlet weak var nameLabel: UILabel!      // 姓名
     @IBOutlet weak var phoneLabel: UILabel!     // 电话号码
@@ -23,16 +29,18 @@ class GSQutationCell: BaseCell {
     @IBOutlet weak var commitButton: UIButton!  // 成交按钮
     
     private var starView:XHStarRateView!
+    private var qutationItem:SupplyOfferBean?
+    
+    public var dealClosure:GSQutationDealClosure?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
+//        self.contentView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         self.starView = XHStarRateView(frame: self.rateView.bounds)
         self.rateView.addSubview(self.starView)
         self.starView.score = 5
         self.starView.onlyShow = true
-        self.commitButton.shadowBorder(radius: 15, bgColor: UIColor(hex: COLOR_BUTTON) ,width: self.commitButton.zt_width)
-        self.selectionStyle = .none
+        self.commitButton.addBorder(color: nil, width: 0, radius: 15)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,17 +48,26 @@ class GSQutationCell: BaseCell {
 
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    @IBAction func commitAction(_ sender: Any) {
+        print("hahaha")
+    }
+    
 }
 
 extension GSQutationCell {
     
     func contentInfo(item:SupplyOfferBean?) -> Void {
+        self.qutationItem = item
         if let item = item {
             self.nameLabel.text = item.carrierName
             self.phoneLabel.text = item.driverPhone
             self.sumLabel.text = Util.concatSeperateStr(seperete: "", strs: "总价:", Util.showMoney(money: item.totalPrice ?? 0) , "元")
             self.unitLabel.text = Util.concatSeperateStr(seperete: "/", strs: Util.showMoney(money: item.quotedPrice ?? 0 , after: 0)+"元" , "吨")
-            self.reportLabel.text = Util.dateFormatter(date: Double(item.offerTime ?? "0")!, formatter: "yyyy-MM-dd HH:mm:ss")
+            self.reportLabel.text = Util.dateFormatter(date: Double(item.offerTime ?? "0")! / 1000, formatter: "yyyy-MM-dd HH:mm:ss")
         }
     }
 }

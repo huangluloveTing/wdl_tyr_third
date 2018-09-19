@@ -19,13 +19,17 @@ struct WayBillPageBean : HandyJSON {
     var total : Int?
 }
 
+//1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收  7=被拒绝
+//当出现5或者6时，托运人就不能签收了
 enum WayBillTransportStatus : Int , HandyJSONEnum { // 运单状态
     case noStart = 0           // 未开始
     case willToTransport = 1   // 待起运
     case transporting = 2      // 运输中
     case willToPickup = 3      // 待签收
-    case done = 4              // 已签收
-    case reject = 5            // 被拒绝
+    case driverPickup = 4      // 司机签收
+    case done =  5             // 已签收
+    case tmsPickup =  6        // TMS签收
+    case reject = 7            // 被拒绝
 }
 
 struct WayBillInfoBean : HandyJSON {
@@ -79,13 +83,15 @@ struct WayBillInfoBean : HandyJSON {
     var startTime : TimeInterval? // (string): 开始时间 ,
     var stowageCode : String? // (string): 运单编码 ,
     var stowageNo : String? // (string): 配载单号 ,
-    var transportStatus : WayBillTransportStatus? // (integer): 运单状态 1=待起运 2=运输中 3=待签收 4=已签收  5=被拒绝
+    var transportStatus : WayBillTransportStatus? // (integer): 运单状态 1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收  7=被拒绝
+    var transportNo:String? // 运单号
     var transportWay : String? // (string, optional),
     var unableReason : String? // (string): 下架原因 ,
     var vehicleLength : String? // (string): 车长 ,
     var vehicleNo :String? // (string): 车牌号 ,
     var vehicleType : String? // (string): 车型 ,
     var vehicleWidth : String? // (string): 车宽
+    var evaluateList : [ZbnEvaluate]? // 评价信息
 }
 
 extension WayBillInfoBean : IdentifiableType , Equatable {
@@ -120,4 +126,16 @@ struct ZbnTransportReturn : HandyJSON { // 回单信息 ,
     var returnBillUrl : String? // (string): 回单存储路径 ,
     var startTime : TimeInterval? // (string): 开始时间 ,
     var transportNo : String? // (string, optional)
+}
+
+struct ZbnEvaluate  : HandyJSON {
+    var driverName : String? // (string, optional), 司机姓名
+    var endTime : TimeInterval? // (string): 结束时间 ,
+    var evaluateScore : CGFloat? // (integer, optional), 评分
+    var evaluateTo : Int? // (integer, optional),EVALUATE_TO 谁的评价 1=托运人评价无车承运人 2=托运人评价有车承运人 3=无车承运人平均价有车承运人 4=司机评价托运人
+    var id : String? // (string, optional),
+    var ordCount : String? // (integer, optional), 竞价次数
+    var score : Int? // (integer, optional), 得分
+    var startTime : TimeInterval? // (string): 开始时间 ,
+    var transportNo : String? // (string, optional) 运单号
 }

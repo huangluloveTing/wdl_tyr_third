@@ -75,7 +75,16 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
                 if self.getGoodsSupplyStatus() == .InBidding {
                     cell.contentView.shadowBorder(radius: 5,
                                                   bgColor: UIColor.white,
-                                                insets:UIEdgeInsetsMake(15, 15, 7.5, 15))
+                                                insets:UIEdgeInsetsMake(12, 15, 6, 15))
+                }
+            })
+            .disposed(by: dispose)
+        
+        self.tableView.rx.itemSelected.asObservable()
+            .subscribe(onNext: { (index) in
+                if self.getGoodsSupplyStatus() == .InBidding {
+                    let item = self.pageContentInfo?.offerPage?.list![index.row]
+                    self.showDealAldert(item: item)
                 }
             })
             .disposed(by: dispose)
@@ -234,6 +243,30 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
                 })
             .disposed(by: self.dispose)
     }
+    
+    // 手动成交
+    func dealHall(item:SupplyOfferBean?) -> Void {
+        if let item = item {
+            self.showLoading(title: nil, complete: nil)
+            BaseApi.request(target: API.orderHallManualTransaction(item.hallId ?? "", item.id ?? ""), type: BaseResponseModel<String>.self)
+                .subscribe(onNext: { [weak self](data) in
+                    self?.showSuccess(success: "货源已成交", complete: nil)
+                    self?.loadAllOffers()
+                }, onError: { [weak self](error) in
+                    self?.showFail(fail: error.localizedDescription, complete: nil)
+                })
+                .disposed(by: dispose)
+        }
+    }
+    
+    func showDealAldert(item:SupplyOfferBean?) {
+        let alertItem = GSConfirmAlertItem(name: item?.driverName, phone: item?.driverPhone, unit: item?.quotedPrice, total: item?.totalPrice, time: Double(item?.startTime ?? "0"), score: 5)
+        GSConfirmDealView.showConfirmDealView(confirm: alertItem) { (index) in
+            if index == 1 {
+                self.dealHall(item: item)
+            }
+        }
+    }
 }
 
 // 根据处理状态 ， 判断header
@@ -281,6 +314,9 @@ extension GoodsSupplyDetailVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(GSQutationCell.self)") as! GSQutationCell
             let item = self.pageContentInfo?.offerPage?.list![indexPath.row]
             cell.contentInfo(item: item)
+            cell.dealClosure = { [weak self](item) in
+                self?.showDealAldert(item: item)
+            }
             return cell
         case .Deal:
             let info = self.pageContentInfo?.zbnOrderHall

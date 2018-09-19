@@ -20,6 +20,7 @@ class WayBillOneCommentCell: BaseCell {
         super.awakeFromNib()
         self.scoreView = XHStarRateView(frame: self.rateView.bounds)
         self.scoreView?.onlyShow = true
+        self.rateView.addSubview(self.scoreView!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

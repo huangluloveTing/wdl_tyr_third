@@ -294,7 +294,8 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-2N-ZGI">
                             <rect key="frame" x="160.5" y="0.0" width="159.5" height="40"/>
-                            <state key="normal" title="货源下架" image="detail_shelve">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="  货源下架" image="detail_shelve">
                                 <color key="titleColor" red="0.46666666666666667" green="0.58823529411764708" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -313,10 +314,11 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="byE-rq-sUR"/>
                             </constraints>
-                            <state key="normal" title="展开信息" image="detail_down">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="  展开信息" image="detail_down">
                                 <color key="titleColor" red="0.46274509800000002" green="0.58431372550000005" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <state key="selected" title="收起信息" image="detail_up"/>
+                            <state key="selected" title="  收起信息" image="detail_up"/>
                             <connections>
                                 <action selector="enpandAction:" destination="H45-fg-Xce" eventType="touchUpInside" id="ma7-gc-9WS"/>
                             </connections>

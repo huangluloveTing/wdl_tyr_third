@@ -26,6 +26,8 @@ class WayBillCommentAllCell: BaseCell {
         self.toMeStarView?.onlyShow = true
         self.myCommentStarView = XHStarRateView(frame: (self.toOtherRateView.bounds))
         self.myCommentStarView?.onlyShow = true
+        self.toMeRateView.addSubview(self.toMeStarView!)
+        self.toOtherRateView.addSubview(self.myCommentStarView!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,13 +37,13 @@ class WayBillCommentAllCell: BaseCell {
 
 extension WayBillCommentAllCell {
     
-    func showCommentInfo(toMeinfo:WayBillDetailCommentInfo , myCommentInfo:WayBillDetailCommentInfo) -> Void {
-        self.toMeStarView?.score = CGFloat(toMeinfo.rate ?? 0)
-        self.tomeCommentTimeLabel.text = Util.dateFormatter(date: toMeinfo.commentTime ?? 0, formatter: "yyyy-MM-dd HH:mm");
-        self.toMeCommentLabel.text = toMeinfo.comment
+    func showCommentInfo(toMeinfo:WayBillDetailCommentInfo?, myCommentInfo:WayBillDetailCommentInfo?) -> Void {
+        self.toMeStarView?.score = CGFloat(toMeinfo?.rate ?? 0)
+        self.tomeCommentTimeLabel.text = Util.dateFormatter(date: toMeinfo?.commentTime ?? 0, formatter: "yyyy-MM-dd HH:mm");
+        self.toMeCommentLabel.text = toMeinfo?.comment
         
-        self.myCommentStarView?.score = CGFloat(myCommentInfo.rate ?? 0)
-        self.myCommentTimeLabel.text = Util.dateFormatter(date: myCommentInfo.commentTime ?? 0, formatter: "yyyy-MM-dd HH:mm");
-        self.toOtherCommentLabel.text = myCommentInfo.comment
+        self.myCommentStarView?.score = CGFloat(myCommentInfo?.rate ?? 0)
+        self.myCommentTimeLabel.text = Util.dateFormatter(date: myCommentInfo?.commentTime ?? 0, formatter: "yyyy-MM-dd HH:mm");
+        self.toOtherCommentLabel.text = myCommentInfo?.comment
     }
 }
