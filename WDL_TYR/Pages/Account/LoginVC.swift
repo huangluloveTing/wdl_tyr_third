@@ -28,6 +28,7 @@ class LoginVC: BaseVC {
     }
     
     override func bindViewModel() {
+        
         self.registerButton.rx.tap
             .subscribe(onNext: {[weak self] in
                 self?.toRegisterVC(title: nil)

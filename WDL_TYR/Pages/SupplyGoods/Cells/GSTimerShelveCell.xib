@@ -250,6 +250,7 @@
                 <outlet property="loadTimeLabel" destination="hOH-mP-X1z" id="EeN-tS-fC6"/>
                 <outlet property="priceLabel" destination="xTQ-jn-yFt" id="WIj-yI-gbi"/>
                 <outlet property="remarkLabel" destination="F7G-cc-g3o" id="cRW-KO-miP"/>
+                <outlet property="shelveTimeLabel" destination="16r-WQ-6b0" id="EyO-IE-s2q"/>
                 <outlet property="startLabel" destination="LAH-NX-Pfi" id="9yJ-PZ-FcL"/>
                 <outlet property="statusLabel" destination="zdJ-hc-gu6" id="iWz-8h-mrA"/>
             </connections>

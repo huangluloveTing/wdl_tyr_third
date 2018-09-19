@@ -196,8 +196,18 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
         return 0.1
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.configTableViewSectionHeader()
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = UIView()
+        footer.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
+        return footer
     }
 }
 
@@ -234,7 +244,9 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     
     // 手动下架
     func toOffShelve() {
-        BaseApi.request(target: API.undercarriage(self.pageContentInfo?.zbnOrderHall?.id ?? ""), type: BaseResponseModel<String>.self)
+        self.showLoading(title: "", complete: nil)
+        let hallId = self.pageContentInfo?.zbnOrderHall?.id ?? ""
+        BaseApi.request(target: API.undercarriage(hallId), type: BaseResponseModel<String>.self)
             .subscribe(onNext: {[weak self] (data) in
                 self?.showSuccess()
                 self?.loadAllOffers()

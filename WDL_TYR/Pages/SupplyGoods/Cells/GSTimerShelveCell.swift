@@ -21,6 +21,7 @@ class GSTimerShelveCell: BaseCell {
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var shelveTimeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,7 +37,7 @@ class GSTimerShelveCell: BaseCell {
 extension GSTimerShelveCell {
     func contentInfo(info:OderHallBean?) -> Void {
         if let info = info {
-            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , info.stowageCode , ")")
+            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , info.id , ")")
             self.goodsStauts(to: self.statusLabel, status: info.isDeal ?? 0)
             self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startProvince , info.startCity , info.startDistrict)
             self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endProvince,info.endCity,info.endDistrict)
@@ -47,6 +48,7 @@ extension GSTimerShelveCell {
             self.remarkLabel.text = info.remark ?? " "
             self.priceLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(info.refercneceUnitPrice ?? 0)) + "元" , "吨")
             self.amountLabel.text = String(Float(info.refercneceTotalPrice ?? 0)) + "/元"
+            self.shelveTimeLabel.text = Util.concatSeperateStr(seperete: "", strs: "定时上架 ", Util.dateFormatter(date: Double(info.publishTime ?? "0")! / 1000, formatter: "MM-dd HH:mm"))
         }
         
     }

@@ -92,8 +92,8 @@ func apiTask(api:API) -> Task {
     case .onShelf(let id):
         return .requestParameters(parameters: ["hallId" : id], encoding: URLEncoding.default)
         
-    case .undercarriage(let id):
-        return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
+    case .undercarriage(let hallId):
+        return .requestParameters(parameters: ["hallId": hallId], encoding: URLEncoding.default)
         
     case .deleteOrderHall(let id):
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
@@ -120,6 +120,7 @@ func apiMethod(api:API) -> Moya.Method {
     switch api {
     case .getCreateHallDictionary() ,
          .onShelf(_) ,
+         .undercarriage(_) ,
          .sinGletransaction(_) ,
          .transportSign(_) ,
          .transportTransaction(_):
