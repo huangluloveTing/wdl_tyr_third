@@ -10,10 +10,14 @@ import Foundation
 
 class GoodsSupplyStatusDropView: UIView {
     
+    typealias GSStatusCheckClosure = (Int) -> ()
+    
     public var isShow:Bool = false
     private var tagTitles:[String]?
     private var opacityView:UIView?
     private var targetView:UIView?
+    
+    public var checkClosure: GSStatusCheckClosure?
     
     init(frame:CGRect , titles:[String]? , targetView:UIView) {
         self.tagTitles = titles
@@ -101,6 +105,13 @@ class GoodsSupplyStatusDropView: UIView {
     override func itemHeight(for tagView: ZTTagView!) -> CGFloat {
         return 33
     }
+    
+    func tagView(_ tagView: ZTTagView!, didTap index: Int) {
+        self.selectedIndex(index: index)
+        if let closure = self.checkClosure {
+            closure(index)
+        }
+    }
 }
 
 extension GoodsSupplyStatusDropView {
@@ -122,5 +133,18 @@ extension GoodsSupplyStatusDropView {
                 self.isShow = false
             }
         }
+    }
+    
+    private func selectedIndex(index:Int) -> Void {
+        let newTags = self.tagTitles?.enumerated().map({ (tagIndex ,tag) -> ZTTagItem in
+            let item = ZTTagItem()
+            item.isCheck = false
+            item.title = tag
+            if tagIndex == index {
+                item.isCheck = true
+            }
+            return item
+        })
+        self.tagView.showTags(newTags)
     }
 }

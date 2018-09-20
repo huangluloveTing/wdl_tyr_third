@@ -36,6 +36,7 @@
 		7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */; };
 		7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */; };
 		70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */; };
+		703C12672153548B00A6180D /* DemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703C12662153548B00A6180D /* DemoVC.swift */; };
 		70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70505EEC21478E3300CEE672 /* OnTimePostView.swift */; };
 		70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF02147A94800CEE672 /* UIActionSheet+Blocks.m */; };
 		70505EF32147A94800CEE672 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF12147A94800CEE672 /* UIAlertView+Blocks.m */; };
@@ -192,6 +193,7 @@
 		7037B111213CFF2000BDC718 /* UIViewController+navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+navigation.swift"; sourceTree = "<group>"; };
 		7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneChooseInputView.swift; sourceTree = "<group>"; };
 		70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RefreshExtension.swift"; sourceTree = "<group>"; };
+		703C12662153548B00A6180D /* DemoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoVC.swift; sourceTree = "<group>"; };
 		70505EEC21478E3300CEE672 /* OnTimePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTimePostView.swift; sourceTree = "<group>"; };
 		70505EEE2147A94800CEE672 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		70505EEF2147A94800CEE672 /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 				70C2525C212E75B2007F2ED5 /* RegisterVC.xib */,
 				7058BD24212E8D2600B53DF6 /* ForgetPwdVC.swift */,
 				7058BD25212E8D2600B53DF6 /* ForgetPwdVC.xib */,
+				703C12662153548B00A6180D /* DemoVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 				708D69FC214FFE9800884A80 /* WayBillTransLocationCell.swift in Sources */,
 				708150CF21311FA800D42723 /* DropViewManage.swift in Sources */,
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
+				703C12672153548B00A6180D /* DemoVC.swift in Sources */,
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
 				70A319D92137F7A500017356 /* GSOffShelveCell.swift in Sources */,
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,

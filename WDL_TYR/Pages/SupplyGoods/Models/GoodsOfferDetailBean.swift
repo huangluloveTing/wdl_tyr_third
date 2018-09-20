@@ -35,6 +35,7 @@ struct SupplyOfferBean : HandyJSON {
 
 struct OrderAndOffer : HandyJSON {
     var offerPage: SupplyOfferDetailBean?
+    var surplusTurnoverTime:TimeInterval?
     var zbnOrderHall : OderHallBean?
 }
 

@@ -19,6 +19,8 @@ struct SupplyPlaceModel {
     var strict : PlaceChooiceItem?
 }
 
+let GoodsStatus = ["不限","竞价中","已成交","未上架","已上架"]
+
 class GoodsSupplyVC: MainBaseVC {
     
     @IBOutlet weak var endButton: MyButton!
@@ -117,6 +119,17 @@ class GoodsSupplyVC: MainBaseVC {
                 return state != TableViewState.EndRefresh
             })
             .flatMap { (state) -> Observable<BaseResponseModel<GoodsSupplyList>> in
+                if state == TableViewState.Refresh {
+                    self.requestBean.pageSize = 20
+                }
+                if state == TableViewState.LoadMore {
+                    self.requestBean.pageSize += 20
+                }
+                self.requestBean.startCity = self.startModel.city?.title
+                self.requestBean.startProvince = self.startModel.province?.title
+                self.requestBean.endCity = self.endModel.city?.title
+                self.requestBean.endProvince = self.endModel.province?.title
+                
                 let dataObserval = BaseApi.request(target: API.ownOrderHall(self.requestBean), type: BaseResponseModel<GoodsSupplyList>.self)
                     .subscribeOn(MainScheduler.instance)
                     .catchErrorJustReturn(BaseResponseModel<GoodsSupplyList>())
@@ -145,7 +158,16 @@ class GoodsSupplyVC: MainBaseVC {
     
     // 状态下拉视图
     private lazy var statusView:DropViewContainer = {
-       let statusView = GoodsSupplyStatusDropView(tags: ["不限","已成交","竞价中","已上架","未上架"])
+       let statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
+        statusView.checkClosure = { [weak self] (index) in
+            if index == 0 {
+                self?.requestBean.isDeal = nil
+            }
+            self?.statusButton.setTitle(GoodsStatus[index], for: .normal)
+            self?.requestBean.isDeal = index - 1
+            self?.showStatusDropView()
+            self?.tableView.beginRefresh()
+        }
         return self.addDropView(drop: statusView, anchorView: self.dropAnchorView)
     }()
     
@@ -160,6 +182,17 @@ class GoodsSupplyVC: MainBaseVC {
             self.startModel.strict = strict
             self.startButton.setTitle(strict?.title, for: .normal)
         }
+        placeView.decideClosure = { [weak self](sure) in
+            if sure == true {
+                let strict = self?.startModel.strict
+                self?.startButton.setTitle(strict?.title, for: .normal)
+            } else {
+                self?.startModel = SupplyPlaceModel()
+                self?.startButton.setTitle("发货地", for: .normal)
+            }
+            self?.showPlaceDropView()
+            self?.tableView.beginRefresh()
+        }
         return self.addDropView(drop: placeView, anchorView: dropAnchorView)
     }()
     
@@ -173,6 +206,17 @@ class GoodsSupplyVC: MainBaseVC {
             self.endModel.city = city
             self.endModel.strict = strict
             self.endButton.setTitle(strict?.title, for: .normal)
+        }
+        placeView.decideClosure = { [weak self](sure) in
+            if sure == true {
+                let strict = self?.endModel.strict
+                self?.endButton.setTitle(strict?.title, for: .normal)
+            } else {
+                self?.endModel = SupplyPlaceModel()
+                self?.endButton.setTitle("发货地", for: .normal)
+            }
+            self?.showEndPlaceDropView()
+            self?.tableView.beginRefresh()
         }
         return self.addDropView(drop: placeView, anchorView: dropAnchorView)
     }()

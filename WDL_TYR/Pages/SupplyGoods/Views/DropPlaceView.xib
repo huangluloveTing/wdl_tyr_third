@@ -28,6 +28,9 @@
                             <state key="normal" title="取消">
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="cancelAction:" destination="5aL-NU-sJ7" eventType="touchUpInside" id="9iL-qR-aeq"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYD-Qb-hms">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
@@ -36,6 +39,9 @@
                             <state key="normal" title="确定">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="sureAction:" destination="5aL-NU-sJ7" eventType="touchUpInside" id="bhk-NG-a9K"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

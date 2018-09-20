@@ -11,6 +11,8 @@ import UIKit
 class DropPlaceChooiceView: UIView {
     
     typealias DropPlaceChooiceClosure = (PlaceChooiceItem? , PlaceChooiceItem? , PlaceChooiceItem?) -> ()
+    
+    typealias DropPlaceDecideClosure = (Bool) -> ()
 
     @IBOutlet weak var contentView: UIView!
     
@@ -20,6 +22,7 @@ class DropPlaceChooiceView: UIView {
     
     public var placeItems:[PlaceChooiceItem]?
     public var dropClosure:DropPlaceChooiceClosure?
+    public var decideClosure:DropPlaceDecideClosure?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +48,16 @@ class DropPlaceChooiceView: UIView {
         }
         return view
     }()
+    @IBAction func cancelAction(_ sender: Any) {
+        if let closure = self.decideClosure {
+            closure(false)
+        }
+    }
+    @IBAction func sureAction(_ sender: Any) {
+        if let closure = self.decideClosure {
+            closure(true)
+        }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

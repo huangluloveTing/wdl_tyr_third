@@ -19,12 +19,11 @@ enum SupplyGoodsCommand<T> {
 
 class BaseVC: UIViewController {
     
-    public let dispose = DisposeBag()
+    public var dispose = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
-        
         self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         self.currentConfig()
         self.bindViewModel()
@@ -40,6 +39,10 @@ class BaseVC: UIViewController {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
     // 绑定vm
     func bindViewModel() {
         
@@ -52,6 +55,10 @@ class BaseVC: UIViewController {
     
     override func zt_leftBarButtonAction(_ sender: UIBarButtonItem!) {
         self.pop()
+    }
+    
+    deinit {
+        print(" dealloc ")
     }
 }
 

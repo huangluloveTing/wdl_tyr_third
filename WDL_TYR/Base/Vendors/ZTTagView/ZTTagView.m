@@ -37,6 +37,9 @@
 
 - (void) showTags:(NSArray <ZTTagItem *> *)tags {
     self.allTags = [NSMutableArray arrayWithArray:tags];
+    CGRect frame = self.frame;
+    frame.size = self.intrinsicContentSize;
+    self.frame = frame;
     [self invalidateIntrinsicContentSize];
 }
 

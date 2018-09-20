@@ -29,15 +29,17 @@ class GSDealedCell: BaseCell {
 }
 
 extension GSDealedCell {
-    func contentInfo(info:OderHallBean?) -> Void {
+    func contentInfo(info:OderHallBean? , offer:SupplyOfferBean?) -> Void {
         if let info = info {
             self.priceLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(info.dealUnitPrice ?? 0)) , "吨")
             self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: String(Float(info.dealTotalPrice ?? 0)) , "元")
-            self.cyLabel.text = Util.concatSeperateStr(seperete: " ", strs: info.consigneeName , info.consigneePhone)
-            self.driverLabel.text = Util.concatSeperateStr(seperete: " ", strs: info.consigneeName , info.consigneePhone)
             self.truckInfoLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info.vehicleWidth , info.vehicleLength , info.vehicleType)
             self.offerTimeLabel.text = Util.dateFormatter(date: Double(info.publishTime ?? "0")!, formatter: "MM-dd  HH:mm")
             self.dealTimeLabel.text = Util.dateFormatter(date: Double(info.dealTime ?? "0")!, formatter: "MM-dd  HH:mm")
+        }
+        if let offer = offer {
+            self.cyLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer.carrierName , "")
+            self.driverLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer.driverName , offer.driverPhone)
         }
     }
 }

@@ -55,24 +55,25 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     
     // config
     override func currentConfig() {
+        weak var weakSelf = self
         self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         self.tableView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        self.tableView.dataSource = self//weakSelf
+        self.tableView.delegate = self//weakSelf
         let footerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: 60)))
         footerView.backgroundColor = UIColor.clear
         self.tableView.tableFooterView = footerView
         self.registerAllCells()
         self.tableView.separatorStyle = .none
-        self.bidingHeader.bidingTapClosure = { state in
-            self.toAddHeader()
+        self.bidingHeader.bidingTapClosure = {state in
+            weakSelf?.toAddHeader()
         }
     }
     
     override func bindViewModel() {
         self.tableView.rx.willDisplayCell
-            .subscribe(onNext:{(cell ,index) in
-                if self.getGoodsSupplyStatus() == .InBidding {
+            .subscribe(onNext:{[weak self](cell ,index) in
+                if self?.getGoodsSupplyStatus() == .InBidding {
                     cell.contentView.shadowBorder(radius: 5,
                                                   bgColor: UIColor.white,
                                                 insets:UIEdgeInsetsMake(12, 15, 6, 15))
@@ -81,10 +82,10 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
             .disposed(by: dispose)
         
         self.tableView.rx.itemSelected.asObservable()
-            .subscribe(onNext: { (index) in
-                if self.getGoodsSupplyStatus() == .InBidding {
-                    let item = self.pageContentInfo?.offerPage?.list![index.row]
-                    self.showDealAldert(item: item)
+            .subscribe(onNext: { [weak self](index) in
+                if self?.getGoodsSupplyStatus() == .InBidding {
+                    let item = self?.pageContentInfo?.offerPage?.list![index.row]
+                    self?.showDealAldert(item: item)
                 }
             })
             .disposed(by: dispose)
@@ -93,6 +94,10 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.bottomConfig()
+    }
+    
+    deinit {
+        print("detail de init ")
     }
 }
 
@@ -103,7 +108,7 @@ extension GoodsSupplyDetailVC {
             self.bidingHeader.bidingTapClosure = {[weak self] (state) in
                 switch state {
                 case .GSTapOffShelve:
-                    self?.toOffShelve()
+                    self?.toOffShelveAlert()
                     break
                 default:
                     self?.updateHeaderHeight()
@@ -218,14 +223,16 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     func loadAllOffers() {
         self.showLoading()
         BaseApi.request(target: API.getOfferByOrderHallId(self.offerQueyBean), type: BaseResponseModel<OrderAndOffer?>.self)
-            .subscribe(onNext: { (data) in
-                self.showSuccess()
-                self.pageContentInfo = data.data!
-                self.toConfigHeaderInfo()
-                self.toAddHeader()
-                self.tableView.reloadData()
-            }, onError: { (error) in
-                self.showFail(fail: error.localizedDescription, complete: nil)
+            .subscribe(onNext: {[weak self] (data) in
+                self?.showSuccess()
+                self?.pageContentInfo = data.data!
+                self?.toConfigHeaderInfo()
+                self?.toAddHeader()
+                self?.tableView.reloadData()
+            }, onError: {[weak self] (error) in
+                self?.showFail(fail: error.localizedDescription, complete: nil)
+            },onDisposed: {
+                
             })
             .disposed(by: dispose)
     }
@@ -236,10 +243,18 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
             .subscribe(onNext: {[weak self] (data) in
                 self?.showSuccess()
                 self?.loadAllOffers()
-            }, onError: {[weak self] (error) in
-                self?.showFail(fail: error.localizedDescription, complete: nil)
+                }, onError: {[weak self] (error) in
+                    self?.showFail(fail: error.localizedDescription, complete: nil)
             })
             .disposed(by: self.dispose)
+    }
+    
+    func onShelveAlert() {
+        AlertManager.showTitleAndContentAlert(title: nil, content: "该货源为定时上架货源，确定立即上架 ？") { [weak self](index) in
+            if index == 1 {
+                self?.toOnShelve()
+            }
+        }
     }
     
     // 手动下架
@@ -254,6 +269,14 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
                     self?.showFail(fail: error.localizedDescription, complete: nil)
                 })
             .disposed(by: self.dispose)
+    }
+    
+    func toOffShelveAlert() -> Void {
+        AlertManager.showTitleAndContentAlert(title: "是否下架该条货源？", content: "已有报价的货源，下架自动驳回所有报价?") {[weak self](index) in
+            if index == 1 {
+                self?.toOffShelve()
+            }
+        }
     }
     
     // 手动成交
@@ -273,9 +296,9 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     
     func showDealAldert(item:SupplyOfferBean?) {
         let alertItem = GSConfirmAlertItem(name: item?.driverName, phone: item?.driverPhone, unit: item?.quotedPrice, total: item?.totalPrice, time: Double(item?.startTime ?? "0"), score: 5)
-        GSConfirmDealView.showConfirmDealView(confirm: alertItem) { (index) in
+        GSConfirmDealView.showConfirmDealView(confirm: alertItem) {[weak self] (index) in
             if index == 1 {
-                self.dealHall(item: item)
+                self?.dealHall(item: item)
             }
         }
     }
@@ -290,7 +313,8 @@ extension GoodsSupplyDetailVC {
         let end = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.endProvince, hallInfo?.endCity , hallInfo?.endDistrict)
         let start = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.startProvince, hallInfo?.startCity , hallInfo?.startDistrict)
         let sumer = Util.concatSeperateStr(strs: hallInfo?.goodsWeight, hallInfo?.vehicleWidth , hallInfo?.vehicleType ,hallInfo?.goodsType)
-        let headerItem = BidingContentItem(autoDealTime: hallInfo?.autoTimeInterval, supplyCode: hallInfo?.stowageCode, startPlace: start, endPlace: end, loadTime: hallInfo?.loadingTime, goodsName: hallInfo?.goodsName, goodsType: hallInfo?.goodsType, goodsSummer: sumer, remark: hallInfo?.remark)
+        let time = self.pageContentInfo?.surplusTurnoverTime
+        let headerItem = BidingContentItem(autoDealTime: time, supplyCode: hallInfo?.stowageCode, startPlace: start, endPlace: end, loadTime: hallInfo?.loadingTime, goodsName: hallInfo?.goodsName, goodsType: hallInfo?.goodsType, goodsSummer: sumer, remark: hallInfo?.remark)
         self.bidingHeader.headerContent(item: headerItem)
     }
     
@@ -320,6 +344,13 @@ extension GoodsSupplyDetailVC {
         return nil
     }
     
+    func obtainDealedOffer() -> SupplyOfferBean? {
+        let offers = self.pageContentInfo?.offerPage?.list?.filter({ (bean) -> Bool in
+            return bean.dealStatus == 2
+        })
+        return offers?.first
+    }
+    
     func currentCell(tableView:UITableView , indexPath:IndexPath) -> UITableViewCell {
         switch self.getGoodsSupplyStatus() {
         case .InBidding:
@@ -334,7 +365,7 @@ extension GoodsSupplyDetailVC {
             let info = self.pageContentInfo?.zbnOrderHall
             if indexPath.section == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "\(GSDealedCell.self)") as! GSDealedCell
-                cell.contentInfo(info: info)
+                cell.contentInfo(info: info , offer: self.obtainDealedOffer())
                 return cell
             }
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(GSDetailInfoCell.self)") as! GSDetailInfoCell
@@ -369,13 +400,13 @@ extension GoodsSupplyDetailVC {
             
         case .InShelveOnTime:
             self.bottomButtom(titles: ["立即上架"], targetView: self.tableView) { [weak self](index) in
-                self?.toOnShelve()
+                self?.onShelveAlert()
             }
             break
             
         case .OffShelve:
             self.bottomButtom(titles: ["重新上架"], targetView: self.tableView) { [weak self](index) in
-                self?.toOnShelve()
+                self?.onShelveAlert()
             }
             break
         default:
