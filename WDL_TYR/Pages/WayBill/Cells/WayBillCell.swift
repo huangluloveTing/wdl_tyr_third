@@ -36,7 +36,7 @@ extension WayBillCell {
     //运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝 ,
     func contentInfo(info:WayBillInfoBean?) {
         if let info = info {
-            self.tranportNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" ,info.stowageCode)
+            self.tranportNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" ,info.id)
             self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startCity , info.startDistrict)
             self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endCity , info.endDistrict)
             self.transportInfoStatusDisplay(status: info.transportStatus?.rawValue ?? 0, to: self.statusLabel)

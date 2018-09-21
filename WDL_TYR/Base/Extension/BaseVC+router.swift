@@ -44,6 +44,11 @@ extension BaseVC {
         self.push(vc: wayBillDetail, title: "运单详情")
     }
     
+    func toCommentWayBill() -> Void {
+        let commentVC = WayBillCommentVC()
+        self.push(vc: commentVC, title: "评价")
+    }
+    
     //TODO: todo
     func toDelivery() {
 //        let deliveryVC = DeliveryVC()

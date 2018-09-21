@@ -67,11 +67,11 @@ extension WayBillDetailVC {
     // 根据 对应的状态 ， 展示不同的cells
     func tableViewCells(tableView:UITableView , indexPath:IndexPath) -> UITableViewCell {
         switch (self.wayBillInfo?.transportStatus)! {
-        case WayBillTransportStatus.willToTransport:
+        case .willToTransport:
             return self.willToTransportTableViewCell(tableView:tableView, indexPath:indexPath)
-        case WayBillTransportStatus.transporting:
+        case .transporting:
             return self.transportingCells(indexPath: indexPath, tableView: tableView)
-        case .willToPickup:
+        case .willToPickup , .driverPickup:
             return self.willToPickCells(indexPath: indexPath, tableView: tableView)
         case .done:
             return self.pickupAndCommentCells(indexPath: indexPath, tableView: tableView)
@@ -248,6 +248,7 @@ extension WayBillDetailVC {
         let driver = self.pageInfo?.dirverName
         let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
         let dealTime = self.pageInfo?.dealTime
+        
         cell.showDealInfo(unit: unit,
                           amount: amount,
                           cyName: cyName,
@@ -282,7 +283,7 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
                 return 4
             }
         }
-        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup { // 待签收
+        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup || self.pageInfo?.transportStatus == .driverPickup { // 待签收
             return 3
         }
         return 1
@@ -307,7 +308,7 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
             }
             return 1
         }
-        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup { // 待签收
+        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup || self.pageInfo?.transportStatus == .driverPickup { // 待签收
             if section == 0 {
                 return 3
             }
@@ -430,7 +431,9 @@ extension WayBillDetailVC {
             self.showBottom = true
             break;
         case .done:
-            self.bottomButtom(titles: [], targetView: self.tableView)
+            self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { (_) in
+                self.toCommentWayBill()
+            }
             break
         default:
             self.bottomButtom(titles: [], targetView: self.tableView)
@@ -500,4 +503,6 @@ extension WayBillDetailVC {
         }
         return evaluted
     }
+    
+    // 获取当前的
 }

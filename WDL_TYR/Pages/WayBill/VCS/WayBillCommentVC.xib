@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WayBillCommentVC" customModule="WDL_TYR" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="XuD-jg-9uN" id="kkk-PD-6WS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +19,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XuD-jg-9uN">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="XuD-jg-9uN" secondAttribute="bottom" id="Czl-tf-BZc"/>
+                <constraint firstAttribute="trailing" secondItem="XuD-jg-9uN" secondAttribute="trailing" id="KfQ-qV-Kwp"/>
+                <constraint firstItem="XuD-jg-9uN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vcc-HB-cR4"/>
+                <constraint firstItem="XuD-jg-9uN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="y58-lm-uNO"/>
+            </constraints>
         </view>
     </objects>
 </document>

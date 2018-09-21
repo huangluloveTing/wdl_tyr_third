@@ -108,7 +108,7 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
         
     case .transportSign(let code):
-        return .requestParameters(parameters: ["stowageCode":code], encoding: URLEncoding.default)
+        return .requestParameters(parameters: ["transportNo":code], encoding: URLEncoding.default)
         
     case .transportTransaction(let code):
         return .requestParameters(parameters: ["stowageCode":code], encoding: URLEncoding.default)
