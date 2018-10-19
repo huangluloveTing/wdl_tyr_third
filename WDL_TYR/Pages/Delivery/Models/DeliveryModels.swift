@@ -39,11 +39,14 @@ struct ReleaseDeliverySourceModel : HandyJSON { // 发布货源的对象
     var dealUnitPrice:Float?   // 单价
     var dealWay:Int?         // 提交方式
     var endCity:String?
+    var endAddress:String?
     var endDistrict:String?
     var endProvince:String?
     var goodsName:String?
     var goodsType:String?
     var goodsWeight:Float?
+    var loadingPersonName:String?
+    var loadingPersonPhone:String?
     var loadingTime:String?
     var orderAvailabilityPeriod:String?
     var startProvince:String?
@@ -52,6 +55,7 @@ struct ReleaseDeliverySourceModel : HandyJSON { // 发布货源的对象
     var vehicleWidth:String?
     var packageType:String?
     var publishTime:String?
+    var startAddress:String?
     var startCity:String?
     var startDistrict:String?
     var remark:String?

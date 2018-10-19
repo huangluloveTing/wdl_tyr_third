@@ -30,11 +30,8 @@ struct BidingContentItem {
 class GSDetailBidingHeader: UIView {
     
     private var dispose = DisposeBag()
-    
     typealias BidingTapClosure = (GSTapActionState) -> ()
-    
     public var bidingTapClosure:BidingTapClosure?
-    
     private var timeObservable:Observable<Int>?
     
     @IBOutlet weak var goodsCodeLabel: UILabel!
@@ -52,7 +49,9 @@ class GSDetailBidingHeader: UIView {
     @IBOutlet weak var secLabel: UILabel!
     @IBOutlet weak var minuLabel: UILabel!
     
+    private var downTime : TimeInterval = 0
     private var contentItem:BidingContentItem?
+    private var timer : Timer?
 
     @IBAction func offShelveAction(_ sender: Any) {
         if let closure = self.bidingTapClosure {
@@ -113,16 +112,38 @@ extension GSDetailBidingHeader {
     }
     
     private func timedown(time:TimeInterval) -> Void {
-        Observable<Int>.interval(1, scheduler: MainScheduler.instance)
-            .takeUntil(self.rx.deallocated)
-            .take(Int(time))
-            .subscribe(onNext: { [weak self](timer) in
-                self?.showCountDownLablel(time: time - Double(timer))
+//        Observable<Int>.interval(1, scheduler: MainScheduler.instance)
+////            .takeUntil(self.rx.deallocated)
+//            .take(Int(time))
+//            .share(replay: 1)
+//            .subscribe(onNext: { [weak self](timer) in
+//                self?.showCountDownLablel(time: time - Double(timer))
+//            })
+//            .disposed(by: dispose)
+        if self.timer != nil {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
+        self.downTime = time
+        if #available(iOS 10.0, *) {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self](mtime) in
+                self?.showCountDownLablel(mtime: 0)
             })
-            .disposed(by: dispose)
+        } else {
+            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCountDown), userInfo: nil, repeats: true)
+        }
     }
     
-    private func showCountDownLablel(time:TimeInterval) -> Void {
+   @objc private func timerCountDown() -> Void {
+        self.showCountDownLablel(mtime: 0)
+    }
+    
+    private func showCountDownLablel(mtime:TimeInterval) -> Void {
+        if self.downTime == 0 {
+            return;
+        }
+        self.downTime = self.downTime - 1;
+        let time = self.downTime
         let hour = Int(time / 3600)
         let minu = Int((time - Double(hour * 3600)) / 60)
         let second = Int(time - Double(hour * 3600) - Double(minu * 60))

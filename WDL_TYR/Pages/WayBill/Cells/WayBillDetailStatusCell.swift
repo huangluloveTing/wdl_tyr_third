@@ -31,7 +31,7 @@ extension WayBillDetailStatusCell {
     
     func showInfo(status:WayBillTransportStatus) -> Void {
         switch status {
-        case .willToTransport:
+        case .willToTransport , .noStart:
             self.wayBillStatusView?.status = WayBillStatus.Start
             break
         case .transporting:

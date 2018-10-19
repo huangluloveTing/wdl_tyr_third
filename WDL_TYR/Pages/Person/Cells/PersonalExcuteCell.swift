@@ -41,4 +41,31 @@ extension PersonalExcuteCell {
         self.exSubTitleLabel.text = info.exSubTitle
         self.indicatorView.isHidden = !(info.showIndicator ?? true)
     }
+    
+    func showAuthStatus(status:AutherizStatus?) -> Void {
+//        case not_start = 0
+//        case autherizing = 1
+//        case autherizedFail = 2
+//        case autherized
+        guard let stat = status  else {
+            self.subTitle(title: "", to: self.exSubTitleLabel)
+            return
+        }
+        var title = ""
+        switch stat {
+        case .not_start:
+            title = "未认证"
+            break
+        case .autherizing:
+            title = "认证中"
+            break
+        case .autherizedFail:
+            title = "认证失败"
+            break
+        case .autherized:
+            title = "已认证"
+            break
+        }
+        self.subTitle(title: title, to: self.exSubTitleLabel)
+    }
 }

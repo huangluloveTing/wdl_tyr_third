@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class RootTabBarVC: UITabBarController {
 
+    private let dispose = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.barTintColor = UIColor.white

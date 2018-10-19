@@ -67,7 +67,7 @@ extension WayBillDetailVC {
     // 根据 对应的状态 ， 展示不同的cells
     func tableViewCells(tableView:UITableView , indexPath:IndexPath) -> UITableViewCell {
         switch (self.wayBillInfo?.transportStatus)! {
-        case .willToTransport:
+        case .willToTransport , .noStart:
             return self.willToTransportTableViewCell(tableView:tableView, indexPath:indexPath)
         case .transporting:
             return self.transportingCells(indexPath: indexPath, tableView: tableView)
@@ -264,7 +264,8 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     
     //运单状态 1=待起运 2=运输中 3=待签收 4=已签收  5=被拒绝
     func numberOfSections(in tableView: UITableView) -> Int {
-        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport { // 待起运
+        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport
+        || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart{ // 待起运
             return 2
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.transporting { // 运输中
@@ -290,7 +291,7 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport { // 待起运
+        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart { // 待起运
             if section == 0 {
                 return 2
             }
@@ -339,17 +340,17 @@ extension WayBillDetailVC {
     
     // 取消运单
     func cancelWayBill() -> Void {
-        AlertManager.showTitleAndContentAlert(title: "提示", content: "确认取消运单？") { (index) in
+        AlertManager.showTitleAndContentAlert(title: "提示", content: "确认取消运单？") { [weak self](index) in
             if index == 1 {
-                self.showLoading(title: "", complete: nil)
-                BaseApi.request(target: API.transportTransaction(self.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
+                self?.showLoading(title: "", complete: nil)
+                BaseApi.request(target: API.transportTransaction(self?.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
-                        self.showSuccess()
-                        self.loadDetailInfo()
+                        self?.showSuccess()
+                        self?.loadDetailInfo()
                     }, onError: { (error) in
-                        self.showFail(fail: error.localizedDescription, complete: nil)
+                        self?.showFail(fail: error.localizedDescription, complete: nil)
                     })
-                    .disposed(by: self.dispose)
+                    .disposed(by: self?.dispose ?? DisposeBag())
             }
         }
     }
@@ -406,33 +407,31 @@ extension WayBillDetailVC {
     func addBottom() {
         self.showBottom = false
         switch self.pageInfo?.transportStatus ?? .noStart {
-        case .noStart:
-            break
-        case .willToTransport:
-            self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView) { (index) in
+        case .noStart,.willToTransport:
+            self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView) { [weak self](index) in
                 if index == 0 {
-                    self.cancelWayBill() // 取消起运
+                    self?.cancelWayBill() // 取消起运
                 }else {
-                    self.sureToTransport() // 确认起运
+                    self?.sureToTransport() // 确认起运
                 }
             }
             self.showBottom = true
             break
         case .transporting:
-            self.bottomButtom(titles: ["确认签收"], targetView: self.tableView) { (_) in
-                self.toPickWayBill()
+            self.bottomButtom(titles: ["确认签收"], targetView: self.tableView) { [weak self](_) in
+                self?.toPickWayBill()
             }
             self.showBottom = true
             break;
         case .willToPickup , .driverPickup:
-            self.bottomButtom(titles: ["确认签收"], targetView: self.tableView) { (_) in
-                self.toPickWayBill()
+            self.bottomButtom(titles: ["确认签收"], targetView: self.tableView) {[weak self] (_) in
+                self?.toPickWayBill()
             }
             self.showBottom = true
             break;
         case .done:
-            self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { (_) in
-                self.toCommentWayBill()
+            self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
+                self?.toCommentWayBill()
             }
             break
         default:

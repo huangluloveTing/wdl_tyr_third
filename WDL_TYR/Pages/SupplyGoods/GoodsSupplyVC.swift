@@ -19,7 +19,7 @@ struct SupplyPlaceModel {
     var strict : PlaceChooiceItem?
 }
 
-let GoodsStatus = ["不限","竞价中","已成交","未上架","已上架"]
+let GoodsStatus = ["不限","竞价中","已成交","未上架","已下架"]
 
 class GoodsSupplyVC: MainBaseVC {
     
@@ -159,6 +159,7 @@ class GoodsSupplyVC: MainBaseVC {
     // 状态下拉视图
     private lazy var statusView:DropViewContainer = {
        let statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
+        //0=竞价中 1=成交 2=未上架 3=已下架
         statusView.checkClosure = { [weak self] (index) in
             if index == 0 {
                 self?.requestBean.isDeal = nil

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FRk-pq-Pma">
-                        <rect key="frame" x="311" y="134" width="60" height="60"/>
+                        <rect key="frame" x="311" y="133.5" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="0Hx-WK-77Q"/>
                             <constraint firstAttribute="width" secondItem="FRk-pq-Pma" secondAttribute="height" multiplier="1:1" id="hGm-OO-lil"/>
@@ -33,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="19087654321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmv-od-F5x">
-                        <rect key="frame" x="20" y="101" width="281" height="93"/>
+                        <rect key="frame" x="20" y="101" width="281" height="92.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -51,6 +50,11 @@
                     <constraint firstItem="Rmv-od-F5x" firstAttribute="bottom" secondItem="FRk-pq-Pma" secondAttribute="bottom" id="yC5-QR-ADI"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="companyNameLabel" destination="RAC-a9-ybp" id="pwn-zw-Pka"/>
+                <outlet property="linkLabel" destination="Rmv-od-F5x" id="UUr-f1-tBe"/>
+                <outlet property="logoImageView" destination="FRk-pq-Pma" id="XET-Kh-PFl"/>
+            </connections>
             <point key="canvasLocation" x="52" y="88"/>
         </tableViewCell>
     </objects>

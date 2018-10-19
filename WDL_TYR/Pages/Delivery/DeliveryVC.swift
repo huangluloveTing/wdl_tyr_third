@@ -38,6 +38,12 @@ struct DeliveryCommitModel : HandyJSON {
     var unit:String?                // 单价
     var total:String?               // 总价
     var publishTime:String?         // 发布时间
+    var loadAddress:String?         // 装货详细地址
+    var loadLinkMan:String?
+    var loadLinkPhone:String?
+    var endAddress:String?
+    var endLinkMan:String?
+    var endLinkPhone:String?
 }
 
 class DeliveryVC: MainBaseVC {
@@ -67,6 +73,14 @@ class DeliveryVC: MainBaseVC {
     @IBOutlet weak var packageTextField: UITextField!       // 包装类型
     @IBOutlet weak var timerPostButton: UIButton!           // 定时发布按钮
     @IBOutlet weak var surePostButton: UIButton!            // 确认发布按钮
+    
+    @IBOutlet weak var loadDetailAddressTextField: UITextField!
+    @IBOutlet weak var loadLinkPhoneTextField: UITextField!
+    @IBOutlet weak var loadLinkManTextField: UITextField!
+    
+    @IBOutlet weak var reDetailAddressTextField: UITextField!
+    @IBOutlet weak var reLinkManTextField: UITextField!
+    @IBOutlet weak var rePhoneTextField: UITextField!
     
     
     override func viewDidLoad() {
@@ -122,6 +136,42 @@ class DeliveryVC: MainBaseVC {
         self.goodsNameTextField.rx.text.orEmpty
             .subscribe(onNext: { (text) in
                 self.deliveryData?.goodsName = text
+            })
+            .disposed(by: dispose)
+        
+        self.loadDetailAddressTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.loadAddress = text
+            })
+            .disposed(by: dispose)
+        
+        self.loadLinkManTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.loadLinkMan = text
+            })
+            .disposed(by: dispose)
+        
+        self.loadLinkPhoneTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.loadLinkPhone = text
+            })
+            .disposed(by: dispose)
+        
+        self.reDetailAddressTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.endAddress = text
+            })
+            .disposed(by: dispose)
+        
+        self.reLinkManTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.endLinkMan = text
+            })
+            .disposed(by: dispose)
+        
+        self.rePhoneTextField.rx.text.orEmpty
+            .subscribe(onNext: { (text) in
+                self.deliveryData?.endLinkPhone = text
             })
             .disposed(by: dispose)
         
@@ -257,6 +307,10 @@ extension DeliveryVC {
             sourceModel.startDistrict = self.startPlace.strict?.title
             sourceModel.endDistrict = self.endPlace.strict?.title
             sourceModel.remark = self.deliveryData?.remark
+            sourceModel.loadingPersonName = self.deliveryData?.loadLinkMan
+            sourceModel.startAddress = self.deliveryData?.loadAddress
+            sourceModel.loadingPersonPhone = self.deliveryData?.loadLinkPhone
+            sourceModel.endAddress = self.deliveryData?.endAddress
             
             self.showLoading()
             BaseApi.request(target: API.releaseSource(sourceModel), type: BaseResponseModel<String>.self)

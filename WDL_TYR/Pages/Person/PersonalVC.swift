@@ -22,6 +22,8 @@ class PersonalVC: MainBaseVC  {
     
     private var personInfos:[PersonExcuteInfo]?
     
+    private var zbnConsignor:ZbnConsignor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fd_prefersNavigationBarHidden = true
@@ -30,6 +32,11 @@ class PersonalVC: MainBaseVC  {
 //        self.dropHintView.dropTapClosure = {(index) in
 //            print("current tap index ： \(index)")
 //        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,8 +83,40 @@ class PersonalVC: MainBaseVC  {
     }
 }
 
+extension PersonalVC {
+    // 认证
+    func toCarriorAth() -> Void {
+        let consignorAuth = ConsignorAuthVC()
+        self.push(vc: consignorAuth, title: "认证")
+    }
+}
+
+//MARK: load data
+extension PersonalVC {
+    func loadInfo() -> Void {
+        let id = WDLCoreManager.shared().userInfo?.id ?? ""
+        BaseApi.request(target: API.getZbnConsignor(id), type: BaseResponseModel<ZbnConsignor>.self)
+            .subscribe(onNext: { [weak self](data) in
+                self?.zbnConsignor = data.data
+                self?.tableView.reloadData()
+            }, onError: { [weak self](error) in
+                self?.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
+    }
+}
+
 // datasource
 extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let row = indexPath.row
+            if row == 0 {
+                self.toCarriorAth()
+            }
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -92,11 +131,16 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PersonalInfoHeader.self)") as! PersonalInfoHeader
+            cell.showInfo(name: self.zbnConsignor?.companyName, phone: self.zbnConsignor?.cellPhone, logo: self.zbnConsignor?.companyLogo)
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(PersonalExcuteCell.self)") as! PersonalExcuteCell
-        
         cell.contentInfo(info: self.personInfos![indexPath.row])
+        if indexPath.row == 0 {
+            cell.showAuthStatus(status: self.zbnConsignor?.status)
+        } else {
+            cell.showAuthStatus(status: nil)
+        }
         return cell
     }
     

@@ -58,8 +58,8 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
         weak var weakSelf = self
         self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         self.tableView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
-        self.tableView.dataSource = self//weakSelf
-        self.tableView.delegate = self//weakSelf
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         let footerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: 60)))
         footerView.backgroundColor = UIColor.clear
         self.tableView.tableFooterView = footerView
@@ -87,6 +87,23 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
                     let item = self?.pageContentInfo?.offerPage?.list![index.row]
                     self?.showDealAldert(item: item)
                 }
+            })
+            .disposed(by: dispose)
+        
+        self.tableView.refreshState.asObservable()
+            .subscribe(onNext: { [weak self](state) in
+                switch (state) {
+                case .LoadMore:
+                    self?.offerQueyBean.pageSize += 20
+                    break;
+                case .Refresh:
+                    self?.offerQueyBean.pageSize = 20
+                    break;
+                default:
+                    return
+                }
+                self?.loadAllOffers()
+            }, onError: { (error) in
             })
             .disposed(by: dispose)
     }
@@ -228,6 +245,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
                 self?.pageContentInfo = data.data!
                 self?.toConfigHeaderInfo()
                 self?.toAddHeader()
+                self?.addRefresh()
                 self?.tableView.reloadData()
             }, onError: {[weak self] (error) in
                 self?.showFail(fail: error.localizedDescription, complete: nil)
@@ -316,6 +334,14 @@ extension GoodsSupplyDetailVC {
         let time = self.pageContentInfo?.surplusTurnoverTime
         let headerItem = BidingContentItem(autoDealTime: time, supplyCode: hallInfo?.stowageCode, startPlace: start, endPlace: end, loadTime: hallInfo?.loadingTime, goodsName: hallInfo?.goodsName, goodsType: hallInfo?.goodsType, goodsSummer: sumer, remark: hallInfo?.remark)
         self.bidingHeader.headerContent(item: headerItem)
+    }
+    
+    // 当竞价中时，添加上拉加载和下拉刷新
+    func addRefresh() -> Void {
+        if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
+            self.tableView.pullRefresh()
+            self.tableView.upRefresh()
+        }
     }
     
     func getGoodsSupplyStatus() -> GoodsSupplyStatus {

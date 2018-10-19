@@ -28,6 +28,7 @@ enum API {
     case sinGletransaction(String)          // 获取运单详情
     case transportSign(String)              // 运单签收
     case transportTransaction(String)       // 运单起运
+    case getZbnConsignor(String)            // 托运人认证信息
 }
 
 
@@ -66,6 +67,8 @@ func apiPath(api:API) -> String {
         return "/transport/sign"
     case .transportTransaction(_):
         return "/transport/transaction"
+    case .getZbnConsignor(_):
+        return "/consignor/getZbnConsignor"
     }
 }
 
@@ -112,6 +115,9 @@ func apiTask(api:API) -> Task {
         
     case .transportTransaction(let code):
         return .requestParameters(parameters: ["stowageCode":code], encoding: URLEncoding.default)
+        
+    case .getZbnConsignor(let id):
+        return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["id":id])
     }
 }
 
@@ -123,7 +129,8 @@ func apiMethod(api:API) -> Moya.Method {
          .undercarriage(_) ,
          .sinGletransaction(_) ,
          .transportSign(_) ,
-         .transportTransaction(_):
+         .transportTransaction(_),
+         .getZbnConsignor(_):
         return .get
     default:
         return .post

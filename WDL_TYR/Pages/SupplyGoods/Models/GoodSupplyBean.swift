@@ -10,6 +10,7 @@ import Foundation
 import RxDataSources
 import HandyJSON
 
+//0=竞价中 1=成交 2=未上架 3=已下架 ,
 enum GoodsSupplyListStatus : Int , HandyJSONEnum {
     case status_bidding = 0     //竞价中
     case status_deal = 1        // 成交
@@ -27,7 +28,6 @@ struct GoodsSupplyQueryBean : HandyJSON {
     var pageNum : Int = 1
     var pageSize : Int = 20
 }
-
 
 struct GoodsSupplyList :HandyJSON {
     var pageNum:Int?

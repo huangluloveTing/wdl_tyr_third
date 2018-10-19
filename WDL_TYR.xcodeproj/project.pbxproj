@@ -145,6 +145,11 @@
 		70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C25259212E7382007F2ED5 /* UIColor+extension.swift */; };
 		70C2525D212E75B2007F2ED5 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2525B212E75B2007F2ED5 /* RegisterVC.swift */; };
 		70C2525E212E75B2007F2ED5 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70C2525C212E75B2007F2ED5 /* RegisterVC.xib */; };
+		70C7CB3121745C7B00C10AC4 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7CB3021745C7B00C10AC4 /* Operators.swift */; };
+		70C7CB3421746DE600C10AC4 /* PersonModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7CB3321746DE600C10AC4 /* PersonModels.swift */; };
+		70C7CB372174761700C10AC4 /* ConsignorAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7CB352174761700C10AC4 /* ConsignorAuthVC.swift */; };
+		70C7CB382174761700C10AC4 /* ConsignorAuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70C7CB362174761700C10AC4 /* ConsignorAuthVC.xib */; };
+		70C7CB3A2174DBE100C10AC4 /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7CB392174DBE100C10AC4 /* Demo.swift */; };
 		70E2754821414D9D00E1A92B /* APIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E2754721414D9D00E1A92B /* APIPath.swift */; };
 		70E2754A2141513600E1A92B /* DropPlaceChooiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E275492141513600E1A92B /* DropPlaceChooiceView.swift */; };
 		70E2754E21415E8500E1A92B /* DropPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70E2754D21415E8500E1A92B /* DropPlaceView.xib */; };
@@ -318,6 +323,11 @@
 		70C25259212E7382007F2ED5 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		70C2525B212E75B2007F2ED5 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		70C2525C212E75B2007F2ED5 /* RegisterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
+		70C7CB3021745C7B00C10AC4 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		70C7CB3321746DE600C10AC4 /* PersonModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModels.swift; sourceTree = "<group>"; };
+		70C7CB352174761700C10AC4 /* ConsignorAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthVC.swift; sourceTree = "<group>"; };
+		70C7CB362174761700C10AC4 /* ConsignorAuthVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthVC.xib; sourceTree = "<group>"; };
+		70C7CB392174DBE100C10AC4 /* Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
 		70E2754721414D9D00E1A92B /* APIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPath.swift; sourceTree = "<group>"; };
 		70E275492141513600E1A92B /* DropPlaceChooiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropPlaceChooiceView.swift; sourceTree = "<group>"; };
 		70E2754D21415E8500E1A92B /* DropPlaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropPlaceView.xib; sourceTree = "<group>"; };
@@ -422,6 +432,8 @@
 		7037B0D3213C24AB00BDC718 /* VCS */ = {
 			isa = PBXGroup;
 			children = (
+				70C7CB352174761700C10AC4 /* ConsignorAuthVC.swift */,
+				70C7CB362174761700C10AC4 /* ConsignorAuthVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -494,6 +506,7 @@
 				705926DD212A5DEA00BE8BB4 /* LaunchScreen.storyboard */,
 				705926E0212A5DEA00BE8BB4 /* Info.plist */,
 				70F40F1A214B431B0054A175 /* WDL_TYR-Bridging-Header.h */,
+				70C7CB392174DBE100C10AC4 /* Demo.swift */,
 			);
 			path = WDL_TYR;
 			sourceTree = "<group>";
@@ -575,6 +588,7 @@
 		706C5A60212EBF1A00C037F2 /* Person */ = {
 			isa = PBXGroup;
 			children = (
+				70C7CB3221746DD400C10AC4 /* models */,
 				7037B0D4213C24C300BDC718 /* Cells */,
 				7037B0D3213C24AB00BDC718 /* VCS */,
 				702D2CD0213060190007A11F /* PersonalVC.swift */,
@@ -587,6 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				70C25255212E626C007F2ED5 /* UIView+Border.swift */,
+				70C7CB3021745C7B00C10AC4 /* Operators.swift */,
 				70C25257212E649F007F2ED5 /* BaseVC+router.swift */,
 				70C25259212E7382007F2ED5 /* UIColor+extension.swift */,
 				70ED087C212F05BD001DCCB2 /* UITextField+Extension.swift */,
@@ -814,6 +829,14 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		70C7CB3221746DD400C10AC4 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				70C7CB3321746DE600C10AC4 /* PersonModels.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		70E2754F21425F0700E1A92B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +942,7 @@
 				70A319D62137F43A00017356 /* GSTimerShelveCell.xib in Resources */,
 				70F460242153961800821790 /* WayBillCommentCell.xib in Resources */,
 				70A319C22137D4C700017356 /* good_star@3x.png in Resources */,
+				70C7CB382174761700C10AC4 /* ConsignorAuthVC.xib in Resources */,
 				70B588FA2140B12F00EF704E /* DeliveryTruckTypeCell.xib in Resources */,
 				708D69FD214FFE9800884A80 /* WayBillTransLocationCell.xib in Resources */,
 				70A319C32137D4C700017356 /* bad_star@3x.png in Resources */,
@@ -1016,6 +1040,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				702B40E021314A2400D3D27A /* DropHintView.swift in Sources */,
+				70C7CB3A2174DBE100C10AC4 /* Demo.swift in Sources */,
 				708D69EF214E6E9400884A80 /* QuerytTransportListBean.swift in Sources */,
 				70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */,
 				70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */,
@@ -1034,9 +1059,11 @@
 				70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */,
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,
+				70C7CB372174761700C10AC4 /* ConsignorAuthVC.swift in Sources */,
 				705926D5212A5DE800BE8BB4 /* AppDelegate.swift in Sources */,
 				708D69F8214FEBEA00884A80 /* WayBillGoodsCell.swift in Sources */,
 				7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */,
+				70C7CB3121745C7B00C10AC4 /* Operators.swift in Sources */,
 				708150DA2131396700D42723 /* DropViewContainer.swift in Sources */,
 				7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */,
 				70E2755121425F2000E1A92B /* WDLCoreDataManager.swift in Sources */,
@@ -1104,6 +1131,7 @@
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				708D6A192150E19600884A80 /* WayBillReceiptCell.swift in Sources */,
 				70FE54852147F53C0095CEFD /* String+Extension.swift in Sources */,
+				70C7CB3421746DE600C10AC4 /* PersonModels.swift in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,
 				70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */,

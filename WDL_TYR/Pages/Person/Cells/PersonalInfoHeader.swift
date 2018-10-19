@@ -10,6 +10,10 @@ import UIKit
 
 class PersonalInfoHeader: BaseCell {
 
+    @IBOutlet weak var companyNameLabel: UILabel!
+    @IBOutlet weak var linkLabel: UILabel!
+    @IBOutlet weak var logoImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,7 +22,15 @@ class PersonalInfoHeader: BaseCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }
+
+extension PersonalInfoHeader {
+    func showInfo(name:String? , phone:String? , logo:String?) -> Void {
+        self.companyNameLabel.text = name ?? " "
+        self.linkLabel.text = phone ?? " "
+        Util.showImage(imageView: self.logoImageView, imageUrl: logo ?? "")
+    }
+}
+
