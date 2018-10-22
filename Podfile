@@ -4,7 +4,7 @@ target 'WDL_TYR' do
 
 pod 'Moya/RxSwift'
 pod 'RxCocoa'
-pod 'HandyJSON'
+pod 'HandyJSON','~> 4.1.3'
 pod 'RxDataSources'
 pod 'ZTHExtension', '~> 1.3.5'
 pod 'TYPagerController'
