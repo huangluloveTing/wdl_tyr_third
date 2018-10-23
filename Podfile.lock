@@ -8,7 +8,7 @@ PODS:
   - Differentiator (3.0.2)
   - DZNEmptyDataSet (1.8.1)
   - FLAnimatedImage (1.0.12)
-  - HandyJSON (4.1.3)
+  - HandyJSON (4.2.0)
   - IQKeyboardManager (6.1.1)
   - Kingfisher (4.8.1)
   - MBProgressHUD (1.0.0)
@@ -64,7 +64,7 @@ DEPENDENCIES:
   - AMap2DMap
   - AMapLocation
   - DZNEmptyDataSet
-  - HandyJSON (~> 4.1.3)
+  - HandyJSON (~> 4.2.0)
   - IQKeyboardManager
   - Kingfisher
   - MJRefresh
@@ -110,7 +110,7 @@ SPEC CHECKSUMS:
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  HandyJSON: bc81fbeb62d65ae5d5942ed29bc4a8265d18c1e8
+  HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
   IQKeyboardManager: 79c57795f5c2408d259d37b9da2ed07efcbb5225
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -127,6 +127,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZTHExtension: 924db453c38d748321023af4d5d637eeae45828f
 
-PODFILE CHECKSUM: d9ce1cdfb378e1b41f1af442a946d3d427847650
+PODFILE CHECKSUM: 2e6097c227204e3e9a050306f64666b754de4f83
 
 COCOAPODS: 1.5.3

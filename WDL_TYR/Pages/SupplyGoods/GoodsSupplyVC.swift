@@ -34,6 +34,7 @@ class GoodsSupplyVC: MainBaseVC {
     private var endModel:SupplyPlaceModel = SupplyPlaceModel()
     private var listStatus:GoodsSupplyStatus?
     private var requestBean:GoodsSupplyQueryBean = GoodsSupplyQueryBean()
+    private var currentLists:[GoodsSupplyListItem] = []
     
     //删除cell的数据闭包
     typealias DeleteCellItemsColsure = (_ items: [GoodsSupplyListItem]) -> Void
@@ -104,6 +105,20 @@ class GoodsSupplyVC: MainBaseVC {
     
         //删除的内容
         let deleteCommand = tableView.rx.itemDeleted.asDriver()
+            .map { [weak self](indexPath) -> Observable<IndexPath> in
+                return Observable<IndexPath>.create({ (observer) -> Disposable in
+                    self?.deleteDataRequest(indexPath: indexPath, closure: { (error) in
+                        guard let error = error else {
+                            observer.onNext(indexPath)
+                            observer.onCompleted()
+                            return
+                        }
+                        observer.onError(error)
+                    })
+                    return Disposables.create()
+                })
+            }
+            .asObservable().flatMap { $0 }
             .map(SupplyGoodsCommand<MyHeaderSections>.ItemDelete)
         
         
@@ -111,6 +126,8 @@ class GoodsSupplyVC: MainBaseVC {
             .map { (indexPath) in
                 SupplyGoodsCommand<MyHeaderSections>.TapItem(indexPath, self)
             }
+            .asObservable()
+        
         let initailState = GoodsSupplyState(sections: [
                 MyHeaderSections(header: "", items: [])
             ])
@@ -134,6 +151,7 @@ class GoodsSupplyVC: MainBaseVC {
                 if state == TableViewState.LoadMore {
                     self.requestBean.pageSize += 20
                 }
+                
                 self.requestBean.startCity = self.startModel.city?.title
                 self.requestBean.startProvince = self.startModel.province?.title
                 self.requestBean.endCity = self.endModel.city?.title
@@ -145,16 +163,17 @@ class GoodsSupplyVC: MainBaseVC {
                 return dataObserval
             }
             .asDriver(onErrorJustReturn: BaseResponseModel<GoodsSupplyList>())
-            .map { (model) -> SupplyGoodsCommand<MyHeaderSections> in
-                self.tableView.endRefresh()
-                return SupplyGoodsCommand.Refresh(items: [MyHeaderSections(header: "", items: model.data?.list ?? [])])
+            .asObservable()
+            .map { [weak self](model) -> SupplyGoodsCommand<MyHeaderSections> in
+                self?.tableView.endRefresh()
+                self?.currentLists = model.data?.list ?? []
+                return SupplyGoodsCommand.Refresh(items: [MyHeaderSections(header: "", items: self?.currentLists ?? [])])
             }
         
         Observable.of(deleteCommand , itemCommand , refreshCommand)
             .merge()
             .scan(initailState) { (state, command) -> GoodsSupplyState in
-//                return state.excute(command:command )
-                return state.excute(command: command, vc: self)
+                return state.excute(command: command)
             }
             .startWith(initailState)
             .map { (state) in
@@ -311,7 +330,7 @@ struct GoodsSupplyState {
         self.sections = sections
     }
     
-    func excute(command:SupplyGoodsCommand<MyHeaderSections>, vc:GoodsSupplyVC) -> GoodsSupplyState {
+    func excute(command:SupplyGoodsCommand<MyHeaderSections>) -> GoodsSupplyState {
         switch command {
             case .TapItem(let indexPath , let vc):
                     let item = self.sections[indexPath.section].items[indexPath.row]
@@ -322,40 +341,9 @@ struct GoodsSupplyState {
                 var section = self.sections[indexPath.section]
                 var items = section.items
                 let item = items[indexPath.row]
-//                items .remove(at: indexPath.row)
-//                section.items = items
-//                sections[indexPath.section] = section;
-                if  item.isDeal ==  GoodsSupplyListStatus.status_bidding{
-                    vc.showFail(fail: "未上架和已下架货源才可以删除", complete: nil)
-                     section.items = items
-                     sections[indexPath.section] = section
-                }
-                if  item.isDeal ==  GoodsSupplyListStatus.status_deal {
-                    vc.showFail(fail: "未上架和已下架货源才可以删除", complete: nil)
-                      section.items = items
-                      sections[indexPath.section] = section
-                }
-
-                //删除数据(只有未上架和已下架才可以删除)
-                if  item.isDeal ==  GoodsSupplyListStatus.status_putway{
-                    vc.deleteCellItemsColsure = {
-                        (_ itemss: [GoodsSupplyListItem]) -> Void in
-                        //删除后返回的数据
-                        section.items = itemss
-                        sections[indexPath.section] = section
-                    }
-                    vc.deleteDataRequest(items: items, indexPath: indexPath)
-                }
-                if  item.isDeal ==  GoodsSupplyListStatus.status_soldout {
-                    vc.deleteCellItemsColsure = {
-                        (_ itemss: [GoodsSupplyListItem]) -> Void in
-                        //删除后返回的数据
-                        section.items = itemss
-                        sections[indexPath.section] = section
-
-                    }
-                    vc.deleteDataRequest(items: items, indexPath: indexPath)
-                }
+                items.remove(at: indexPath.row)
+                section.items = items
+                sections[indexPath.section] = section;
                 return GoodsSupplyState(sections: sections)
             
             case .Refresh(items: let items):
@@ -366,36 +354,28 @@ struct GoodsSupplyState {
     }
 
 }
-//MARK:- 删除数据
+
+//MARK: - 删除数据
 extension GoodsSupplyVC {
     
-    func deleteDataRequest(items:[GoodsSupplyListItem],indexPath: IndexPath){
-        var itemss = items
-        let item = itemss[indexPath.row]
-       
+    func deleteDataRequest(indexPath: IndexPath , closure:((Error?) -> ())?) {
+        let item = self.currentLists[indexPath.row]
         //货物id
         let hallId = item.id ?? ""
-    
         //只有未上架和已下架才可以删除
         BaseApi.request(target: API.deleteOrderHall(hallId), type: BaseResponseModel<String>.self)
-            .subscribe(onNext: {[weak self] (data) in
-                itemss.remove(at: indexPath.row)
-                self?.showSuccess(success: "删除成功", complete: nil)
-                if self?.deleteCellItemsColsure != nil {
-                    self?.deleteCellItemsColsure!(itemss)
+            .subscribe(onNext: { (data) in
+                if let closure = closure {
+                    closure(nil)
                 }
-
-             }, onError: {[weak self] (error) in
+            }, onError: { [weak self](error) in
                 self?.showFail(fail: error.localizedDescription, complete: nil)
-
+                if let closure = closure {
+                    closure(error)
+                }
             })
-            .disposed(by: self.dispose)
-        
-
+            .disposed(by: dispose)
     }
-    
-   
-   
 }
 
 
