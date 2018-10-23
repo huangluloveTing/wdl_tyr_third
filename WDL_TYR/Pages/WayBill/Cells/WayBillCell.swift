@@ -14,6 +14,7 @@ class WayBillCell: BaseCell {
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
+    //物料和装货时间
     @IBOutlet weak var goodsInfoLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var dealTimeLabel: UILabel!
@@ -36,13 +37,20 @@ extension WayBillCell {
     //运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝 ,
     func contentInfo(info:WayBillInfoBean?) {
         if let info = info {
-            self.tranportNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" ,info.id)
+            //运单号
+            self.tranportNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" ,info.transportNo )
             self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startCity , info.startDistrict)
             self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endCity , info.endDistrict)
             self.transportInfoStatusDisplay(status: info.transportStatus?.rawValue ?? 0, to: self.statusLabel)
             self.cyLabel.text = info.carrierName
             self.dealTimeLabel.text = Util.dateFormatter(date: (info.dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm:ss")
             self.priceLabel.text = Util.showMoney(money: info.dealUnitPrice ?? 0, after: 0)
+            
+            //物料和装货时间
+          
+            let goodsType = info.goodsType
+            let loadTimeStr = Util.dateFormatter(date: (info.loadingTime ?? 0) / 1000, formatter: "MM-dd")
+            self.goodsInfoLabel.text = loadTimeStr + " " + (goodsType ?? "")
         }
     }
 }

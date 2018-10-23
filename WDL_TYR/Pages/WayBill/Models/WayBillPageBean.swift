@@ -63,7 +63,7 @@ struct WayBillInfoBean : HandyJSON {
     var isDeal : String? // (integer): 订单状态0=竞价中 1=成交 2=未上架 3=已下架 ,
     var isEnable : String? // (integer, optional),
     var isVisable : String? // (integer): 是否可见 ,
-    var loadingTime : String? // (string): 装货时间 ,
+    var loadingTime : TimeInterval? // (string): 装货时间 ,
     var locationList : [ZbnLocation]? // (Array[ZbnLocation]): 定位信息 ,
     var offerType : String? // (integer, optional),
     var offerWay :Int? // (integer): 报价方式[1：有车报价 2：无车报价] ,

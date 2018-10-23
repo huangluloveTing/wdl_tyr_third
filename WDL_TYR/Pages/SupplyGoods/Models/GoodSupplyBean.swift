@@ -37,6 +37,7 @@ struct GoodsSupplyList :HandyJSON {
 }
 
 struct GoodsSupplyListItem : HandyJSON{
+    //货源订单id
     var id:String?
     var consignorNo:String?
     var startProvince:String?
@@ -47,6 +48,7 @@ struct GoodsSupplyListItem : HandyJSON{
     var goodsType:String?
     var packageType:String?
     var vehicleType:String?
+    //车长
     var vehicleLength:String?
     var vehicleWidth:String?
     var publishTime:TimeInterval?

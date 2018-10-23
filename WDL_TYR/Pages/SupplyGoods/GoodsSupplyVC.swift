@@ -21,6 +21,7 @@ struct SupplyPlaceModel {
 
 let GoodsStatus = ["不限","竞价中","已成交","未上架","已下架"]
 
+
 class GoodsSupplyVC: MainBaseVC {
     
     @IBOutlet weak var endButton: MyButton!
@@ -28,12 +29,16 @@ class GoodsSupplyVC: MainBaseVC {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var statusButton: MyButton!
     @IBOutlet weak var dropAnchorView: UIView!
-    
+  
     private var startModel:SupplyPlaceModel = SupplyPlaceModel()
     private var endModel:SupplyPlaceModel = SupplyPlaceModel()
     private var listStatus:GoodsSupplyStatus?
-    
     private var requestBean:GoodsSupplyQueryBean = GoodsSupplyQueryBean()
+    
+    //删除cell的数据闭包
+    typealias DeleteCellItemsColsure = (_ items: [GoodsSupplyListItem]) -> Void
+    //删除cell的数据闭包
+    var deleteCellItemsColsure: DeleteCellItemsColsure?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,8 +101,12 @@ class GoodsSupplyVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
+    
+        //删除的内容
         let deleteCommand = tableView.rx.itemDeleted.asDriver()
             .map(SupplyGoodsCommand<MyHeaderSections>.ItemDelete)
+        
+        
         let itemCommand = tableView.rx.itemSelected.asDriver()
             .map { (indexPath) in
                 SupplyGoodsCommand<MyHeaderSections>.TapItem(indexPath, self)
@@ -144,7 +153,8 @@ class GoodsSupplyVC: MainBaseVC {
         Observable.of(deleteCommand , itemCommand , refreshCommand)
             .merge()
             .scan(initailState) { (state, command) -> GoodsSupplyState in
-                return state.excute(command:command)
+//                return state.excute(command:command )
+                return state.excute(command: command, vc: self)
             }
             .startWith(initailState)
             .map { (state) in
@@ -156,6 +166,7 @@ class GoodsSupplyVC: MainBaseVC {
         
     }
     
+  
     // 状态下拉视图
     private lazy var statusView:DropViewContainer = {
        let statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
@@ -267,7 +278,9 @@ extension GoodsSupplyVC {
 
 
 extension GoodsSupplyVC {
-    // 获取DataSource
+    
+    
+    // 获取DataSource  创建表格数据源
     static func getDataSource() -> RxTableViewSectionedAnimatedDataSource<MyHeaderSections> {
         let _dataSource = RxTableViewSectionedAnimatedDataSource<MyHeaderSections>(animationConfiguration: AnimationConfiguration(
                 insertAnimation: .top,
@@ -298,30 +311,98 @@ struct GoodsSupplyState {
         self.sections = sections
     }
     
-    func excute(command:SupplyGoodsCommand<MyHeaderSections>) -> GoodsSupplyState {
+    func excute(command:SupplyGoodsCommand<MyHeaderSections>, vc:GoodsSupplyVC) -> GoodsSupplyState {
         switch command {
             case .TapItem(let indexPath , let vc):
                     let item = self.sections[indexPath.section].items[indexPath.row]
                     vc.toGoodsSupplyDetail(item: item)
                     return self
-            case .ItemDelete(let indexPath):
+        case .ItemDelete(let indexPath):
                 var sections = self.sections
                 var section = self.sections[indexPath.section]
                 var items = section.items
-                items.remove(at: indexPath.row)
-                section.items = items
-                sections[indexPath.section] = section
+                let item = items[indexPath.row]
+//                items .remove(at: indexPath.row)
+//                section.items = items
+//                sections[indexPath.section] = section;
+                if  item.isDeal ==  GoodsSupplyListStatus.status_bidding{
+                    vc.showFail(fail: "未上架和已下架货源才可以删除", complete: nil)
+                     section.items = items
+                     sections[indexPath.section] = section
+                }
+                if  item.isDeal ==  GoodsSupplyListStatus.status_deal {
+                    vc.showFail(fail: "未上架和已下架货源才可以删除", complete: nil)
+                      section.items = items
+                      sections[indexPath.section] = section
+                }
+
+                //删除数据(只有未上架和已下架才可以删除)
+                if  item.isDeal ==  GoodsSupplyListStatus.status_putway{
+                    vc.deleteCellItemsColsure = {
+                        (_ itemss: [GoodsSupplyListItem]) -> Void in
+                        //删除后返回的数据
+                        section.items = itemss
+                        sections[indexPath.section] = section
+                    }
+                    vc.deleteDataRequest(items: items, indexPath: indexPath)
+                }
+                if  item.isDeal ==  GoodsSupplyListStatus.status_soldout {
+                    vc.deleteCellItemsColsure = {
+                        (_ itemss: [GoodsSupplyListItem]) -> Void in
+                        //删除后返回的数据
+                        section.items = itemss
+                        sections[indexPath.section] = section
+
+                    }
+                    vc.deleteDataRequest(items: items, indexPath: indexPath)
+                }
                 return GoodsSupplyState(sections: sections)
+            
             case .Refresh(items: let items):
                 return GoodsSupplyState(sections: items)
             default:
                 return GoodsSupplyState(sections: self.sections)
         }
     }
+
+}
+//MARK:- 删除数据
+extension GoodsSupplyVC {
+    
+    func deleteDataRequest(items:[GoodsSupplyListItem],indexPath: IndexPath){
+        var itemss = items
+        let item = itemss[indexPath.row]
+       
+        //货物id
+        let hallId = item.id ?? ""
+    
+        //只有未上架和已下架才可以删除
+        BaseApi.request(target: API.deleteOrderHall(hallId), type: BaseResponseModel<String>.self)
+            .subscribe(onNext: {[weak self] (data) in
+                itemss.remove(at: indexPath.row)
+                self?.showSuccess(success: "删除成功", complete: nil)
+                if self?.deleteCellItemsColsure != nil {
+                    self?.deleteCellItemsColsure!(itemss)
+                }
+
+             }, onError: {[weak self] (error) in
+                self?.showFail(fail: error.localizedDescription, complete: nil)
+
+            })
+            .disposed(by: self.dispose)
+        
+
+    }
+    
+   
+   
 }
 
+
 struct MyHeaderSections  {
+    //标识
     var header:String
+    //model数组
     var items:[GoodsSupplyListItem]
 }
 

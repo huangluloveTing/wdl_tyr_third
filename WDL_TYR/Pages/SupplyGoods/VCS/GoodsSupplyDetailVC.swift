@@ -150,7 +150,6 @@ extension GoodsSupplyDetailVC {
 
 // header view
 extension GoodsSupplyDetailVC {
-    
     // 当是竞标中的订单时 ，显示的头部竞标信息视图
     private static func biddingHeaderInfoView() -> GSDetailBidingHeader {
         let header = Bundle.main.loadNibNamed("\(GSDetailBidingHeader.self)", owner: nil, options: nil)?.first as! GSDetailBidingHeader
@@ -179,10 +178,8 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
             return 1
         case .Deal:
             return 2
-            
         case .InShelveOnTime:
             return 1
-            
         case .OffShelve:
             return 1
         default:
@@ -196,10 +193,8 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
             return self.pageContentInfo?.offerPage?.list?.count ?? 0
         case .Deal:
             return 1
-            
         case .InShelveOnTime:
             return 1
-            
         case .OffShelve:
             return 1
         default:

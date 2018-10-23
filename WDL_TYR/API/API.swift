@@ -76,7 +76,8 @@ func apiPath(api:API) -> String {
 func apiTask(api:API) -> Task {
     switch api {
     case .registerSms(let phpne):
-        return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["cellphone":phpne])
+    //这儿转换
+    return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["cellphone":phpne])
     case .register(let pwd, let phone, let vcode, let vpwd):
         return .requestParameters(parameters: ["password": pwd,"phone": phone,"verificationCode": vcode,"verificationPassword": vpwd], encoding: JSONEncoding.default)
     case .login(let account , let pwd):
@@ -130,6 +131,7 @@ func apiMethod(api:API) -> Moya.Method {
          .sinGletransaction(_) ,
          .transportSign(_) ,
          .transportTransaction(_),
+         .deleteOrderHall(_),
          .getZbnConsignor(_):
         return .get
     default:

@@ -110,12 +110,25 @@ class RegisterVC: BaseVC {
 extension RegisterVC {
     
     func toRegisterAccount() {
+        if self.registerInfo.phone?.count == 0 {
+            self.showWarn(warn: "请填写手机号")
+            return
+        }
         if !isPhone(phone: self.registerInfo.phone) {
             self.showWarn(warn: "手机号码不正确")
             return
         }
         if self.registerInfo.veryCode?.count == 0 {
             self.showWarn(warn: "请填写验证码")
+            return
+        }
+        
+        if self.registerInfo.pwd?.count == 0 {
+            self.showWarn(warn: "请填写密码")
+            return
+        }
+        if self.registerInfo.confirmPwd?.count == 0 {
+            self.showWarn(warn: "请填写确认密码")
             return
         }
         if !isCorrectPwd(pwd: self.registerInfo.pwd)  {
@@ -178,7 +191,7 @@ extension RegisterVC {
 class RegisterVModel: NSObject {
     var phone:String?
     var veryCode:String?
-    var pwd:String?
-    var confirmPwd:String?
+    var pwd:String?       //密码
+    var confirmPwd:String? //确认密码
     var readedProtocol:Bool? // 是否阅读协议
 }

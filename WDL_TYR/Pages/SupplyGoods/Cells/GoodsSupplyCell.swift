@@ -9,15 +9,23 @@
 import UIKit
 
 class GoodsSupplyCell: BaseCell {
-    
+    //底部视图
     @IBOutlet weak var containerView: UIView!
+    //开始城市
     @IBOutlet weak var startLabel: UILabel!
+    //结束城市
     @IBOutlet weak var endLabel: UILabel!
+    //状态文本
     @IBOutlet weak var statusLabel: UILabel!
+    //报价状态
     @IBOutlet weak var reportLabel: UILabel!
+    //多少人报价
     @IBOutlet weak var numLabel: UILabel!
+    //货品名称
     @IBOutlet weak var goodsNameLabel: UILabel!
+    //车辆货物描述
     @IBOutlet weak var goodsSpecLabel: UILabel!
+    //车辆货物详情描述
     @IBOutlet weak var cartSpecLabel: UILabel!
     
     override func awakeFromNib() {
@@ -32,7 +40,7 @@ class GoodsSupplyCell: BaseCell {
     }
     
 }
-
+//给cell赋值
 extension GoodsSupplyCell {
     func showContent(item:GoodsSupplyListItem)  {
         self.configStatusLabel(status: item.isDeal ?? GoodsSupplyListStatus.status_soldout)
@@ -49,8 +57,10 @@ extension GoodsSupplyCell {
         self.startLabel.text = (item.startCity ?? " ") + (item.startDistrict ?? " ")
         self.endLabel.text = (item.endCity ?? " ") + (item.endDistrict ?? " ")
         self.goodsNameLabel.text = item.goodsName ?? " "
-        self.cartSpecLabel.text = self.getCartSpecText(item: item)
+         //车辆货物描述
         self.goodsSpecLabel.text = self.getGoodsSpec(item: item)
+        //车辆货物详情描述
+        self.cartSpecLabel.text = self.getCartSpecText(item: item)
     }
     
     func configStatusLabel(status:GoodsSupplyListStatus) {
@@ -66,7 +76,7 @@ extension GoodsSupplyCell {
             self.statusLabel.textColor = UIColor(hex: COLOR_BUTTON)
             break
         case .status_bidding:
-            self.statusLabel.text = "竞标中"
+            self.statusLabel.text = "竞价中"
             self.statusLabel.textColor = UIColor(hex: COLOR_BUTTON)
             break
         case .status_putway:
@@ -79,16 +89,19 @@ extension GoodsSupplyCell {
             break
         }
     }
-    
+    //获物详情
     func getCartSpecText(item:GoodsSupplyListItem) -> String? {
         let weight = item.goodsWeight
+        let length = item.vehicleLength
         let type = item.vehicleType
         let package = item.packageType
-        
+    
         let weightContent:String = (weight == nil) ? " " : (String(Float(weight!)) + "吨 | ")
+        let lengthContent : String = (length == nil) ? " " : length! +  " | "
         let typeContent:String = (type == nil) ? " " : type! + " | "
         let packageContent : String = (package == nil) ? " " : package!
-        return weightContent + typeContent + packageContent
+        return weightContent + lengthContent + typeContent + packageContent
+        
     }
     
     func getGoodsSpec(item:GoodsSupplyListItem) -> String? {
