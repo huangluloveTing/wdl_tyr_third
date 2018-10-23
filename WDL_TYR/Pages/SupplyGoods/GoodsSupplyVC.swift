@@ -292,6 +292,7 @@ extension GoodsSupplyVC {
 }
 
 struct GoodsSupplyState {
+    
     var sections:[MyHeaderSections]
     
     init(sections:[MyHeaderSections]) {
@@ -304,7 +305,7 @@ struct GoodsSupplyState {
                     let item = self.sections[indexPath.section].items[indexPath.row]
                     vc.toGoodsSupplyDetail(item: item)
                     return self
-            case .ItemDelete(let indexPath):
+            case .ItemDelete(let indexPath , let vc):
                 var sections = self.sections
                 var section = self.sections[indexPath.section]
                 var items = section.items
