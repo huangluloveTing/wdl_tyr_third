@@ -323,6 +323,31 @@ extension GoodsSupplyVC {
     }
 }
 
+
+//MARK: - 删除数据
+extension GoodsSupplyVC {
+    
+    func deleteDataRequest(indexPath: IndexPath , closure:((Error?) -> ())?) {
+        let item = self.currentLists[indexPath.row]
+        //货物id
+        let hallId = item.id ?? ""
+        //只有未上架和已下架才可以删除
+        BaseApi.request(target: API.deleteOrderHall(hallId), type: BaseResponseModel<String>.self)
+            .subscribe(onNext: { [weak self](data) in
+                self?.currentLists.remove(at: indexPath.row)
+                if let closure = closure {
+                    closure(nil)
+                }
+            }, onError: { [weak self](error) in
+                self?.showFail(fail: error.localizedDescription, complete: nil)
+                if let closure = closure {
+                    closure(error)
+                }
+            })
+            .disposed(by: dispose)
+    }
+}
+
 struct GoodsSupplyState {
     var sections:[MyHeaderSections]
     
@@ -340,7 +365,7 @@ struct GoodsSupplyState {
                 var sections = self.sections
                 var section = self.sections[indexPath.section]
                 var items = section.items
-                let item = items[indexPath.row]
+//                let item = items[indexPath.row]
                 items.remove(at: indexPath.row)
                 section.items = items
                 sections[indexPath.section] = section;
@@ -355,28 +380,6 @@ struct GoodsSupplyState {
 
 }
 
-//MARK: - 删除数据
-extension GoodsSupplyVC {
-    
-    func deleteDataRequest(indexPath: IndexPath , closure:((Error?) -> ())?) {
-        let item = self.currentLists[indexPath.row]
-        //货物id
-        let hallId = item.id ?? ""
-        //只有未上架和已下架才可以删除
-        BaseApi.request(target: API.deleteOrderHall(hallId), type: BaseResponseModel<String>.self)
-            .subscribe(onNext: { (data) in
-                if let closure = closure {
-                    closure(nil)
-                }
-            }, onError: { [weak self](error) in
-                self?.showFail(fail: error.localizedDescription, complete: nil)
-                if let closure = closure {
-                    closure(error)
-                }
-            })
-            .disposed(by: dispose)
-    }
-}
 
 
 struct MyHeaderSections  {
