@@ -62,7 +62,7 @@ class GoodsSupplyVC: MainBaseVC {
     override func currentConfig() {
         self.tableView.register(UINib.init(nibName: goodsSupplyCellIdentity, bundle: nil), forCellReuseIdentifier: goodsSupplyCellIdentity)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.bottomButtom(titles: ["取消" ,"确定"], targetView: self.tableView)
+//        self.bottomButtom(titles: ["取消" ,"确定"], targetView: self.tableView)
         self.tableView.pullRefresh()
         self.tableView.upRefresh()
         self.tableView.delegate = self
@@ -108,12 +108,14 @@ class GoodsSupplyVC: MainBaseVC {
             .map { [weak self](indexPath) -> Observable<IndexPath> in
                 return Observable<IndexPath>.create({ (observer) -> Disposable in
                     self?.deleteDataRequest(indexPath: indexPath, closure: { (error) in
-                        guard let error = error else {
+                        guard error != nil else {
                             observer.onNext(indexPath)
                             observer.onCompleted()
                             return
                         }
-                        observer.onError(error)
+//                        observer.onError(error)
+                        observer.onCompleted()
+                        
                     })
                     return Disposables.create()
                 })
@@ -357,7 +359,7 @@ struct GoodsSupplyState {
     
     func excute(command:SupplyGoodsCommand<MyHeaderSections>) -> GoodsSupplyState {
         switch command {
-            case .TapItem(let indexPath , let vc):
+        case .TapItem(let indexPath , let vc):
                     let item = self.sections[indexPath.section].items[indexPath.row]
                     vc.toGoodsSupplyDetail(item: item)
                     return self
