@@ -108,12 +108,12 @@ class GoodsSupplyVC: MainBaseVC {
             .map { [weak self](indexPath) -> Observable<IndexPath> in
                 return Observable<IndexPath>.create({ (observer) -> Disposable in
                     self?.deleteDataRequest(indexPath: indexPath, closure: { (error) in
-                        guard let error = error else {
+                        guard let _ = error else {
                             observer.onNext(indexPath)
                             observer.onCompleted()
                             return
                         }
-                        observer.onError(error)
+                        observer.onCompleted()
                     })
                     return Disposables.create()
                 })
