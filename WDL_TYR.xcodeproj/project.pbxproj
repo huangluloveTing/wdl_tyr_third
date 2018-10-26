@@ -169,6 +169,7 @@
 		70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F72AF82145F80A00C9156E /* DeliveryModels.swift */; };
 		70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */; };
 		70FE54852147F53C0095CEFD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FE54842147F53C0095CEFD /* String+Extension.swift */; };
+		78E1DC4B2181AD0200B8B841 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E1DC4A2181AD0200B8B841 /* libstdc++.6.0.9.tbd */; };
 		EEA24EACC7D289FEEC3F2AA9 /* libPods-WDL_TYR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */; };
 /* End PBXBuildFile section */
 
@@ -349,6 +350,7 @@
 		70F72AF82145F80A00C9156E /* DeliveryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryModels.swift; sourceTree = "<group>"; };
 		70FD7A01213D952B00E6AA05 /* InputBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBaseVC.swift; sourceTree = "<group>"; };
 		70FE54842147F53C0095CEFD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		78E1DC4A2181AD0200B8B841 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		7B98DB91CC1D21DD721D7197 /* Pods-WDL_TYR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.release.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.release.xcconfig"; sourceTree = "<group>"; };
 		EF69E9CA55EB87BF8CE7D10E /* Pods-WDL_TYR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDL_TYR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -358,6 +360,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E1DC4B2181AD0200B8B841 /* libstdc++.6.0.9.tbd in Frameworks */,
 				EEA24EACC7D289FEEC3F2AA9 /* libPods-WDL_TYR.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -864,6 +867,7 @@
 		A67AB4968A3ED656E707CD7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78E1DC4A2181AD0200B8B841 /* libstdc++.6.0.9.tbd */,
 				56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */,
 			);
 			name = Frameworks;
