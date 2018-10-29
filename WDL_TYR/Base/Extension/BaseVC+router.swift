@@ -33,7 +33,7 @@ extension BaseVC {
     func toGoodsSupplyDetail(item:GoodsSupplyListItem? = nil) {
         let detailSupplu = GoodsSupplyDetailVC()
         detailSupplu.supplyDetail = item
-        let title = Util.concatSeperateStr(seperete: "——", strs: Util.concatSeperateStr(seperete: "", strs: item?.startCity,item?.startDistrict) , item?.endDistrict)
+        let title = Util.concatSeperateStr(seperete: "——", strs: Util.concatSeperateStr(seperete: "", strs: item?.startProvince,item?.startCity) , Util.concatSeperateStr(seperete: "", strs: item?.endProvince,item?.endCity))
         self.push(vc: detailSupplu, title: title)
     }
     
