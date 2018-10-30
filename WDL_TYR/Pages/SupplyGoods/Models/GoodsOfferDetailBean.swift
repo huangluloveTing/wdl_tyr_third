@@ -35,7 +35,10 @@ struct SupplyOfferBean : HandyJSON {
 
 struct OrderAndOffer : HandyJSON {
     var offerPage: SupplyOfferDetailBean?
-    var surplusTurnoverTime:TimeInterval?
+    var surplusTurnoverTime:TimeInterval? //交易剩余时间秒 ,
+    
+    var autoTimeInterval : TimeInterval? // 自动成交时间间隔 ,
+    
     var zbnOrderHall : OderHallBean?
 }
 
@@ -85,6 +88,7 @@ struct OderHallBean : HandyJSON {
     var startTime : String?         // (string): 开始时间 ,
     var stowageCode : String?
     var stowageNo : String?         // (string): 配载单号 ,
+    var supplyCode : String?         // (string): 货源编号 ,
     var unableReason : String?      // (string): 下架原因 ,
     var vehicleLength : String?     // (string): 车长 ,
     var vehicleType :String?        // (string): 车型 ,

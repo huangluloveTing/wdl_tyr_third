@@ -326,8 +326,10 @@ extension GoodsSupplyDetailVC {
         let end = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.endProvince, hallInfo?.endCity , hallInfo?.endDistrict)
         let start = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.startProvince, hallInfo?.startCity , hallInfo?.startDistrict)
         let sumer = Util.concatSeperateStr(strs: hallInfo?.goodsWeight, hallInfo?.vehicleWidth , hallInfo?.vehicleType ,hallInfo?.goodsType)
-        let time = self.pageContentInfo?.surplusTurnoverTime
-        let headerItem = BidingContentItem(autoDealTime: time, supplyCode: hallInfo?.stowageCode, startPlace: start, endPlace: end, loadTime: hallInfo?.loadingTime, goodsName: hallInfo?.goodsName, goodsType: hallInfo?.goodsType, goodsSummer: sumer, remark: hallInfo?.remark)
+//        let time = self.pageContentInfo?.surplusTurnoverTime
+        //货源竞价自动成交剩余时间
+        let time = self.pageContentInfo?.autoTimeInterval
+        let headerItem = BidingContentItem(autoDealTime: time, supplyCode: hallInfo?.supplyCode, startPlace: start, endPlace: end, loadTime: hallInfo?.loadingTime, goodsName: hallInfo?.goodsName, goodsType: hallInfo?.goodsType, goodsSummer: sumer, remark: hallInfo?.remark)
         self.bidingHeader.headerContent(item: headerItem)
     }
     

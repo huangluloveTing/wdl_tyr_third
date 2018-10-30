@@ -1,18 +1,18 @@
 PODS:
   - Alamofire (4.7.3)
-  - AMap2DMap (5.6.0):
+  - AMap2DMap (5.6.1):
     - AMapFoundation (~> 1.4)
-  - AMapFoundation (1.5.3)
-  - AMapLocation (2.6.0):
+  - AMapFoundation (1.5.4)
+  - AMapLocation (2.6.1):
     - AMapFoundation (~> 1.4)
-  - Differentiator (3.0.2)
+  - Differentiator (3.1.0)
   - DZNEmptyDataSet (1.8.1)
   - FLAnimatedImage (1.0.12)
   - HandyJSON (4.2.0)
-  - IQKeyboardManager (6.1.1)
-  - Kingfisher (4.8.1)
+  - IQKeyboardManager (6.2.0)
+  - Kingfisher (4.10.0)
   - MBProgressHUD (1.0.0)
-  - MJRefresh (3.1.15.3)
+  - MJRefresh (3.1.15.7)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -20,20 +20,20 @@ PODS:
     - Moya/Core
     - RxSwift (~> 4.0)
   - Result (3.2.4)
-  - RxCocoa (4.2.0):
+  - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
-  - RxDataSources (3.0.2):
+  - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.2.0)
+  - RxSwift (4.3.1)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
   - SDWebImage/GIF (4.4.2):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
-  - SnapKit (4.0.0)
+  - SnapKit (4.0.1)
   - SVProgressHUD (2.2.5)
   - TYPagerController (2.1.2)
   - YYText (1.0.7)
@@ -104,29 +104,29 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AMap2DMap: cf0bfd6ae97951b55cc061903b814f924ba6c221
-  AMapFoundation: 58f883c80754c659cf626deb3150936bfe8f1772
-  AMapLocation: 55116a2c8956eab7550cbb56e989aa5cdcc424e3
-  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
+  AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
+  AMapFoundation: bff8688722e886feda4edd77f1443746ddd7e2e2
+  AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
-  IQKeyboardManager: 79c57795f5c2408d259d37b9da2ed07efcbb5225
-  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
-  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
-  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZTHExtension: 924db453c38d748321023af4d5d637eeae45828f
 
-PODFILE CHECKSUM: c3e9f94ca8d3f8240424b363b6d748a2d4854c2c
+PODFILE CHECKSUM: ae3b3d4e72ee9f7b28567f3427e29acff0f853f9
 
 COCOAPODS: 1.6.0.beta.2

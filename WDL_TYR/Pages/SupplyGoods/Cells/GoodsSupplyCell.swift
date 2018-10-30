@@ -17,7 +17,7 @@ class GoodsSupplyCell: BaseCell {
     @IBOutlet weak var endLabel: UILabel!
     //状态文本
     @IBOutlet weak var statusLabel: UILabel!
-    //报价状态
+    //报价状态(暂无报价)
     @IBOutlet weak var reportLabel: UILabel!
     //多少人报价
     @IBOutlet weak var numLabel: UILabel!
@@ -53,9 +53,23 @@ extension GoodsSupplyCell {
             self.numLabel.text = String(num)
             self.reportLabel.text = "报价"
         }
-        
-        self.startLabel.text = (item.startCity ?? " ") + (item.startDistrict ?? " ")
-        self.endLabel.text = (item.endCity ?? " ") + (item.endDistrict ?? " ")
+        //已成交和已下架不显示暂无报价
+        if item.isDeal == GoodsSupplyListStatus.status_soldout{
+            self.reportLabel.isHidden = true
+        }
+        if item.isDeal == GoodsSupplyListStatus.status_deal{
+            self.reportLabel.isHidden = true
+        }
+        if item.isDeal == GoodsSupplyListStatus.status_bidding{
+            self.reportLabel.isHidden = false
+        }
+        if item.isDeal == GoodsSupplyListStatus.status_putway{
+            self.reportLabel.isHidden = false
+        }
+//        self.startLabel.text = (item.startCity ?? " ") + (item.startDistrict ?? " ")
+//        self.endLabel.text = (item.endCity ?? " ") + (item.endDistrict ?? " ")
+        self.startLabel.text = (item.startProvince ?? " ") + (item.startCity ?? " ")
+        self.endLabel.text = (item.endProvince ?? " ") + (item.endCity ?? " ")
         self.goodsNameLabel.text = item.goodsName ?? " "
          //车辆货物描述
         self.goodsSpecLabel.text = self.getGoodsSpec(item: item)

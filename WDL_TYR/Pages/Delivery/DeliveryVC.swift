@@ -324,7 +324,12 @@ extension DeliveryVC {
         }
     }
     
-    //MARK: 是否满足发布条件
+    //MARK: - 信息未填写完全，提示
+    func showAlertNotComplete() -> Void {
+        self.showWarn(warn: "信息未填写完成，不能提交", complete: nil)
+    }
+    
+    //MARK: - 是否满足发布条件
     private func canCommit() -> Bool {
         if self.startPlace.province == nil {
             self.showWarn(warn: "请选择开始城市", complete: nil)

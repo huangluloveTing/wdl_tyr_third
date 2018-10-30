@@ -16,7 +16,6 @@ class RegisterVC: BaseVC {
     
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var verifyButton: UIButton!
-    
     @IBOutlet weak var confirmTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var verifyTextField: UITextField!

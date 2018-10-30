@@ -43,7 +43,9 @@ class GSDetailBidingHeader: UIView {
     @IBOutlet weak var goodsCategoryLabel: UILabel!
     @IBOutlet weak var goodsNameLabel: UILabel!
     @IBOutlet weak var transTimeLabel: UILabel!
+    //收货地
     @IBOutlet weak var obtainPlaceLabel: UILabel!
+    //发货地
     @IBOutlet weak var sendPlaceLabel: UILabel!
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var secLabel: UILabel!
@@ -98,14 +100,17 @@ extension GSDetailBidingHeader {
             let _ = self.cateTitleLabel.updateHeight(height: 25)
         }
     }
-    
+    //MARK:头部试图界面赋值
     func headerContent(item:BidingContentItem?) -> Void {
         if let item = item {
             self.contentItem = item
             self.goodsNameLabel.text = item.goodsName
             self.transTimeLabel.text = Util.dateFormatter(date: Double(item.loadTime ?? "0")! / 1000, formatter: "yyyy-MM-dd")
-            self.obtainPlaceLabel.text = item.startPlace
-            self.sendPlaceLabel.text = item.endPlace
+//            self.obtainPlaceLabel.text = item.startPlace
+//            self.sendPlaceLabel.text = item.endPlace
+           
+            self.obtainPlaceLabel.text = item.endPlace
+            self.sendPlaceLabel.text = item.startPlace
             self.goodsCodeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , item.supplyCode , ")")
             self.timedown(time: fabs(item.autoDealTime ?? 0))
         }

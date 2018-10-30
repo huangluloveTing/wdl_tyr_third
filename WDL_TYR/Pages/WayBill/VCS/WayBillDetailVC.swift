@@ -322,7 +322,6 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
         return self.tableViewCells(tableView: tableView, indexPath: indexPath)
     }
     
-    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
     }

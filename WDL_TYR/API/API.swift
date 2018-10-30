@@ -131,8 +131,10 @@ func apiMethod(api:API) -> Moya.Method {
          .sinGletransaction(_) ,
          .transportSign(_) ,
          .transportTransaction(_),
+         .registerSms(_),
          .deleteOrderHall(_),
          .getZbnConsignor(_):
+        
         return .get
     default:
         return .post
