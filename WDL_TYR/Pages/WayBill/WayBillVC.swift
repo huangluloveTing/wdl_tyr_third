@@ -13,14 +13,21 @@ import RxDataSources
 
 class WayBillVC: MainBaseVC {
 
+    @IBOutlet weak var dropAnchorView: UIView!
+    @IBOutlet weak var statusButton: MyButton!
+    @IBOutlet weak var endButton: MyButton!
+    @IBOutlet weak var startButton: MyButton!
     @IBOutlet weak var tableView: UITableView!
     
+    private var startModel:SupplyPlaceModel = SupplyPlaceModel()
+    private var endModel:SupplyPlaceModel = SupplyPlaceModel()
+    private var listStatus:GoodsSupplyStatus?
     private var queryBean : QuerytTransportListBean = QuerytTransportListBean()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.wr_setNavBarShadowImageHidden(true)
-        self.addNaviHeader()
+        self.addNaviHeader(placeholder: "搜索我的运单(运单号、承运人、车牌号、线路)")
         self.addMessageRihgtItem()
         self.emptyTitle(title: "暂无运单", to: self.tableView)
         self.hiddenTableViewSeperate(tableView: self.tableView)
@@ -48,6 +55,21 @@ class WayBillVC: MainBaseVC {
     override func bindViewModel() {
         self.tableView.upRefresh()
         self.tableView.pullRefresh()
+        self.statusButton.rx.tap
+            .subscribe(onNext: { () in
+                self.showStatusDropView()
+            })
+            .disposed(by: dispose)
+        self.endButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.showEndPlaceDropView()
+            })
+            .disposed(by: dispose)
+        self.startButton.rx.tap.asObservable()
+            .subscribe(onNext: { () in
+                self.showPlaceDropView()
+            })
+            .disposed(by: dispose)
         self.tableView.rx.willDisplayCell
             .subscribe(onNext:{(cell , indexPath) in
                 cell.contentView.shadowBorder(radius: 4, bgColor: UIColor.white , insets:UIEdgeInsetsMake(15, 15, 0, 15))
@@ -83,6 +105,76 @@ class WayBillVC: MainBaseVC {
     
     func registerCells() {
         self.registerCell(nibName: "\(WayBillCell.self)", for: self.tableView)
+    }
+    
+    //MARK: - drop
+    // 状态下拉视图
+    private lazy var statusView:DropViewContainer = {
+        let statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
+        //0=竞价中 1=成交 2=未上架 3=已下架
+        statusView.checkClosure = { [weak self] (index) in
+            self?.statusButton.setTitle(GoodsStatus[index], for: .normal)
+            self?.queryBean.transportStatus = index == 0 ? nil : index - 1
+            self?.showStatusDropView()
+            self?.tableView.beginRefresh()
+        }
+        return self.addDropView(drop: statusView, anchorView: self.dropAnchorView)
+    }()
+    
+    //选择开始地区的下拉视图
+    private lazy var placeChooseView:DropViewContainer = {
+        let placeView = Bundle.main.loadNibNamed("DropPlaceView", owner: nil, options: nil)?.first as! DropPlaceChooiceView
+        placeView.placeItems = self.initialProinve()
+        placeView.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_WIDTH)
+        placeView.dropClosure = { (province , city , strict) in
+            self.startModel.province = province
+            self.startModel.city = city
+            self.startModel.strict = strict
+            self.startButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
+        }
+        placeView.decideClosure = { [weak self](sure) in
+            if sure == true {
+                let strict = self?.startModel.strict
+                self?.startButton.setTitle(self?.startModel.strict?.title ?? (self?.startModel.city?.title ?? self?.startModel.province?.title), for: .normal)
+            } else {
+                self?.startModel = SupplyPlaceModel()
+                self?.startButton.setTitle("发货地", for: .normal)
+            }
+            self?.showPlaceDropView()
+            self?.tableView.beginRefresh()
+        }
+        return self.addDropView(drop: placeView, anchorView: dropAnchorView)
+    }()
+    
+    //选择终点地区的下拉视图
+    private lazy var endPlaceChooseView:DropViewContainer = {
+        let placeView = Bundle.main.loadNibNamed("DropPlaceView", owner: nil, options: nil)?.first as! DropPlaceChooiceView
+        placeView.placeItems = self.initialProinve()
+        placeView.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_WIDTH)
+        placeView.dropClosure = { (province , city , strict) in
+            self.endModel.province = province
+            self.endModel.city = city
+            self.endModel.strict = strict
+            self.endButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
+        }
+        placeView.decideClosure = { [weak self](sure) in
+            if sure == true {
+                let strict = self?.endModel.strict
+                self?.endButton.setTitle(self?.endModel.strict?.title ?? (self?.endModel.city?.title ?? self?.endModel.province?.title), for: .normal)
+            } else {
+                self?.endModel = SupplyPlaceModel()
+                self?.endButton.setTitle("收货地", for: .normal)
+            }
+            self?.showEndPlaceDropView()
+            self?.tableView.beginRefresh()
+        }
+        return self.addDropView(drop: placeView, anchorView: dropAnchorView)
+    }()
+    
+    //MARK: -
+    override func currentSearchContent(content: String) {
+        self.queryBean.searchWord = content
+        self.tableView.beginRefresh()
     }
 }
 
@@ -130,7 +222,16 @@ extension WayBillVC {
             })
         return datasource
     }
+    
+    //MARK:
+    func initialProinve() -> [PlaceChooiceItem] {
+        var items = Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
+        let all = PlaceChooiceItem(title: "全国", id: "", selected: false, subItems: nil, level: 0)
+        items.insert(all, at: 0)
+        return items
+    }
 }
+
 
 enum WayBillExcuteCommand {
     case selectedItem(IndexPath , BaseVC)
@@ -185,5 +286,38 @@ extension WayBillSections : AnimatableSectionModelType {
 }
 
 
+// 添加 下拉选项 操作
+extension WayBillVC {
+    
+    func showStatusDropView() {
+        self.placeChooseView.hiddenDropView()
+        self.endPlaceChooseView.hiddenDropView()
+        if self.statusView.isShow == false {
+            self.statusView.showDropViewAnimation()
+        } else {
+            self.statusView.hiddenDropView()
+        }
+    }
+    
+    func showPlaceDropView() {
+        self.statusView.hiddenDropView()
+        self.endPlaceChooseView.hiddenDropView()
+        if self.placeChooseView.isShow == false {
+            self.placeChooseView.showDropViewAnimation()
+        } else {
+            self.placeChooseView.hiddenDropView()
+        }
+    }
+    
+    func showEndPlaceDropView() {
+        self.statusView.hiddenDropView()
+        self.placeChooseView.hiddenDropView()
+        if self.endPlaceChooseView.isShow == false {
+            self.endPlaceChooseView.showDropViewAnimation()
+        } else {
+            self.endPlaceChooseView.hiddenDropView()
+        }
+    }
+}
 
 

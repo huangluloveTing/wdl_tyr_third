@@ -116,6 +116,8 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     deinit {
         print("detail de init ")
     }
+    
+    //MARK: - 搜索
 }
 
 // header
@@ -166,7 +168,7 @@ extension GoodsSupplyDetailVC {
         self.registerCell(nibName: "\(GSDetailInfoCell.self)", for: self.tableView)  // 货源详情
         self.registerCell(nibName: "\(GSTimerShelveCell.self)", for: self.tableView) // 按时上架cell
         self.registerCell(nibName: "\(GSOffShelveCell.self)", for: self.tableView)   // 竞价超时
-        self.registerCell(nibName: "\(GSQutationCell.self)", for: self.tableView) // 竞价中时的cell
+        self.registerCell(nibName: "\(GSQutationCell.self)", for: self.tableView)    // 竞价中时的cell
     }
 }
 
@@ -329,7 +331,15 @@ extension GoodsSupplyDetailVC {
 //        let time = self.pageContentInfo?.surplusTurnoverTime
         //货源竞价自动成交剩余时间
         let time = self.pageContentInfo?.autoTimeInterval
-        let headerItem = BidingContentItem(autoDealTime: time, supplyCode: hallInfo?.supplyCode, startPlace: start, endPlace: end, loadTime: hallInfo?.loadingTime, goodsName: hallInfo?.goodsName, goodsType: hallInfo?.goodsType, goodsSummer: sumer, remark: hallInfo?.remark)
+        let headerItem = BidingContentItem(autoDealTime: time,
+                                           supplyCode: hallInfo?.stowageNo,
+                                           startPlace: start,
+                                           endPlace: end,
+                                           loadTime: hallInfo?.loadingTime,
+                                           goodsName: hallInfo?.goodsName,
+                                           goodsType: hallInfo?.goodsType,
+                                           goodsSummer: sumer,
+                                           remark: hallInfo?.remark)
         self.bidingHeader.headerContent(item: headerItem)
     }
     
@@ -384,6 +394,7 @@ extension GoodsSupplyDetailVC {
                 self?.showDealAldert(item: item)
             }
             return cell
+            
         case .Deal:
             let info = self.pageContentInfo?.zbnOrderHall
             if indexPath.section == 0 {

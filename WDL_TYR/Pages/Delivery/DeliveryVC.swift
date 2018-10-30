@@ -38,12 +38,12 @@ struct DeliveryCommitModel : HandyJSON {
     var unit:String?                // 单价
     var total:String?               // 总价
     var publishTime:String?         // 发布时间
-    var loadAddress:String?         // 装货详细地址
-    var loadLinkMan:String?
-    var loadLinkPhone:String?
-    var endAddress:String?
-    var endLinkMan:String?
-    var endLinkPhone:String?
+    var loadAddress:String = ""     // 装货详细地址
+    var loadLinkMan:String = ""     // 装货联系人
+    var loadLinkPhone:String = ""   // 装货联系人手机号码
+    var endAddress:String = ""      // 收货详细地址
+    var endLinkMan:String = ""      // 收货联系人
+    var endLinkPhone:String = ""    // 收货联系人电话
 }
 
 class DeliveryVC: MainBaseVC {
@@ -258,51 +258,55 @@ extension DeliveryVC {
     
     //MARK: 定时发布
     private func toPostOnTime() {
-        self.showOnTimeView { (time, sure) in
-            if sure == true {
-                if time == nil {
-                    self.showWarn(warn: "请选择发布时间", complete: nil)
-                    return
+        if self.canCommit() == true {
+            self.showOnTimeView { [weak self](time, sure) in
+                if sure == true {
+                    if time == nil {
+                        self?.showWarn(warn: "请选择发布时间", complete: nil)
+                        return
+                    }
+                    self?.deliveryData?.publishTime = String(format: "%.f", time! * 1000)
+                    self?.toPostDelivery()
+                } else {
+                    self?.deliveryData?.publishTime = nil
                 }
-                self.deliveryData?.publishTime = String(format: "%.f", time! * 1000)
-                self.toPostDelivery()
-            } else {
-                self.deliveryData?.publishTime = nil
             }
         }
     }
     
     private func toConfirmCommit() {
-        self.showAlert(title: "提示", message: "确认提交") { (index) in
-            if index == 1 {
-                self.deliveryData?.publishTime = nil
-                self.toPostDelivery()
+        if self.canCommit() == true {
+            self.showAlert(title: "提示", message: "确认提交") { [weak self](index) in
+                if index == 1 {
+                    self?.deliveryData?.publishTime = nil
+                    self?.toPostDelivery()
+                }
             }
         }
     }
     
     
-    //MARK: 发布
+    //MARK: - 发布
     private func toPostDelivery() {
         if self.canCommit() == true {
             var sourceModel = ReleaseDeliverySourceModel()
             sourceModel.dealTotalPrice = Float(self.deliveryData?.total ?? "0")
             sourceModel.dealWay = self.deliveryData?.postType?.rawValue
             sourceModel.dealUnitPrice = Float(self.deliveryData?.unit ?? "0")
-            sourceModel.endCity = self.endPlace.city?.title
-            sourceModel.endProvince = self.endPlace.province?.title
+            sourceModel.endCity =  Util.mapSpecialStrToNil(str: self.endPlace.city?.title)
+            sourceModel.endProvince =  Util.mapSpecialStrToNil(str: self.endPlace.province?.title)
             sourceModel.goodsName = self.deliveryData?.goodsName
             sourceModel.goodsType = self.deliveryData?.goodsCate
             sourceModel.goodsWeight = Float(self.deliveryData?.goodsWeight ?? "0")
             sourceModel.loadingTime = self.deliveryData?.loadTime
             sourceModel.orderAvailabilityPeriod = self.deliveryData?.validTime
-            sourceModel.packageType = self.deliveryData?.packageType
+            sourceModel.packageType =  Util.mapSpecialStrToNil(str: self.deliveryData?.packageType)
             sourceModel.autoTimeInterval = self.deliveryData?.dealTime
-            sourceModel.startCity = self.startPlace.city?.title
-            sourceModel.startProvince = self.startPlace.province?.title
-            sourceModel.vehicleType = self.deliveryData?.vehicleType
-            sourceModel.vehicleWidth = self.deliveryData?.vehicleWidth
-            sourceModel.vehicleLength = self.deliveryData?.vehicleLength
+            sourceModel.startCity = Util.mapSpecialStrToNil(str: self.startPlace.city?.title)
+            sourceModel.startProvince =  Util.mapSpecialStrToNil(str: self.startPlace.province?.title)
+            sourceModel.vehicleType =  self.deliveryData?.vehicleType
+            sourceModel.vehicleWidth =  self.deliveryData?.vehicleWidth
+            sourceModel.vehicleLength =  self.deliveryData?.vehicleLength
             sourceModel.publishTime = self.deliveryData?.publishTime
             sourceModel.startDistrict = self.startPlace.strict?.title
             sourceModel.endDistrict = self.endPlace.strict?.title
@@ -375,6 +379,18 @@ extension DeliveryVC {
         }
         if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
             self.showWarn(warn: "请选择成交时间", complete: nil)
+            return false
+        }
+        if self.deliveryData?.loadAddress.stringISOk() == false ||
+            self.deliveryData?.loadLinkMan.stringISOk() == false ||
+            self.deliveryData?.loadLinkPhone.stringISOk() == false {
+            self.showWarn(warn: "请完善装货信息", complete: nil)
+            return false
+        }
+        if self.deliveryData?.endAddress.stringISOk() == false ||
+            self.deliveryData?.endLinkMan.stringISOk() == false ||
+            self.deliveryData?.endLinkPhone.stringISOk() == false {
+            self.showWarn(warn: "请完善收货信息", complete: nil)
             return false
         }
         return true
@@ -499,7 +515,9 @@ extension DeliveryVC {
     //MARK: 配置省市区
     func initialProinve() -> Observable<[PlaceChooiceItem]> {
         let observable = Observable<[PlaceChooiceItem]>.create { (obser) -> Disposable in
-             let areas = Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
+             var areas = Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
+            let all = PlaceChooiceItem(title: "全国", id: "", selected: false, subItems: nil, level: 0)
+            areas.insert(all, at: 0)
             obser.onNext(areas)
             obser.onCompleted()
             return Disposables.create()
@@ -567,23 +585,27 @@ extension DeliveryVC {
     // 配置车长车型的数据
     private func cartSpec() -> [TruckTypeItem]? {
         var length = TruckTypeItem(typeName: "车长", specs: [])
-        let length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
+        var length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
+        let first = TruckSpecItem(specName: "不限", id: "", selected: false)
+        length_items?.insert(first, at: 0)
         length.specs = length_items ?? []
         var width = TruckTypeItem(typeName: "车宽", specs: [])
-        let width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
+        var width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
+        width_items?.insert(first, at: 0)
         width.specs = width_items ?? []
         
         var cartType = TruckTypeItem(typeName: "车型", specs: [])
-        let type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
+        var type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
+        type_items?.insert(first, at: 0)
         cartType.specs = type_items ?? []
         
         return [length , width , cartType]
@@ -595,6 +617,7 @@ extension DeliveryVC {
         self.hallItems?.MaterialType?.forEach({ (item) in
             items.append(item.dictionaryName ?? " ")
         })
+        items.append("其他")
         return items
     }
     
@@ -604,6 +627,7 @@ extension DeliveryVC {
         self.hallItems?.PACKAGE_TYPE?.forEach({ (item) in
             items.append(item.dictionaryName ?? " ")
         })
+        items.insert("无包装", at: 0)
         return items
     }
     

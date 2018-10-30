@@ -19,8 +19,6 @@ struct SupplyPlaceModel {
     var strict : PlaceChooiceItem?
 }
 
-let GoodsStatus = ["不限","竞价中","已成交","未上架","已下架"]
-
 
 class GoodsSupplyVC: MainBaseVC {
     
@@ -44,7 +42,7 @@ class GoodsSupplyVC: MainBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.wr_setNavBarShadowImageHidden(true)
-        self.addNaviHeader()
+        self.addNaviHeader(placeholder: "搜索我的货源(货源名称、承运人、线路)")
         self.addMessageRihgtItem()
         if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
@@ -62,7 +60,6 @@ class GoodsSupplyVC: MainBaseVC {
     override func currentConfig() {
         self.tableView.register(UINib.init(nibName: goodsSupplyCellIdentity, bundle: nil), forCellReuseIdentifier: goodsSupplyCellIdentity)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        self.bottomButtom(titles: ["取消" ,"确定"], targetView: self.tableView)
         self.tableView.pullRefresh()
         self.tableView.upRefresh()
         self.tableView.delegate = self
@@ -75,7 +72,7 @@ class GoodsSupplyVC: MainBaseVC {
         super.didReceiveMemoryWarning()
     }
     
-    
+    //MARK: - bindViewModel
     override func bindViewModel() {
         self.statusButton.rx.tap
             .subscribe(onNext: { () in
@@ -152,10 +149,10 @@ class GoodsSupplyVC: MainBaseVC {
                     self.requestBean.pageSize += 20
                 }
                 
-                self.requestBean.startCity = self.startModel.city?.title
-                self.requestBean.startProvince = self.startModel.province?.title
-                self.requestBean.endCity = self.endModel.city?.title
-                self.requestBean.endProvince = self.endModel.province?.title
+                self.requestBean.startCity = Util.mapSpecialStrToNil(str: self.startModel.city?.title)
+                self.requestBean.startProvince = Util.mapSpecialStrToNil(str: self.startModel.province?.title)
+                self.requestBean.endCity = Util.mapSpecialStrToNil(str: self.endModel.city?.title)
+                self.requestBean.endProvince = Util.mapSpecialStrToNil(str: self.endModel.province?.title)
                 
                 let dataObserval = BaseApi.request(target: API.ownOrderHall(self.requestBean), type: BaseResponseModel<GoodsSupplyList>.self)
                     .subscribeOn(MainScheduler.instance)
@@ -186,6 +183,7 @@ class GoodsSupplyVC: MainBaseVC {
     }
     
   
+    //MARK: - drop
     // 状态下拉视图
     private lazy var statusView:DropViewContainer = {
        let statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
@@ -211,12 +209,12 @@ class GoodsSupplyVC: MainBaseVC {
             self.startModel.province = province
             self.startModel.city = city
             self.startModel.strict = strict
-            self.startButton.setTitle(strict?.title, for: .normal)
+            self.startButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
         }
         placeView.decideClosure = { [weak self](sure) in
             if sure == true {
                 let strict = self?.startModel.strict
-                self?.startButton.setTitle(strict?.title, for: .normal)
+                self?.startButton.setTitle(self?.startModel.strict?.title ?? (self?.startModel.city?.title ?? self?.startModel.province?.title), for: .normal)
             } else {
                 self?.startModel = SupplyPlaceModel()
                 self?.startButton.setTitle("发货地", for: .normal)
@@ -236,21 +234,27 @@ class GoodsSupplyVC: MainBaseVC {
             self.endModel.province = province
             self.endModel.city = city
             self.endModel.strict = strict
-            self.endButton.setTitle(strict?.title, for: .normal)
+            self.endButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
         }
         placeView.decideClosure = { [weak self](sure) in
             if sure == true {
                 let strict = self?.endModel.strict
-                self?.endButton.setTitle(strict?.title, for: .normal)
+                self?.endButton.setTitle(self?.endModel.strict?.title ?? (self?.endModel.city?.title ?? self?.endModel.province?.title), for: .normal)
             } else {
                 self?.endModel = SupplyPlaceModel()
-                self?.endButton.setTitle("发货地", for: .normal)
+                self?.endButton.setTitle("收货地", for: .normal)
             }
             self?.showEndPlaceDropView()
             self?.tableView.beginRefresh()
         }
         return self.addDropView(drop: placeView, anchorView: dropAnchorView)
     }()
+    
+    //MARK: -
+    override func currentSearchContent(content: String) {
+        self.requestBean.searchWord = content
+        self.tableView.beginRefresh()
+    }
 }
 
 // 获取数据
@@ -319,7 +323,10 @@ extension GoodsSupplyVC {
     
     //MARK: 
     func initialProinve() -> [PlaceChooiceItem] {
-        return Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
+        var items = Util.configServerRegions(regions: WDLCoreManager.shared().regionAreas ?? [])
+        let all = PlaceChooiceItem(title: "全国", id: "", selected: false, subItems: nil, level: 0)
+        items.insert(all, at: 0)
+        return items
     }
 }
 

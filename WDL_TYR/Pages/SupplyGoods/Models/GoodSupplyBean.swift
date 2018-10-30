@@ -27,6 +27,7 @@ struct GoodsSupplyQueryBean : HandyJSON {
     var startProvince : String?
     var pageNum : Int = 1
     var pageSize : Int = 20
+    var searchWord:String?
 }
 
 struct GoodsSupplyList :HandyJSON {

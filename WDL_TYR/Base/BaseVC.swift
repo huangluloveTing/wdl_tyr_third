@@ -60,6 +60,10 @@ class BaseVC: UIViewController {
     deinit {
         print(" dealloc ")
     }
+    
+    //MARK: - override
+    // 搜索回调
+    func currentSearchContent(content:String) -> Void { }
 }
 
 
@@ -67,18 +71,20 @@ class BaseVC: UIViewController {
 extension BaseVC {
     
     // 添加头部搜索条
-    func addNaviHeader() {
+    func addNaviHeader(placeholder:String?="") {
         let contentView = UIView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 70, height: 44))
         let searchBar = MySearchBar(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 70, height: 44))
         searchBar.contentInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0)
         searchBar.barStyle = UIBarStyle.default
-        searchBar.rx.text.orEmpty
-            .subscribe(onNext: { (text) in
-                print("search text ： \(text)")
+        searchBar.rx.text.orEmpty.asObservable()
+            .skip(1)
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self](text) in
+                self?.currentSearchContent(content: text)
             })
             .disposed(by: dispose)
         contentView.addSubview(searchBar)
-        searchBar.placeholder = "搜索我的运单(运单号、承运人、车牌号、线路)"
+        searchBar.placeholder = placeholder
         contentView.backgroundColor = UIColor.clear
         self.navigationItem.titleView = contentView
     }
@@ -102,6 +108,8 @@ extension BaseVC {
     func addDropView(drop:UIView,anchorView:UIView) -> DropViewContainer {
         return DropViewContainer(dropView: drop, anchorView: anchorView)
     }
+    
+    
 }
 
 // navigationBar

@@ -8,6 +8,8 @@
 
 import UIKit
 
+let GoodsStatus = ["不限","竞价中","已成交","未上架","已下架"]
+
 class MainBaseVC: BaseVC {
 
     override func viewDidLoad() {

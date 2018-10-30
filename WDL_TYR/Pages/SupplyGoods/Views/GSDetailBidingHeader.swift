@@ -106,8 +106,6 @@ extension GSDetailBidingHeader {
             self.contentItem = item
             self.goodsNameLabel.text = item.goodsName
             self.transTimeLabel.text = Util.dateFormatter(date: Double(item.loadTime ?? "0")! / 1000, formatter: "yyyy-MM-dd")
-//            self.obtainPlaceLabel.text = item.startPlace
-//            self.sendPlaceLabel.text = item.endPlace
            
             self.obtainPlaceLabel.text = item.endPlace
             self.sendPlaceLabel.text = item.startPlace
@@ -117,14 +115,6 @@ extension GSDetailBidingHeader {
     }
     
     private func timedown(time:TimeInterval) -> Void {
-//        Observable<Int>.interval(1, scheduler: MainScheduler.instance)
-////            .takeUntil(self.rx.deallocated)
-//            .take(Int(time))
-//            .share(replay: 1)
-//            .subscribe(onNext: { [weak self](timer) in
-//                self?.showCountDownLablel(time: time - Double(timer))
-//            })
-//            .disposed(by: dispose)
         if self.timer != nil {
             self.timer?.invalidate()
             self.timer = nil

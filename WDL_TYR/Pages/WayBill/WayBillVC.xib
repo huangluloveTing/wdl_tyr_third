@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WayBillVC" customModule="WDL_TYR" customModuleProvider="target">
             <connections>
+                <outlet property="dropAnchorView" destination="F0z-rI-5c7" id="gcV-Dg-cXC"/>
+                <outlet property="endButton" destination="m22-IE-ena" id="yGG-5X-HgL"/>
+                <outlet property="startButton" destination="H2Q-3o-a5k" id="9Ar-iw-5zP"/>
+                <outlet property="statusButton" destination="R0n-x8-63V" id="xmM-P7-N02"/>
                 <outlet property="tableView" destination="vfV-AG-5ZH" id="Qhn-Uw-4tQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2Q-3o-a5k" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
-                            <rect key="frame" x="20" y="13" width="68" height="18"/>
+                            <rect key="frame" x="20" y="6.5" width="68" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="新都区" image="down_header">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,7 +36,7 @@
                             <state key="selected" title="新都区"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m22-IE-ena" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
-                            <rect key="frame" x="178" y="13" width="68" height="18"/>
+                            <rect key="frame" x="178" y="6.5" width="68" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="新都区" image="down_header">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,7 +44,7 @@
                             <state key="selected" title="新都区"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0n-x8-63V" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
-                            <rect key="frame" x="287" y="13" width="68" height="18"/>
+                            <rect key="frame" x="287" y="6.5" width="68" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="状态" image="down_header">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,7 +59,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vq2-HU-2wq">
-                            <rect key="frame" x="108" y="21.5" width="40" height="1"/>
+                            <rect key="frame" x="108" y="22" width="40" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="gd4-a3-LNb"/>
@@ -63,7 +67,7 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="toRight_header" translatesAutoresizingMaskIntoConstraints="NO" id="o8i-GC-OkT">
-                            <rect key="frame" x="142" y="14" width="16" height="16"/>
+                            <rect key="frame" x="126" y="6.5" width="32" height="32"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.023529411760000001" green="0.75294117650000003" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -107,7 +111,7 @@
         </view>
     </objects>
     <resources>
-        <image name="down_header" width="16" height="16"/>
-        <image name="toRight_header" width="16" height="16"/>
+        <image name="down_header" width="32" height="32"/>
+        <image name="toRight_header" width="32" height="32"/>
     </resources>
 </document>

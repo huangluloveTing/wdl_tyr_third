@@ -10,6 +10,14 @@ import Foundation
 
 extension String {
     
-   
+    func stringISOk() -> Bool {
+        if self.count == 0  {
+            return false
+        }
+        if self.trimmingCharacters(in: CharacterSet.whitespaces).count == 0 {
+            return false
+        }
+        return true
+    }
     
 }

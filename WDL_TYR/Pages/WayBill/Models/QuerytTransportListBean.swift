@@ -18,6 +18,7 @@ struct QuerytTransportListBean: HandyJSON {
     var startCity : String? // (string): 发货地市 ,
     var startDistrict : String? // (string): 发货区 ,
     var startProvince : String? // (string): 发货地省 ,
+    var searchWord : String?    // 搜索值
     var transportStatus : Int? // (integer): 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝
 }
 
