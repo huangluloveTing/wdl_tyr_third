@@ -14,6 +14,8 @@ enum TableViewState : Int {
     case Refresh
     case LoadMore
     case EndRefresh
+//    case NoMoreData
+//    case ResetFooter
 }
 
 
@@ -46,6 +48,32 @@ extension UITableView {
         })
     }
     
+    func upRefresh() {
+        self.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {[weak self] in
+            self?.refreshState.onNext(.LoadMore)
+        })
+    }
+    
+    func noFooter() -> Void {
+        if let footer = self.mj_footer {
+            footer.removeFromSuperview()
+        }
+    }
+    
+    func noHeader() -> Void {
+        if let header = self.mj_header {
+            header.removeFromSuperview()
+        }
+    }
+    
+    func noMore() -> Void {
+        self.mj_footer.endRefreshingWithNoMoreData()
+    }
+    
+    func resetFooter() -> Void {
+        self.mj_footer.resetNoMoreData()
+    }
+    
     func beginRefresh() {
         let headr = self.mj_header
         if let header = headr {
@@ -70,12 +98,6 @@ extension UITableView {
             footer.endRefreshing()
         }
         self.refreshState.onNext(.EndRefresh)
-    }
-    
-    func upRefresh() {
-        self.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {[weak self] in
-            self?.refreshState.onNext(.LoadMore)
-        })
     }
 }
 

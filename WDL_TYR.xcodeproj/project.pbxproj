@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103C412189AE0900125F54 /* UIResponse+Extension.swift */; };
 		702B40E021314A2400D3D27A /* DropHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B40DF21314A2400D3D27A /* DropHintView.swift */; };
 		702C1842215230AB00601738 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702C1841215230AB00601738 /* AlertManager.swift */; };
 		702C1845215252E800601738 /* WayBillCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702C1843215252E800601738 /* WayBillCommentVC.swift */; };
@@ -175,6 +176,7 @@
 
 /* Begin PBXFileReference section */
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70103C412189AE0900125F54 /* UIResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponse+Extension.swift"; sourceTree = "<group>"; };
 		702B40DF21314A2400D3D27A /* DropHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropHintView.swift; sourceTree = "<group>"; };
 		702C1841215230AB00601738 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		702C1843215252E800601738 /* WayBillCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillCommentVC.swift; sourceTree = "<group>"; };
@@ -622,6 +624,7 @@
 				70505EF42147A99A00CEE672 /* BaseVC+Alert.swift */,
 				70FE54842147F53C0095CEFD /* String+Extension.swift */,
 				7074C91C2148DAF000E689CB /* UITableView+ProxyDelegate.swift */,
+				70103C412189AE0900125F54 /* UIResponse+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -902,7 +905,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = yinli;
 				TargetAttributes = {
 					705926D0212A5DE800BE8BB4 = {
@@ -1053,6 +1056,7 @@
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
 				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
 				70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */,
+				70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
 				708D69F4214F8B3A00884A80 /* WayBillDealInfoCell.swift in Sources */,
 				7037B0D1213ADD3A00BDC718 /* WayBillDetailStatusCell.swift in Sources */,

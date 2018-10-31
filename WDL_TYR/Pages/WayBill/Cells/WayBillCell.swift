@@ -50,7 +50,7 @@ extension WayBillCell {
           
             let goodsType = info.goodsType
             let loadTimeStr = Util.dateFormatter(date: (info.loadingTime ?? 0) / 1000, formatter: "MM-dd")
-            self.goodsInfoLabel.text = loadTimeStr + " " + (goodsType ?? "")
+            self.goodsInfoLabel.text = loadTimeStr + " " + "装货   " + (goodsType ?? "")
         }
     }
 }

@@ -12,6 +12,9 @@ import RxCocoa
 import RxDataSources
 
 class WayBillVC: MainBaseVC {
+    
+    // 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝
+    private let transportStatus = ["不限"/*,"待办单"*/,"待起运","运输中","待签收", "已签收"]
 
     @IBOutlet weak var dropAnchorView: UIView!
     @IBOutlet weak var statusButton: MyButton!
@@ -88,6 +91,9 @@ class WayBillVC: MainBaseVC {
         let loadDataCommand = self.handleCommand().map { (lists) -> WayBillExcuteCommand in
             self.tableView.endRefresh()
             let wayBillSections = WayBillSections(header: "", items: lists.list ?? [])
+            if lists.list?.count ?? 0 >= lists.total {
+                self.tableView.noMore()
+            }
             return WayBillExcuteCommand.refresh([wayBillSections])
         }
         
@@ -110,10 +116,10 @@ class WayBillVC: MainBaseVC {
     //MARK: - drop
     // 状态下拉视图
     private lazy var statusView:DropViewContainer = {
-        let statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
+        let statusView = GoodsSupplyStatusDropView(tags: transportStatus)
         //0=竞价中 1=成交 2=未上架 3=已下架
         statusView.checkClosure = { [weak self] (index) in
-            self?.statusButton.setTitle(GoodsStatus[index], for: .normal)
+            self?.statusButton.setTitle(self?.transportStatus[index], for: .normal)
             self?.queryBean.transportStatus = index == 0 ? nil : index - 1
             self?.showStatusDropView()
             self?.tableView.beginRefresh()
@@ -184,6 +190,9 @@ extension WayBillVC {
     func handleCommand() -> Observable<WayBillPageBean> {
        return self.tableView.refreshState.asObservable()
             .filter { (state) -> Bool in
+                if state == .Refresh {
+                    self.tableView.resetFooter()
+                }
                 return state != TableViewState.EndRefresh
             }
             .flatMap { (state) -> Observable<WayBillPageBean> in

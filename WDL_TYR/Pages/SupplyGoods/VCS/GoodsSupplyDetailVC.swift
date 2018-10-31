@@ -18,6 +18,12 @@ enum GoodsSupplyStatus {
     case Other      // 其他
 }
 
+//升序-ASC,降序-DESC ,
+enum SortEnum : String {
+    case ASC
+    case DESC
+}
+
 class GoodsSupplyDetailVC: NormalBaseVC  {
     
     // 上级页面传过来的数据
@@ -28,6 +34,9 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     
     // 获取的数据
     private var pageContentInfo:OrderAndOffer?
+    
+    private var offerAmountSort: SortEnum! = .ASC
+    private var timeSort:SortEnum! = .DESC
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -256,9 +265,10 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     func toOnShelve() {
         BaseApi.request(target: API.onShelf(self.pageContentInfo?.zbnOrderHall?.id ?? ""), type: BaseResponseModel<String>.self)
             .subscribe(onNext: {[weak self] (data) in
-                self?.showSuccess()
-                self?.loadAllOffers()
-                }, onError: {[weak self] (error) in
+                self?.showSuccess(success: nil, complete: {
+                    self?.pop()
+                })
+            }, onError: {[weak self] (error) in
                     self?.showFail(fail: error.localizedDescription, complete: nil)
             })
             .disposed(by: self.dispose)
@@ -339,7 +349,7 @@ extension GoodsSupplyDetailVC {
                                            goodsName: hallInfo?.goodsName,
                                            goodsType: hallInfo?.goodsType,
                                            goodsSummer: sumer,
-                                           remark: hallInfo?.remark)
+                                           remark: hallInfo?.remark ?? " ")
         self.bidingHeader.headerContent(item: headerItem)
     }
     
@@ -348,6 +358,9 @@ extension GoodsSupplyDetailVC {
         if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
             self.tableView.pullRefresh()
             self.tableView.upRefresh()
+        } else {
+            self.tableView.noFooter()
+            self.tableView.noHeader()
         }
     }
     
@@ -371,7 +384,12 @@ extension GoodsSupplyDetailVC {
     func configTableViewSectionHeader() -> UIView? {
         if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
             let header = Bundle.main.loadNibNamed("GSDetailBidingHeader", owner: nil, options: nil)![1] as! GoodsInBidingHeader
-            
+            header.showStatus(offerSelected: self.offerAmountSort == .DESC, timeSelected: self.timeSort == .DESC)
+            header.tapClosure = {[weak self] (offer , time) in
+                self?.offerAmountSort = offer == true ? .DESC : .ASC
+                self?.timeSort = time == true ? .DESC : .ASC
+                self?.tableView.beginRefresh()
+            }
             return header
         }
         return nil

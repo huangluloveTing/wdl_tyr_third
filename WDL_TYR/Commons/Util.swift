@@ -96,6 +96,16 @@ class Util {
         }
         return str
     }
+    
+    // 隐藏电话号码
+    static func formatterPhone(phone:String) -> String {
+        let count = phone.count
+        if count != 11 {
+            return phone
+        }
+        let newPhone = phone.prefix(3).appending("****").appending(phone.suffix(4))
+        return newPhone
+    }
 }
 
 // 富文本 YYText
