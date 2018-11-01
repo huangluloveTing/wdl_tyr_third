@@ -19,7 +19,7 @@ enum AutherizStatus:Int , HandyJSONEnum {
     case not_start = 0
     case autherizing = 1
     case autherizedFail = 2
-    case autherized
+    case autherized = 3
 }
 
 struct ZbnConsignor : HandyJSON {

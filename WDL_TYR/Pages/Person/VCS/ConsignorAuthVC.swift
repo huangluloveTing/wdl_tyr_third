@@ -37,5 +37,33 @@ class ConsignorAuthVC: NormalBaseVC {
         self.liencesNoTextField.titleTextField(title: "营业执照号")
         self.legalPersonTextField.titleTextField(title: "法人姓名")
         self.legalPersonIdNoTextField.titleTextField(title: "法人身份证号")
+        
+        // logo
+        self.logoImageView.singleTap { [weak self](_) in
+            self?.takePhotoAlert(closure: { (image) in
+                self?.logoImageView.image = image
+            })
+        }
+        
+        // 点击营业执照
+        self.liencesImageView.singleTap { [weak self](_) in
+            self?.takePhotoAlert(closure: { (image) in
+                self?.liencesImageView.image = image
+            })
+        }
+        
+        // 点击身份证正面
+        self.idCardMainImageView.singleTap { [weak self](_) in
+            self?.takePhotoAlert(closure: { (image) in
+                self?.idCardMainImageView.image = image
+            })
+        }
+        
+        // 点击身份证背面面
+        self.idCardOpsiteImageView.singleTap { [weak self](view) in
+            self?.takePhotoAlert(closure: { (image) in
+                self?.idCardOpsiteImageView.image = image
+            })
+        }
     }
 }

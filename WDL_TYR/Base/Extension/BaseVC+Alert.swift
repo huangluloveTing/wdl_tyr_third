@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum AlertVCMode {
+    case alert
+    case sheet
+}
+
 extension BaseVC {
     
     public func showAlert(title:String? = "" , message:String? = "", closure:((Int) -> ())? = { (index) in }) {
@@ -21,8 +26,8 @@ extension BaseVC {
         }
     }
     
-    public func showAlert(items:[String], title:String? = "提示" , message:String? = nil , showCancel:Bool = true , closure:((Int)->())? = nil) {
-        let alertVC = UIAlertController(title:title , message: message, preferredStyle: .alert)
+    public func showAlert(items:[String], title:String? = "提示" , message:String? = nil , showCancel:Bool = true , closure:((Int)->())? = nil ,mode:AlertVCMode = .alert) {
+        let alertVC = UIAlertController(title:title , message: message, preferredStyle: mode == .alert ? .alert : .actionSheet)
         items.enumerated().forEach { (index ,item) in
             let action = UIAlertAction(title: item, style: .default, handler: { (action) in
                 if let closure = closure {
