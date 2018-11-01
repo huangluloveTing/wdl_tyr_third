@@ -27,6 +27,7 @@ extension UIView {
 
 var shadowBorderKey = "shadowBorderKey-shadow"
 // 添加 圆角 和 阴影
+var shadowLayerKey = "shadowLayerKey"
 extension UIView {
     
     private var shadowAdded : Bool {
@@ -42,6 +43,15 @@ extension UIView {
         }
     }
     
+    private var shadowLayer : CAShapeLayer? {
+        set {
+            objc_setAssociatedObject(self, &shadowLayerKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        get {
+            return objc_getAssociatedObject(self, &shadowLayerKey) as? CAShapeLayer
+        }
+    }
+    
     func shadowBorder(radius:CGFloat ,
                       bgColor:UIColor ,
                       width:CGFloat = UIScreen.main.bounds.size.width ,
@@ -50,23 +60,22 @@ extension UIView {
                       shadowOpacity:CGFloat = 0.6 ,
                       insets:UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0) ,
                       slfBgColor:UIColor = UIColor(hex: COLOR_BACKGROUND)) {
-        if self.shadowAdded {
-            return;
+        if self.shadowLayer == nil {
+            self.shadowLayer = CAShapeLayer()
+            self.layer.insertSublayer(self.shadowLayer!, at: 0)
         }
-        let shadowBorderLayer = CALayer()
         let size = self.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         self.backgroundColor = slfBgColor
         let shadowBunds = CGRect(x: insets.left, y: insets.top, width: width - insets.left - insets.right, height: size.height - insets.top - insets.bottom)
-        shadowBorderLayer.frame = shadowBunds
-        shadowBorderLayer.cornerRadius = radius
-        shadowBorderLayer.backgroundColor = bgColor.cgColor
-        shadowBorderLayer.masksToBounds = false
-        shadowBorderLayer.shadowColor = shadowColor.cgColor
-        shadowBorderLayer.shadowOffset = shadowOffset
-        shadowBorderLayer.shadowOpacity = Float(shadowOpacity)
-        shadowBorderLayer.shadowRadius = radius
-        self.layer.insertSublayer(shadowBorderLayer, at: 0)
-        self.shadowAdded = true
+        self.shadowLayer?.frame = shadowBunds
+        self.shadowLayer?.cornerRadius = radius
+        self.shadowLayer?.backgroundColor = bgColor.cgColor
+        self.shadowLayer?.masksToBounds = false
+        self.shadowLayer?.shadowColor = shadowColor.cgColor
+        self.shadowLayer?.shadowOffset = shadowOffset
+        self.shadowLayer?.shadowOpacity = Float(shadowOpacity)
+        self.shadowLayer?.shadowRadius = radius
+//        self.shadowAdded = true
     }
     
     

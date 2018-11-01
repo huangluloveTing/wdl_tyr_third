@@ -274,12 +274,19 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
             .disposed(by: self.dispose)
     }
     
+    // 上架
     func onShelveAlert() {
         AlertManager.showTitleAndContentAlert(title: nil, content: "该货源为定时上架货源，确定立即上架 ？") { [weak self](index) in
             if index == 1 {
                 self?.toOnShelve()
             }
         }
+    }
+    
+    // 查看运单
+    func toScanWayBill() -> Void {
+        let wayBillInfo = WayBillInfoBean.deserialize(from: self.pageContentInfo?.zbnOrderHall?.toJSON() ?? Dictionary())
+        self.toWayBillDetail(wayBillInfo: wayBillInfo)
     }
     
     // 手动下架
@@ -447,7 +454,9 @@ extension GoodsSupplyDetailVC {
             self.bottomButtom(titles: [], targetView: self.tableView)
             break
         case .Deal:
-            self.bottomButtom(titles: ["查看运单"], targetView: self.tableView)
+            self.bottomButtom(titles: ["查看运单"], targetView: self.tableView) { [weak self](index) in
+                self?.toScanWayBill()
+            }
             break;
             
         case .InShelveOnTime:

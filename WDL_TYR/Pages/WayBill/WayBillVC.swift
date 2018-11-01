@@ -34,11 +34,11 @@ class WayBillVC: MainBaseVC {
         self.addMessageRihgtItem()
         self.emptyTitle(title: "暂无运单", to: self.tableView)
         self.hiddenTableViewSeperate(tableView: self.tableView)
+        self.tableView.beginRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.beginRefresh()
     }
     
     override func currentConfig() {
@@ -196,6 +196,12 @@ extension WayBillVC {
                 return state != TableViewState.EndRefresh
             }
             .flatMap { (state) -> Observable<WayBillPageBean> in
+                if state == .LoadMore {
+                    self.queryBean.pageSize += 20
+                }
+                if state == .Refresh {
+                    self.queryBean.pageSize = 20
+                }
                 return self.loadWayBill().asObservable()
             }
     }
@@ -214,9 +220,9 @@ extension WayBillVC {
 extension WayBillVC : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.removeCacheHeights(withIndexPaths: [indexPath])
         return tableView.heightForRow(at: indexPath)
     }
-    
 }
 
 

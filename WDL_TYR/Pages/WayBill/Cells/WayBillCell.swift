@@ -47,7 +47,6 @@ extension WayBillCell {
             self.priceLabel.text = Util.showMoney(money: info.dealUnitPrice ?? 0, after: 0)
             
             //物料和装货时间
-          
             let goodsType = info.goodsType
             let loadTimeStr = Util.dateFormatter(date: (info.loadingTime ?? 0) / 1000, formatter: "MM-dd")
             self.goodsInfoLabel.text = loadTimeStr + " " + "装货   " + (goodsType ?? "")

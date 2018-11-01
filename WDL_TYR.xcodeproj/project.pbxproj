@@ -136,6 +136,8 @@
 		70B588F92140B12F00EF704E /* DeliveryTruckTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B588F72140B12F00EF704E /* DeliveryTruckTypeCell.swift */; };
 		70B588FA2140B12F00EF704E /* DeliveryTruckTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B588F82140B12F00EF704E /* DeliveryTruckTypeCell.xib */; };
 		70B588FC2140B20E00EF704E /* UIView+ZTTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B588FB2140B20E00EF704E /* UIView+ZTTagView.swift */; };
+		70BD352D218ACF91001580C3 /* WayBillDetailLinkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BD352B218ACF91001580C3 /* WayBillDetailLinkInfoCell.swift */; };
+		70BD352E218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70BD352C218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib */; };
 		70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524C212E5D75007F2ED5 /* BaseVC.swift */; };
 		70C25250212E5D8E007F2ED5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C2524E212E5D8E007F2ED5 /* LoginVC.swift */; };
@@ -315,6 +317,8 @@
 		70B588F72140B12F00EF704E /* DeliveryTruckTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTruckTypeCell.swift; sourceTree = "<group>"; };
 		70B588F82140B12F00EF704E /* DeliveryTruckTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryTruckTypeCell.xib; sourceTree = "<group>"; };
 		70B588FB2140B20E00EF704E /* UIView+ZTTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ZTTagView.swift"; sourceTree = "<group>"; };
+		70BD352B218ACF91001580C3 /* WayBillDetailLinkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillDetailLinkInfoCell.swift; sourceTree = "<group>"; };
+		70BD352C218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillDetailLinkInfoCell.xib; sourceTree = "<group>"; };
 		70C25247212E57DB007F2ED5 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		70C25248212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		70C2524C212E5D75007F2ED5 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -411,6 +415,8 @@
 				70F460222153961800821790 /* WayBillCommentCell.xib */,
 				70F4602521539A5700821790 /* WayBillToCommentCell.swift */,
 				70F4602621539A5700821790 /* WayBillToCommentCell.xib */,
+				70BD352B218ACF91001580C3 /* WayBillDetailLinkInfoCell.swift */,
+				70BD352C218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -957,6 +963,7 @@
 				70A319DE2137FA4C00017356 /* GSQutationCell.xib in Resources */,
 				7037B0C9213A1F3700BDC718 /* WayBillDetailVC.xib in Resources */,
 				70F4602821539A5700821790 /* WayBillToCommentCell.xib in Resources */,
+				70BD352E218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib in Resources */,
 				70A319C62137D4C700017356 /* good_star@2x.png in Resources */,
 				708D69F9214FEBEA00884A80 /* WayBillGoodsCell.xib in Resources */,
 				708D6A1E2150E55D00884A80 /* WayBillReceiptItem.xib in Resources */,
@@ -1084,6 +1091,7 @@
 				70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
+				70BD352D218ACF91001580C3 /* WayBillDetailLinkInfoCell.swift in Sources */,
 				70C2524D212E5D75007F2ED5 /* BaseVC.swift in Sources */,
 				7037B0C3213A13B400BDC718 /* WayBillCell.swift in Sources */,
 				705926EE212A5E5500BE8BB4 /* ResponseHandle.swift in Sources */,

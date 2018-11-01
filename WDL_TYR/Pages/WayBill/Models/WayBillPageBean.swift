@@ -64,6 +64,8 @@ struct WayBillInfoBean : HandyJSON {
     var isEnable : String?      // (integer, optional),
     var isVisable : String?     // (integer): 是否可见 ,
     var loadingTime : TimeInterval? // (string): 装货时间 ,
+    var loadingPersonName : String? // (string): 装货联系人 ,
+    var loadingPersonPhone : String? // (string): 装货联系人电话 ,
     var locationList : [ZbnLocation]? // (Array[ZbnLocation]): 定位信息 ,
     var offerType : String? // (integer, optional),
     var offerWay :Int? // (integer): 报价方式[1：有车报价 2：无车报价] ,
@@ -83,6 +85,7 @@ struct WayBillInfoBean : HandyJSON {
     var startTime : TimeInterval? // (string): 开始时间 ,
     var stowageCode : String? // (string): 运单编码 ,
     var stowageNo : String? // (string): 配载单号 ,
+    var supplyCode : String? // (string, optional): 货源编码 ,
     var transportStatus : WayBillTransportStatus? // (integer): 运单状态 1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收  7=被拒绝
     var transportNo:String? // 运单号
     var transportWay : String? // (string, optional),

@@ -59,6 +59,7 @@ class WayBillDetailVC: BaseVC {
         self.registerCell(nibName: "\(WayBillOneCommentCell.self)", for: self.tableView)
         self.registerCell(nibName: "\(WayBillCommentAllCell.self)", for: self.tableView)
         self.registerCell(nibName: "\(WayBillReceiptCell.self)", for: self.tableView)
+        self.registerCell(nibName: "\(WayBillDetailLinkInfoCell.self)", for: self.tableView)
     }
 }
 
@@ -97,8 +98,18 @@ extension WayBillDetailVC {
             cell.contentInfo(info: self.pageInfo)
             return cell
         }
-        
-        return UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+        cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
+                          loadAddress: self.pageInfo?.startAddress,
+                          loadProvince: self.pageInfo?.startProvince,
+                          loadCity: self.pageInfo?.startCity,
+                          loadLinkPhone: self.pageInfo?.loadingPersonPhone,
+                          endName: self.pageInfo?.consigneeName,
+                          endAddress: self.pageInfo?.endAddress,
+                          endProvince: self.pageInfo?.endProvince,
+                          endCity: self.pageInfo?.endCity,
+                          endPhone: self.pageInfo?.consigneePhone)
+        return cell
     }
     
     // 运输中的 cells
@@ -131,7 +142,18 @@ extension WayBillDetailVC {
             cell.contentInfo(info: self.pageInfo)
             return cell
         }
-        return UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+        cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
+                          loadAddress: self.pageInfo?.startAddress,
+                          loadProvince: self.pageInfo?.startProvince,
+                          loadCity: self.pageInfo?.startCity,
+                          loadLinkPhone: self.pageInfo?.loadingPersonPhone,
+                          endName: self.pageInfo?.consigneeName,
+                          endAddress: self.pageInfo?.endAddress,
+                          endProvince: self.pageInfo?.endProvince,
+                          endCity: self.pageInfo?.endCity,
+                          endPhone: self.pageInfo?.consigneePhone)
+        return cell
     }
     
     // 待签收 的 cells
@@ -164,7 +186,18 @@ extension WayBillDetailVC {
             cell.contentInfo(info: self.pageInfo)
             return cell
         }
-        return UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+        cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
+                          loadAddress: self.pageInfo?.startAddress,
+                          loadProvince: self.pageInfo?.startProvince,
+                          loadCity: self.pageInfo?.startCity,
+                          loadLinkPhone: self.pageInfo?.loadingPersonPhone,
+                          endName: self.pageInfo?.consigneeName,
+                          endAddress: self.pageInfo?.endAddress,
+                          endProvince: self.pageInfo?.endProvince,
+                          endCity: self.pageInfo?.endCity,
+                          endPhone: self.pageInfo?.consigneePhone)
+        return cell
     }
     
     // 已签收
@@ -266,10 +299,10 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport
         || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart{ // 待起运
-            return 2
+            return 3
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.transporting { // 运输中
-            return 3
+            return 4
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.done { // 已签收
             let wayBillStatus = self.currrentEvaluatedStatus()
@@ -285,7 +318,7 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
             }
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup || self.pageInfo?.transportStatus == .driverPickup { // 待签收
-            return 3
+            return 4
         }
         return 1
     }
@@ -299,6 +332,10 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.transporting { // 运输中
             if section == 0 {
+                // 没有运单时，不显示
+                if self.pageInfo?.returnList?.count == nil || self.pageInfo?.returnList?.count == 0 {
+                    return 2
+                }
                 return 3
             }
             return 1
@@ -311,11 +348,15 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup || self.pageInfo?.transportStatus == .driverPickup { // 待签收
             if section == 0 {
+                // 没有运单时，不显示
+                if self.pageInfo?.returnList?.count == nil || self.pageInfo?.returnList?.count == 0 {
+                    return 2
+                }
                 return 3
             }
             return 1
         }
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -342,10 +383,12 @@ extension WayBillDetailVC {
         AlertManager.showTitleAndContentAlert(title: "提示", content: "确认取消运单？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
-                BaseApi.request(target: API.transportTransaction(self?.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
+                let code = self?.pageInfo?.stowageNo ?? ""
+                BaseApi.request(target: API.cancelTransport(code), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
-                        self?.showSuccess()
-                        self?.loadDetailInfo()
+                        self?.showSuccess(success: data.message, complete: {
+                            self?.pop()
+                        })
                     }, onError: { (error) in
                         self?.showFail(fail: error.localizedDescription, complete: nil)
                     })
@@ -359,7 +402,8 @@ extension WayBillDetailVC {
         AlertManager.showTitleAndContentAlert(title: "确认起运", content: "确认起运？") { (index) in
             if index == 1 {
                 self.showLoading(title: "", complete: nil)
-                BaseApi.request(target: API.transportTransaction(self.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
+                let code = self.pageInfo?.stowageNo ?? ""
+                BaseApi.request(target: API.transportTransaction(code), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
                         self.showSuccess()
                         self.loadDetailInfo()
@@ -373,17 +417,18 @@ extension WayBillDetailVC {
     
     // 确认签收
     func toPickWayBill() -> Void {
-        AlertManager.showTitleAndContentAlert(title: "确认签收", content: "确认签收？") { (index) in
+        AlertManager.showTitleAndContentAlert(title: "确认签收", content: "确认签收？") { [weak self](index) in
             if index == 1 {
-                self.showLoading(title: "", complete: nil)
-                BaseApi.request(target: API.transportSign(self.pageInfo?.transportNo ?? ""), type: BaseResponseModel<String>.self)
+                self?.showLoading(title: "", complete: nil)
+                let code = self?.pageInfo?.stowageNo ?? ""
+                BaseApi.request(target: API.transportSign(code), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
-                        self.showSuccess()
-                        self.loadDetailInfo()
+                        self?.showSuccess()
+                        self?.loadDetailInfo()
                     }, onError: { (error) in
-                        self.showFail(fail: error.localizedDescription, complete: nil)
+                        self?.showFail(fail: error.localizedDescription, complete: nil)
                     })
-                    .disposed(by: self.dispose)
+                    .disposed(by: (self?.dispose)!)
             }
         }
     }
@@ -432,6 +477,7 @@ extension WayBillDetailVC {
             self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
                 self?.toCommentWayBill()
             }
+            self.showBottom = true
             break
         default:
             self.bottomButtom(titles: [], targetView: self.tableView)

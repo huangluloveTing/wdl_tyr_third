@@ -29,6 +29,7 @@ enum API {
     case transportSign(String)              // 运单签收
     case transportTransaction(String)       // 运单起运
     case getZbnConsignor(String)            // 托运人认证信息
+    case cancelTransport(String)            // 取消运单
 }
 
 
@@ -60,15 +61,18 @@ func apiPath(api:API) -> String {
     case .orderHallManualTransaction(_, _):
         return "/orderHall/manualTransaction"
     case .ownTransportPage(_):
-        return "/transport/ownTransportPage"
+//        return "/transport/ownTransportPage"
+        return "/transport/queryConsignorOrderTransport"
     case .sinGletransaction(_):
         return "/transport/sinGletransaction"
     case .transportSign(_):
-        return "/transport/sign"
+        return "/transport/signTratnsport"
     case .transportTransaction(_):
         return "/transport/transaction"
     case .getZbnConsignor(_):
         return "/consignor/getZbnConsignor"
+    case .cancelTransport(_):
+        return "/transport/cancle"
     }
 }
 
@@ -112,13 +116,16 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
         
     case .transportSign(let code):
-        return .requestParameters(parameters: ["transportNo":code], encoding: URLEncoding.default)
+        return .requestParameters(parameters: ["transportNo":code ,"transportStatus":5], encoding: URLEncoding.default)
         
+    //运单状态 1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收
     case .transportTransaction(let code):
-        return .requestParameters(parameters: ["stowageCode":code], encoding: URLEncoding.default)
+        return .requestParameters(parameters: ["stowageCode":code,"transportStatus":2], encoding: URLEncoding.default)
         
     case .getZbnConsignor(let id):
         return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["id":id])
+    case .cancelTransport(let stowageCode):
+        return .requestCompositeData(bodyData: Data(), urlParameters: ["stowageCode":stowageCode])
     }
 }
 
@@ -128,13 +135,11 @@ func apiMethod(api:API) -> Moya.Method {
     case .getCreateHallDictionary() ,
          .onShelf(_) ,
          .undercarriage(_) ,
-         .sinGletransaction(_) ,
-         .transportSign(_) ,
-         .transportTransaction(_),
+         .sinGletransaction(_),
          .registerSms(_),
          .deleteOrderHall(_),
-         .getZbnConsignor(_):
-        
+         .getZbnConsignor(_),
+         .cancelTransport(_):
         return .get
     default:
         return .post

@@ -34,18 +34,15 @@ class WayBillGoodsCell: BaseCell {
 extension WayBillGoodsCell {
     
     func contentInfo(info:WayBillInfoBean?) -> Void {
-        if let info = info {
-            self.remarkLabel.text = info.remark ?? " "
-            self.unitLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(info.refercneceUnitPrice ?? 0)) , "吨")
-            self.totalLabel.text = Util.concatSeperateStr(seperete: "", strs: String(Float(info.refercneceTotalPrice ?? 0)) , "元")
-            self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: Util.concatSeperateStr(seperete: "", strs: info.goodsWeight ?? "" + "吨") , info.vehicleLength , info.vehicleType , info.packageType)
-            self.goodsTypeLabel.text = info.goodsType
-            self.goodsNameLabel.text = info.goodsName
-//            self.loadTimeLabel.text = Util.dateFormatter(date: Double(info.loadingTime ?? "0")!, formatter: "yyyy-MM-dd")
-            self.loadTimeLabel.text = Util.dateFormatter(date: (info.loadingTime ?? 0) / 1000, formatter: "yyyy-MM-dd")
-            self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endProvince,info.endCity,info.endDistrict)
-            self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startProvince , info.startCity , info.startDistrict)
-            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编码(" , info.stowageCode , ")")
-        }
+        self.remarkLabel.text = info?.remark ?? " "
+        self.unitLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(info?.refercneceUnitPrice ?? 0)) , "吨")
+        self.totalLabel.text = Util.concatSeperateStr(seperete: "", strs: String(Float(info?.refercneceTotalPrice ?? 0)) , "元")
+        self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: Util.concatSeperateStr(seperete: "", strs: info?.goodsWeight ?? "" + "吨") , info?.vehicleLength , info?.vehicleType , info?.packageType)
+        self.goodsTypeLabel.text = info?.goodsType
+        self.goodsNameLabel.text = info?.goodsName
+        self.loadTimeLabel.text = Util.dateFormatter(date: (info?.loadingTime ?? 0) / 1000, formatter: "yyyy-MM-dd")
+        self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.endProvince,info?.endCity,info?.endDistrict)
+        self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.startProvince , info?.startCity , info?.startDistrict)
+        self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编码(" , info?.supplyCode , ")")
     }
 }

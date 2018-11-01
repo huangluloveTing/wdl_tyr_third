@@ -74,7 +74,7 @@ extension UITextField {
 extension UITextField {
     
     /*时间选择弹出*/
-    func datePickerInput(mode:UIDatePickerMode , dateFormatter:String = "yyyy-MM-dd" , skip:Int = 1) -> PublishSubject<TimeInterval>{
+    func datePickerInput(mode:UIDatePickerMode , dateFormatter:String = "yyyy-MM-dd" , skip:Int = 1 ) -> PublishSubject<TimeInterval>{
         let timeObservable = PublishSubject<TimeInterval>()
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = mode

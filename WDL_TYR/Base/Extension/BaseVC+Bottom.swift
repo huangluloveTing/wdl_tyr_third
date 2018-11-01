@@ -46,6 +46,11 @@ extension BaseVC {
             self.bottomHandleView = BottomHandleView(frame: CGRect(x: 0, y: 0, width: targetView.zt_width, height: 60), bottomItems: [bottomItem_1, bottomItem_2])
             self.bottomHandleView?.shadow(color: UIColor(hex: COLOR_SHADOW), offset: CGSize(width: 0, height: -2), opacity: 0.5, radius: 2)
             self.bottomHandleView?.zt_y = targetView.zt_height-60
+            self.bottomHandleView?.handleClosure = { (index) in
+                if let closure = tapClosure {
+                    closure(index)
+                }
+            }
             targetView.superview?.insertSubview(self.bottomHandleView!, aboveSubview: targetView)
         }
     }

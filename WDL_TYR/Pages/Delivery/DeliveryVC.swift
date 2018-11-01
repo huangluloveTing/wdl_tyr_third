@@ -209,17 +209,36 @@ class DeliveryVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
-        self.unitTextField.rx.text.orEmpty
-            .subscribe(onNext: { (text) in
-                self.deliveryData?.unit = text
-            })
+        self.unitTextField.rx.text.orEmpty.asObservable()
+            .map { [weak self](text) -> String in
+                self?.deliveryData?.unit = text
+                let total = String(format: "%.2f", ((Double(text) ?? 0 )*(Double(self?.deliveryData?.goodsWeight ?? "0") ?? 0)))
+                self?.deliveryData?.total = total
+                return total
+            }
+            .bind(to: self.amountTextField.rx.text)
             .disposed(by: dispose)
         
-        self.amountTextField.rx.text.orEmpty
-            .subscribe(onNext: { (text) in
-                self.deliveryData?.total = text
-            })
+        self.amountTextField.rx.text.orEmpty.asObservable()
+            .map { [weak self](text) -> String in
+                self?.deliveryData?.total = text
+                let uinit = String(format: "%.2f",  ((Double(text) ?? 0 ) / (Double(self?.deliveryData?.goodsWeight ?? "1") ?? 1)))
+                self?.deliveryData?.unit = uinit
+                return uinit
+            }
+            .bind(to: self.unitTextField.rx.text)
             .disposed(by: dispose)
+        
+//        self.unitTextField.rx.text.orEmpty
+//            .subscribe(onNext: { (text) in
+//            })
+//            .disposed(by: dispose)
+//
+//        self.amountTextField.rx.text.orEmpty.asObservable()
+//            .subscribe(onNext: { (text) in
+//
+//            })
+//            .disposed(by: dispose)
         
         self.surePostButton.rx.tap.asObservable()
             .subscribe(onNext: { () in
