@@ -41,7 +41,6 @@ class PersonalVC: MainBaseVC  {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,17 +50,6 @@ class PersonalVC: MainBaseVC  {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
-    
-//    func dropHintView(dropHint: DropHintView, index: Int) -> UIView {
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.zt_width, height: 100))
-//        if index == 0 {
-//            view.backgroundColor = UIColor.red
-//            
-//        } else {
-//            view.backgroundColor = UIColor.blue
-//        }
-//        return view
-//    }
     
     override func currentConfig() {
         self.initialPersonExcuteInfos()
@@ -84,10 +72,12 @@ class PersonalVC: MainBaseVC  {
 }
 
 extension PersonalVC {
-    // 认证
-    func toCarriorAth() -> Void {
-        let consignorAuth = ConsignorAuthVC()
-        self.push(vc: consignorAuth, title: "认证")
+    
+    // 查看我的认证信息
+    func toScanMyAuthInfo() -> Void {
+        let authedVC = ConsignorAuthedVC()
+        authedVC.zbnConsignor = self.zbnConsignor
+        self.push(vc: authedVC, title: "认证")
     }
 }
 
@@ -106,13 +96,54 @@ extension PersonalVC {
     }
 }
 
+// 点击 我的认证
+extension PersonalVC {
+    
+    func toAuthVC() -> Void {
+        let authStauts = self.zbnConsignor?.status ?? .not_start
+        switch authStauts {
+        case .not_start: // 未审核
+            self.toAuditHandle()
+            break;
+        case .autherizing: // s正在审核
+            self.auditingHandle()
+            break;
+        case .autherizedFail: // 审核失败
+            self.auditFailedHandle()
+            break
+        case .autherized:   // 审核通过
+            self.auditSuccessHandle()
+        }
+    }
+    
+    //MARK: - 未认证
+    func toAuditHandle() -> Void {
+        self.toCarriorAth()
+    }
+    
+    //MARK: - 审核中
+    func auditingHandle() -> Void {
+        
+    }
+    
+    //MARK: - 审核失败
+    func auditFailedHandle() -> Void {
+        
+    }
+    
+    //MARK: - 已审核
+    func auditSuccessHandle() -> Void {
+        self.toScanMyAuthInfo()
+    }
+}
+
 // datasource
 extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let row = indexPath.row
             if row == 0 {
-                self.toCarriorAth()
+                self.toAuthVC()
             }
         }
     }

@@ -84,8 +84,8 @@ class Util {
         return newMony
     }
     
-    static func showImage(imageView:UIImageView , imageUrl:String , placeholder:UIImage = #imageLiteral(resourceName: "avator")) {
-        let imageResource = URL.init(string: imageUrl)
+    static func showImage(imageView:UIImageView , imageUrl:String? , placeholder:UIImage = #imageLiteral(resourceName: "avator")) {
+        let imageResource = URL.init(string: imageUrl ?? "")
         imageView.kf.setImage(with: imageResource, placeholder: placeholder)
     }
     

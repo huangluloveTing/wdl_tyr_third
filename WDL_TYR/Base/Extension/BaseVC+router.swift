@@ -50,6 +50,14 @@ extension BaseVC {
         self.push(vc: commentVC, title: "评价")
     }
     
+    
+    // 去认证页面
+    func toCarriorAth(title:String = "认证") -> Void {
+        let consignorAuth = ConsignorAuthVC()
+        self.push(vc: consignorAuth, title: title)
+    }
+    
+    
     //TODO: todo
     func toDelivery() {
 //        let deliveryVC = DeliveryVC()

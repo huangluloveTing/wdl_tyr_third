@@ -25,7 +25,7 @@ enum AutherizStatus:Int , HandyJSONEnum {
 struct ZbnConsignor : HandyJSON {
     var businessLicense:String? // 营业执照
     var businessLicenseNo:String? //营业执照号
-    var cellPhone:String?
+    var cellPhone:String? // h手机号码
     var companyAbbreviation:String? //企业简称
     var companyLogo:String?     //企业logo
     var companyName:String?     //企业名称 
@@ -35,7 +35,7 @@ struct ZbnConsignor : HandyJSON {
     var createTime:TimeInterval = 0
     var endTime:TimeInterval = 0
     var id:String = ""
-    var legalPerson:String?
+    var legalPerson:String? // 法人姓名 
     var legalPersonId:String?   //法人身份证号
     var legalPersonIdFrontage:String?   // 法人身份证正面照
     var legalPersonIdOpposite:String?   //法人身份证反面照

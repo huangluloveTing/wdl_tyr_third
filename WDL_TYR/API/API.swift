@@ -148,7 +148,7 @@ func apiTask(api:API) -> Task {
             imageData = UIImageJPEGRepresentation(image, 1)
         }
         let formProvider = MultipartFormData.FormDataProvider.data(imageData!)
-        var formData = MultipartFormData(provider: formProvider, name: "file" , fileName:"mypic.png")
+        let formData = MultipartFormData(provider: formProvider, name: "file" , fileName:"mypic.png")
         return .uploadMultipart([formData])
     }
 }

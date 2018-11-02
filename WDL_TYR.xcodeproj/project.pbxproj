@@ -38,6 +38,12 @@
 		7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */; };
 		70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */; };
 		703C12672153548B00A6180D /* DemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703C12662153548B00A6180D /* DemoVC.swift */; };
+		704E34FE218C3A8D0022122C /* ConsignorAuthedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */; };
+		704E34FF218C3A8D0022122C /* ConsignorAuthedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */; };
+		704E3502218C3B210022122C /* EnterpriseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E3500218C3B210022122C /* EnterpriseInfoCell.swift */; };
+		704E3503218C3B210022122C /* EnterpriseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704E3501218C3B210022122C /* EnterpriseInfoCell.xib */; };
+		704E3506218C3B4D0022122C /* LegalPeronInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E3504218C3B4D0022122C /* LegalPeronInfoCell.swift */; };
+		704E3507218C3B4D0022122C /* LegalPeronInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704E3505218C3B4D0022122C /* LegalPeronInfoCell.xib */; };
 		70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70505EEC21478E3300CEE672 /* OnTimePostView.swift */; };
 		70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF02147A94800CEE672 /* UIActionSheet+Blocks.m */; };
 		70505EF32147A94800CEE672 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF12147A94800CEE672 /* UIAlertView+Blocks.m */; };
@@ -211,6 +217,12 @@
 		7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneChooseInputView.swift; sourceTree = "<group>"; };
 		70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RefreshExtension.swift"; sourceTree = "<group>"; };
 		703C12662153548B00A6180D /* DemoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoVC.swift; sourceTree = "<group>"; };
+		704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthedVC.swift; sourceTree = "<group>"; };
+		704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthedVC.xib; sourceTree = "<group>"; };
+		704E3500218C3B210022122C /* EnterpriseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterpriseInfoCell.swift; sourceTree = "<group>"; };
+		704E3501218C3B210022122C /* EnterpriseInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterpriseInfoCell.xib; sourceTree = "<group>"; };
+		704E3504218C3B4D0022122C /* LegalPeronInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalPeronInfoCell.swift; sourceTree = "<group>"; };
+		704E3505218C3B4D0022122C /* LegalPeronInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalPeronInfoCell.xib; sourceTree = "<group>"; };
 		70505EEC21478E3300CEE672 /* OnTimePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTimePostView.swift; sourceTree = "<group>"; };
 		70505EEE2147A94800CEE672 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		70505EEF2147A94800CEE672 /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
@@ -449,6 +461,8 @@
 			children = (
 				70C7CB352174761700C10AC4 /* ConsignorAuthVC.swift */,
 				70C7CB362174761700C10AC4 /* ConsignorAuthVC.xib */,
+				704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */,
+				704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -460,6 +474,10 @@
 				7037B0D6213C264E00BDC718 /* PersonalInfoHeader.xib */,
 				7037B0D9213C27F300BDC718 /* PersonalExcuteCell.swift */,
 				7037B0DA213C27F300BDC718 /* PersonalExcuteCell.xib */,
+				704E3500218C3B210022122C /* EnterpriseInfoCell.swift */,
+				704E3501218C3B210022122C /* EnterpriseInfoCell.xib */,
+				704E3504218C3B4D0022122C /* LegalPeronInfoCell.swift */,
+				704E3505218C3B4D0022122C /* LegalPeronInfoCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -992,10 +1010,13 @@
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
 				70A319C42137D4C700017356 /* bad_star@1x.png in Resources */,
 				7068E0DF213F798800929337 /* DeliveryPlaceChooiceCell.xib in Resources */,
+				704E3503218C3B210022122C /* EnterpriseInfoCell.xib in Resources */,
 				70AD82AF213245D200A6715A /* GoodsSupplyCell.xib in Resources */,
+				704E3507218C3B4D0022122C /* LegalPeronInfoCell.xib in Resources */,
 				7037B0DC213C27F300BDC718 /* PersonalExcuteCell.xib in Resources */,
 				70A319CE2137EFD400017356 /* GSDealedCell.xib in Resources */,
 				702D2CD3213060190007A11F /* PersonalVC.xib in Resources */,
+				704E34FF218C3A8D0022122C /* ConsignorAuthedVC.xib in Resources */,
 				708D69EC214D628400884A80 /* GSConfirmDealView.xib in Resources */,
 				70A319C12137D4C700017356 /* bad_star@2x.png in Resources */,
 				70A319C52137D4C700017356 /* good_star@1x.png in Resources */,
@@ -1114,6 +1135,7 @@
 				708D6A152150D89800884A80 /* WayBillCommentAllCell.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				7074C91D2148DAF000E689CB /* UITableView+ProxyDelegate.swift in Sources */,
+				704E3502218C3B210022122C /* EnterpriseInfoCell.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
 				7068E0E6213F830700929337 /* DeliveryPlaceTabHeader.swift in Sources */,
 				70A319D12137F27000017356 /* GSDetailInfoCell.swift in Sources */,
@@ -1155,6 +1177,7 @@
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				708D6A192150E19600884A80 /* WayBillReceiptCell.swift in Sources */,
 				70FE54852147F53C0095CEFD /* String+Extension.swift in Sources */,
+				704E34FE218C3A8D0022122C /* ConsignorAuthedVC.swift in Sources */,
 				70C7CB3421746DE600C10AC4 /* PersonModels.swift in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,
@@ -1169,6 +1192,7 @@
 				708150C32130F53200D42723 /* BageView.swift in Sources */,
 				708150BD2130E85400D42723 /* MyButton.swift in Sources */,
 				705926F0212A5E5500BE8BB4 /* API.swift in Sources */,
+				704E3506218C3B4D0022122C /* LegalPeronInfoCell.swift in Sources */,
 				70B588FC2140B20E00EF704E /* UIView+ZTTagView.swift in Sources */,
 				70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */,
 				702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */,

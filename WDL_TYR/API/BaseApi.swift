@@ -39,7 +39,7 @@ func myEndPoint(target:TargetType) -> Endpoint {
 func requestClosure(endPoint:Endpoint , done:MoyaProvider<API>.RequestResultClosure ) -> Void {
     do {
      var request = try endPoint.urlRequest()
-        request.timeoutInterval = 10.0
+        request.timeoutInterval = 20.0
         request.addValue(WDLCoreManager.shared().userInfo?.token ?? "", forHTTPHeaderField:"Token" )
         request.addValue("", forHTTPHeaderField: "consignorToken")
         print(request.allHTTPHeaderFields ?? Dictionary())
