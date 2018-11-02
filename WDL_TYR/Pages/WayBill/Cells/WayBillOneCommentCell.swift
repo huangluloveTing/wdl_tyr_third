@@ -33,7 +33,7 @@ class WayBillOneCommentCell: BaseCell {
 extension WayBillOneCommentCell {
     
     func showComment(info:WayBillDetailCommentInfo) -> Void {
-        self.commentTimeLabel.text = Util.dateFormatter(date: info.commentTime ?? 0, formatter: "yyyy-MM-dd HH:mm")
+        self.commentTimeLabel.text = Util.dateFormatter(date: (info.commentTime ?? 0) / 1000, formatter: "yyyy-MM-dd HH:mm")
         self.commentLabel.text = info.comment
         self.scoreView?.score = CGFloat(info.rate ?? 0)
     }

@@ -23,7 +23,7 @@ class WayBillCommentCell: BaseCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.wayBillStatus = WayBillStatusView(frame: self.wayBIllStatusView.bounds)
+        self.wayBillStatus = WayBillStatusView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 80, height: 64))
         self.wayBIllStatusView.addSubview(self.wayBillStatus!)
     }
 
@@ -49,5 +49,7 @@ extension WayBillCommentCell {
         self.truckInfoLabel.text = truckInfo
         self.timeLabel.text = Util.dateFormatter(date: dealTime ?? 0, formatter: "MM-dd HH:mm")
         self.offerTimeLabel.text = Util.dateFormatter(date: offerTime ?? 0, formatter: "MM-dd HH:mm")
+        self.wayBillStatus?.status = .Done
+
     }
 }

@@ -48,3 +48,13 @@ struct ZbnConsignor : HandyJSON {
     var transactionCount : Int = 0 // (integer): 成交数量
 }
 
+//驾驶证上传路径：upload_driverLicense_filePath
+//行驶证上传路径：upload_vehicleLicense_filePath
+//道路运输证上传路径：upload_roadTransportCertificate_filePath
+//运单回单上传路径：upload_transport_return_filePath
+enum UploadImagTypeMode:String {
+    case driverLicense = "upload_driverLicense_filePath"
+    case vehicle = "upload_vehicleLicense_filePath"
+    case roadTransportCertificate = "upload_roadTransportCertificate_filePath"
+    case transport_return = "upload_transport_return_filePath"
+}

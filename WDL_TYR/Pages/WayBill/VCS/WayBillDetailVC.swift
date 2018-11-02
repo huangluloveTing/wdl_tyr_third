@@ -248,7 +248,7 @@ extension WayBillDetailVC {
     func commentForThird(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillOneCommentCell.self)") as! WayBillOneCommentCell
         let myComment = self.myComment(evaluteList: self.pageInfo?.evaluateList)
-        let commentInfo = WayBillDetailCommentInfo(rate: myComment?.evaluateScore, comment: nil, commentTime: myComment?.endTime)
+        let commentInfo = WayBillDetailCommentInfo(rate: CGFloat(myComment?.serviceAttitudeScore ?? 0), comment: nil, commentTime: myComment?.createTime)
         cell.showComment(info: commentInfo)
         return cell
     }
@@ -257,7 +257,7 @@ extension WayBillDetailVC {
     func commentInfoToMe(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillOneCommentCell.self)") as! WayBillOneCommentCell
         let commentMe = self.myComment(evaluteList: self.pageInfo?.evaluateList)
-        let commentInfo = WayBillDetailCommentInfo(rate: commentMe?.evaluateScore, comment: nil, commentTime: commentMe?.endTime)
+        let commentInfo = WayBillDetailCommentInfo(rate: CGFloat(commentMe?.serviceAttitudeScore ?? 0), comment: commentMe?.commonts, commentTime: commentMe?.endTime)
         cell.showComment(info: commentInfo)
         return cell
     }
@@ -342,6 +342,10 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.done { // 已签收
             if section == 0 {
+                // 没有运单时，不显示
+                if self.pageInfo?.returnList?.count == nil || self.pageInfo?.returnList?.count == 0 {
+                    return 2
+                }
                 return 3
             }
             return 1
@@ -474,10 +478,17 @@ extension WayBillDetailVC {
             self.showBottom = true
             break;
         case .done:
-            self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
-                self?.toCommentWayBill()
+            let wayBillStatus = self.currrentEvaluatedStatus()
+            switch wayBillStatus {
+            case .noEvaluate: // 未评价
+                self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
+                    self?.toCommentWayBill(info:self?.wayBillInfo)
+                }
+                self.showBottom = true
+                break;
+            default:      // 已评价我
+                self.bottomButtom(titles: [], targetView: self.tableView)
             }
-            self.showBottom = true
             break
         default:
             self.bottomButtom(titles: [], targetView: self.tableView)

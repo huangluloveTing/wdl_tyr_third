@@ -8,10 +8,19 @@
 
 import UIKit
 
+struct WaybillCommitModel {
+    var logicScore:Float = 5
+    var serviceScore:Float = 5
+    var comment:String = ""
+}
+
 class WayBillCommentVC: BaseVC  {
 
     @IBOutlet weak var tableView: UITableView!
-    private var pageInfo:WayBillInfoBean?
+    public var pageInfo:WayBillInfoBean?
+    
+    // 提交信息
+    private var commitModel:WaybillCommitModel = WaybillCommitModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,16 +58,45 @@ extension WayBillCommentVC {
                           truckInfo: truckInfo,
                           dealTime: dealTime)
     }
+    
+    
+    func toCommit() -> Void {
+        var evaluate = ZbnEvaluateVo()
+        evaluate.evaluateTo = 1
+        evaluate.transportNo = self.pageInfo?.transportNo ?? ""
+        evaluate.logisticsServicesScore = Int(self.commitModel.logicScore)
+        evaluate.serviceAttitudeScore = Int(self.commitModel.serviceScore)
+        evaluate.commonts = self.commitModel.comment
+        BaseApi.request(target: API.createEvaluate(evaluate), type: BaseResponseModel<String>.self)
+            .subscribe(onNext: { [weak self](data) in
+                self?.showSuccess(success: "评价成功", complete: {
+                    self?.pop(toRootViewControllerAnimation: true)
+                })
+            }, onError: { (error) in
+                self.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
+    }
 }
 
 extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillCommentCell.self)") as! WayBillCommentCell
+            cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice, amount: self.pageInfo?.dealTotalPrice, cyName: self.pageInfo?.carrierName, driver: self.pageInfo?.dirverName, truckInfo: nil, dealTime: self.pageInfo?.dealTime, offerTime: self.pageInfo?.publishTime)
             return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillToCommentCell.self)") as! WayBillToCommentCell
+        cell.showInfo(logicScore: commitModel.logicScore, serviceScore: commitModel.serviceScore, comment: commitModel.comment)
+        cell.commentClosure  = {[weak self] (logicScore , serviceScore , comment) in
+            self?.commitModel.logicScore = logicScore
+            self?.commitModel.serviceScore = serviceScore
+            self?.commitModel.comment = comment ?? ""
+        }
+        cell.commitClosure = {[weak self] in
+            self?.toCommit()
+        }
         return cell
     }
     

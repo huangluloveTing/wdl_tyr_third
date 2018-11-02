@@ -27,3 +27,12 @@ struct WayBillDetailCommentInfo : HandyJSON {
     var comment:String?
     var commentTime:TimeInterval?
 }
+
+
+struct ZbnEvaluateVo : HandyJSON {
+    var commonts : String = "" // (string): 评价 ,
+    var evaluateTo : Int? // (integer): 谁的评价 1=托运人评价无车承运人 2=托运人评价有车承运人
+    var logisticsServicesScore : Int = 5 // (integer): 物流服务得分 ,
+    var serviceAttitudeScore : Int = 5 // (integer): 服务态度 ,
+    var transportNo : String = "" // (string): 运单号
+}

@@ -42,6 +42,7 @@ class ConsignorAuthVC: NormalBaseVC {
         self.logoImageView.singleTap { [weak self](_) in
             self?.takePhotoAlert(closure: { (image) in
                 self?.logoImageView.image = image
+                self?.uploadImage(image: image , imageView: (self?.logoImageView)! , mode: .driverLicense)
             })
         }
         
@@ -65,5 +66,19 @@ class ConsignorAuthVC: NormalBaseVC {
                 self?.idCardOpsiteImageView.image = image
             })
         }
+    }
+}
+
+extension ConsignorAuthVC {
+    
+    func uploadImage(image:UIImage? , imageView:UIImageView , mode:UploadImagTypeMode) -> Void {
+        self.showLoading()
+        BaseApi.request(target: API.uploadImage(image! , mode), type: BaseResponseModel<String>.self)
+            .subscribe(onNext: {[weak self] (data) in
+                self?.showSuccess()
+            }, onError: { [weak self](error) in
+                self?.showFail(fail: "上传失败", complete: nil)
+            })
+            .disposed(by: dispose)
     }
 }

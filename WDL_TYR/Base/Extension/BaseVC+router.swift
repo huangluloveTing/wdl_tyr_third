@@ -44,8 +44,9 @@ extension BaseVC {
         self.push(vc: wayBillDetail, title: "运单详情")
     }
     
-    func toCommentWayBill() -> Void {
+    func toCommentWayBill(info:WayBillInfoBean?) -> Void {
         let commentVC = WayBillCommentVC()
+        commentVC.pageInfo = info
         self.push(vc: commentVC, title: "评价")
     }
     

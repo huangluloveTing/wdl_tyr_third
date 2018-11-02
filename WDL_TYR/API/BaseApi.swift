@@ -25,13 +25,14 @@ struct BaseApi {
 }
 
 func myEndPoint(target:TargetType) -> Endpoint {
-    let endPoint = Endpoint(url: target.baseURL.absoluteString,
+    var endPoint = Endpoint(url: target.baseURL.absoluteString,
                             sampleResponseClosure: { () -> EndpointSampleResponse in
                                 return .networkResponse(200, target.sampleData)
                             },
                             method: target.method,
                             task: target.task,
                             httpHeaderFields: [String: String]())
+        endPoint = endPoint.adding(newHTTPHeaderFields: ["Content-Type":"application/x-www-form-urlencoded"])
     return endPoint
 }
 
@@ -51,6 +52,9 @@ func requestClosure(endPoint:Endpoint , done:MoyaProvider<API>.RequestResultClos
 
 struct MyPlugins: PluginType {
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        print("request body :" +  (String(data: request.httpBody ?? Data(), encoding: .utf8) ?? ""))
+        print("request url: " + (request.url?.absoluteString ?? ""))
+        print("request method: " + (request.httpMethod ?? ""))
         return request
     }
     func willSend(_ request: RequestType, target: TargetType) {

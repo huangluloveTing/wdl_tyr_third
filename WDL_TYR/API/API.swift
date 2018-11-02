@@ -30,8 +30,16 @@ enum API {
     case transportTransaction(String)       // 运单起运
     case getZbnConsignor(String)            // 托运人认证信息
     case cancelTransport(String)            // 取消运单
+    case createEvaluate(ZbnEvaluateVo)      // 提交评价
+    case uploadImage(UIImage , UploadImagTypeMode)   // 上传驾驶证图片
 }
 
+///commom/upload/file/{serverConfigPath}
+//serverConfigPath有几个选择
+//驾驶证上传路径：upload_driverLicense_filePath
+//行驶证上传路径：upload_vehicleLicense_filePath
+//道路运输证上传路径：upload_roadTransportCertificate_filePath
+//运单回单上传路径：upload_transport_return_filePath
 
 // PATH
 func apiPath(api:API) -> String {
@@ -68,11 +76,15 @@ func apiPath(api:API) -> String {
     case .transportSign(_):
         return "/transport/signTratnsport"
     case .transportTransaction(_):
-        return "/transport/transaction"
+        return "/transport/signTratnsport"
     case .getZbnConsignor(_):
         return "/consignor/getZbnConsignor"
     case .cancelTransport(_):
         return "/transport/cancle"
+    case .createEvaluate(_):
+        return "/message/createEvaluate"
+    case .uploadImage(_ , let mode):
+        return "/commom/upload/file/" + mode.rawValue
     }
 }
 
@@ -116,16 +128,28 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
         
     case .transportSign(let code):
-        return .requestParameters(parameters: ["transportNo":code ,"transportStatus":5], encoding: URLEncoding.default)
+        return .requestParameters(parameters: ["stowageCode":code ,"transportStatus":5], encoding: JSONEncoding.default)
         
     //运单状态 1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收
     case .transportTransaction(let code):
-        return .requestParameters(parameters: ["stowageCode":code,"transportStatus":2], encoding: URLEncoding.default)
+        return .requestParameters(parameters: ["stowageCode":code,"transportStatus":2], encoding: JSONEncoding.default)
         
     case .getZbnConsignor(let id):
         return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["id":id])
     case .cancelTransport(let stowageCode):
         return .requestCompositeData(bodyData: Data(), urlParameters: ["stowageCode":stowageCode])
+        
+    case .createEvaluate(let evaluate):
+        return .requestParameters(parameters: evaluate.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .uploadImage(let image , _):
+        var imageData:Data? = UIImagePNGRepresentation(image)
+        if imageData == nil {
+            imageData = UIImageJPEGRepresentation(image, 1)
+        }
+        let formProvider = MultipartFormData.FormDataProvider.data(imageData!)
+        var formData = MultipartFormData(provider: formProvider, name: "file" , fileName:"mypic.png")
+        return .uploadMultipart([formData])
     }
 }
 
