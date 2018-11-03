@@ -58,3 +58,27 @@ enum UploadImagTypeMode:String {
     case roadTransportCertificate = "upload_roadTransportCertificate_filePath"
     case transport_return = "upload_transport_return_filePath"
 }
+
+
+struct ModifyPasswordModel : HandyJSON {
+//    carrierCode (string): 承运人/托运人编码，后台自动获取 ,
+//    oldPassword (string): 旧密码 ,
+//    password (string): 密码 ,
+//    verificationPassword (string): 确认密码
+    var carrierCode:String = ""
+    var oldPassword:String = ""
+    var password:String = ""
+    var verificationPassword:String = ""
+}
+
+struct ModityPhoneModel : HandyJSON {
+//    carrierCode (string): 承运人/托运人编码，后台自动获取 ,
+//    oldPassword (string): 旧密码 ,
+//    password (string): 密码 ,
+//    phone (string): 电话号码 ,
+//    verificationCode (string): 验证码 ,
+//    verificationPassword (string): 确认密码
+    var carrierCode:String = ""
+    var phone:String = ""
+    var verificationCode : String = ""
+}

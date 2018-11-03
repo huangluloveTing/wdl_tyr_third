@@ -32,6 +32,8 @@ enum API {
     case cancelTransport(String)            // 取消运单
     case createEvaluate(ZbnEvaluateVo)      // 提交评价
     case uploadImage(UIImage , UploadImagTypeMode)   // 上传驾驶证图片
+    case updatePassword(ModifyPasswordModel)    // 修改密码
+    case updatePhone(ModityPhoneModel)          // 修改手机号码
 }
 
 ///commom/upload/file/{serverConfigPath}
@@ -85,6 +87,10 @@ func apiPath(api:API) -> String {
         return "/message/createEvaluate"
     case .uploadImage(_ , let mode):
         return "/commom/upload/file/" + mode.rawValue
+    case .updatePassword(_):
+        return "/consignor/updatePassword"
+    case .updatePhone(_):
+        return "/consignor/updatePhone"
     }
 }
 
@@ -141,6 +147,12 @@ func apiTask(api:API) -> Task {
         
     case .createEvaluate(let evaluate):
         return .requestParameters(parameters: evaluate.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .updatePassword(let model):
+        return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .updatePhone(let model):
+        return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
     case .uploadImage(let image , _):
         var imageData:Data? = UIImagePNGRepresentation(image)

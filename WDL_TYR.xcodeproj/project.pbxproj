@@ -21,6 +21,12 @@
 		702D2CCF213060020007A11F /* WayBillVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 702D2CCD213060020007A11F /* WayBillVC.xib */; };
 		702D2CD2213060190007A11F /* PersonalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D2CD0213060190007A11F /* PersonalVC.swift */; };
 		702D2CD3213060190007A11F /* PersonalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 702D2CD1213060190007A11F /* PersonalVC.xib */; };
+		702E39A9218D31E000329643 /* PersonSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E39A7218D31E000329643 /* PersonSettingVC.swift */; };
+		702E39AA218D31E000329643 /* PersonSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 702E39A8218D31E000329643 /* PersonSettingVC.xib */; };
+		702E39AD218D383C00329643 /* MessageCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E39AB218D383C00329643 /* MessageCenterVC.swift */; };
+		702E39AE218D383C00329643 /* MessageCenterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 702E39AC218D383C00329643 /* MessageCenterVC.xib */; };
+		702E39B1218D39BD00329643 /* MessageCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E39AF218D39BD00329643 /* MessageCenterCell.swift */; };
+		702E39B2218D39BD00329643 /* MessageCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 702E39B0218D39BD00329643 /* MessageCenterCell.xib */; };
 		7037B0BF2139903100BDC718 /* BaseVC+Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B0BE2139903100BDC718 /* BaseVC+Bottom.swift */; };
 		7037B0C3213A13B400BDC718 /* WayBillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B0C1213A13B400BDC718 /* WayBillCell.swift */; };
 		7037B0C4213A13B400BDC718 /* WayBillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7037B0C2213A13B400BDC718 /* WayBillCell.xib */; };
@@ -138,6 +144,10 @@
 		70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B1301321354DA5002A473F /* GoodsSupplyDetailVC.xib */; };
 		70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B1301721354E44002A473F /* GSDetailBidingHeader.xib */; };
 		70B1301C21355BA0002A473F /* GSDetailBidingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1301B21355BA0002A473F /* GSDetailBidingHeader.swift */; };
+		70B524A0218D780000C8AF4E /* ModityPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B5249E218D780000C8AF4E /* ModityPasswordVC.swift */; };
+		70B524A1218D780000C8AF4E /* ModityPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B5249F218D780000C8AF4E /* ModityPasswordVC.xib */; };
+		70B524A4218D7C3000C8AF4E /* ModifyPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B524A2218D7C3000C8AF4E /* ModifyPhoneVC.swift */; };
+		70B524A5218D7C3000C8AF4E /* ModifyPhoneVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B524A3218D7C3000C8AF4E /* ModifyPhoneVC.xib */; };
 		70B588F62140303800EF704E /* DeliveryTruckTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B588F52140303800EF704E /* DeliveryTruckTypeView.swift */; };
 		70B588F92140B12F00EF704E /* DeliveryTruckTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B588F72140B12F00EF704E /* DeliveryTruckTypeCell.swift */; };
 		70B588FA2140B12F00EF704E /* DeliveryTruckTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B588F82140B12F00EF704E /* DeliveryTruckTypeCell.xib */; };
@@ -200,6 +210,12 @@
 		702D2CCD213060020007A11F /* WayBillVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillVC.xib; sourceTree = "<group>"; };
 		702D2CD0213060190007A11F /* PersonalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalVC.swift; sourceTree = "<group>"; };
 		702D2CD1213060190007A11F /* PersonalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalVC.xib; sourceTree = "<group>"; };
+		702E39A7218D31E000329643 /* PersonSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSettingVC.swift; sourceTree = "<group>"; };
+		702E39A8218D31E000329643 /* PersonSettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonSettingVC.xib; sourceTree = "<group>"; };
+		702E39AB218D383C00329643 /* MessageCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCenterVC.swift; sourceTree = "<group>"; };
+		702E39AC218D383C00329643 /* MessageCenterVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCenterVC.xib; sourceTree = "<group>"; };
+		702E39AF218D39BD00329643 /* MessageCenterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCenterCell.swift; sourceTree = "<group>"; };
+		702E39B0218D39BD00329643 /* MessageCenterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCenterCell.xib; sourceTree = "<group>"; };
 		7037B0BE2139903100BDC718 /* BaseVC+Bottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+Bottom.swift"; sourceTree = "<group>"; };
 		7037B0C1213A13B400BDC718 /* WayBillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillCell.swift; sourceTree = "<group>"; };
 		7037B0C2213A13B400BDC718 /* WayBillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillCell.xib; sourceTree = "<group>"; };
@@ -327,6 +343,10 @@
 		70B1301321354DA5002A473F /* GoodsSupplyDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsSupplyDetailVC.xib; sourceTree = "<group>"; };
 		70B1301721354E44002A473F /* GSDetailBidingHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GSDetailBidingHeader.xib; sourceTree = "<group>"; };
 		70B1301B21355BA0002A473F /* GSDetailBidingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSDetailBidingHeader.swift; sourceTree = "<group>"; };
+		70B5249E218D780000C8AF4E /* ModityPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModityPasswordVC.swift; sourceTree = "<group>"; };
+		70B5249F218D780000C8AF4E /* ModityPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModityPasswordVC.xib; sourceTree = "<group>"; };
+		70B524A2218D7C3000C8AF4E /* ModifyPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyPhoneVC.swift; sourceTree = "<group>"; };
+		70B524A3218D7C3000C8AF4E /* ModifyPhoneVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyPhoneVC.xib; sourceTree = "<group>"; };
 		70B588F52140303800EF704E /* DeliveryTruckTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTruckTypeView.swift; sourceTree = "<group>"; };
 		70B588F72140B12F00EF704E /* DeliveryTruckTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTruckTypeCell.swift; sourceTree = "<group>"; };
 		70B588F82140B12F00EF704E /* DeliveryTruckTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryTruckTypeCell.xib; sourceTree = "<group>"; };
@@ -463,6 +483,14 @@
 				70C7CB362174761700C10AC4 /* ConsignorAuthVC.xib */,
 				704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */,
 				704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */,
+				702E39A7218D31E000329643 /* PersonSettingVC.swift */,
+				702E39A8218D31E000329643 /* PersonSettingVC.xib */,
+				702E39AB218D383C00329643 /* MessageCenterVC.swift */,
+				702E39AC218D383C00329643 /* MessageCenterVC.xib */,
+				70B5249E218D780000C8AF4E /* ModityPasswordVC.swift */,
+				70B5249F218D780000C8AF4E /* ModityPasswordVC.xib */,
+				70B524A2218D7C3000C8AF4E /* ModifyPhoneVC.swift */,
+				70B524A3218D7C3000C8AF4E /* ModifyPhoneVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -478,6 +506,8 @@
 				704E3501218C3B210022122C /* EnterpriseInfoCell.xib */,
 				704E3504218C3B4D0022122C /* LegalPeronInfoCell.swift */,
 				704E3505218C3B4D0022122C /* LegalPeronInfoCell.xib */,
+				702E39AF218D39BD00329643 /* MessageCenterCell.swift */,
+				702E39B0218D39BD00329643 /* MessageCenterCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -992,6 +1022,7 @@
 				708D69F9214FEBEA00884A80 /* WayBillGoodsCell.xib in Resources */,
 				708D6A1E2150E55D00884A80 /* WayBillReceiptItem.xib in Resources */,
 				70C25251212E5D8E007F2ED5 /* LoginVC.xib in Resources */,
+				702E39B2218D39BD00329643 /* MessageCenterCell.xib in Resources */,
 				70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */,
 				705926DF212A5DEA00BE8BB4 /* LaunchScreen.storyboard in Resources */,
 				7037B0D2213ADD3A00BDC718 /* WayBillDetailStatusCell.xib in Resources */,
@@ -1000,13 +1031,16 @@
 				708D6A122150D88600884A80 /* WayBillOneCommentCell.xib in Resources */,
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
 				70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */,
+				70B524A5218D7C3000C8AF4E /* ModifyPhoneVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
 				702C1846215252E800601738 /* WayBillCommentVC.xib in Resources */,
 				70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
+				702E39AE218D383C00329643 /* MessageCenterVC.xib in Resources */,
 				70E2754E21415E8500E1A92B /* DropPlaceView.xib in Resources */,
 				70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */,
+				70B524A1218D780000C8AF4E /* ModityPasswordVC.xib in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
 				70A319C42137D4C700017356 /* bad_star@1x.png in Resources */,
 				7068E0DF213F798800929337 /* DeliveryPlaceChooiceCell.xib in Resources */,
@@ -1018,6 +1052,7 @@
 				702D2CD3213060190007A11F /* PersonalVC.xib in Resources */,
 				704E34FF218C3A8D0022122C /* ConsignorAuthedVC.xib in Resources */,
 				708D69EC214D628400884A80 /* GSConfirmDealView.xib in Resources */,
+				702E39AA218D31E000329643 /* PersonSettingVC.xib in Resources */,
 				70A319C12137D4C700017356 /* bad_star@2x.png in Resources */,
 				70A319C52137D4C700017356 /* good_star@1x.png in Resources */,
 				7037B0C4213A13B400BDC718 /* WayBillCell.xib in Resources */,
@@ -1087,10 +1122,12 @@
 				70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
 				7068E0DE213F798800929337 /* DeliveryPlaceChooiceCell.swift in Sources */,
+				702E39AD218D383C00329643 /* MessageCenterVC.swift in Sources */,
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
 				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
 				70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */,
 				70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */,
+				702E39B1218D39BD00329643 /* MessageCenterCell.swift in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
 				708D69F4214F8B3A00884A80 /* WayBillDealInfoCell.swift in Sources */,
 				7037B0D1213ADD3A00BDC718 /* WayBillDetailStatusCell.swift in Sources */,
@@ -1173,11 +1210,14 @@
 				70F72AF72144A6AE00C9156E /* Regx.swift in Sources */,
 				70BD3530218AF152001580C3 /* BaseVC+Picker.swift in Sources */,
 				70B1301C21355BA0002A473F /* GSDetailBidingHeader.swift in Sources */,
+				70B524A4218D7C3000C8AF4E /* ModifyPhoneVC.swift in Sources */,
 				7037B0BF2139903100BDC718 /* BaseVC+Bottom.swift in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
 				708D6A192150E19600884A80 /* WayBillReceiptCell.swift in Sources */,
 				70FE54852147F53C0095CEFD /* String+Extension.swift in Sources */,
 				704E34FE218C3A8D0022122C /* ConsignorAuthedVC.swift in Sources */,
+				702E39A9218D31E000329643 /* PersonSettingVC.swift in Sources */,
+				70B524A0218D780000C8AF4E /* ModityPasswordVC.swift in Sources */,
 				70C7CB3421746DE600C10AC4 /* PersonModels.swift in Sources */,
 				705926ED212A5E5500BE8BB4 /* Response+serial.swift in Sources */,
 				70C25256212E626C007F2ED5 /* UIView+Border.swift in Sources */,

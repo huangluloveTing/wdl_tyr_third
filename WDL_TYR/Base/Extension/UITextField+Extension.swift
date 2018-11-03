@@ -25,7 +25,7 @@ extension UITextField {
                         textColor:UIColor = UIColor(hex: TEXTFIELD_TITLECOLOR) ,
                         fontSize:CGFloat = 15) {
         let label = UILabel()
-        label.text = title
+        label.text = (title ?? "") + "   "
         label.textColor = textColor
         label.font = UIFont.systemFont(ofSize: fontSize)
         label.sizeToFit()

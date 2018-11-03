@@ -106,6 +106,13 @@ class Util {
         let newPhone = phone.prefix(3).appending("****").appending(phone.suffix(4))
         return newPhone
     }
+    
+    // 获取当前版本号
+    static func getCurrentVersion() -> String {
+        let appInfos = Bundle.main.infoDictionary;
+        let app_version = appInfos?["CFBundleShortVersionString"] as! String
+        return app_version
+    }
 }
 
 // 富文本 YYText

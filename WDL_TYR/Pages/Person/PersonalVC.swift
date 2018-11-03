@@ -27,11 +27,6 @@ class PersonalVC: MainBaseVC  {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fd_prefersNavigationBarHidden = true
-//        self.dropHintView.dataSource = self
-//        self.dropHintView.tabTitles(titles: ["消息时间","全部"])
-//        self.dropHintView.dropTapClosure = {(index) in
-//            print("current tap index ： \(index)")
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +73,23 @@ extension PersonalVC {
         let authedVC = ConsignorAuthedVC()
         authedVC.zbnConsignor = self.zbnConsignor
         self.push(vc: authedVC, title: "认证")
+    }
+    
+    // t去个人设置
+    func toPersonSetting() -> Void {
+        let settingVC = PersonSettingVC()
+        self.push(vc: settingVC, title: "个人设置")
+    }
+    
+    // 信息中心
+    func toMessageCenter() -> Void {
+        let messageCenterVC = MessageCenterVC()
+        self.push(vc: messageCenterVC, title: "信息中心")
+    }
+    
+    // 联系客服
+    func linkService() -> Void {
+        self.toLinkKF()
     }
 }
 
@@ -144,6 +156,15 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
             let row = indexPath.row
             if row == 0 {
                 self.toAuthVC()
+            }
+            if row == 2 {
+                self.toPersonSetting()
+            }
+            if row == 1 {
+                self.toMessageCenter()
+            }
+            if row == 3 {
+                self.linkService()
             }
         }
     }

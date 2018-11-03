@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-let dueTime = 10
+let dueTime = 60
 
 class RegisterVC: BaseVC {
     
