@@ -82,6 +82,10 @@ class DeliveryVC: MainBaseVC {
     @IBOutlet weak var reLinkManTextField: UITextField!
     @IBOutlet weak var rePhoneTextField: UITextField!
     
+    //选择的装货时间
+    var selLoadTimeVal: TimeInterval = 0.0
+    //选择的定时发布时间
+    var selPushTimeVal: TimeInterval = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +97,6 @@ class DeliveryVC: MainBaseVC {
         self.placeContentView.addBorder(color: nil,radius:10)
         self.startPlaceTextField.leftImage(image: #imageLiteral(resourceName: "start_point"))
         self.endTextField.leftImage(image: #imageLiteral(resourceName: "end_point"))
-        
         self.goodsNameTextField.titleTextField(title: "货品名称")
         self.goodsCategoryTextField.titleTextField(title: "货品分类", indicator: true)
         self.packageTextField.titleTextField(title: "包装类型" ,indicator: true)
@@ -115,6 +118,7 @@ class DeliveryVC: MainBaseVC {
         self.loadGoodsTimeTextField.datePickerInput(mode: .date)
             .asObservable()
             .subscribe(onNext: { (time) in
+                self.selLoadTimeVal = time
                 self.deliveryData?.loadTime = String(format: "%.f", time * 1000)
             })
             .disposed(by: dispose)
@@ -239,13 +243,13 @@ class DeliveryVC: MainBaseVC {
 //
 //            })
 //            .disposed(by: dispose)
-        
+        //确认发布
         self.surePostButton.rx.tap.asObservable()
             .subscribe(onNext: { () in
                 self.toConfirmCommit()
             })
             .disposed(by: dispose)
-        
+        //定时发布
         self.timerPostButton.rx.tap.asObservable()
             .subscribe(onNext: { () in
                 self.toPostOnTime()
@@ -284,6 +288,11 @@ extension DeliveryVC {
                         self?.showWarn(warn: "请选择发布时间", complete: nil)
                         return
                     }
+                   //只能选择的时间时间大于当前时间
+                    if self?.compareTime(time: time!) == false {
+                        return
+                    }
+                    self?.selPushTimeVal = time!
                     self?.deliveryData?.publishTime = String(format: "%.f", time! * 1000)
                     self?.toPostDelivery()
                 } else {
@@ -291,6 +300,18 @@ extension DeliveryVC {
                 }
             }
         }
+    }
+    //时间比较
+    func compareTime(time:TimeInterval) -> Bool {
+        let selDate = Date(timeIntervalSince1970: time)
+        let sysDate = Date()
+        let result:ComparisonResult = selDate.compare(sysDate)
+        if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
+            print("选择的时间 <= 系统时间")
+            self.showWarn(warn: "只能选择大于今天的时间", complete: nil)
+            return false
+        }
+        return true
     }
     
     private func toConfirmCommit() {
@@ -304,6 +325,8 @@ extension DeliveryVC {
         }
     }
     
+    
+   
     
     //MARK: - 发布
     private func toPostDelivery() {
@@ -338,10 +361,25 @@ extension DeliveryVC {
             self.showLoading()
             BaseApi.request(target: API.releaseSource(sourceModel), type: BaseResponseModel<String>.self)
                 .subscribe(onNext: { (model) in
-                    self.showSuccess(success: model.message, complete: nil)
+                    if self.deliveryData?.publishTime == nil {
+                        //确认发布
+                        self.showSuccess(success: model.message, complete: nil)
+                    }else{
+                        //定时发布
+                        let time1 = self.selPushTimeVal
+                        let time2 = Util.dateFormatter(date: time1, formatter: "yyyy年MM月dd日HH时mm分")
+                        let message = "货源发布成功\n" + time2
+                        self.showSuccess(success: message, complete: {
+                            let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
+                            vc.selectedIndex = 1
+                        })
+                     
+                    }
                     self.clearAllInput()
                 }, onError: { (error) in
+                  
                     self.showFail(fail: error.localizedDescription, complete: nil)
+
                 })
                 .disposed(by: dispose)
         }
@@ -354,66 +392,86 @@ extension DeliveryVC {
     
     //MARK: - 是否满足发布条件
     private func canCommit() -> Bool {
-        if self.startPlace.province == nil {
-            self.showWarn(warn: "请选择开始城市", complete: nil)
-            return false
-        }
-        if self.endPlace.province == nil  {
-            self.showWarn(warn: "请选择终点城市", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.goodsName)  {
-            self.showWarn(warn: "请填写货品名称", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.goodsCate) {
-            self.showWarn(warn: "请选择货品分类", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.packageType) {
-            self.showWarn(warn: "请选择包装类型", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.vehicleLength)  ||
-            Util.isEmptyString(str: self.deliveryData?.vehicleWidth) ||
-            Util.isEmptyString(str: self.deliveryData?.vehicleType) {
-            self.showWarn(warn: "请填写车长车型", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.goodsWeight) {
-            self.showWarn(warn: "请填写货物重量", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
-            self.showWarn(warn: "请选择装货时间", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.validTime) {
-            self.showWarn(warn: "请选择货物有效期", complete: nil)
-            return false
-        }
-        if self.deliveryData?.postType == nil {
-            self.showWarn(warn: "请选择成交方式", complete: nil)
-            return false
-        }
-        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
-            self.showWarn(warn: "请选择成交时间", complete: nil)
-            return false
-        }
-        if self.deliveryData?.loadAddress.stringISOk() == false ||
-            self.deliveryData?.loadLinkMan.stringISOk() == false ||
-            self.deliveryData?.loadLinkPhone.stringISOk() == false {
-            self.showWarn(warn: "请完善装货信息", complete: nil)
-            return false
-        }
-        if self.deliveryData?.endAddress.stringISOk() == false ||
-            self.deliveryData?.endLinkMan.stringISOk() == false ||
-            self.deliveryData?.endLinkPhone.stringISOk() == false {
-            self.showWarn(warn: "请完善收货信息", complete: nil)
-            return false
-        }
+//        if self.startPlace.province == nil {
+//            self.showWarn(warn: "请选择开始城市", complete: nil)
+//            return false
+//        }
+//        if self.endPlace.province == nil  {
+//            self.showWarn(warn: "请选择终点城市", complete: nil)
+//            return false
+//        }
+//        if Util.isEmptyString(str: self.deliveryData?.goodsName)  {
+//            self.showWarn(warn: "请填写货品名称", complete: nil)
+//            return false
+//        }
+//        if Util.isEmptyString(str: self.deliveryData?.goodsCate) {
+//            self.showWarn(warn: "请选择货品分类", complete: nil)
+//            return false
+//        }
+//        if Util.isEmptyString(str: self.deliveryData?.packageType) {
+//            self.showWarn(warn: "请选择包装类型", complete: nil)
+//            return false
+//        }
+//
+//        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
+//            self.showWarn(warn: "请选择装货时间", complete: nil)
+//            return false
+//        }
+//        if Util.isEmptyString(str: self.deliveryData?.vehicleLength)  ||
+//            Util.isEmptyString(str: self.deliveryData?.vehicleWidth) ||
+//            Util.isEmptyString(str: self.deliveryData?.vehicleType) {
+//            self.showWarn(warn: "请填写车长车型", complete: nil)
+//            return false
+//        }
+//        if Util.isEmptyString(str: self.deliveryData?.goodsWeight) {
+//            self.showWarn(warn: "请填写货物重量", complete: nil)
+//            return false
+//        }
+//        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
+//            self.showWarn(warn: "请选择装货时间", complete: nil)
+//            return false
+//        }
+//        if Util.isEmptyString(str: self.deliveryData?.validTime) {
+//            self.showWarn(warn: "请选择货物有效期", complete: nil)
+//            return false
+//        }
+//        if self.deliveryData?.postType == nil {
+//            self.showWarn(warn: "请选择成交方式", complete: nil)
+//            return false
+//        }
+//        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
+//            self.showWarn(warn: "请选择成交时间", complete: nil)
+//            return false
+//        }
+//        if self.deliveryData?.loadAddress.stringISOk() == false ||
+//            self.deliveryData?.loadLinkMan.stringISOk() == false ||
+//            self.deliveryData?.loadLinkPhone.stringISOk() == false {
+//            self.showWarn(warn: "请完善装货信息", complete: nil)
+//            return false
+//        }
+//        if self.deliveryData?.endAddress.stringISOk() == false ||
+//            self.deliveryData?.endLinkMan.stringISOk() == false ||
+//            self.deliveryData?.endLinkPhone.stringISOk() == false {
+//            self.showWarn(warn: "请完善收货信息", complete: nil)
+//            return false
+//        }
+//        
+//        
+//        //判断装货时间是否正确（只能选择大于当天的时间日期）
+//        let selDate = Date(timeIntervalSince1970: self.selLoadTimeVal)
+//        let sysDate = Date()
+//        let result:ComparisonResult = selDate.compare(sysDate)
+//        if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
+//            print("选择的时间 <= 系统时间")
+//            self.showWarn(warn: "只能选择大于今天的时间", complete: nil)
+//            return false
+//        }
+
+
         return true
     }
+    
+
     
     func showOnTimeView(closure:((TimeInterval? , Bool) -> ())?) {
         let onTimeView = OnTimePostView.instance()
@@ -443,6 +501,7 @@ extension DeliveryVC {
         self.deliveryData = DeliveryCommitModel()
         self.startPlace = PlaceCheckModel()
         self.endPlace = PlaceCheckModel()
+        
     }
 }
 

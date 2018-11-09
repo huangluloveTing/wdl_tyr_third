@@ -34,6 +34,7 @@ enum API {
     case uploadImage(UIImage , UploadImagTypeMode)   // 上传驾驶证图片
     case updatePassword(ModifyPasswordModel)    // 修改密码
     case updatePhone(ModityPhoneModel)          // 修改手机号码
+    case forgetPassword(ForgetPasswordModel)    // 忘记密码
 }
 
 ///commom/upload/file/{serverConfigPath}
@@ -71,8 +72,8 @@ func apiPath(api:API) -> String {
     case .orderHallManualTransaction(_, _):
         return "/orderHall/manualTransaction"
     case .ownTransportPage(_):
-//        return "/transport/ownTransportPage"
-        return "/transport/queryConsignorOrderTransport"
+        return "/transport/ownTransportPage"
+//        return "/transport/queryConsignorOrderTransport"
     case .sinGletransaction(_):
         return "/transport/sinGletransaction"
     case .transportSign(_):
@@ -91,6 +92,8 @@ func apiPath(api:API) -> String {
         return "/consignor/updatePassword"
     case .updatePhone(_):
         return "/consignor/updatePhone"
+    case .forgetPassword(_):
+        return "/consignor/forgetPassWord"
     }
 }
 
@@ -153,6 +156,10 @@ func apiTask(api:API) -> Task {
         
     case .updatePhone(let model):
         return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .forgetPassword(let model):
+        return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
         
     case .uploadImage(let image , _):
         var imageData:Data? = UIImagePNGRepresentation(image)

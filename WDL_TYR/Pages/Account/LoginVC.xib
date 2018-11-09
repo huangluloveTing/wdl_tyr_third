@@ -105,7 +105,7 @@
                         <action selector="forgetPwdAction:" destination="-1" eventType="touchUpInside" id="bPQ-Kq-G04"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbR-Ls-BO3">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbR-Ls-BO3">
                     <rect key="frame" x="95" y="628.5" width="72" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="我是承运人">
@@ -125,7 +125,7 @@
                         <action selector="toLinkCustomerServiceAction:" destination="-1" eventType="touchUpInside" id="kyA-UJ-ehK"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzr-Ee-VQs">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzr-Ee-VQs">
                     <rect key="frame" x="187" y="635" width="1" height="16"/>
                     <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

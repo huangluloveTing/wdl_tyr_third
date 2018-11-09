@@ -20,6 +20,7 @@ class RegisterVC: BaseVC {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var verifyTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
+ 
     
     var registerInfo = RegisterVModel()
     
@@ -72,6 +73,7 @@ class RegisterVC: BaseVC {
                 self.toRegisterAccount()
             })
             .disposed(by: dispose)
+     
         
         self.verifyButton.rx.tap
             .subscribe(onNext:{

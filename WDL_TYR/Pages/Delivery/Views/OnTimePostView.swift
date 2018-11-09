@@ -16,6 +16,7 @@ class OnTimePostView: UIView {
     }
     
     let dispose = DisposeBag()
+   
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var timeTextField: UITextField!
     
@@ -33,7 +34,7 @@ class OnTimePostView: UIView {
         self.timeTextField.becomeFirstResponder()
         self.backgroundColor = UIColor(hex: TEXTFIELD_TEXTCOLOR).withAlphaComponent(0.5)
         self.contentView.addBorder(color: nil)
-        self.timeTextField.datePickerInput(mode: .dateAndTime , skip:1)
+        self.timeTextField.datePickerInput(mode: .dateAndTime ,dateFormatter: "yyyy-MM-dd HH:mm" ,skip:1)
             .subscribe(onNext: { (time) in
                 self.chooseTime = time
             })
