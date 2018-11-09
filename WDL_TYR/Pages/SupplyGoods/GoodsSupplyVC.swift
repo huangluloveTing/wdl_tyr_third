@@ -50,11 +50,12 @@ class GoodsSupplyVC: MainBaseVC {
             self.tableView.translatesAutoresizingMaskIntoConstraints = false
         }
         self.emptyTitle(title: "暂无货源", to: self.tableView)
-        self.tableView.beginRefresh()
+//        self.tableView.beginRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.beginRefresh()
     }
     
     override func currentConfig() {

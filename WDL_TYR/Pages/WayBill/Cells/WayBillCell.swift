@@ -39,8 +39,8 @@ extension WayBillCell {
         if let info = info {
             //运单号
             self.tranportNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" ,info.transportNo )
-            self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startCity , info.startDistrict)
-            self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endCity , info.endDistrict)
+            self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startProvince , info.startCity)
+            self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startProvince , info.endCity)
             self.transportInfoStatusDisplay(status: info.transportStatus?.rawValue ?? 0, to: self.statusLabel)
             self.cyLabel.text = info.carrierName
             self.dealTimeLabel.text = Util.dateFormatter(date: (info.dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm:ss")

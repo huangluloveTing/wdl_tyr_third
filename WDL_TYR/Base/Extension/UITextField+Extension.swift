@@ -87,7 +87,7 @@ extension UITextField {
                 return Observable.just(date)
             })
             .map { (date) in
-                Util.dateFormatter(date: date)
+                Util.dateFormatter(date: date,formatter:dateFormatter)
             }
             .bind(to: self.rx.text)
         self.inputView = datePicker
@@ -99,6 +99,7 @@ extension UITextField {
         inputView?.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: height)
         self.inputView = inputView
     }
+   
 }
 
 // 单选弹出 的 inputView

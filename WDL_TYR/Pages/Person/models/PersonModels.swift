@@ -60,6 +60,19 @@ enum UploadImagTypeMode:String {
 }
 
 
+//忘记密码
+struct ForgetPasswordModel : HandyJSON {
+//    phone (string): 电话号码 ,
+//    verificationCode (string): 验证码 ,
+//    password (string): 密码 ,
+//    verificationPassword (string): 确认密码
+    var phone:String = ""
+    var verificationCode:String = ""
+    var password:String = ""
+    var verificationPassword:String = ""
+   
+}
+
 struct ModifyPasswordModel : HandyJSON {
 //    carrierCode (string): 承运人/托运人编码，后台自动获取 ,
 //    oldPassword (string): 旧密码 ,
