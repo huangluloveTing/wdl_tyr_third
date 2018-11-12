@@ -88,7 +88,7 @@ extension BaseCell {
             label.textColor = UIColor(hex: "999999")
             label.text = "待签收"
         }
-        if status == 4 {
+        if status == 10 {
             label.textColor = UIColor(hex: "999999")
             label.text = "已签收"
         }

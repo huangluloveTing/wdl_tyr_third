@@ -49,7 +49,7 @@ extension WayBillCommentVC {
         let cyName = self.pageInfo?.carrierName
         let driver = self.pageInfo?.dirverName
         let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
-        let dealTime = self.pageInfo?.dealTime
+        let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
         
         cell.showDealInfo(unit: unit,
                           amount: amount,
@@ -83,7 +83,7 @@ extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillCommentCell.self)") as! WayBillCommentCell
-            cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice, amount: self.pageInfo?.dealTotalPrice, cyName: self.pageInfo?.carrierName, driver: self.pageInfo?.dirverName, truckInfo: nil, dealTime: self.pageInfo?.dealTime, offerTime: self.pageInfo?.publishTime)
+            cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice, amount: self.pageInfo?.dealTotalPrice, cyName: self.pageInfo?.carrierName, driver: self.pageInfo?.dirverName, truckInfo: nil, dealTime: (self.pageInfo?.dealTime) ?? 0 / 1000, offerTime: (self.pageInfo?.publishTime ?? 0) / 1000)
             return cell
         }
         

@@ -21,7 +21,8 @@ class AlertManager: NSObject {
     
     // 自定义的有 title 和 content 的alert （eg：货源确认下架）
     static func showTitleAndContentAlert(title:String? , content:String? , closure:((Int) -> ())?) {
-       let _ =  UIAlertView.show(withTitle: title, message: content, cancelButtonTitle: nil, otherButtonTitles: ["取消" , "确认"]) { (alert, index) in
+        _ =  UIAlertView.show(withTitle: title, message: content, cancelButtonTitle: nil, otherButtonTitles: ["取消" , "确认"]) { (alert, index) in
+            alert?.dismiss(withClickedButtonIndex: index, animated: false)
             if let closure = closure {
                 closure(index)
             }

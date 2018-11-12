@@ -358,6 +358,7 @@ extension GoodsSupplyDetailVC {
                                            goodsSummer: sumer,
                                            remark: hallInfo?.remark ?? " ")
         self.bidingHeader.headerContent(item: headerItem)
+        self.bidingHeader.showTimeDown(show: self.pageContentInfo?.zbnOrderHall?.dealWay == 1)
     }
     
     // 当竞价中时，添加上拉加载和下拉刷新
@@ -449,30 +450,32 @@ extension GoodsSupplyDetailVC {
     
     //
     func bottomConfig() {
-        switch self.getGoodsSupplyStatus() {
-        case .InBidding:
-            self.bottomButtom(titles: [], targetView: self.tableView)
-            break
-        case .Deal:
-            self.bottomButtom(titles: ["查看运单"], targetView: self.tableView) { [weak self](index) in
-                self?.toScanWayBill()
+        if WDLCoreManager.shared().consignorType == .third {
+            switch self.getGoodsSupplyStatus() {
+            case .InBidding:
+                self.bottomButtom(titles: [], targetView: self.tableView)
+                break
+            case .Deal:
+                self.bottomButtom(titles: ["查看运单"], targetView: self.tableView) { [weak self](index) in
+                    self?.toScanWayBill()
+                }
+                break;
+                
+            case .InShelveOnTime:
+                self.bottomButtom(titles: ["立即上架"], targetView: self.tableView) { [weak self](index) in
+                    self?.onShelveAlert()
+                }
+                break
+                
+            case .OffShelve:
+                self.bottomButtom(titles: ["重新上架"], targetView: self.tableView) { [weak self](index) in
+                    self?.onShelveAlert()
+                }
+                break
+            default:
+                self.bottomButtom(titles: [], targetView: self.tableView)
+                break
             }
-            break;
-            
-        case .InShelveOnTime:
-            self.bottomButtom(titles: ["立即上架"], targetView: self.tableView) { [weak self](index) in
-                self?.onShelveAlert()
-            }
-            break
-            
-        case .OffShelve:
-            self.bottomButtom(titles: ["重新上架"], targetView: self.tableView) { [weak self](index) in
-                self?.onShelveAlert()
-            }
-            break
-        default:
-            self.bottomButtom(titles: [], targetView: self.tableView)
-            break
         }
     }
 }

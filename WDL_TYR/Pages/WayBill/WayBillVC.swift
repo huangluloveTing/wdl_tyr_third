@@ -120,7 +120,15 @@ class WayBillVC: MainBaseVC {
         //0=竞价中 1=成交 2=未上架 3=已下架
         statusView.checkClosure = { [weak self] (index) in
             self?.statusButton.setTitle(self?.transportStatus[index], for: .normal)
-            self?.queryBean.transportStatus = index == 0 ? nil : index - 1
+//            transportStatus (integer): 运单状态 1=待起运 2=运输中 3=代签收 10=已签收 ,
+
+            if index == 0 {
+                self?.queryBean.transportStatus = nil
+            } else if index == 4 {
+                self?.queryBean.transportStatus = 10
+            } else {
+                self?.queryBean.transportStatus = index
+            }
             self?.showStatusDropView()
             self?.tableView.beginRefresh()
         }

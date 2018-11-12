@@ -35,7 +35,11 @@ class RootTabBarVC: UITabBarController {
         let naviSupplyVC = self.childController(vc: supplyVC, normalImage: #imageLiteral(resourceName: "货源-灰"), selecteImage: #imageLiteral(resourceName: "货源-选中"), tabText: "货源")
         let naviBillVC = self.childController(vc: wayBillVC, normalImage: #imageLiteral(resourceName: "运单-灰"), selecteImage: #imageLiteral(resourceName: "运单-选中"), tabText: "运单")
         let naviPersonalVC = self.childController(vc: personalVC, normalImage: #imageLiteral(resourceName: "我的-灰"), selecteImage: #imageLiteral(resourceName: "我的-选中"), tabText: "我的")
-        self.viewControllers = [naviDeliverVC , naviSupplyVC , naviBillVC , naviPersonalVC]
+        if WDLCoreManager.shared().consignorType == .agency {
+            self.viewControllers =  [naviSupplyVC , naviBillVC , naviPersonalVC]
+        } else {
+            self.viewControllers =  [naviDeliverVC , naviSupplyVC , naviBillVC , naviPersonalVC]
+        }
     }
 }
 

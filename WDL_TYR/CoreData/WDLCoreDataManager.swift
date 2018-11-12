@@ -9,42 +9,11 @@
 import Foundation
 import HandyJSON
 
-//"pageNum": 0,
-//"pageSize": 0,
-//"startTime": null,
-//"endTime": null,
-//"token": "Q2Q3MmFhMDlkMWY4MjRiMGRiOGZlNjg1NDRhNGJlMjY2",
-//"id": "d72aa09d1f824b0db8fe68544a4be266",
-//"consignorNo": null,
-//"createTime": 1536459959157,
-//"companyName": null,
-//"companyAbbreviation": null,
-//"companyLogo": null,
-//"consignorName": null,
-//"cellPhone": "18011360791",
-//"officeAddress": null,
-//"businessLicenseNo": null,
-//"businessLicense": null,
-//"legalPerson": null,
-//"legalPersonId": null,
-//"legalPersonIdFrontage": null,
-//"legalPersonIdOpposite": null,
-//"consignorType": 2,
-//"status": 1,
-//"remark": null,
-//"passWord": "e10adc3949ba59abbe56e057f20f883e"
-struct LoginInfo : HandyJSON {
-    public var token:String?
-    public var id:String?
-    public var consignorNo:String?
-    public var cellPhone:String?
-}
-
 class WDLCoreManager: NSObject {
     
     public var regionAreas:[RegionModel]?
     
-    public var userInfo: LoginInfo?
+    public var userInfo: ZbnConsignor?
     
     private static let instance = WDLCoreManager()
     private override init() {}
@@ -53,5 +22,9 @@ class WDLCoreManager: NSObject {
         return instance
     }
     
+    // 当前用户的身份
+    public var consignorType:ConsignorType?  {
+        return userInfo?.consignorType
+    }
     
 }

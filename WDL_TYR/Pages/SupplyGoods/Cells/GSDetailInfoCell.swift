@@ -33,16 +33,14 @@ class GSDetailInfoCell: BaseCell {
 
 extension GSDetailInfoCell {
     func contentInfo(info:OderHallBean?) -> Void {
-        if let info = info {
-            self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , info.id , ")")
-            self.goodsStauts(to: self.statusLabel, status: info.isDeal ?? 0)
-            self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info.startProvince , info.startCity , info.startDistrict)
-            self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info.endProvince,info.endCity,info.endDistrict)
-            self.loadTimeLabel.text = Util.dateFormatter(date: Double(info.loadingTime ?? "0")!, formatter: "MM-dd  HH:mm")
-            self.goodsNameLabel.text = info.goodsName
-            self.goodsTypeLabel.text = info.goodsType
-            self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info.goodsWeight , info.vehicleLength , info.vehicleWidth  ,info.vehicleType , info.packageType)
-            self.remarkLabel.text = info.remark
-        }
+        self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , info?.supplyCode , ")")
+        self.goodsStauts(to: self.statusLabel, status: info?.isDeal ?? 0)
+        self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.startProvince , info?.startCity , info?.startDistrict)
+        self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.endProvince,info?.endCity,info?.endDistrict)
+        self.loadTimeLabel.text = Util.dateFormatter(date: (Double(info?.loadingTime ?? "0") ?? 0) / 1000, formatter: "MM-dd  HH:mm")
+        self.goodsNameLabel.text = info?.goodsName
+        self.goodsTypeLabel.text = info?.goodsType
+        self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info?.goodsWeight , info?.vehicleLength , info?.vehicleWidth  ,info?.vehicleType , info?.packageType)
+        self.remarkLabel.text = info?.remark
     }
 }
