@@ -120,7 +120,8 @@ extension PersonSettingVC {
     
     // 关于织布鸟
     func toZbnIntroduction() -> Void {
-        
+        let about = AboutZbnVC()
+        self.push(vc: about, title: "关于织布鸟")
     }
     // 联系客服
     func linkService() -> Void {

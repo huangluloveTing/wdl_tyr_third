@@ -135,12 +135,15 @@ extension PersonalVC {
     
     //MARK: - 审核中
     func auditingHandle() -> Void {
+        let vc =  IdentifingVC()
+        push(vc: vc, title: "我的认证")
         
     }
     
     //MARK: - 审核失败
     func auditFailedHandle() -> Void {
-        
+        let vc =  IdentiferFailVC()
+        push(vc: vc, title: "我的认证")
     }
     
     //MARK: - 已审核
