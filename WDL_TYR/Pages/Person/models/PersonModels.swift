@@ -46,6 +46,7 @@ struct ZbnConsignor : HandyJSON {
     var startTime : TimeInterval = 0 // (string): 开始时间 ,
     var status : AutherizStatus = .not_start // (integer): 状态(0:未审核，1：审核中，2：审核失败，3：审核中) ,
     var transactionCount : Int = 0 // (integer): 成交数量
+    var token:String?
 }
 
 //驾驶证上传路径：upload_driverLicense_filePath

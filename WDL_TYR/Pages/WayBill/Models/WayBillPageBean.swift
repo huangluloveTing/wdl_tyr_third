@@ -26,10 +26,7 @@ enum WayBillTransportStatus : Int , HandyJSONEnum { // 运单状态
     case willToTransport = 1   // 待起运
     case transporting = 2      // 运输中
     case willToPickup = 3      // 待签收
-    case driverPickup = 4      // 司机签收
-    case done =  5             // 已签收
-    case tmsPickup =  6        // TMS签收
-    case reject = 7            // 被拒绝
+    case done = 10            // 完成
 }
 
 struct WayBillInfoBean : HandyJSON {

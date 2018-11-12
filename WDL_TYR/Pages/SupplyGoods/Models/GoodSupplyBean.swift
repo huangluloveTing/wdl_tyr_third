@@ -55,7 +55,7 @@ struct GoodsSupplyListItem : HandyJSON{
     var publishTime:TimeInterval?
     var loadingTime:TimeInterval?
     var orderAvailabilityPeriod:String?
-    var dealWay:Int?
+    var dealWay:Int? ////成交方式 1=自动 2=手动 ,
     var autoTimeInterval:CGFloat?
     var isDeal:GoodsSupplyListStatus?
     var isEnable:Int?

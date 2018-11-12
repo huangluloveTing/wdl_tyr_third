@@ -75,7 +75,7 @@ func apiPath(api:API) -> String {
         return "/transport/ownTransportPage"
 //        return "/transport/queryConsignorOrderTransport"
     case .sinGletransaction(_):
-        return "/transport/sinGletransaction"
+        return "/transport/sinGletransactionApp"
     case .transportSign(_):
         return "/transport/signTratnsport"
     case .transportTransaction(_):
@@ -167,7 +167,7 @@ func apiTask(api:API) -> Task {
             imageData = UIImageJPEGRepresentation(image, 1)
         }
         let formProvider = MultipartFormData.FormDataProvider.data(imageData!)
-        let formData = MultipartFormData(provider: formProvider, name: "file" , fileName:"mypic.png")
+        let formData = MultipartFormData(provider: formProvider, name: "file")
         return .uploadMultipart([formData])
     }
 }

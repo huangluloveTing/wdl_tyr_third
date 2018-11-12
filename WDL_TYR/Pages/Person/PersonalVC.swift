@@ -13,6 +13,7 @@ import RxDataSources
 
 let personImgs:[UIImage] = [#imageLiteral(resourceName: "认证") , #imageLiteral(resourceName: "消息中心"), #imageLiteral(resourceName: "个人设置") , #imageLiteral(resourceName: "联系客服")]
 let personTitles:[String] = ["我的认证","消息中心","个人设置","联系客服"]
+let personAgencyTitles:[String] = ["我的认证","我的承运人","消息中心","个人设置","联系客服"]
 
 class PersonalVC: MainBaseVC  {
     
@@ -91,6 +92,11 @@ extension PersonalVC {
     func linkService() -> Void {
         self.toLinkKF()
     }
+    
+    // 我的承运人
+    func toMyCarrier() -> Void {
+        
+    }
 }
 
 //MARK: load data
@@ -160,14 +166,28 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
             if row == 0 {
                 self.toAuthVC()
             }
-            if row == 2 {
-                self.toPersonSetting()
-            }
-            if row == 1 {
-                self.toMessageCenter()
-            }
-            if row == 3 {
-                self.linkService()
+            if WDLCoreManager.shared().consignorType == .agency {
+                if row == 2 {
+                    self.toMessageCenter()
+                }
+                if row == 1 {
+                    self.toMyCarrier()
+                }
+                if row == 3 {
+                    self.toPersonSetting()
+                }
+                self.toLinkKF()
+                
+            } else {
+                if row == 2 {
+                    self.toPersonSetting()
+                }
+                if row == 1 {
+                    self.toMessageCenter()
+                }
+                if row == 3 {
+                    self.linkService()
+                }
             }
         }
     }
@@ -208,16 +228,32 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
     
     func initialPersonExcuteInfos() -> Void {
         self.personInfos = []
-        for index in 0..<4 {
-            var info = PersonExcuteInfo()
-            info.image = personImgs[index]
-            info.exTitle = personTitles[index]
-            info.showIndicator = true
-            if index == 3 {
-                info.showIndicator = false
+        let type = WDLCoreManager.shared().consignorType
+        if type == .third {
+            for index in 0..<4 {
+                var info = PersonExcuteInfo()
+                info.image = personImgs[index]
+                info.exTitle = personTitles[index]
+                info.showIndicator = true
+                if index == 3 {
+                    info.showIndicator = false
+                }
+                self.personInfos?.append(info)
             }
-            self.personInfos?.append(info)
         }
+        else {
+            for index in 0..<personAgencyTitles.count {
+                var info = PersonExcuteInfo()
+                info.image = personImgs[index]
+                info.exTitle = personAgencyTitles[index]
+                info.showIndicator = true
+                if index == 3 {
+                    info.showIndicator = false
+                }
+                self.personInfos?.append(info)
+            }
+        }
+        
     }
     
 }

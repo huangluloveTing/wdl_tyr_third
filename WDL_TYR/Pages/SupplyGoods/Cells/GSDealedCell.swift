@@ -31,10 +31,10 @@ class GSDealedCell: BaseCell {
 extension GSDealedCell {
     func contentInfo(info:OderHallBean? , offer:SupplyOfferBean?) -> Void {
         self.truckInfoLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info?.vehicleWidth , info?.vehicleLength , info?.vehicleType)
-        self.dealTimeLabel.text = Util.dateFormatter(date: Double(info?.dealTime ?? "0")!, formatter: "MM-dd  HH:mm")
+        self.dealTimeLabel.text = Util.dateFormatter(date: (Double(info?.dealTime ?? "0") ?? 0) / 1000, formatter: "MM-dd  HH:mm")
         self.cyLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer?.carrierName , "")
         self.driverLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer?.driverName , offer?.driverPhone)
-        self.offerTimeLabel.text = Util.dateFormatter(date: Double(offer?.offerTime ?? "0")!, formatter: "MM-dd  HH:mm")
+        self.offerTimeLabel.text = Util.dateFormatter(date: (Double(offer?.offerTime ?? "0") ?? 0) / 1000, formatter: "MM-dd  HH:mm")
         self.priceLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(offer?.quotedPrice ?? 0)) , "吨")
         self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: String(Float(offer?.totalPrice ?? 0)) , "元")
     }

@@ -44,7 +44,7 @@ class LoginVC: BaseVC {
                 }
                 return true
             })
-            .flatMap({[weak self]() ->  Observable<LoginInfo> in
+            .flatMap({[weak self]() ->  Observable<ZbnConsignor> in
                 return (self?.loginHandle())!
             })
             .subscribe(onNext: {[weak self] (valid) in
@@ -84,15 +84,15 @@ class LoginVC: BaseVC {
 
 extension LoginVC {
     
-    func loginHandle() -> Observable<LoginInfo> {
+    func loginHandle() -> Observable<ZbnConsignor> {
         self.showLoading()
-        return Observable<LoginInfo>.create({ (obser) -> Disposable in
-            return BaseApi.request(target: API.login(self.phoneTextField.text ?? "", self.passworldTextField.text ?? ""), type: BaseResponseModel<LoginInfo>.self)
+        return Observable<ZbnConsignor>.create({ (obser) -> Disposable in
+            return BaseApi.request(target: API.login(self.phoneTextField.text ?? "", self.passworldTextField.text ?? ""), type: BaseResponseModel<ZbnConsignor>.self)
                     .subscribe(onNext: {(model) in
                         self.showSuccess()
                         print("respone = \(model.toJSON() ?? ["s":""])")
                         WDLCoreManager.shared().userInfo = model.data
-                        obser.onNext(model.data ?? LoginInfo())
+                        obser.onNext(model.data ?? ZbnConsignor())
                         obser.onCompleted()
                     },
                                onError:{(error) in

@@ -39,11 +39,11 @@ extension WayBillCommentAllCell {
     
     func showCommentInfo(toMeinfo:WayBillDetailCommentInfo?, myCommentInfo:WayBillDetailCommentInfo?) -> Void {
         self.toMeStarView?.score = CGFloat(toMeinfo?.rate ?? 0)
-        self.tomeCommentTimeLabel.text = Util.dateFormatter(date: toMeinfo?.commentTime ?? 0, formatter: "yyyy-MM-dd HH:mm");
+        self.tomeCommentTimeLabel.text = Util.dateFormatter(date: (toMeinfo?.commentTime ?? 0) / 1000, formatter: "yyyy-MM-dd HH:mm");
         self.toMeCommentLabel.text = toMeinfo?.comment
         
         self.myCommentStarView?.score = CGFloat(myCommentInfo?.rate ?? 0)
-        self.myCommentTimeLabel.text = Util.dateFormatter(date: myCommentInfo?.commentTime ?? 0, formatter: "yyyy-MM-dd HH:mm");
+        self.myCommentTimeLabel.text = Util.dateFormatter(date: (myCommentInfo?.commentTime ?? 0) / 1000, formatter: "yyyy-MM-dd HH:mm");
         self.toOtherCommentLabel.text = myCommentInfo?.comment
     }
 }

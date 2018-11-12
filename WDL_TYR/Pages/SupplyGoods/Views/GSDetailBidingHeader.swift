@@ -34,6 +34,8 @@ class GSDetailBidingHeader: UIView {
     public var bidingTapClosure:BidingTapClosure?
     private var timeObservable:Observable<Int>?
     
+    private var timeViewHeight:Float = 0
+    
     @IBOutlet weak var goodsCodeLabel: UILabel!
     @IBOutlet weak var goodsSummaryTitleLabel: UILabel!
     @IBOutlet weak var goodsSummaryLabel: UILabel!
@@ -50,6 +52,8 @@ class GSDetailBidingHeader: UIView {
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var secLabel: UILabel!
     @IBOutlet weak var minuLabel: UILabel!
+    @IBOutlet weak var timeDownView: UIView!
+    
     
     private var downTime : TimeInterval = 0
     private var contentItem:BidingContentItem?
@@ -69,12 +73,32 @@ class GSDetailBidingHeader: UIView {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.timeViewHeight = Float(timeDownView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height)
+    }
+    
     deinit {
         print("header de init")
     }
 }
 
 extension GSDetailBidingHeader {
+    
+    func showTimeDown(show:Bool) -> Void {
+        if show == false {
+            self.timeDownView.isHidden = true
+            self.timeDownView.hiddenByUpdateHeight()
+        }
+        else {
+            self.timeDownView.isHidden = false
+            self.timeDownView.updateHeight(height: CGFloat(self.timeViewHeight))
+        }
+//        if show == false {
+//            self.timeDownView.removeFromSuperview()
+//         }
+    }
+    
     // 折叠
     func foldHeader(isFolder:Bool) {
         if isFolder == false {

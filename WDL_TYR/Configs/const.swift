@@ -23,4 +23,8 @@ let GAODE_MAP_KEY = "8e99eeada50ef322b5c993eb92acffd6"
 //内网测试
 //let HOST = "http://172.16.8.52:8081/zbn-web"
 //liao bing
+<<<<<<< HEAD
 let HOST = "http://172.16.59.47:8081/zbn-web"
+=======
+//let HOST = "http://172.16.59.47:8081/zbn-web"
+>>>>>>> 3a988b51a6d55179bfdf67904333f00f81370761

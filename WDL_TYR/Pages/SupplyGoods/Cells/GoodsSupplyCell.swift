@@ -27,6 +27,8 @@ class GoodsSupplyCell: BaseCell {
     @IBOutlet weak var goodsSpecLabel: UILabel!
     //车辆货物详情描述
     @IBOutlet weak var cartSpecLabel: UILabel!
+    @IBOutlet weak var autoDealTagView: UIImageView!
+    @IBOutlet weak var autoTimeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -75,6 +77,16 @@ extension GoodsSupplyCell {
         self.goodsSpecLabel.text = self.getGoodsSpec(item: item)
         //车辆货物详情描述
         self.cartSpecLabel.text = self.getCartSpecText(item: item)
+        
+        let autoDealAndNoPut = item.dealWay == 1 && item.isDeal == .status_putway
+        if autoDealAndNoPut {
+            self.autoDealTagView.isHidden = false
+            self.autoTimeLabel.text = "上架时间:" + Util.dateFormatter(date: (Double(item.autoTimeInterval ?? 0)) / 1000, formatter: "MM-dd HH:mm")
+        }else {
+            self.autoDealTagView.isHidden = true
+            self.autoTimeLabel.text = ""
+        }
+        
     }
     
     func configStatusLabel(status:GoodsSupplyListStatus) {
