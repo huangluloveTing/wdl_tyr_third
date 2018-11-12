@@ -86,13 +86,7 @@ class DeliveryVC: MainBaseVC {
     var selLoadTimeVal: TimeInterval = 0.0
     //选择的定时发布时间
     var selPushTimeVal: TimeInterval = 0.0
-<<<<<<< HEAD
-    //请求成功是否需要清空所有数据
 //    var isClearAllData: Bool = false
-
-=======
-    
->>>>>>> 3a988b51a6d55179bfdf67904333f00f81370761
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadAllBasicInfo()
@@ -393,25 +387,13 @@ extension DeliveryVC {
                             let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
                             vc.selectedIndex = 1
                         })
-<<<<<<< HEAD
-                     
                     }
-                    
                     self.clearAllInput()
                 }, onError: { (error) in
                     //test
-                  
 //                    self.clearAllInput()
                     self.showFail(fail: error.localizedDescription, complete: nil)
                     
-=======
-                    }
-                    self.clearAllInput()
-                }, onError: { (error) in
-                  
-                    self.showFail(fail: error.localizedDescription, complete: nil)
-
->>>>>>> 3a988b51a6d55179bfdf67904333f00f81370761
                 })
                 .disposed(by: dispose)
         }
@@ -424,82 +406,6 @@ extension DeliveryVC {
     
     //MARK: - 是否满足发布条件
     private func canCommit() -> Bool {
-<<<<<<< HEAD
-//        if self.startPlace.province == nil {
-//            self.showWarn(warn: "请选择开始城市", complete: nil)
-//            return false
-//        }
-//        if self.endPlace.province == nil  {
-//            self.showWarn(warn: "请选择终点城市", complete: nil)
-//            return false
-//        }
-//        if Util.isEmptyString(str: self.deliveryData?.goodsName)  {
-//            self.showWarn(warn: "请填写货品名称", complete: nil)
-//            return false
-//        }
-//        if Util.isEmptyString(str: self.deliveryData?.goodsCate) {
-//            self.showWarn(warn: "请选择货品分类", complete: nil)
-//            return false
-//        }
-//        if Util.isEmptyString(str: self.deliveryData?.packageType) {
-//            self.showWarn(warn: "请选择包装类型", complete: nil)
-//            return false
-//        }
-//
-//        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
-//            self.showWarn(warn: "请选择装货时间", complete: nil)
-//            return false
-//        }
-//        if Util.isEmptyString(str: self.deliveryData?.vehicleLength)  ||
-//            Util.isEmptyString(str: self.deliveryData?.vehicleWidth) ||
-//            Util.isEmptyString(str: self.deliveryData?.vehicleType) {
-//            self.showWarn(warn: "请填写车长车型", complete: nil)
-//            return false
-//        }
-//        if Util.isEmptyString(str: self.deliveryData?.goodsWeight) {
-//            self.showWarn(warn: "请填写货物重量", complete: nil)
-//            return false
-//        }
-//        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
-//            self.showWarn(warn: "请选择装货时间", complete: nil)
-//            return false
-//        }
-//        if Util.isEmptyString(str: self.deliveryData?.validTime) {
-//            self.showWarn(warn: "请选择货物有效期", complete: nil)
-//            return false
-//        }
-//        if self.deliveryData?.postType == nil {
-//            self.showWarn(warn: "请选择成交方式", complete: nil)
-//            return false
-//        }
-//        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
-//            self.showWarn(warn: "请选择成交时间", complete: nil)
-//            return false
-//        }
-//        if self.deliveryData?.loadAddress.stringISOk() == false ||
-//            self.deliveryData?.loadLinkMan.stringISOk() == false ||
-//            self.deliveryData?.loadLinkPhone.stringISOk() == false {
-//            self.showWarn(warn: "请完善装货信息", complete: nil)
-//            return false
-//        }
-//        if self.deliveryData?.endAddress.stringISOk() == false ||
-//            self.deliveryData?.endLinkMan.stringISOk() == false ||
-//            self.deliveryData?.endLinkPhone.stringISOk() == false {
-//            self.showWarn(warn: "请完善收货信息", complete: nil)
-//            return false
-//        }
-//        
-//        
-//        //判断装货时间是否正确（只能选择大于当天的时间日期）
-//        let selDate = Date(timeIntervalSince1970: self.selLoadTimeVal)
-//        let sysDate = Date()
-//        let result:ComparisonResult = selDate.compare(sysDate)
-//        if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
-//            print("选择的时间 <= 系统时间")
-//            self.showWarn(warn: "只能选择大于今天的时间", complete: nil)
-//            return false
-//        }
-=======
         if self.startPlace.province == nil {
             self.showWarn(warn: "请选择开始城市", complete: nil)
             return false
@@ -574,8 +480,6 @@ extension DeliveryVC {
             self.showWarn(warn: "只能选择大于今天的时间", complete: nil)
             return false
         }
->>>>>>> 3a988b51a6d55179bfdf67904333f00f81370761
-
 
         return true
     }
@@ -610,24 +514,14 @@ extension DeliveryVC {
         self.loadDetailAddressTextField.text = nil
         self.loadLinkManTextField.text = nil
         self.loadLinkPhoneTextField.text = nil
-<<<<<<< HEAD
         self.reDetailAddressTextField.text = nil
         self.reLinkManTextField.text = nil
-=======
-        self.reLinkManTextField.text = nil
-        self.reDetailAddressTextField.text = nil
->>>>>>> 3a988b51a6d55179bfdf67904333f00f81370761
         self.rePhoneTextField.text = nil
         self.deliveryData = DeliveryCommitModel()
         self.startPlace = PlaceCheckModel()
         self.endPlace = PlaceCheckModel()
-<<<<<<< HEAD
-        //清空按钮
-        self.isAutoPost(auto: true,isAllClear: true)
-=======
         self.initialRadioCheck()
         self.clearDealWay()
->>>>>>> 3a988b51a6d55179bfdf67904333f00f81370761
     }
     
     

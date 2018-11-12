@@ -19,12 +19,8 @@ let IPHONE_HEIGHT = UIScreen.main.bounds.size.height
 let GAODE_MAP_KEY = "8e99eeada50ef322b5c993eb92acffd6"
 
 //外网测试
-//let HOST = "http://182.150.21.104:58092/zbn-web"
+let HOST = "http://182.150.21.104:58092/zbn-web"
 //内网测试
 //let HOST = "http://172.16.8.52:8081/zbn-web"
 //liao bing
-<<<<<<< HEAD
-let HOST = "http://172.16.59.47:8081/zbn-web"
-=======
 //let HOST = "http://172.16.59.47:8081/zbn-web"
->>>>>>> 3a988b51a6d55179bfdf67904333f00f81370761
