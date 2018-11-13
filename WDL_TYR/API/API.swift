@@ -87,7 +87,7 @@ func apiPath(api:API) -> String {
     case .createEvaluate(_):
         return "/message/createEvaluate"
     case .uploadImage(_ , let mode):
-        return "/commom/upload/file/" + mode.rawValue
+        return "/commom/upload/file/app/" + mode.rawValue
     case .updatePassword(_):
         return "/consignor/updatePassword"
     case .updatePhone(_):
@@ -160,14 +160,13 @@ func apiTask(api:API) -> Task {
     case .forgetPassword(let model):
         return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
-        
     case .uploadImage(let image , _):
         var imageData:Data? = UIImagePNGRepresentation(image)
         if imageData == nil {
             imageData = UIImageJPEGRepresentation(image, 1)
         }
         let formProvider = MultipartFormData.FormDataProvider.data(imageData!)
-        let formData = MultipartFormData(provider: formProvider, name: "file")
+        let formData = MultipartFormData.init(provider: formProvider, name: "file", fileName: "img.png", mimeType: "image/png")
         return .uploadMultipart([formData])
     }
 }
