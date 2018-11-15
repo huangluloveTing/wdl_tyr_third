@@ -37,12 +37,13 @@ enum API {
     case forgetPassword(ForgetPasswordModel)    // 忘记密码
 }
 
-///commom/upload/file/{serverConfigPath}
+///commom/upload/file/app/{serverConfigPath}
 //serverConfigPath有几个选择
 //驾驶证上传路径：upload_driverLicense_filePath
 //行驶证上传路径：upload_vehicleLicense_filePath
 //道路运输证上传路径：upload_roadTransportCertificate_filePath
 //运单回单上传路径：upload_transport_return_filePath
+//用户头像上传路径：head_portrait_filePath
 
 // PATH
 func apiPath(api:API) -> String {
@@ -87,7 +88,7 @@ func apiPath(api:API) -> String {
     case .createEvaluate(_):
         return "/message/createEvaluate"
     case .uploadImage(_ , let mode):
-        return "/commom/upload/file/" + mode.rawValue
+        return "/commom/upload/file/app/" + mode.rawValue
     case .updatePassword(_):
         return "/consignor/updatePassword"
     case .updatePhone(_):
@@ -160,14 +161,13 @@ func apiTask(api:API) -> Task {
     case .forgetPassword(let model):
         return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
-        
     case .uploadImage(let image , _):
         var imageData:Data? = UIImagePNGRepresentation(image)
         if imageData == nil {
             imageData = UIImageJPEGRepresentation(image, 1)
         }
         let formProvider = MultipartFormData.FormDataProvider.data(imageData!)
-        let formData = MultipartFormData(provider: formProvider, name: "file")
+        let formData = MultipartFormData.init(provider: formProvider, name: "file", fileName: "img.png", mimeType: "image/png")
         return .uploadMultipart([formData])
     }
 }
@@ -220,6 +220,7 @@ extension API :TargetType {
     var headers: [String : String]? {
         return ["Content-Type": "application/json",
                 "Accept": "application/json"];
+      
     }
     
 }

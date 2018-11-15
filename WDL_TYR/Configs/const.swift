@@ -20,7 +20,7 @@ let GAODE_MAP_KEY = "8e99eeada50ef322b5c993eb92acffd6"
 
 //外网测试
 let HOST = "http://182.150.21.104:58092/zbn-web"
-//内网测试
-//let HOST = "http://172.16.8.52:8081/zbn-web"
+//zhao xiao yang
+//let HOST = "http://172.16.59.73:8080/zbn-web"
 //liao bing
 //let HOST = "http://172.16.59.47:8081/zbn-web"

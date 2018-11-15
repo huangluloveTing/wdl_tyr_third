@@ -22,6 +22,8 @@ struct BaseApi {
             .mapModel(T.self)
         return observable
     }
+   
+ 
 }
 
 func myEndPoint(target:TargetType) -> Endpoint {

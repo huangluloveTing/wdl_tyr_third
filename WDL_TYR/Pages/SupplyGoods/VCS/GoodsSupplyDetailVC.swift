@@ -349,7 +349,7 @@ extension GoodsSupplyDetailVC {
         //货源竞价自动成交剩余时间
         let time = self.pageContentInfo?.autoTimeInterval
         let headerItem = BidingContentItem(autoDealTime: time,
-                                           supplyCode: hallInfo?.stowageNo,
+                                           supplyCode: hallInfo?.supplyCode,
                                            startPlace: start,
                                            endPlace: end,
                                            loadTime: hallInfo?.loadingTime,

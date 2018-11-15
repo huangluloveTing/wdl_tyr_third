@@ -19,7 +19,8 @@ struct HallModels : HandyJSON {
     var VehicleType:[HallItem]?
     var VehicleLength:[HallItem]?
     var VehicleWidth:[HallItem]?
-    var MaterialType:[HallItem]?
+    var MaterialCategory:[HallItem]?//货品分类
+//    var MaterialType:[HallItem]?
     var PACKAGE_TYPE:[HallItem]?
     var HYYXQ:[HallItem]?
     var auto_deal_space:[HallItem]?
