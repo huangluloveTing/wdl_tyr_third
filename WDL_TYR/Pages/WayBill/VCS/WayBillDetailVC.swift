@@ -18,7 +18,7 @@ enum WayBillEvaluateStatus {
     case EvaluatedEachother // 已互评
 }
 
-class WayBillDetailVC: BaseVC {
+class WayBillDetailVC: NormalBaseVC {
 
     @IBOutlet weak var tableView: UITableView!
     

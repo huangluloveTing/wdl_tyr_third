@@ -15,7 +15,7 @@ class AboutZbnVC: NormalBaseVC {
 
 //        self.title = "关于织布鸟"
         let webView = UIWebView.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.init(width: IPHONE_WIDTH, height:self.view.frame.size.height)))
-        self.view .addSubview(webView)
+        self.view.addSubview(webView)
         let urlString = HOST + "/app/common/companyProfile"
         webView.loadRequest(URLRequest.init(url: URL.init(string: urlString)!))
         webView.delegate = self
