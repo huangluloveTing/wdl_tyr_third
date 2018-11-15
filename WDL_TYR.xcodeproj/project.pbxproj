@@ -13,6 +13,8 @@
 		184F1F7F219940FE007B9998 /* IdentiferFailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F1F7D219940FE007B9998 /* IdentiferFailVC.swift */; };
 		184F1F80219940FE007B9998 /* IdentiferFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */; };
 		70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103C412189AE0900125F54 /* UIResponse+Extension.swift */; };
+		701144C2219D7FE500BF4522 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C0219D7FE400BF4522 /* UserStore.swift */; };
+		701144C3219D7FE500BF4522 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C1219D7FE500BF4522 /* UserDefault.swift */; };
 		702B40E021314A2400D3D27A /* DropHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B40DF21314A2400D3D27A /* DropHintView.swift */; };
 		702C1842215230AB00601738 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702C1841215230AB00601738 /* AlertManager.swift */; };
 		702C1845215252E800601738 /* WayBillCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702C1843215252E800601738 /* WayBillCommentVC.swift */; };
@@ -207,6 +209,8 @@
 		184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentiferFailVC.xib; sourceTree = "<group>"; };
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70103C412189AE0900125F54 /* UIResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponse+Extension.swift"; sourceTree = "<group>"; };
+		701144C0219D7FE400BF4522 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		701144C1219D7FE500BF4522 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		702B40DF21314A2400D3D27A /* DropHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropHintView.swift; sourceTree = "<group>"; };
 		702C1841215230AB00601738 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		702C1843215252E800601738 /* WayBillCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillCommentVC.swift; sourceTree = "<group>"; };
@@ -922,6 +926,8 @@
 			isa = PBXGroup;
 			children = (
 				70E2755021425F2000E1A92B /* WDLCoreDataManager.swift */,
+				701144C1219D7FE500BF4522 /* UserDefault.swift */,
+				701144C0219D7FE400BF4522 /* UserStore.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -1212,6 +1218,7 @@
 				706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */,
 				70B588F62140303800EF704E /* DeliveryTruckTypeView.swift in Sources */,
 				702D2CC721305CCE0007A11F /* NormalBaseVC.swift in Sources */,
+				701144C3219D7FE500BF4522 /* UserDefault.swift in Sources */,
 				70C2525D212E75B2007F2ED5 /* RegisterVC.swift in Sources */,
 				708150B62130E4E000D42723 /* BaseCell.swift in Sources */,
 				70A319D52137F43A00017356 /* GSTimerShelveCell.swift in Sources */,
@@ -1223,6 +1230,7 @@
 				708150CF21311FA800D42723 /* DropViewManage.swift in Sources */,
 				702D2CC521305CA80007A11F /* MainBaseVC.swift in Sources */,
 				70F4602721539A5700821790 /* WayBillToCommentCell.swift in Sources */,
+				701144C2219D7FE500BF4522 /* UserStore.swift in Sources */,
 				703C12672153548B00A6180D /* DemoVC.swift in Sources */,
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
 				70A319D92137F7A500017356 /* GSOffShelveCell.swift in Sources */,

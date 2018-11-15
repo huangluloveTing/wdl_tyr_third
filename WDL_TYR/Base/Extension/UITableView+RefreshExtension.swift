@@ -67,11 +67,15 @@ extension UITableView {
     }
     
     func noMore() -> Void {
-        self.mj_footer.endRefreshingWithNoMoreData()
+        if let footer = self.mj_footer {
+            footer.endRefreshingWithNoMoreData()
+        }
     }
     
     func resetFooter() -> Void {
-        self.mj_footer.resetNoMoreData()
+        if let footer = self.mj_footer {
+            footer.resetNoMoreData()
+        }
     }
     
     func beginRefresh() {

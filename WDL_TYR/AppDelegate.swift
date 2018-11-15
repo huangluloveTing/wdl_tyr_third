@@ -17,13 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        let login = LoginVC()
-        let naviVC = UINavigationController(rootViewController: login)
-        window = UIWindow.init(frame: UIScreen.main.bounds)
-        window?.rootViewController = naviVC
-        window?.backgroundColor = UIColor.red
-        window?.makeKeyAndVisible()
+        
+        autoLogin()
         
         self.configIQKeyboard()
         self.configGAODEMap()
@@ -90,6 +85,22 @@ extension AppDelegate {
         SVProgressHUD.setDefaultStyle(.light)
         SVProgressHUD.setFont(UIFont.systemFont(ofSize: 16))
         SVProgressHUD.setRingRadius(5)
+    }
+    
+    // 如果本地保存了token的情况，直接进入主界面，免登陆
+    func autoLogin() -> Void {
+        let token = WDLCoreManager.shared().userInfo?.token
+        window = UIWindow.init(frame: UIScreen.main.bounds)
+        if token != nil && (token?.count ?? 0) > 0 {
+            let rootVC = RootTabBarVC()
+            window?.rootViewController = rootVC
+        } else {
+            let login = LoginVC()
+            let naviVC = UINavigationController(rootViewController: login)
+            window?.rootViewController = naviVC
+        }
+        window?.backgroundColor = UIColor.red
+        window?.makeKeyAndVisible()
     }
 }
 
