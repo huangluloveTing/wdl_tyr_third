@@ -775,7 +775,7 @@ extension DeliveryVC {
     // 货品分类数据
     func toConfigGoodsCate() -> [String] {
         var items : [String] = []
-        self.hallItems?.MaterialType?.forEach({ (item) in
+        self.hallItems?.MaterialCategory?.forEach({ (item) in
             items.append(item.dictionaryName ?? " ")
         })
         items.append("其他")

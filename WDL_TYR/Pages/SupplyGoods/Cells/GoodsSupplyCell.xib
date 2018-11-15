@@ -50,19 +50,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="精装小麦粉优级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIM-Sc-2fO">
-                                <rect key="frame" x="20" y="61" width="273.5" height="92.5"/>
+                                <rect key="frame" x="20" y="61" width="273.5" height="73"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02-11 装货 玻璃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5f-gD-ufR">
-                                <rect key="frame" x="20" y="168.5" width="101" height="17"/>
+                                <rect key="frame" x="20" y="149" width="101" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30吨 | 1方 | 高栏车 | 无包装" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKF-7O-C1M">
-                                <rect key="frame" x="20" y="200.5" width="174.5" height="17"/>
+                                <rect key="frame" x="20" y="181" width="174.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -79,8 +79,8 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kc-wC-UII">
-                                <rect key="frame" x="20" y="222.5" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kc-wC-UII">
+                                <rect key="frame" x="20" y="208" width="61.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.7803921568627451" green="0.47843137254901957" blue="0.47843137254901957" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -95,18 +95,18 @@
                             <constraint firstItem="XnH-HI-kPo" firstAttribute="leading" secondItem="7y3-0a-P2N" secondAttribute="trailing" constant="3" id="4Kb-T1-cgf"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="leading" secondItem="tek-uo-uxk" secondAttribute="trailing" constant="10" id="5VA-fd-O7w"/>
                             <constraint firstItem="1Kc-wC-UII" firstAttribute="leading" secondItem="tKF-7O-C1M" secondAttribute="leading" id="7JL-Dr-sde"/>
-                            <constraint firstAttribute="bottom" secondItem="1Kc-wC-UII" secondAttribute="bottom" constant="10" id="Efw-62-Fnm"/>
                             <constraint firstItem="7y3-0a-P2N" firstAttribute="centerY" secondItem="XnH-HI-kPo" secondAttribute="centerY" id="Mii-9w-JiY"/>
                             <constraint firstItem="hUI-XQ-vgJ" firstAttribute="top" secondItem="UvR-LO-24C" secondAttribute="top" id="PnQ-vt-PS5"/>
                             <constraint firstItem="D5f-gD-ufR" firstAttribute="top" secondItem="NIM-Sc-2fO" secondAttribute="bottom" constant="15" id="QM2-AJ-18M"/>
                             <constraint firstItem="NIM-Sc-2fO" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="leading" id="Yos-Ve-z7a"/>
                             <constraint firstItem="dGS-aO-G8X" firstAttribute="centerY" secondItem="mbe-03-H1R" secondAttribute="centerY" id="esM-at-Nyj"/>
                             <constraint firstItem="tKF-7O-C1M" firstAttribute="top" secondItem="D5f-gD-ufR" secondAttribute="bottom" constant="15" id="fOl-at-Xx5"/>
+                            <constraint firstAttribute="bottom" secondItem="1Kc-wC-UII" secondAttribute="bottom" constant="10" id="fdN-NK-trb"/>
                             <constraint firstItem="hUI-XQ-vgJ" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" id="hOY-R1-AdO"/>
                             <constraint firstAttribute="trailing" secondItem="dGS-aO-G8X" secondAttribute="trailing" constant="20" id="j6j-yP-af5"/>
                             <constraint firstItem="tek-uo-uxk" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="trailing" constant="10" id="jIZ-u9-Rbj"/>
                             <constraint firstItem="NIM-Sc-2fO" firstAttribute="top" secondItem="bjy-RV-LOO" secondAttribute="bottom" constant="20" id="khy-QI-WoF"/>
-                            <constraint firstItem="1Kc-wC-UII" firstAttribute="top" secondItem="tKF-7O-C1M" secondAttribute="bottom" constant="5" id="kkR-54-Bx5"/>
+                            <constraint firstItem="1Kc-wC-UII" firstAttribute="top" secondItem="tKF-7O-C1M" secondAttribute="bottom" constant="10" id="kkR-54-Bx5"/>
                             <constraint firstItem="D5f-gD-ufR" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="leading" id="lef-tA-16C"/>
                             <constraint firstItem="bjy-RV-LOO" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" constant="20" id="llT-fD-Eah"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="centerY" secondItem="tek-uo-uxk" secondAttribute="centerY" id="qxm-cv-43u"/>

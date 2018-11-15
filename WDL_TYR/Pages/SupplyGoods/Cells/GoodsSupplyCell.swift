@@ -55,7 +55,7 @@ extension GoodsSupplyCell {
             self.numLabel.text = String(num)
             self.reportLabel.text = "报价"
         }
-        //已成交和已下架不显示暂无报价
+        //已成交和已下架,未上架不显示暂无报价
         if item.isDeal == GoodsSupplyListStatus.status_soldout{
             self.reportLabel.isHidden = true
         }
@@ -66,10 +66,9 @@ extension GoodsSupplyCell {
             self.reportLabel.isHidden = false
         }
         if item.isDeal == GoodsSupplyListStatus.status_putway{
-            self.reportLabel.isHidden = false
+            self.reportLabel.isHidden = true
         }
-//        self.startLabel.text = (item.startCity ?? " ") + (item.startDistrict ?? " ")
-//        self.endLabel.text = (item.endCity ?? " ") + (item.endDistrict ?? " ")
+
         self.startLabel.text = (item.startProvince ?? " ") + (item.startCity ?? " ")
         self.endLabel.text = (item.endProvince ?? " ") + (item.endCity ?? " ")
         self.goodsNameLabel.text = item.goodsName ?? " "
@@ -78,10 +77,10 @@ extension GoodsSupplyCell {
         //车辆货物详情描述
         self.cartSpecLabel.text = self.getCartSpecText(item: item)
         
-        let autoDealAndNoPut = item.dealWay == 1 && item.isDeal == .status_putway
-        if autoDealAndNoPut {
+      //只要是未上架就需要显示
+        if item.isDeal == .status_putway {
             self.autoDealTagView.isHidden = false
-            self.autoTimeLabel.text = "上架时间:" + Util.dateFormatter(date: (Double(item.autoTimeInterval ?? 0)) / 1000, formatter: "MM-dd HH:mm")
+            self.autoTimeLabel.text = "上架时间:" + Util.dateFormatter(date: (item.publishTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
         }else {
             self.autoDealTagView.isHidden = true
             self.autoTimeLabel.text = ""
@@ -107,7 +106,7 @@ extension GoodsSupplyCell {
             break
         case .status_putway:
             self.statusLabel.text = "未上架"
-            self.statusLabel.textColor = UIColor(hex: "7876CF")
+            self.statusLabel.textColor = UIColor(hex: TEXTCOLOR_EMPTY)
             break
         default:
             self.statusLabel.text = "已下架"

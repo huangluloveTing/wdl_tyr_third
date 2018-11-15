@@ -52,7 +52,7 @@ struct GoodsSupplyListItem : HandyJSON{
     //车长
     var vehicleLength:String?
     var vehicleWidth:String?
-    var publishTime:TimeInterval?
+    var publishTime:TimeInterval?//发布时间
     var loadingTime:TimeInterval?
     var orderAvailabilityPeriod:String?
     var dealWay:Int? ////成交方式 1=自动 2=手动 ,
