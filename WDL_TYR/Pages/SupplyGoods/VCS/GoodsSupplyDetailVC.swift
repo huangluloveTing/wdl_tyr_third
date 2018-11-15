@@ -72,6 +72,9 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
         let footerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: 60)))
         footerView.backgroundColor = UIColor.clear
         self.tableView.tableFooterView = footerView
+        self.tableView.estimatedRowHeight = 0
+        self.tableView.estimatedSectionFooterHeight = 0
+        self.tableView.estimatedSectionHeaderHeight = 0
         self.registerAllCells()
         self.tableView.separatorStyle = .none
         self.bidingHeader.bidingTapClosure = {state in
@@ -226,6 +229,10 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.heightForRow(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

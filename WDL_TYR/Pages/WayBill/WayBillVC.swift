@@ -39,6 +39,7 @@ class WayBillVC: MainBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.beginRefresh()
     }
     
     override func currentConfig() {

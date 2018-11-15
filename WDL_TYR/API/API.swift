@@ -27,7 +27,7 @@ enum API {
     case ownTransportPage(QuerytTransportListBean) // 获取我的运单
     case sinGletransaction(String)          // 获取运单详情
     case transportSign(String)              // 运单签收
-    case transportTransaction(String)       // 运单起运
+    case transportTransaction(String)       // 运单起运/transport/transaction
     case getZbnConsignor(String)            // 托运人认证信息
     case cancelTransport(String)            // 取消运单
     case createEvaluate(ZbnEvaluateVo)      // 提交评价
@@ -80,7 +80,7 @@ func apiPath(api:API) -> String {
     case .transportSign(_):
         return "/transport/signTratnsport"
     case .transportTransaction(_):
-        return "/transport/signTratnsport"
+        return "/transport/transaction"
     case .getZbnConsignor(_):
         return "/consignor/getZbnConsignor"
     case .cancelTransport(_):
@@ -142,7 +142,7 @@ func apiTask(api:API) -> Task {
         
     //运单状态 1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收
     case .transportTransaction(let code):
-        return .requestParameters(parameters: ["stowageCode":code,"transportStatus":2], encoding: JSONEncoding.default)
+        return .requestParameters(parameters: ["stowageCode":code], encoding: URLEncoding.default)
         
     case .getZbnConsignor(let id):
         return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["id":id])
@@ -182,7 +182,8 @@ func apiMethod(api:API) -> Moya.Method {
          .registerSms(_),
          .deleteOrderHall(_),
          .getZbnConsignor(_),
-         .cancelTransport(_):
+         .cancelTransport(_),
+         .transportTransaction(_):
         return .get
     default:
         return .post
