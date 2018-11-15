@@ -23,7 +23,7 @@ class GSConfirmDealView: UIView {
     
     typealias ConfirmDealClosure = (Int) -> ()
     
-    @IBOutlet weak var rateView: XHStarRateView!
+    @IBOutlet weak var rateView: XHStarRateView!//星星视图
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
@@ -33,7 +33,8 @@ class GSConfirmDealView: UIView {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var sureButton: UIButton!
-    
+
+    private var starView:XHStarRateView! //星星
     private var dispose = DisposeBag()
     
     private var confirm:GSConfirmAlertItem?
@@ -44,8 +45,12 @@ class GSConfirmDealView: UIView {
         super.awakeFromNib()
         self.backgroundColor = UIColor(hex: "292B2A").withAlphaComponent(0.6)
         self.contentView.addBorder(color: nil, width: 0, radius: 10)
-        self.rateView.onlyShow = true
-        self.rateView.score = 5
+        self.starView = XHStarRateView(frame: self.rateView.bounds)
+        self.rateView.addSubview(self.starView)
+        self.starView.score = 0
+        self.starView.rateStyle = RateStyle.IncompleteStar
+        self.starView.onlyShow = true
+        
         
         self.cancelButton.rx.tap.asObservable()
             .subscribe(onNext: { () in
@@ -77,11 +82,17 @@ class GSConfirmDealView: UIView {
     private func configView() {
         if let confirm = self.confirm {
             self.nameLabel.text = confirm.name
-            self.phoneLabel.text = confirm.phone
+            
+            self.phoneLabel.text = Util.formatterPhone(phone: confirm.phone ?? "")
             self.unitPriceLabel.text = Util.concatSeperateStr(seperete: "", strs: "单价：" ,String(Float(confirm.unit ?? 0))+"元/" , "吨")
             self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: "总价：" ,String(Float(confirm.total ?? 0)) + "元") 
             self.timeLabel.text = Util.dateFormatter(date: confirm.time ?? 0, formatter: "MM-dd HH:mm:ss")
-            self.rateView.score = confirm.score ?? 0
+//            self.rateView.score = confirm.score ?? 0
+            
+            //评分星星
+            self.starView.score = CGFloat(confirm.score ?? 0.0)
+           
+            
             self.scoreLabel.text = Util.showMoney(money: confirm.score ?? 0, after: 1)
         }
     }

@@ -83,7 +83,7 @@ extension GoodsSupplyCell {
             self.autoTimeLabel.text = "上架时间:" + Util.dateFormatter(date: (item.publishTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
         }else {
             self.autoDealTagView.isHidden = true
-            self.autoTimeLabel.text = ""
+            self.autoTimeLabel.text = " "
         }
         
     }

@@ -224,19 +224,20 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
         return 0.1
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 10
+//    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.configTableViewSectionHeader()
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = UIView()
-        footer.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
-        return footer
-    }
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footer = UIView()
+//        footer.backgroundColor = UIColor.red
+////        footer.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
+//        return footer
+//    }
 }
 
 // load data
@@ -327,7 +328,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     }
     
     func showDealAldert(item:SupplyOfferBean?) {
-        let alertItem = GSConfirmAlertItem(name: item?.driverName, phone: item?.driverPhone, unit: item?.quotedPrice, total: item?.totalPrice, time: Double(item?.startTime ?? "0"), score: 5)
+        let alertItem = GSConfirmAlertItem(name: item?.driverName, phone: item?.driverPhone, unit: item?.quotedPrice, total: item?.totalPrice, time: Double(item?.offerTime ?? "0"), score: item?.carrierScore ?? 0.0)
         GSConfirmDealView.showConfirmDealView(confirm: alertItem) {[weak self] (index) in
             if index == 1 {
                 self?.dealHall(item: item)

@@ -28,7 +28,7 @@ class GSQutationCell: BaseCell {
     @IBOutlet weak var reportLabel: UILabel!    // 报价时间
     @IBOutlet weak var commitButton: UIButton!  // 成交按钮
     
-    private var starView:XHStarRateView!
+    private var starView:XHStarRateView! //星星
     private var qutationItem:SupplyOfferBean?
     
     public var dealClosure:GSQutationDealClosure?
@@ -38,7 +38,8 @@ class GSQutationCell: BaseCell {
 //        self.contentView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         self.starView = XHStarRateView(frame: self.rateView.bounds)
         self.rateView.addSubview(self.starView)
-        self.starView.score = 5
+        self.starView.score = 0
+        self.starView.rateStyle = RateStyle.IncompleteStar
         self.starView.onlyShow = true
         self.commitButton.addBorder(color: nil, width: 0, radius: 15)
     }
@@ -66,8 +67,15 @@ extension GSQutationCell {
             self.nameLabel.text = item.carrierName
             self.phoneLabel.text = Util.formatterPhone(phone: item.driverPhone ?? " ")
             self.sumLabel.text = Util.concatSeperateStr(seperete: "", strs: "总价:", Util.showMoney(money: item.totalPrice ?? 0) , "元")
+            //评分星星
+            self.starView.score = CGFloat(item.carrierScore ?? 0.0)
+            self.rateLabel.text = String(format: "%.1f", CGFloat(item.carrierScore ?? 0.0))
+            
             self.unitLabel.text = Util.concatSeperateStr(seperete: "/", strs: Util.showMoney(money: item.quotedPrice ?? 0 , after: 0)+"元" , "吨")
             self.reportLabel.text = "报价时间:" + Util.dateFormatter(date: Double(item.offerTime ?? "0")! / 1000, formatter: "yyyy-MM-dd HH:mm:ss")
         }
     }
+    
+    
 }
+
