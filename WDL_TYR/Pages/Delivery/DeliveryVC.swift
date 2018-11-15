@@ -54,8 +54,8 @@ class DeliveryVC: MainBaseVC {
     private var hallItems:HallModels?
     private var deliveryData:DeliveryCommitModel? = DeliveryCommitModel()
     
-    @IBOutlet weak var endTextField: UITextField!
-    @IBOutlet weak var startPlaceTextField: UITextField!
+    @IBOutlet weak var endTextField: UITextField!           //收货地
+    @IBOutlet weak var startPlaceTextField: UITextField!    //发货地
     @IBOutlet weak var placeContentView: UIView!
     
     @IBOutlet weak var goodsNameTextField: UITextField!     // 货品名称
@@ -122,6 +122,8 @@ class DeliveryVC: MainBaseVC {
                 self.deliveryData?.loadTime = String(format: "%.f", time * 1000)
             })
             .disposed(by: dispose)
+        
+        
         
         self.autoPostButton.rx.tap.asObservable()
             .subscribe(onNext: { () in
@@ -191,6 +193,12 @@ class DeliveryVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
+        //成交时间
+        self.dealTimeTextField.rx.text.orEmpty.subscribe(onNext: { (text) in
+            self.deliveryData?.dealTime = text
+        })
+        .disposed(by: dispose)
+        
         self.goodsWeightTextField.rx.text.orEmpty
             .subscribe(onNext: { (text) in
                 self.deliveryData?.goodsWeight = text
@@ -213,25 +221,38 @@ class DeliveryVC: MainBaseVC {
             })
             .disposed(by: dispose)
         
+
         self.unitTextField.rx.text.orEmpty.asObservable()
             .map { [weak self](text) -> String in
                 self?.deliveryData?.unit = text
                 let total = String(format: "%.2f", ((Double(text) ?? 0 )*(Double(self?.deliveryData?.goodsWeight ?? "0") ?? 0)))
                 self?.deliveryData?.total = total
+                
+                if  Double(total) == 0.00{
+                    return ""
+                }
                 return total
             }
             .bind(to: self.amountTextField.rx.text)
             .disposed(by: dispose)
-        
+    
+       
+     
         self.amountTextField.rx.text.orEmpty.asObservable()
             .map { [weak self](text) -> String in
                 self?.deliveryData?.total = text
                 let uinit = String(format: "%.2f",  ((Double(text) ?? 0 ) / (Double(self?.deliveryData?.goodsWeight ?? "1") ?? 1)))
                 self?.deliveryData?.unit = uinit
+                
+                if  Double(uinit) == 0.00{
+                    return ""
+                }
                 return uinit
             }
             .bind(to: self.unitTextField.rx.text)
             .disposed(by: dispose)
+      
+       
         
 //        self.unitTextField.rx.text.orEmpty
 //            .subscribe(onNext: { (text) in
@@ -414,6 +435,15 @@ extension DeliveryVC {
             self.showWarn(warn: "请选择终点城市", complete: nil)
             return false
         }
+        
+        if self.startPlace.province?.title == "全国" {
+            self.showWarn(warn: "起点不能选择全国", complete: nil)
+            return false
+        }
+        if self.endPlace.province?.title == "全国" {
+            self.showWarn(warn: "终点不能选择全国", complete: nil)
+            return false
+        }
         if Util.isEmptyString(str: self.deliveryData?.goodsName)  {
             self.showWarn(warn: "请填写货品名称", complete: nil)
             return false
@@ -454,23 +484,41 @@ extension DeliveryVC {
             return false
         }
         if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
-            self.showWarn(warn: "请选择成交时间", complete: nil)
+            self.showWarn(warn: "请输入成交时间", complete: nil)
             return false
         }
-        if self.deliveryData?.loadAddress.stringISOk() == false ||
-            self.deliveryData?.loadLinkMan.stringISOk() == false ||
-            self.deliveryData?.loadLinkPhone.stringISOk() == false {
-            self.showWarn(warn: "请完善装货信息", complete: nil)
+
+        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto &&  Int((self.deliveryData?.dealTime)!) == 0  {
+            self.showWarn(warn: "输入的成交时间必须大于0", complete: nil)
             return false
         }
-        if self.deliveryData?.endAddress.stringISOk() == false ||
-            self.deliveryData?.endLinkMan.stringISOk() == false ||
-            self.deliveryData?.endLinkPhone.stringISOk() == false {
-            self.showWarn(warn: "请完善收货信息", complete: nil)
+        if self.deliveryData?.loadAddress.stringISOk() == false  {
+            self.showWarn(warn: "请输入装货详细街道", complete: nil)
+            return false
+        }
+        if self.deliveryData?.loadLinkMan.stringISOk() == false {
+            self.showWarn(warn: "请输入装货联系人姓名", complete: nil)
+            return false
+        }
+        if self.deliveryData?.loadLinkPhone.stringISOk() == false {
+            self.showWarn(warn: "请输入装货联系人手机号", complete: nil)
             return false
         }
         
-        
+        if self.deliveryData?.endAddress.stringISOk() == false  {
+            self.showWarn(warn: "请输入收货详细街道", complete: nil)
+            return false
+        }
+        if self.deliveryData?.endLinkMan.stringISOk() == false {
+            self.showWarn(warn: "请输入收货联系人姓名", complete: nil)
+            return false
+        }
+        if self.deliveryData?.endLinkPhone.stringISOk() == false {
+            self.showWarn(warn: "请输入收货联系人手机号", complete: nil)
+            return false
+        }
+
+
         //判断装货时间是否正确（只能选择大于当天的时间日期）
         let selDate = Date(timeIntervalSince1970: self.selLoadTimeVal)
         let sysDate = Date()
@@ -606,12 +654,28 @@ extension DeliveryVC {
     //MARK: 开始地点
     func toRefreshStartPlace(province:PlaceChooiceItem? , city:PlaceChooiceItem? , strict:PlaceChooiceItem?) {
         self.startPlace = PlaceCheckModel(province: province, city: city, strict: strict)
-        self.startPlaceTextField.text = (province?.title ?? "") + (city?.title ?? "") + (strict?.title ?? "")
+        if province?.title == "全国" {
+            self.showWarn(warn: "该地址无效", complete: nil)
+            self.startPlaceTextField.text = ("") + (city?.title ?? "") + (strict?.title ?? "")
+            
+        }else{
+           self.startPlaceTextField.text = (province?.title ?? "") + (city?.title ?? "") + (strict?.title ?? "")
+          
+        }
+        
     }
     //MARK: 终点
     func toRefreshEndPlace(province:PlaceChooiceItem? , city:PlaceChooiceItem? , strict:PlaceChooiceItem?) {
         self.endPlace = PlaceCheckModel(province: province, city: city, strict: strict)
-        self.endTextField.text = (province?.title ?? "") + (city?.title ?? "") + (strict?.title ?? "")
+        if province?.title == "全国" {
+            self.showWarn(warn: "该地址无效", complete: nil)
+            self.endTextField.text = ("") + (city?.title ?? "") + (strict?.title ?? "")
+            
+        }else{
+             self.endTextField.text = (province?.title ?? "") + (city?.title ?? "") + (strict?.title ?? "")
+        }
+        
+       
     }
     
     //MARK: 配置省市区
