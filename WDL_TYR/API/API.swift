@@ -19,7 +19,7 @@ enum API {
     case getCreateHallDictionary()          // 获取数据字典
     case releaseSource(ReleaseDeliverySourceModel)       // 发布货源
     case ownOrderHall(GoodsSupplyQueryBean) // 我的货源接口
-    case getOfferByOrderHallId(QuerySupplyDetailBean)    // 获取报价详情
+    case getOfferByOrderHallId(QuerySupplyDetailBean)    // 获取货源详情和报价详情
     case onShelf(String)                    // 手动上架
     case undercarriage(String)              // 手动下架
     case orderHallManualTransaction(String , String) // 手动成交

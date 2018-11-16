@@ -49,6 +49,8 @@ class WayBillDetailVC: NormalBaseVC {
         self.tableView.separatorStyle = .singleLine
         self.tableView.separatorColor = UIColor(hex: "DDDDDD")
         self.tableView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
+        
+        
     }
     
     func registerCells() {
@@ -185,6 +187,7 @@ extension WayBillDetailVC {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+        //联系人信息
         cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
                           loadAddress: self.pageInfo?.startAddress,
                           loadProvince: self.pageInfo?.startProvince,
@@ -276,8 +279,8 @@ extension WayBillDetailVC {
         let unit = self.pageInfo?.dealUnitPrice
         let amount = self.pageInfo?.dealTotalPrice
         let cyName = self.pageInfo?.carrierName
-        let driver = self.pageInfo?.dirverName
-        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
+        let driver = self.pageInfo?.driverName
+        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver, self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
         
         cell.showDealInfo(unit: unit,
@@ -369,6 +372,8 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
         return 10
     }
     
+   
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
     }
@@ -422,7 +427,8 @@ extension WayBillDetailVC {
         AlertManager.showTitleAndContentAlert(title: "确认签收", content: "确认签收？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
-                let code = self?.pageInfo?.stowageNo ?? ""
+                //传运单编号
+                 let code = self?.pageInfo?.transportNo ?? ""
                 BaseApi.request(target: API.transportSign(code), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
                         self?.showSuccess()

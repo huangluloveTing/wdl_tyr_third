@@ -20,9 +20,13 @@ class WayBillReceiptItem: UICollectionViewCell {
 }
 
 extension WayBillReceiptItem {
-    
+    //回单信息
     func showReceipt(imageUrl:String? , time:TimeInterval?) -> Void {
         Util.showImage(imageView: self.receiptImageView, imageUrl: imageUrl ?? "")
-        self.timeLabel.text = Util.dateFormatter(date: time ?? 0, formatter: "yyyy-MM-dd HH:mm")
+
+        self.timeLabel.text =  Util.dateFormatter(date: time ?? 0, formatter: "yyyy-MM-dd HH:mm")
+
     }
+    
+ 
 }

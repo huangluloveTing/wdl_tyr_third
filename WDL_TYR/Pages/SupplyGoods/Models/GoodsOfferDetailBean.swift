@@ -71,6 +71,7 @@ struct OderHallBean : HandyJSON {
     var isEnable : Int?             // (integer, optional),
     var isVisable : Int?            // (integer): 是否可见 ,
     var loadingTime : String?       // (string): 装货时间 ,
+  
     var offerType : Int?            // (integer, optional),
     var offerWay : Int?             // (integer): 报价方式[1：有车报价 2：无车报价] ,
     var orderAvailabilityPeriod : String? // (string): 货源有效期 ,
@@ -94,6 +95,10 @@ struct OderHallBean : HandyJSON {
     var vehicleLength : String?     // (string): 车长 ,
     var vehicleType :String?        // (string): 车型 ,
     var vehicleWidth : String?      // (string): 车宽
+    
+    var vehicleLengthDriver: String? // 承运人车长 ,
+    var vehicleTypeDriver: String? //承运人车型 ,
+    var vehicleNo : String? //承运人车牌号
 }
 
 struct SupplyOfferDetailBean : HandyJSON {

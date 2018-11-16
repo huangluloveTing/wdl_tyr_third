@@ -40,10 +40,13 @@ extension WayBillDetailLinkInfoCell {
                       endAddress:String?,
                       endProvince:String?,
                       endCity:String?,
-                      endPhone:String?) -> Void {
-        self.loadAddressLabel.text = Util.concatSeperateStr(seperete: "", strs: loadCity ,loadAddress)
+                      endPhone:String?
+                      ) -> Void {
+//        self.loadAddressLabel.text = Util.concatSeperateStr(seperete: "", strs: loadCity ,loadAddress)
+         self.loadAddressLabel.text = Util.concatSeperateStr(seperete: "", strs: loadAddress)
         self.loadLinkNameLabel.text = Util.concatSeperateStr(seperete: "  ", strs: loadLinkName , loadLinkPhone)
         self.endNameLabel.text = Util.concatSeperateStr(seperete: " ", strs: endName , endPhone)
-        self.endAddressLabel.text = Util.concatSeperateStr(seperete: "", strs: endCity , endAddress)
+         self.endAddressLabel.text = Util.concatSeperateStr(seperete: "", strs: endAddress)
+//        self.endAddressLabel.text = Util.concatSeperateStr(seperete: "", strs: endCity , endAddress)
     }
 }

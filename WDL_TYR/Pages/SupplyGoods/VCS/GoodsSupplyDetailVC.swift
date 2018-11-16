@@ -224,6 +224,9 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
         if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
             return 40
         }
+        if section == 1 {
+            return 10
+        }
         return 0.1
     }
     
@@ -231,6 +234,8 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
 //        return 10
 //    }
     
+    
+ 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.heightForRow(at: indexPath)
     }
@@ -364,9 +369,10 @@ extension GoodsSupplyDetailVC {
         let end = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.endProvince, hallInfo?.endCity , hallInfo?.endDistrict)
         let start = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.startProvince, hallInfo?.startCity , hallInfo?.startDistrict)
         let sumer = Util.concatSeperateStr(strs: hallInfo?.goodsWeight, hallInfo?.vehicleWidth , hallInfo?.vehicleType ,hallInfo?.goodsType)
-//        let time = self.pageContentInfo?.surplusTurnoverTime
+
         //货源竞价自动成交剩余时间
-        let time = self.pageContentInfo?.autoTimeInterval
+//        let time = self.pageContentInfo?.autoTimeInterval
+        let time = self.pageContentInfo?.surplusTurnoverTime
         let headerItem = BidingContentItem(autoDealTime: time,
                                            supplyCode: hallInfo?.supplyCode,
                                            startPlace: start,

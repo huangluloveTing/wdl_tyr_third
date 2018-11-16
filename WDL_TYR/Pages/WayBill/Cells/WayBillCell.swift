@@ -41,6 +41,7 @@ extension WayBillCell {
         self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.startProvince , info?.startCity)
         self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.endProvince , info?.endCity)
         self.transportInfoStatusDisplay(status: info?.transportStatus?.rawValue ?? 0, to: self.statusLabel)
+       
         self.cyLabel.text = info?.carrierName
         self.dealTimeLabel.text = Util.dateFormatter(date: (info?.dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm:ss")
         self.priceLabel.text = Util.showMoney(money: info?.dealUnitPrice ?? 0, after: 0)
