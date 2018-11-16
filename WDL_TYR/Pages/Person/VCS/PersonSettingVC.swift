@@ -18,6 +18,10 @@ class PersonSettingVC: NormalBaseVC {
         super.viewDidLoad()
         configTableView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 }
 
 extension PersonSettingVC {
@@ -101,7 +105,10 @@ extension PersonSettingVC {
         AlertManager.showTitleAndContentAlert(title: "提示", content: "是否退出登录") { (index) in
             if index == 1 {
                 let loginVC = LoginVC()
-                UIApplication.shared.keyWindow?.rootViewController = loginVC
+                WDLCoreManager.shared().userInfo = nil
+                self.tabBarController?.selectedIndex = 0
+                self.present(toVC: loginVC, animation: true, return: nil)
+                self.pop(toRootViewControllerAnimation: false)
             }
         }
     }

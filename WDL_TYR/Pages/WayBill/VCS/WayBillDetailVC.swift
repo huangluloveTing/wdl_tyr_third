@@ -18,7 +18,7 @@ enum WayBillEvaluateStatus {
     case EvaluatedEachother // 已互评
 }
 
-class WayBillDetailVC: BaseVC {
+class WayBillDetailVC: NormalBaseVC {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -385,7 +385,7 @@ extension WayBillDetailVC {
         AlertManager.showTitleAndContentAlert(title: "提示", content: "确认取消运单？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
-                let code = self?.pageInfo?.stowageNo ?? ""
+                let code = self?.pageInfo?.transportNo ?? ""
                 BaseApi.request(target: API.cancelTransport(code), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
                         self?.showSuccess(success: data.message, complete: {
@@ -404,7 +404,7 @@ extension WayBillDetailVC {
         AlertManager.showTitleAndContentAlert(title: "确认起运", content: "确认起运？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
-                let code = self?.pageInfo?.supplyCode ?? ""
+                let code = self?.pageInfo?.transportNo ?? ""
                 BaseApi.request(target: API.transportTransaction(code), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
                         self?.showSuccess()
@@ -442,6 +442,7 @@ extension WayBillDetailVC {
             .subscribe(onNext: { (data) in
                 self.showSuccess()
                 self.pageInfo = data.data
+                self.wayBillInfo = self.pageInfo
                 self.tableView.reloadData()
                 self.addBottom()
             }, onError: { (error) in

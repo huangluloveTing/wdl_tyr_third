@@ -45,6 +45,8 @@ class GoodsInBidingHeader: UIView {
 extension GoodsInBidingHeader {
     
     func showStatus(offerSelected:Bool , timeSelected:Bool) -> Void {
+        self.offerAsc = offerSelected
+        self.timeAsc = timeSelected
         self.offerButton.isSelected = offerSelected
         self.timeButton.isSelected = timeSelected
     }

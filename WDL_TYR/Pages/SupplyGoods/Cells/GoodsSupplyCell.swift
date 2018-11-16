@@ -80,8 +80,9 @@ extension GoodsSupplyCell {
       //只要是未上架就需要显示
         if item.isDeal == .status_putway {
             self.autoDealTagView.isHidden = false
-            self.autoTimeLabel.text = "上架时间:" + Util.dateFormatter(date: (item.publishTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
-        }else {
+            self.autoTimeLabel.text = ("上架时间: " + Util.dateFormatter(date: (item.publishTime ?? 0) / 1000, formatter: "MM-dd HH:mm"))
+            self.autoTimeLabel.isHidden = false
+        } else {
             self.autoDealTagView.isHidden = true
             self.autoTimeLabel.text = " "
         }

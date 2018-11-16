@@ -13,7 +13,14 @@ class WDLCoreManager: NSObject {
     
     public var regionAreas:[RegionModel]?
     
-    public var userInfo: ZbnConsignor?
+    public var userInfo: ZbnConsignor? {
+        set {
+            cacheUserInfo(userInfo: newValue)
+        }
+        get {
+            return loadUserInfo()
+        }
+    }
     
     private static let instance = WDLCoreManager()
     private override init() {}
@@ -27,4 +34,11 @@ class WDLCoreManager: NSObject {
         return userInfo?.consignorType
     }
     
+    private func cacheUserInfo(userInfo:ZbnConsignor?) -> Void {
+        UserStore.storeUserInfo(info: userInfo)
+    }
+    
+    private func loadUserInfo() -> ZbnConsignor? {
+        return UserStore.loadUserInfo()
+    }
 }

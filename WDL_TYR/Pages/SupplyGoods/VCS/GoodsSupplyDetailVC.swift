@@ -72,6 +72,9 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
         let footerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: IPHONE_WIDTH, height: 60)))
         footerView.backgroundColor = UIColor.clear
         self.tableView.tableFooterView = footerView
+        self.tableView.estimatedRowHeight = 0
+        self.tableView.estimatedSectionFooterHeight = 0
+        self.tableView.estimatedSectionHeaderHeight = 0
         self.registerAllCells()
         self.tableView.separatorStyle = .none
         self.bidingHeader.bidingTapClosure = {state in
@@ -228,6 +231,10 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
 //        return 10
 //    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.heightForRow(at: indexPath)
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.configTableViewSectionHeader()
     }
@@ -248,11 +255,12 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
         self.showLoading()
         BaseApi.request(target: API.getOfferByOrderHallId(self.offerQueyBean), type: BaseResponseModel<OrderAndOffer?>.self)
             .subscribe(onNext: {[weak self] (data) in
+                self?.clearAllCacheHeight()
                 self?.showSuccess()
                 self?.pageContentInfo = data.data!
+                self?.addRefresh()
                 self?.toConfigHeaderInfo()
                 self?.toAddHeader()
-                self?.addRefresh()
                 self?.tableView.reloadData()
             }, onError: {[weak self] (error) in
                 self?.showFail(fail: error.localizedDescription, complete: nil)
@@ -282,6 +290,11 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
                 self?.toOnShelve()
             }
         }
+    }
+    
+    // 重新上架
+    func toReShelveGoods() -> Void {
+        
     }
     
     // 查看运单
@@ -335,6 +348,11 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
             }
         }
     }
+    
+    //MARK: - 删除缓存的tableViewCell 的高度
+    func clearAllCacheHeight() -> Void {
+        self.tableView.removeCacheHeights()
+    }
 }
 
 // 根据处理状态 ， 判断header
@@ -364,12 +382,18 @@ extension GoodsSupplyDetailVC {
     
     // 当竞价中时，添加上拉加载和下拉刷新
     func addRefresh() -> Void {
+        self.tableView.noFooter()
+        self.tableView.noHeader()
         if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
             self.tableView.pullRefresh()
             self.tableView.upRefresh()
         } else {
             self.tableView.noFooter()
             self.tableView.noHeader()
+        }
+        
+        if (self.pageContentInfo?.offerPage?.total ?? 0) <= (self.pageContentInfo?.offerPage?.list?.count ?? 0) {
+            self.tableView.noMore()
         }
     }
     
@@ -393,10 +417,10 @@ extension GoodsSupplyDetailVC {
     func configTableViewSectionHeader() -> UIView? {
         if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
             let header = Bundle.main.loadNibNamed("GSDetailBidingHeader", owner: nil, options: nil)![1] as! GoodsInBidingHeader
-            header.showStatus(offerSelected: self.offerAmountSort == .DESC, timeSelected: self.timeSort == .DESC)
+            header.showStatus(offerSelected: self.offerAmountSort == .DESC, timeSelected: self.timeSort == .ASC)
             header.tapClosure = {[weak self] (offer , time) in
                 self?.offerAmountSort = offer == true ? .DESC : .ASC
-                self?.timeSort = time == true ? .DESC : .ASC
+                self?.timeSort = time == true ? .ASC : .DESC
                 self?.tableView.beginRefresh()
             }
             return header

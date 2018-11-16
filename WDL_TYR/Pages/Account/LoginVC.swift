@@ -48,7 +48,7 @@ class LoginVC: BaseVC {
                 return (self?.loginHandle())!
             })
             .subscribe(onNext: {[weak self] (valid) in
-                self?.toMainVC()
+                self?.loginSuccessHandle()
             })
             .disposed(by: dispose)
         
@@ -59,6 +59,15 @@ class LoginVC: BaseVC {
         self.passworldTextField.rx.text.orEmpty
             .bind(to: self.loginVM.passwd)
             .disposed(by: dispose)
+    }
+    
+    //MARK: - 登录成功操作
+    func loginSuccessHandle() -> Void {
+        if self.presentingViewController != nil {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.toMainVC()
+        }
     }
     
     override func viewDidLoad() {
