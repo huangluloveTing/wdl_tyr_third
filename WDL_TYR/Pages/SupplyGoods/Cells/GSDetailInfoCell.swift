@@ -19,6 +19,8 @@ class GSDetailInfoCell: BaseCell {
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var codeLabel: UILabel!//货源编码
+    @IBOutlet weak var unitLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,6 +43,8 @@ extension GSDetailInfoCell {
         self.goodsNameLabel.text = info?.goodsName
         self.goodsTypeLabel.text = info?.goodsType
         self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info?.goodsWeight , info?.vehicleLength , info?.vehicleWidth  ,info?.vehicleType , info?.packageType)
+        self.unitLabel.text = Util.showMoney(money: info?.refercneceUnitPrice ?? 0, after: 2)
+        self.totalLabel.text = Util.showMoney(money: info?.refercneceTotalPrice ?? 0, after: 2)
         self.remarkLabel.text = info?.remark
     }
 }

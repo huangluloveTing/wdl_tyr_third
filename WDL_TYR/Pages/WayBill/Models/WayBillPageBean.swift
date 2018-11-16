@@ -65,6 +65,7 @@ struct WayBillInfoBean : HandyJSON {
     var loadingPersonPhone : String? // (string): 装货联系人电话 ,
     var locationList : [ZbnLocation]? // (Array[ZbnLocation]): 定位信息 ,
     var offerType : String? // (integer, optional),
+    var offerHasVehicle : Int = 1 // (string): 报价类型（0-无车报价 1-有车报价） ,
     var offerWay :Int? // (integer): 报价方式[1：有车报价 2：无车报价] ,
     var orderAvailabilityPeriod : String? // (string): 货源有效期 ,
     var packageType : String? // (string): 包装类型 ,

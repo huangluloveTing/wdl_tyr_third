@@ -26,10 +26,10 @@ extension BaseVC {
     /**
      * 底部有多个按钮的情况
      */
-    func bottomButtom(titles:[String] , targetView:UIView , tapClosure:((Int) ->())? = nil) -> Void {
+    func bottomButtom(titles:[String] , targetView:UIView , enable:Bool = true , tapClosure:((Int) ->())? = nil) -> Void {
         self.bottomHandleView?.removeFromSuperview()
         if titles.count == 1 {
-            let bottomItem = BottomHandleViewItem(bgColor: UIColor(hex: COLOR_BUTTON), conerRadius: 4, titleColor: UIColor(hex: "FFFFFF"), title: titles[0], titleFont:BUTTON_FONT, borderWidth: 0 , borderColor:nil)
+            let bottomItem = BottomHandleViewItem(bgColor: UIColor(hex: COLOR_BUTTON), conerRadius: 4, titleColor: UIColor(hex: "FFFFFF"), title: titles[0], titleFont:BUTTON_FONT, borderWidth: 0 , borderColor:nil , disableBgColor:UIColor(hex: COLOR_BUTTON).withAlphaComponent(0.5))
             self.bottomHandleView = BottomHandleView(frame: CGRect(x: 0, y: 0, width: targetView.zt_width, height: 60), bottomItems: [bottomItem])
             self.bottomHandleView?.zt_y = targetView.zt_height-60
             self.bottomHandleView?.shadow(color: UIColor(hex: COLOR_SHADOW), offset: CGSize(width: 0, height: -2), opacity: 0.5, radius: 2)
@@ -38,11 +38,12 @@ extension BaseVC {
                     closure(index)
                 }
             }
+            self.bottomHandleView?.isUsable = enable
             targetView.superview?.insertSubview(self.bottomHandleView!, aboveSubview: targetView)
         }
         if titles.count >= 2 {
-            let bottomItem_1 = BottomHandleViewItem(bgColor: UIColor.white, conerRadius: 4, titleColor: UIColor(hex: COLOR_BUTTON) , title: titles[0], titleFont:BUTTON_FONT, borderWidth: 1 ,borderColor:UIColor(hex: COLOR_BUTTON))
-            let bottomItem_2 = BottomHandleViewItem(bgColor: UIColor(hex: COLOR_BUTTON), conerRadius: 4, titleColor: UIColor(hex: "FFFFFF"), title: titles[1], titleFont:BUTTON_FONT, borderWidth: 0, borderColor:UIColor(hex: COLOR_BUTTON))
+            let bottomItem_1 = BottomHandleViewItem(bgColor: UIColor.white, conerRadius: 4, titleColor: UIColor(hex: COLOR_BUTTON) , title: titles[0], titleFont:BUTTON_FONT, borderWidth: 1 ,borderColor:UIColor(hex: COLOR_BUTTON) ,disableBgColor:UIColor(hex: COLOR_BUTTON).withAlphaComponent(0.5))
+            let bottomItem_2 = BottomHandleViewItem(bgColor: UIColor(hex: COLOR_BUTTON), conerRadius: 4, titleColor: UIColor(hex: "FFFFFF"), title: titles[1], titleFont:BUTTON_FONT, borderWidth: 0, borderColor:UIColor(hex: COLOR_BUTTON), disableBgColor:UIColor(hex: COLOR_BUTTON).withAlphaComponent(0.5))
             self.bottomHandleView = BottomHandleView(frame: CGRect(x: 0, y: 0, width: targetView.zt_width, height: 60), bottomItems: [bottomItem_1, bottomItem_2])
             self.bottomHandleView?.shadow(color: UIColor(hex: COLOR_SHADOW), offset: CGSize(width: 0, height: -2), opacity: 0.5, radius: 2)
             self.bottomHandleView?.zt_y = targetView.zt_height-60
@@ -51,6 +52,7 @@ extension BaseVC {
                     closure(index)
                 }
             }
+            self.bottomHandleView?.isUsable = enable
             targetView.superview?.insertSubview(self.bottomHandleView!, aboveSubview: targetView)
         }
     }
@@ -59,6 +61,8 @@ extension BaseVC {
 
 // 底部 按钮视图
 class BottomHandleView: UIView {
+    
+    public var isUsable:Bool? // 是否可用，即是否置灰
     
     typealias BottomHandleTapClosure = (Int) -> ()
     
@@ -90,7 +94,7 @@ class BottomHandleView: UIView {
     }
     
     func bottomButton(item:BottomHandleViewItem , tag:Int) -> UIButton {
-        let button = UIButton(type: .custom)
+        let button = UIButton(type: .system)
         button.setTitle(item.title, for: .normal)
         button.setTitleColor(item.titleColor, for: .normal)
         button.titleLabel?.font = item.titleFont ?? UIFont.systemFont(ofSize: 16)
@@ -99,6 +103,7 @@ class BottomHandleView: UIView {
         button.layer.borderWidth = item.borderWidth ?? 0
         button.backgroundColor = item.bgColor
         button.tag = tag
+        button.setTitleColor(item.titleColor?.withAlphaComponent(0.5), for: .disabled)
         button.layer.borderColor = item.borderColor?.cgColor
         self.addSubview(button)
         return button
@@ -118,6 +123,14 @@ class BottomHandleView: UIView {
             for (index, button) in bottomButtons.enumerated() {
                 let frame = CGRect(x: start_x + width * CGFloat(index) + self.hori_padding * CGFloat(index), y: self.contentInsets.top, width: width, height: height)
                 button.frame = frame
+                button.isEnabled = self.isUsable ?? true
+                let item = self.bottomItems![index]
+                // 不可用时，，按钮颜色置灰
+                if button.isEnabled == false {
+                    button.backgroundColor = item.disableBgColor
+                } else {
+                    button.backgroundColor = item.bgColor
+                }
                 button.tapAction {[weak self] (sender) in
                     if let closure = self?.handleClosure {
                         closure(sender.tag - 100)
@@ -136,6 +149,7 @@ struct BottomHandleViewItem {
     var titleFont:UIFont?
     var borderWidth:CGFloat?
     var borderColor:UIColor?
+    var disableBgColor:UIColor?
 }
 
 

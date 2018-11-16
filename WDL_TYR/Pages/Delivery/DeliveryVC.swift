@@ -92,6 +92,11 @@ class DeliveryVC: MainBaseVC {
         self.loadAllBasicInfo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.reShelveGoodsInputContent()
+    }
+    
     override func currentConfig() {
         self.navigationItem.title = "发布货源"
         self.placeContentView.addBorder(color: nil,radius:10)
@@ -283,6 +288,7 @@ class DeliveryVC: MainBaseVC {
         if isAllClear == true {
             self.manualPostButton.isSelected = false
             self.autoPostButton.isSelected = false
+            self.deliveryData?.postType = nil
             self.dealTimeTextField.hiddenByUpdateHeight()
         }else{
             self.manualPostButton.isSelected = !auto
@@ -573,8 +579,75 @@ extension DeliveryVC {
     }
     
     
+    //MARK: - 重新上架时，填写对应的货源信息
+    func reShelveGoodsInputContent() -> Void {
+        if WDLGlobal.shard().loadReShelveGoods() != nil {
+            let goods = WDLGlobal.shard().loadReShelveGoods()
+            
+            let startProvinceItem = PlaceChooiceItem(title: goods?.startProvince ?? "", id: "" , selected:false , subItems:nil , level:0)
+            let startCityItem = PlaceChooiceItem(title: goods?.startCity ?? "", id: "" , selected:false , subItems:nil , level:0)
+            let startDistrictItem = PlaceChooiceItem(title: goods?.startDistrict ?? "", id: "" , selected:false , subItems:nil , level:0)
+            self.startPlace = PlaceCheckModel(province: startProvinceItem, city: startCityItem, strict: startDistrictItem)
+            self.startPlaceTextField.text = Util.concatSeperateStr(seperete: "" , strs: goods?.startProvince , goods?.startCity , goods?.startDistrict)
+           
+            let endProvinceItem = PlaceChooiceItem(title: goods?.endProvince ?? "", id: "" , selected:false , subItems:nil , level:0)
+            let endCityItem = PlaceChooiceItem(title: goods?.endCity ?? "", id:"" , selected:false , subItems:nil , level:0)
+            let endDistrictItem = PlaceChooiceItem(title: goods?.endDistrict ?? "", id: "" , selected:false , subItems:nil , level:0)
+            self.endPlace = PlaceCheckModel(province: endProvinceItem, city: endCityItem, strict: endDistrictItem)
+            self.endTextField.text = Util.concatSeperateStr(seperete: "" , strs: goods?.endProvince , goods?.endCity , goods?.endDistrict)
+            self.goodsNameTextField.text = goods?.goodsName
+            self.deliveryData?.goodsName = goods?.goodsName
+            self.goodsCategoryTextField.text = goods?.goodsType
+            self.deliveryData?.goodsCate = goods?.goodsType
+            self.packageTextField.text = goods?.packageType
+            self.deliveryData?.packageType = goods?.packageType
+            self.cartTypeTextField.text = Util.concatSeperateStr(seperete: "、" , strs: goods?.vehicleLength ,goods?.vehicleWidth , goods?.vehicleType)
+            self.deliveryData?.vehicleLength = goods?.vehicleLength
+            self.deliveryData?.vehicleWidth = goods?.vehicleWidth
+            self.deliveryData?.vehicleType = goods?.vehicleType
+            self.goodsWeightTextField.text = goods?.goodsWeight
+            self.deliveryData?.goodsWeight = goods?.goodsWeight
+            self.loadGoodsTimeTextField.text = nil
+            self.goodsValidTextField.text = reShelveValidPeriodTime(code: goods?.orderAvailabilityPeriodCode)
+            self.deliveryData?.validTime = goods?.orderAvailabilityPeriodCode
+            if goods?.dealWay == 1 { // 自动成交
+                self.isAutoPost(auto: true)
+                self.dealTimeTextField.text = String(goods?.autoTimeInterval ?? 0)
+                self.deliveryData?.dealTime = String(goods?.autoTimeInterval ?? 0)
+            } else {
+                self.isAutoPost(auto: false)
+            }
+            self.loadDetailAddressTextField.text = goods?.loadingPersonAddress
+            self.deliveryData?.loadAddress = goods?.loadingPersonAddress ?? ""
+            self.loadLinkManTextField.text = goods?.loadingPersonName
+            self.deliveryData?.loadLinkMan = goods?.loadingPersonName ?? ""
+            self.loadLinkPhoneTextField.text = goods?.loadingPersonPhone
+            self.deliveryData?.loadLinkPhone = goods?.loadingPersonPhone ?? ""
+            self.reDetailAddressTextField.text = goods?.endAddress
+            self.deliveryData?.endAddress = goods?.endAddress ?? ""
+            self.reLinkManTextField.text = goods?.consignorName
+            self.deliveryData?.endLinkMan = goods?.consigneeName ?? ""
+            self.rePhoneTextField.text = goods?.consigneePhone
+            self.deliveryData?.endLinkPhone = goods?.consigneePhone ?? ""
+            self.remarkTextField.text = goods?.remark
+            self.deliveryData?.remark = goods?.remark
+            self.unitTextField.text = String(Float(goods?.refercneceUnitPrice ?? 0))
+            self.deliveryData?.unit = String(Float(goods?.refercneceUnitPrice ?? 0))
+            self.amountTextField.text = String(Float(goods?.refercneceTotalPrice ?? 0))
+            self.deliveryData?.total = String(Float(goods?.refercneceTotalPrice ?? 0))
+            
+            WDLGlobal.shard().clearReShelveGoods()
+        }
+    }
     
-    
+    // 筛选重新上架时，默认的货源有效期时间展示
+    func reShelveValidPeriodTime(code:String?) -> String? {
+        let valids = self.hallItems?.HYYXQ ?? []
+        let codes = valids.filter({ (item) -> Bool in
+            return item.dictionaryCode == code
+        })
+        return codes.first?.dictionaryName
+    }
 }
 
 extension DeliveryVC {

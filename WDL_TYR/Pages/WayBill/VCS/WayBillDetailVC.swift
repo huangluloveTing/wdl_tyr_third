@@ -455,7 +455,8 @@ extension WayBillDetailVC {
         self.showBottom = false
         switch self.pageInfo?.transportStatus ?? .noStart {
         case .noStart,.willToTransport:
-            self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView) { [weak self](index) in
+            let bottomCanUse = self.pageInfo?.offerHasVehicle == 1
+            self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView , enable: bottomCanUse) { [weak self](index) in
                 if index == 0 {
                     self?.cancelWayBill() // 取消起运
                 }else {
@@ -533,7 +534,7 @@ extension WayBillDetailVC {
         var evaluted:ZbnEvaluate? = nil
         if let evaluteList = evaluteList {
             let filterEvaluate = evaluteList.filter { (value) -> Bool in
-                return value.evaluateTo == 1 || value.evaluateTo == 2
+                return value.evaluateTo == 1
             }
             if filterEvaluate.count > 0 {
                 evaluted = filterEvaluate.first
@@ -547,7 +548,7 @@ extension WayBillDetailVC {
         var evaluted:ZbnEvaluate? = nil
         if let evaluteList = evaluteList {
             let filterEvaluate = evaluteList.filter { (value) -> Bool in
-                return value.evaluateTo == 3 || value.evaluateTo == 4
+                return value.evaluateTo == 2
             }
             if filterEvaluate.count > 0 {
                 evaluted = filterEvaluate.first

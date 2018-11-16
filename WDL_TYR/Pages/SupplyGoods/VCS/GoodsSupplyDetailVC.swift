@@ -293,7 +293,9 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     
     // 重新上架
     func toReShelveGoods() -> Void {
-        
+        WDLGlobal.shard().reShelveGoodsSupply(goods: self.pageContentInfo?.zbnOrderHall)
+        let deliveryVC = DeliveryVC()
+        self.push(vc: deliveryVC, title: "重新上架")
     }
     
     // 查看运单
@@ -317,6 +319,10 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     }
     
     func toOffShelveAlert() -> Void {
+        if WDLCoreManager.shared().consignorType == .agency {
+            self.showWarn(warn: "你无该权限", complete: nil)
+            return
+        }
         AlertManager.showTitleAndContentAlert(title: "是否下架该条货源？", content: "已有报价的货源，下架自动驳回所有报价?") {[weak self](index) in
             if index == 1 {
                 self?.toOffShelve()
@@ -493,7 +499,7 @@ extension GoodsSupplyDetailVC {
                 
             case .OffShelve:
                 self.bottomButtom(titles: ["重新上架"], targetView: self.tableView) { [weak self](index) in
-                    self?.onShelveAlert()
+                    self?.toReShelveGoods()
                 }
                 break
             default:
