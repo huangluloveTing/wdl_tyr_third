@@ -102,7 +102,7 @@ extension PersonSettingVC {
     
     // 退出登录
     func loginOutHanle() -> Void {
-        AlertManager.showTitleAndContentAlert(title: "提示", content: "是否退出登录") { (index) in
+        AlertManager.showTitleAndContentAlert(context:self, title: "提示", content: "是否退出登录") { (index) in
             if index == 1 {
                 let loginVC = LoginVC()
                 WDLCoreManager.shared().userInfo = nil

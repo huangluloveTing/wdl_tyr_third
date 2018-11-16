@@ -92,7 +92,7 @@ extension GSDetailBidingHeader {
         }
         else {
             self.timeDownView.isHidden = false
-            self.timeDownView.updateHeight(height: CGFloat(self.timeViewHeight))
+            let _ = self.timeDownView.updateHeight(height: CGFloat(self.timeViewHeight))
         }
 //        if show == false {
 //            self.timeDownView.removeFromSuperview()

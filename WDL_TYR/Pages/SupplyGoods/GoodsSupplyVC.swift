@@ -156,6 +156,7 @@ class GoodsSupplyVC: MainBaseVC {
                 self.requestBean.endProvince = Util.mapSpecialStrToNil(str: self.endModel.province?.title)
                 
                 let dataObserval = BaseApi.request(target: API.ownOrderHall(self.requestBean), type: BaseResponseModel<GoodsSupplyList>.self)
+                    .retry(2)
                     .subscribeOn(MainScheduler.instance)
                     .catchErrorJustReturn(BaseResponseModel<GoodsSupplyList>())
                 return dataObserval

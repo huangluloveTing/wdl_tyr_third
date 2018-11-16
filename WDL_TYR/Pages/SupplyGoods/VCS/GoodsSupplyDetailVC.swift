@@ -284,7 +284,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     
     // 上架
     func onShelveAlert() {
-        AlertManager.showTitleAndContentAlert(title: nil, content: "该货源为定时上架货源，确定立即上架 ？") { [weak self](index) in
+        AlertManager.showTitleAndContentAlert(context:self, title: nil, content: "该货源为定时上架货源，确定立即上架 ？") { [weak self](index) in
             if index == 1 {
                 self?.toOnShelve()
             }
@@ -323,7 +323,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
             self.showWarn(warn: "你无该权限", complete: nil)
             return
         }
-        AlertManager.showTitleAndContentAlert(title: "是否下架该条货源？", content: "已有报价的货源，下架自动驳回所有报价?") {[weak self](index) in
+        AlertManager.showTitleAndContentAlert(context:self, title: "是否下架该条货源？", content: "已有报价的货源，下架自动驳回所有报价?") {[weak self](index) in
             if index == 1 {
                 self?.toOffShelve()
             }

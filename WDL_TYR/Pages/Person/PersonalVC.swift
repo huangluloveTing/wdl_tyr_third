@@ -17,6 +17,8 @@ let personAgencyTitles:[String] = ["我的认证","我的承运人","消息中�
 
 class PersonalVC: MainBaseVC  {
     
+    private var infoDispose:Disposable? = nil
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var dropHintView: DropHintView!
@@ -36,6 +38,11 @@ class PersonalVC: MainBaseVC  {
         self.loadInfo()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.infoDispose?.dispose()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -104,14 +111,14 @@ extension PersonalVC {
 extension PersonalVC {
     func loadInfo() -> Void {
         let id = WDLCoreManager.shared().userInfo?.id ?? ""
-        BaseApi.request(target: API.getZbnConsignor(id), type: BaseResponseModel<ZbnConsignor>.self)
+        self.infoDispose = BaseApi.request(target: API.getZbnConsignor(id), type: BaseResponseModel<ZbnConsignor>.self)
+            .retry(2)
             .subscribe(onNext: { [weak self](data) in
                 self?.zbnConsignor = data.data
                 self?.tableView.reloadData()
             }, onError: { [weak self](error) in
                 self?.showFail(fail: error.localizedDescription, complete: nil)
             })
-            .disposed(by: dispose)
     }
 }
 

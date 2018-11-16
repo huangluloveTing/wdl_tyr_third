@@ -382,7 +382,7 @@ extension WayBillDetailVC {
     
     // 取消运单
     func cancelWayBill() -> Void {
-        AlertManager.showTitleAndContentAlert(title: "提示", content: "确认取消运单？") { [weak self](index) in
+        AlertManager.showTitleAndContentAlert(context:self, title: "提示", content: "确认取消运单？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
                 let code = self?.pageInfo?.transportNo ?? ""
@@ -401,7 +401,7 @@ extension WayBillDetailVC {
     
     // 确认起运
     func sureToTransport() -> Void {
-        AlertManager.showTitleAndContentAlert(title: "确认起运", content: "确认起运？") { [weak self](index) in
+        AlertManager.showTitleAndContentAlert(context:self, title: "确认起运", content: "确认起运？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
                 let code = self?.pageInfo?.transportNo ?? ""
@@ -419,10 +419,10 @@ extension WayBillDetailVC {
     
     // 确认签收
     func toPickWayBill() -> Void {
-        AlertManager.showTitleAndContentAlert(title: "确认签收", content: "确认签收？") { [weak self](index) in
+        AlertManager.showTitleAndContentAlert(context:self, title: "确认签收", content: "确认签收？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
-                let code = self?.pageInfo?.stowageNo ?? ""
+                let code = self?.pageInfo?.transportNo ?? ""
                 BaseApi.request(target: API.transportSign(code), type: BaseResponseModel<String>.self)
                     .subscribe(onNext: { (data) in
                         self?.showSuccess()
@@ -481,6 +481,12 @@ extension WayBillDetailVC {
             let wayBillStatus = self.currrentEvaluatedStatus()
             switch wayBillStatus {
             case .noEvaluate: // 未评价
+                self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
+                    self?.toCommentWayBill(info:self?.wayBillInfo)
+                }
+                self.showBottom = true
+                break;
+            case .toMe:
                 self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
                     self?.toCommentWayBill(info:self?.wayBillInfo)
                 }

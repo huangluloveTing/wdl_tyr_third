@@ -43,8 +43,8 @@ extension GSDetailInfoCell {
         self.goodsNameLabel.text = info?.goodsName
         self.goodsTypeLabel.text = info?.goodsType
         self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info?.goodsWeight , info?.vehicleLength , info?.vehicleWidth  ,info?.vehicleType , info?.packageType)
-        self.unitLabel.text = Util.showMoney(money: info?.refercneceUnitPrice ?? 0, after: 2)
-        self.totalLabel.text = Util.showMoney(money: info?.refercneceTotalPrice ?? 0, after: 2)
+        self.unitLabel.text = Util.showMoney(money: info?.refercneceUnitPrice ?? 0, after: 2) + "元/吨"
+        self.totalLabel.text = Util.showMoney(money: info?.refercneceTotalPrice ?? 0, after: 2) + "元"
         self.remarkLabel.text = info?.remark
     }
 }

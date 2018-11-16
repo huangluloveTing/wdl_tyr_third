@@ -29,20 +29,16 @@ extension AboutZbnVC: UIWebViewDelegate{
     // 该方法是在UIWebView在开发加载时调用
     func webViewDidStartLoad(_ webView: UIWebView) {
         print("开始加载")
-    
-        SVProgressHUD .show()
+        self.showLoading()
     }
     
     // 该方法是在UIWebView加载完之后才调用
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        print("加载完成")
-       SVProgressHUD .dismiss()
     }
     
     // 该方法是在UIWebView请求失败的时候调用
     func webView(webView: UIWebView, didFailLoadWithError error: Error?) {
-       SVProgressHUD.showError(withStatus: "加载失败")
-       SVProgressHUD.dismiss(withDelay: 1.5)
+       self.showFail(fail: error?.localizedDescription, complete: nil)
     }
     
   

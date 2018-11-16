@@ -15,7 +15,7 @@ import HandyJSON
 
 struct BaseApi {
     
-    private static let provider = MoyaProvider<API>( requestClosure:requestClosure,plugins: [MyPlugins()])
+    private static let provider = MoyaProvider<API>( requestClosure:requestClosure,plugins: [])
     
     static func request<T: BaseResponse>(target:API, type:T.Type) -> Observable<T> {
         let observable = provider.rx.request(target).asObservable()
@@ -34,7 +34,7 @@ func myEndPoint(target:TargetType) -> Endpoint {
                             method: target.method,
                             task: target.task,
                             httpHeaderFields: [String: String]())
-        endPoint = endPoint.adding(newHTTPHeaderFields: ["Content-Type":"application/x-www-form-urlencoded"])
+        endPoint = endPoint.adding(newHTTPHeaderFields: ["Content-Type":"application/json"])
     return endPoint
 }
 

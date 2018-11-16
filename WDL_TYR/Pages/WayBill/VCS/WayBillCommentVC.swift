@@ -9,8 +9,8 @@
 import UIKit
 
 struct WaybillCommitModel {
-    var logicScore:Float = 5
-    var serviceScore:Float = 5
+    var logicScore:Float = 0
+    var serviceScore:Float = 0
     var comment:String = ""
 }
 
@@ -67,6 +67,15 @@ extension WayBillCommentVC {
         evaluate.logisticsServicesScore = Int(self.commitModel.logicScore)
         evaluate.serviceAttitudeScore = Int(self.commitModel.serviceScore)
         evaluate.commonts = self.commitModel.comment
+        if evaluate.logisticsServicesScore == 0 {
+            self.showWarn(warn: "请评价物流服务", complete: nil)
+            return
+        }
+        if evaluate.serviceAttitudeScore == 0 {
+            self.showWarn(warn: "请评价服务态度", complete: nil)
+            return
+        }
+        self.showLoading()
         BaseApi.request(target: API.createEvaluate(evaluate), type: BaseResponseModel<String>.self)
             .subscribe(onNext: { [weak self](data) in
                 self?.showSuccess(success: "评价成功", complete: {
@@ -83,7 +92,14 @@ extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillCommentCell.self)") as! WayBillCommentCell
-            cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice, amount: self.pageInfo?.dealTotalPrice, cyName: self.pageInfo?.carrierName, driver: self.pageInfo?.dirverName, truckInfo: nil, dealTime: (self.pageInfo?.dealTime) ?? 0 / 1000, offerTime: (self.pageInfo?.publishTime ?? 0) / 1000)
+             let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
+            cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice,
+                              amount: self.pageInfo?.dealTotalPrice,
+                              cyName: self.pageInfo?.carrierName,
+                              driver: self.pageInfo?.dirverName,
+                              truckInfo: truckInfo,
+                              dealTime: (self.pageInfo?.dealTime) ?? 0 / 1000,
+                              offerTime: (self.pageInfo?.publishTime ?? 0) / 1000)
             return cell
         }
         

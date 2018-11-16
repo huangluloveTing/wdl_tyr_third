@@ -89,16 +89,16 @@ class WayBillVC: MainBaseVC {
                 return WayBillExcuteCommand.selectedItem(indexPath, self)
             }
         let itemDeleteCommand = self.tableView.rx.itemDeleted.asObservable().map(WayBillExcuteCommand.deleteItem)
-        let loadDataCommand = self.handleCommand().map { (lists) -> WayBillExcuteCommand in
-            self.tableView.endRefresh()
+        let loadDataCommand = self.handleCommand().map { [weak self](lists) -> WayBillExcuteCommand in
+            self?.tableView.endRefresh()
             let wayBillSections = WayBillSections(header: "", items: lists.list ?? [])
             if lists.list?.count ?? 0 >= lists.total {
-                self.tableView.noMore()
+                self?.tableView.noMore()
             }
             return WayBillExcuteCommand.refresh([wayBillSections])
         }
         
-        Observable.of(itemDeleteCommand , itemSelectCommand , loadDataCommand)
+       let disposable = Observable.of(itemDeleteCommand , itemSelectCommand , loadDataCommand)
             .merge()
             .scan(WayBillExcuteState(sections: []), accumulator: { (state, command) -> WayBillExcuteState in
                 state.excute(command: command)
@@ -106,8 +106,10 @@ class WayBillVC: MainBaseVC {
             .map { (state) -> [WayBillSections] in
                 return state.sections
             }
+            .share(replay: 1)
             .bind(to: self.tableView.rx.items(dataSource: self.instanceDataSource()))
-            .disposed(by: dispose)
+        
+        disposable.disposed(by: dispose)
     }
     
     func registerCells() {
@@ -198,6 +200,7 @@ extension WayBillVC {
     
     func handleCommand() -> Observable<WayBillPageBean> {
        return self.tableView.refreshState.asObservable()
+            .distinctUntilChanged()
             .filter { (state) -> Bool in
                 if state == .Refresh {
                     self.tableView.resetFooter()
@@ -217,6 +220,7 @@ extension WayBillVC {
     
     func loadWayBill() -> Observable<WayBillPageBean> {
         let result = BaseApi.request(target: API.ownTransportPage(self.queryBean), type: BaseResponseModel<WayBillPageBean>.self)
+            .retry(2)
             .catchErrorJustReturn(BaseResponseModel<WayBillPageBean>())
             .map { (data) -> WayBillPageBean in
                 return data.data ?? WayBillPageBean()

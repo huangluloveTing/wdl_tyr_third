@@ -78,7 +78,7 @@ func apiPath(api:API) -> String {
     case .sinGletransaction(_):
         return "/transport/sinGletransactionApp"
     case .transportSign(_):
-        return "/transport/signTratnsport"
+        return "/transport/sign"
     case .transportTransaction(_):
         return "/transport/transaction"
     case .getZbnConsignor(_):
@@ -138,7 +138,7 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
         
     case .transportSign(let code):
-        return .requestParameters(parameters: ["stowageCode":code ,"transportStatus":5], encoding: JSONEncoding.default)
+        return .requestParameters(parameters: ["transportNo":code], encoding: URLEncoding.default)
         
     //运单状态 1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收
     case .transportTransaction(let code):
@@ -183,7 +183,8 @@ func apiMethod(api:API) -> Moya.Method {
          .deleteOrderHall(_),
          .getZbnConsignor(_),
          .cancelTransport(_),
-         .transportTransaction(_):
+         .transportTransaction(_),
+         .transportSign(_):
         return .get
     default:
         return .post
