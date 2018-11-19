@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, RateStyle)
 @property (nonatomic, weak) id<XHStarRateViewDelegate>delegate;
 @property (nonatomic ,assign) CGFloat score;
 @property (nonatomic ,assign) BOOL onlyShow; //仅仅展示
-
+@property (nonatomic,assign)CGFloat currentScore;   // 当前评分：0-5  默认0
 
 -(instancetype)initWithFrame:(CGRect)frame;
 -(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation delegate:(id)delegate;

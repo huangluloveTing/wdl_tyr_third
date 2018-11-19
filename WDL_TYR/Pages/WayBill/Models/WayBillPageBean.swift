@@ -19,14 +19,13 @@ struct WayBillPageBean : HandyJSON {
     var total : Int = 0
 }
 
-//1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收  7=被拒绝
-//当出现5或者6时，托运人就不能签收了
+// (integer): 运单状态 -1不限 1=待起运 0=待办单 2=运输中 3=待签收 10=已签收
 enum WayBillTransportStatus : Int , HandyJSONEnum { // 运单状态
     case noStart = 0           // 未开始
     case willToTransport = 1   // 待起运
     case transporting = 2      // 运输中
     case willToPickup = 3      // 待签收
-    case done = 10            // 完成
+    case done = 10            // 完成（已签收）
 }
 
 struct WayBillInfoBean : HandyJSON {
@@ -44,7 +43,7 @@ struct WayBillInfoBean : HandyJSON {
     var dealTotalPrice : CGFloat? // (number): 成交总价 ,
     var dealUnitPrice : CGFloat? // (number): 成交单价 ,
     var dealWay : Int?          // (integer): 成交方式 1=自动 2=手动 ,
-    var dirverName : String?    // (string): 司机姓名 ,
+    var driverName : String?    // (string): 司机姓名 ,
     var driverPhone : String?   // (string): 司机手机号 ,
     var endAddress : String?    // (string, optional),
     var endCity : String?       // (string): 收货地市 ,
@@ -84,7 +83,7 @@ struct WayBillInfoBean : HandyJSON {
     var stowageCode : String? // (string): 运单编码 ,
     var stowageNo : String? // (string): 配载单号 ,
     var supplyCode : String? // (string, optional): 货源编码 ,
-    var transportStatus : WayBillTransportStatus? // (integer): 运单状态 1=待起运 0=待办单 2=运输中 3=待签收 4=司机签收 5=经销商或第三方签收 6=TMS签收  7=被拒绝
+    var transportStatus : WayBillTransportStatus? // (integer): 运单状态 -1不限 1=待起运 0=待办单 2=运输中 3=待签收 10=已签收
     var transportNo:String? // 运单号
     var transportWay : String? // (string, optional),
     var unableReason : String? // (string): 下架原因 ,
@@ -93,6 +92,13 @@ struct WayBillInfoBean : HandyJSON {
     var vehicleType : String? // (string): 车型 ,
     var vehicleWidth : String? // (string): 车宽
     var evaluateList : [ZbnEvaluate]? // 评价信息
+    
+    var vehicleLengthDriver : String? // (string): 司机车长 ,
+    var vehicleTypeDriver : String?//(string): 司机车型 ,
+    var vehicleWeightDriver : String?//(string): 司机车重 
+    
+    
+    
 }
 
 extension WayBillInfoBean : IdentifiableType , Equatable {
@@ -126,6 +132,7 @@ struct ZbnTransportReturn : HandyJSON { // 回单信息 ,
     var id : String? // (string, optional),
     var returnBillUrl : String? // (string): 回单存储路径 ,
     var startTime : TimeInterval? // (string): 开始时间 ,
+    var createTime : TimeInterval? // (string): 回单时间 ,
     var transportNo : String? // (string, optional)
 }
 

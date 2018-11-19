@@ -47,7 +47,7 @@ extension WayBillCommentVC {
         let unit = self.pageInfo?.dealUnitPrice
         let amount = self.pageInfo?.dealTotalPrice
         let cyName = self.pageInfo?.carrierName
-        let driver = self.pageInfo?.dirverName
+        let driver = self.pageInfo?.driverName
         let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
         

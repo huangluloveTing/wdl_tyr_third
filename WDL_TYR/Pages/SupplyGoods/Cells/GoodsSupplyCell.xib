@@ -62,7 +62,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30吨 | 1方 | 高栏车 | 无包装" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKF-7O-C1M">
-                                <rect key="frame" x="20" y="181" width="174.5" height="17"/>
+                                <rect key="frame" x="20" y="181" width="360" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -99,6 +99,7 @@
                             <constraint firstItem="hUI-XQ-vgJ" firstAttribute="top" secondItem="UvR-LO-24C" secondAttribute="top" id="PnQ-vt-PS5"/>
                             <constraint firstItem="D5f-gD-ufR" firstAttribute="top" secondItem="NIM-Sc-2fO" secondAttribute="bottom" constant="15" id="QM2-AJ-18M"/>
                             <constraint firstItem="NIM-Sc-2fO" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="leading" id="Yos-Ve-z7a"/>
+                            <constraint firstAttribute="trailing" secondItem="tKF-7O-C1M" secondAttribute="trailing" constant="10" id="Zdd-we-7HB"/>
                             <constraint firstItem="dGS-aO-G8X" firstAttribute="centerY" secondItem="mbe-03-H1R" secondAttribute="centerY" id="esM-at-Nyj"/>
                             <constraint firstItem="tKF-7O-C1M" firstAttribute="top" secondItem="D5f-gD-ufR" secondAttribute="bottom" constant="15" id="fOl-at-Xx5"/>
                             <constraint firstAttribute="bottom" secondItem="1Kc-wC-UII" secondAttribute="bottom" constant="10" id="fdN-NK-trb"/>

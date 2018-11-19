@@ -39,12 +39,14 @@ extension WayBillCell {
             //运单号
         self.tranportNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" ,info?.transportNo )
         self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.startProvince , info?.startCity)
-        self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.startProvince , info?.endCity)
+        self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.endProvince , info?.endCity)
         self.transportInfoStatusDisplay(status: info?.transportStatus?.rawValue ?? 0, to: self.statusLabel)
+       
         self.cyLabel.text = info?.carrierName
         self.dealTimeLabel.text = Util.dateFormatter(date: (info?.dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm:ss")
         self.priceLabel.text = Util.showMoney(money: info?.dealUnitPrice ?? 0, after: 0)
         
+        self.phoneLabel.text = info?.cellPhone ?? ""
         //物料和装货时间
         let goodsType = info?.goodsType
         let loadTimeStr = Util.dateFormatter(date: (info?.loadingTime ?? 0) / 1000, formatter: "MM-dd")

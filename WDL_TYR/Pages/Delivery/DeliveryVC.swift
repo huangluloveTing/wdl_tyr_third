@@ -73,11 +73,12 @@ class DeliveryVC: MainBaseVC {
     @IBOutlet weak var packageTextField: UITextField!       // 包装类型
     @IBOutlet weak var timerPostButton: UIButton!           // 定时发布按钮
     @IBOutlet weak var surePostButton: UIButton!            // 确认发布按钮
-    
+    //装货信息
     @IBOutlet weak var loadDetailAddressTextField: UITextField!
     @IBOutlet weak var loadLinkPhoneTextField: UITextField!
     @IBOutlet weak var loadLinkManTextField: UITextField!
     
+    //收货信息
     @IBOutlet weak var reDetailAddressTextField: UITextField!
     @IBOutlet weak var reLinkManTextField: UITextField!
     @IBOutlet weak var rePhoneTextField: UITextField!
@@ -355,6 +356,7 @@ extension DeliveryVC {
         return true
     }
     
+    //MARK: 确认发布
     private func toConfirmCommit() {
         if self.canCommit() == true {
             self.showAlert(title: "提示", message: "确认提交") { [weak self](index) in
@@ -394,11 +396,13 @@ extension DeliveryVC {
             sourceModel.startDistrict = self.startPlace.strict?.title
             sourceModel.endDistrict = self.endPlace.strict?.title
             sourceModel.remark = self.deliveryData?.remark
-            sourceModel.loadingPersonName = self.deliveryData?.loadLinkMan
-            sourceModel.startAddress = self.deliveryData?.loadAddress
+            sourceModel.loadingPersonName = self.deliveryData?.loadLinkMan//装货信息
+            sourceModel.loadingPersonAddress = self.deliveryData?.loadAddress
             sourceModel.loadingPersonPhone = self.deliveryData?.loadLinkPhone
-            sourceModel.endAddress = self.deliveryData?.endAddress
-            
+            sourceModel.endAddress = self.deliveryData?.endAddress//收货信息
+            sourceModel.consigneeName = self.deliveryData?.endLinkMan
+            sourceModel.consigneePhone = self.deliveryData?.endLinkPhone
+        
             self.showLoading()
             BaseApi.request(target: API.releaseSource(sourceModel), type: BaseResponseModel<String>.self)
                 .subscribe(onNext: { (model) in
@@ -415,10 +419,9 @@ extension DeliveryVC {
                             vc.selectedIndex = 1
                         })
                     }
-                    self.clearAllInput()
-                }, onError: { (error) in
-                    //test
 //                    self.clearAllInput()
+                }, onError: { (error) in
+
                     self.showFail(fail: error.localizedDescription, complete: nil)
                     
                 })
@@ -493,7 +496,13 @@ extension DeliveryVC {
             self.showWarn(warn: "请输入成交时间", complete: nil)
             return false
         }
+        //自动成交必须填写参考价
+        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.unitTextField.text) && Util.isEmptyString(str:self.amountTextField.text) {
+            self.showWarn(warn: "自动成交需要输入参考价和总价", complete: nil)
+            return false
+        }
 
+        
         if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto &&  Int((self.deliveryData?.dealTime)!) == 0  {
             self.showWarn(warn: "输入的成交时间必须大于0", complete: nil)
             return false
