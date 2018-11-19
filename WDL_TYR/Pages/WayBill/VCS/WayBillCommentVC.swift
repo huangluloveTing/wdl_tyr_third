@@ -96,7 +96,7 @@ extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
             cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice,
                               amount: self.pageInfo?.dealTotalPrice,
                               cyName: self.pageInfo?.carrierName,
-                              driver: self.pageInfo?.dirverName,
+                              driver: self.pageInfo?.driverName,
                               truckInfo: truckInfo,
                               dealTime: (self.pageInfo?.dealTime) ?? 0 / 1000,
                               offerTime: (self.pageInfo?.publishTime ?? 0) / 1000)
