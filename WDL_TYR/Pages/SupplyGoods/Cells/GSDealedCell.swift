@@ -30,7 +30,7 @@ class GSDealedCell: BaseCell {
 
 extension GSDealedCell {
     func contentInfo(info:OderHallBean? , offer:SupplyOfferBean?) -> Void {
-        self.truckInfoLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info?.vehicleLengthDriver , info?.vehicleTypeDriver , info?.vehicleNo)
+        self.truckInfoLabel.text = Util.concatSeperateStr(seperete: " | ", strs:info?.vehicleLengthDriver ?? "", info?.vehicleTypeDriver , info?.vehicleNo)
         self.dealTimeLabel.text = Util.dateFormatter(date: (Double(info?.dealTime ?? "0") ?? 0) / 1000, formatter: "MM-dd  HH:mm")
         self.cyLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer?.carrierName , "")
         self.driverLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer?.driverName , offer?.driverPhone)

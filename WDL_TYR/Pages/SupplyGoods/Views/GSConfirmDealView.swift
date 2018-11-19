@@ -86,9 +86,8 @@ class GSConfirmDealView: UIView {
             self.phoneLabel.text = Util.formatterPhone(phone: confirm.phone ?? "")
             self.unitPriceLabel.text = Util.concatSeperateStr(seperete: "", strs: "单价：" ,String(Float(confirm.unit ?? 0))+"元/" , "吨")
             self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: "总价：" ,String(Float(confirm.total ?? 0)) + "元") 
-            self.timeLabel.text = Util.dateFormatter(date: confirm.time ?? 0, formatter: "MM-dd HH:mm:ss")
-//            self.rateView.score = confirm.score ?? 0
-            
+//            self.timeLabel.text = Util.dateFormatter(date: confirm.time ?? 0, formatter: "MM-dd HH:mm:ss")
+            self.timeLabel.text = Util.dateFormatter(date: (confirm.time ?? 0) / 1000, formatter: "MM-dd HH:mm")
             //评分星星
             self.starView.score = CGFloat(confirm.score ?? 0.0)
            

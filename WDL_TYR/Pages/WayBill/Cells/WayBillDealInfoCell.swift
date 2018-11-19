@@ -32,13 +32,15 @@ extension WayBillDealInfoCell {
     func showDealInfo(unit:CGFloat? ,
                       amount:CGFloat? ,
                       cyName:String? ,
+                      cyPhone:String?,
+                      driverPhone:String?,
                       driver:String? ,
                       truckInfo:String? ,
                       dealTime:TimeInterval?) -> Void {
         self.unitLabel.text = Util.showMoney(money: unit ?? 0, after: 0)+"元/吨"
         self.amountLabel.text = Util.showMoney(money: amount ?? 0, after: 0)+"元"
-        self.cyNameLabel.text = cyName
-        self.driverLabel.text = driver
+        self.cyNameLabel.text = (cyName ?? "") + " " + (cyPhone ?? "")
+        self.driverLabel.text = (driver ?? "") + " " + (driverPhone ?? "")
         self.truckInfoLabel.text = truckInfo
         self.dealTimeLabel.text = Util.dateFormatter(date: dealTime ?? 0, formatter: "MM-dd HH:mm")
     }

@@ -105,9 +105,10 @@ extension PersonSettingVC {
         AlertManager.showTitleAndContentAlert(context:self, title: "提示", content: "是否退出登录") { (index) in
             if index == 1 {
                 let loginVC = LoginVC()
+                let naviVC = UINavigationController(rootViewController: loginVC)
                 WDLCoreManager.shared().userInfo = nil
                 self.tabBarController?.selectedIndex = 0
-                self.present(toVC: loginVC, animation: true, return: nil)
+                self.present(naviVC, animated: true, completion: nil)
                 self.pop(toRootViewControllerAnimation: false)
             }
         }
