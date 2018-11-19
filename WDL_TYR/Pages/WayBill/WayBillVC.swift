@@ -15,6 +15,8 @@ class WayBillVC: MainBaseVC {
     
     // 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝
     private let transportStatus = ["不限"/*,"待办单"*/,"待起运","运输中","待签收", "已签收"]
+    
+    private let transportStatus_agency = ["不限","待办单","待起运","运输中","待签收", "已签收"]
 
     @IBOutlet weak var dropAnchorView: UIView!
     @IBOutlet weak var statusButton: MyButton!
@@ -119,19 +121,33 @@ class WayBillVC: MainBaseVC {
     //MARK: - drop
     // 状态下拉视图
     private lazy var statusView:DropViewContainer = {
-        let statusView = GoodsSupplyStatusDropView(tags: transportStatus)
-        //0=竞价中 1=成交 2=未上架 3=已下架
+        let statusView = GoodsSupplyStatusDropView(tags: WDLCoreManager.shared().consignorType == .third ? transportStatus : transportStatus_agency)
+        // 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
+//        transportStatus (integer): 运单状态 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
         statusView.checkClosure = { [weak self] (index) in
             self?.statusButton.setTitle(self?.transportStatus[index], for: .normal)
 //            transportStatus (integer): 运单状态 1=待起运 2=运输中 3=代签收 10=已签收 ,
-
-            if index == 0 {
-                self?.queryBean.transportStatus = nil
-            } else if index == 4 {
-                self?.queryBean.transportStatus = 10
-            } else {
-                self?.queryBean.transportStatus = index
+            // 托运人
+            if WDLCoreManager.shared().consignorType == .third {
+                if index == 0 {
+                    self?.queryBean.transportStatus = nil
+                } else if index == 4 {
+                    self?.queryBean.transportStatus = 10
+                } else {
+                    self?.queryBean.transportStatus = index
+                }
+            } else { // 经销商
+                if index == 0 {
+                    self?.queryBean.transportStatus = nil
+                } else if index == 1 {
+                    self?.queryBean.transportStatus = 0
+                } else if index == 5 {
+                    self?.queryBean.transportStatus = 10
+                } else {
+                    self?.queryBean.transportStatus = index - 1
+                }
             }
+            
             self?.showStatusDropView()
             self?.tableView.beginRefresh()
         }
@@ -143,11 +159,11 @@ class WayBillVC: MainBaseVC {
         let placeView = Bundle.main.loadNibNamed("DropPlaceView", owner: nil, options: nil)?.first as! DropPlaceChooiceView
         placeView.placeItems = self.initialProinve()
         placeView.frame = CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: IPHONE_WIDTH)
-        placeView.dropClosure = { (province , city , strict) in
-            self.startModel.province = province
-            self.startModel.city = city
-            self.startModel.strict = strict
-            self.startButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
+        placeView.dropClosure = { [weak self](province , city , strict) in
+            self?.startModel.province = province
+            self?.startModel.city = city
+            self?.startModel.strict = strict
+            self?.startButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
         }
         placeView.decideClosure = { [weak self](sure) in
             if sure == true {
@@ -219,6 +235,12 @@ extension WayBillVC {
     }
     
     func loadWayBill() -> Observable<WayBillPageBean> {
+        self.queryBean.startCity = self.startModel.city?.title
+        self.queryBean.startDistrict = self.startModel.strict?.title
+        self.queryBean.startProvince = self.startModel.province?.title
+        self.queryBean.endCity = self.endModel.city?.title
+        self.queryBean.endDistrict = self.endModel.strict?.title
+        self.queryBean.endProvince = self.endModel.province?.title
         let result = BaseApi.request(target: API.ownTransportPage(self.queryBean), type: BaseResponseModel<WayBillPageBean>.self)
             .retry(2)
             .catchErrorJustReturn(BaseResponseModel<WayBillPageBean>())

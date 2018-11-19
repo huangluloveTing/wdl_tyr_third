@@ -148,9 +148,9 @@ struct ZbnEvaluate  : HandyJSON {
     var transportNo : String? // (string, optional) 运单号
     var transportLine : String? // (string): 线路 ,
     var transportCount : Int = 0 // (integer): 承运次数 ,
-    var logisticsServicesScore : Int = 0 // (integer): 物流服务得分 ,
-    var serviceAttitudeScore : Int = 0 // (integer): 服务态度 ,
-    var activity : Int = 0  //(integer): 活跃度 ,
+    var logisticsServicesScore : Float = 0 // (integer): 物流服务得分 ,
+    var serviceAttitudeScore : Float = 0 // (integer): 服务态度 ,
+    var activity : Float = 0  //(integer): 活跃度 ,
     var bidPriceCount : Int = 0 // (integer): 竞价次数 ,
     var breachCount : Int = 0 // (integer): 违约次数 ,
     var commonts : String?

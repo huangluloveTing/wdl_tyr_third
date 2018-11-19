@@ -249,7 +249,7 @@ extension WayBillDetailVC {
     func commentForThird(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillOneCommentCell.self)") as! WayBillOneCommentCell
         let myComment = self.myComment(evaluteList: self.pageInfo?.evaluateList)
-        let commentInfo = WayBillDetailCommentInfo(rate: CGFloat(myComment?.serviceAttitudeScore ?? 0), comment: nil, commentTime: myComment?.createTime)
+        let commentInfo = WayBillDetailCommentInfo(rate: CGFloat(myComment?.serviceAttitudeScore ?? 0), comment: myComment?.commonts, commentTime: myComment?.createTime, logic: CGFloat(myComment?.logisticsServicesScore ?? 0), logicComment: "")
         cell.showComment(info: commentInfo)
         return cell
     }
@@ -257,8 +257,8 @@ extension WayBillDetailVC {
     // 已签收，我未评价，对方已评价
     func commentInfoToMe(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillOneCommentCell.self)") as! WayBillOneCommentCell
-        let commentMe = self.myComment(evaluteList: self.pageInfo?.evaluateList)
-        let commentInfo = WayBillDetailCommentInfo(rate: CGFloat(commentMe?.serviceAttitudeScore ?? 0), comment: commentMe?.commonts, commentTime: commentMe?.endTime)
+        let commentMe = self.commentToMe(evaluteList: self.pageInfo?.evaluateList)
+        let commentInfo = WayBillDetailCommentInfo(rate: CGFloat(commentMe?.serviceAttitudeScore ?? 0), comment: commentMe?.commonts, commentTime: commentMe?.createTime, logic: CGFloat(commentMe?.logisticsServicesScore ?? 0), logicComment: "")
         cell.showComment(info: commentInfo)
         return cell
     }
@@ -266,10 +266,10 @@ extension WayBillDetailVC {
     // 已签收，双方互评
     func commentForEachOther(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillCommentAllCell.self)") as! WayBillCommentAllCell
-        let commentMe = self.myComment(evaluteList: self.pageInfo?.evaluateList)
-        let commentMeInfo = WayBillDetailCommentInfo(rate: commentMe?.evaluateScore, comment: nil, commentTime: commentMe?.endTime)
+        let commentMe = self.commentToMe(evaluteList: self.pageInfo?.evaluateList)
+        let commentMeInfo = WayBillDetailCommentInfo(rate: CGFloat(commentMe?.serviceAttitudeScore ?? 0), comment: commentMe?.commonts, commentTime: commentMe?.createTime, logic: CGFloat(commentMe?.logisticsServicesScore ?? 0), logicComment: "")
         let myComment = self.myComment(evaluteList: self.pageInfo?.evaluateList)
-        let myCommentInfo = WayBillDetailCommentInfo(rate: myComment?.evaluateScore, comment: nil, commentTime: myComment?.endTime)
+        let myCommentInfo = WayBillDetailCommentInfo(rate: CGFloat(myComment?.serviceAttitudeScore ?? 0), comment: myComment?.commonts, commentTime: myComment?.createTime, logic: CGFloat(myComment?.logisticsServicesScore ?? 0), logicComment: "")
         cell.showCommentInfo(toMeinfo: commentMeInfo, myCommentInfo: myCommentInfo)
         return cell
     }

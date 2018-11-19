@@ -44,7 +44,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uZ-6I-905">
-                        <rect key="frame" x="15" y="151" width="100" height="16"/>
+                        <rect key="frame" x="86.5" y="152" width="100" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="SBh-1S-LOr"/>
@@ -58,38 +58,67 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="面粉不错" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzD-Mc-qII">
-                        <rect key="frame" x="15" y="182" width="436" height="53.5"/>
+                        <rect key="frame" x="15" y="217" width="436" height="18.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物流评分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZm-Z5-vdj">
+                        <rect key="frame" x="15" y="151" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务评分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK3-IP-Dau">
+                        <rect key="frame" x="15" y="184" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5n5-En-pZc">
+                        <rect key="frame" x="86.5" y="185" width="100" height="16"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="aVu-h7-QW8"/>
+                            <constraint firstAttribute="width" constant="100" id="p0S-ah-S30"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="NNu-lD-0cI" firstAttribute="centerY" secondItem="P0c-fb-SS1" secondAttribute="centerY" id="1ir-u5-TiI"/>
+                    <constraint firstItem="EZm-Z5-vdj" firstAttribute="leading" secondItem="P0c-fb-SS1" secondAttribute="leading" id="87P-g0-ijl"/>
                     <constraint firstItem="ZaG-fL-cPP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="AhO-vX-stj"/>
+                    <constraint firstItem="8uZ-6I-905" firstAttribute="leading" secondItem="EZm-Z5-vdj" secondAttribute="trailing" constant="10" id="C07-X5-bZS"/>
                     <constraint firstItem="YTR-F8-jeT" firstAttribute="top" secondItem="ZaG-fL-cPP" secondAttribute="bottom" constant="15" id="Cie-7h-F7A"/>
-                    <constraint firstItem="8uZ-6I-905" firstAttribute="top" secondItem="P0c-fb-SS1" secondAttribute="bottom" constant="15" id="DXm-08-HTA"/>
-                    <constraint firstItem="8uZ-6I-905" firstAttribute="leading" secondItem="P0c-fb-SS1" secondAttribute="leading" id="Q2z-Fr-fx0"/>
+                    <constraint firstItem="ZzD-Mc-qII" firstAttribute="top" secondItem="OK3-IP-Dau" secondAttribute="bottom" constant="15" id="Jg4-M0-ept"/>
+                    <constraint firstItem="5n5-En-pZc" firstAttribute="leading" secondItem="OK3-IP-Dau" secondAttribute="trailing" constant="10" id="LSh-6Z-oSx"/>
+                    <constraint firstItem="EZm-Z5-vdj" firstAttribute="top" secondItem="P0c-fb-SS1" secondAttribute="bottom" constant="15" id="Rgk-Rd-6Nk"/>
                     <constraint firstItem="ZaG-fL-cPP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="TWR-D3-X6b"/>
                     <constraint firstItem="P0c-fb-SS1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="VBq-9U-dTs"/>
                     <constraint firstAttribute="trailing" secondItem="NNu-lD-0cI" secondAttribute="trailing" constant="15" id="Xyf-Rf-MKP"/>
                     <constraint firstAttribute="bottom" secondItem="ZzD-Mc-qII" secondAttribute="bottom" constant="20" id="a6N-Rc-6hs"/>
                     <constraint firstItem="P0c-fb-SS1" firstAttribute="top" secondItem="UeP-z5-IHj" secondAttribute="bottom" constant="20" id="b4O-ja-SiT"/>
-                    <constraint firstItem="ZzD-Mc-qII" firstAttribute="top" secondItem="8uZ-6I-905" secondAttribute="bottom" constant="15" id="euB-qc-04c"/>
+                    <constraint firstItem="OK3-IP-Dau" firstAttribute="leading" secondItem="EZm-Z5-vdj" secondAttribute="leading" id="bCP-2A-uWJ"/>
+                    <constraint firstItem="ZzD-Mc-qII" firstAttribute="leading" secondItem="P0c-fb-SS1" secondAttribute="leading" id="bq9-TF-y20"/>
                     <constraint firstAttribute="trailing" secondItem="UeP-z5-IHj" secondAttribute="trailing" id="fK7-qp-zQ7"/>
+                    <constraint firstItem="OK3-IP-Dau" firstAttribute="top" secondItem="EZm-Z5-vdj" secondAttribute="bottom" constant="15" id="fga-tl-nZR"/>
                     <constraint firstItem="UeP-z5-IHj" firstAttribute="top" secondItem="YTR-F8-jeT" secondAttribute="bottom" constant="20" id="hNu-1R-uKI"/>
                     <constraint firstItem="YTR-F8-jeT" firstAttribute="leading" secondItem="ZaG-fL-cPP" secondAttribute="leading" id="jfU-T8-qfk"/>
                     <constraint firstItem="UeP-z5-IHj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="n2F-XH-yGC"/>
-                    <constraint firstItem="ZzD-Mc-qII" firstAttribute="leading" secondItem="8uZ-6I-905" secondAttribute="leading" id="oSu-RE-F3S"/>
                     <constraint firstAttribute="trailing" secondItem="ZzD-Mc-qII" secondAttribute="trailing" constant="15" id="oeJ-Jh-piH"/>
+                    <constraint firstItem="8uZ-6I-905" firstAttribute="centerY" secondItem="EZm-Z5-vdj" secondAttribute="centerY" id="rgo-B2-kFh"/>
+                    <constraint firstItem="5n5-En-pZc" firstAttribute="centerY" secondItem="OK3-IP-Dau" secondAttribute="centerY" id="t4a-BB-rdK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="commentLabel" destination="ZzD-Mc-qII" id="Je6-3N-t7Y"/>
                 <outlet property="commentTimeLabel" destination="NNu-lD-0cI" id="AFt-yL-0zj"/>
+                <outlet property="commentTypeLabel" destination="P0c-fb-SS1" id="DIg-AD-m6t"/>
+                <outlet property="firstContentLabel" destination="YTR-F8-jeT" id="wdU-fR-Gl4"/>
                 <outlet property="rateView" destination="8uZ-6I-905" id="dDn-8n-vZR"/>
+                <outlet property="serviceRateView" destination="5n5-En-pZc" id="7U3-Jf-WFV"/>
             </connections>
-            <point key="canvasLocation" x="143" y="47"/>
+            <point key="canvasLocation" x="142.40000000000001" y="46.776611694152926"/>
         </tableViewCell>
     </objects>
 </document>

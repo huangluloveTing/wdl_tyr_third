@@ -19,13 +19,17 @@ struct QuerytTransportListBean: HandyJSON {
     var startDistrict : String? // (string): 发货区 ,
     var startProvince : String? // (string): 发货地省 ,
     var searchWord : String?    // 搜索值
-    var transportStatus : Int? // (integer): 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝
+    var dealTime : String? // (string): 成交时间 ,
+    var destination : String? // (string): 始发地 ,
+    var transportStatus : Int? // (integer): 运单状态 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
 }
 
 struct WayBillDetailCommentInfo : HandyJSON {
     var rate:CGFloat?
     var comment:String?
     var commentTime:TimeInterval?
+    var logic:CGFloat?
+    var logicComment:String?
 }
 
 
