@@ -801,6 +801,7 @@ extension DeliveryVC {
         let hallObservable = BaseApi.request(target: API.getCreateHallDictionary(), type: BaseResponseModel<HallModels>.self)
         
         Observable.zip(areaObservable , hallObservable).asObservable()
+            .retry(2)
             .subscribe(onNext: { [weak self](result) in
                 self?.hiddenToast()
                 let (regions , hall) = result

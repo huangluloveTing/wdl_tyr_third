@@ -116,8 +116,8 @@ extension PersonalVC {
             .subscribe(onNext: { [weak self](data) in
                 self?.zbnConsignor = data.data
                 self?.tableView.reloadData()
-            }, onError: { [weak self](error) in
-                self?.showFail(fail: error.localizedDescription, complete: nil)
+            }, onError: { /*[weak self]*/(error) in
+//                self?.showFail(fail: error.localizedDescription, complete: nil)
             })
     }
 }
