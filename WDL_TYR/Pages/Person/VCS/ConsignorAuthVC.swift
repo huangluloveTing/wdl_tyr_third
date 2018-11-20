@@ -74,6 +74,7 @@ extension ConsignorAuthVC {
     func uploadImage(image:UIImage? , imageView:UIImageView , mode:UploadImagTypeMode) -> Void {
         self.showLoading()
         BaseApi.request(target: API.uploadImage(image! , mode), type: BaseResponseModel<String>.self)
+            .retry(3)
             .subscribe(onNext: {[weak self] (data) in
                 self?.showSuccess()
             }, onError: { [weak self](error) in

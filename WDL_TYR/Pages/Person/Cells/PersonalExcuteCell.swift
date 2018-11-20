@@ -43,10 +43,6 @@ extension PersonalExcuteCell {
     }
     
     func showAuthStatus(status:AutherizStatus?) -> Void {
-//        case not_start = 0
-//        case autherizing = 1
-//        case autherizedFail = 2
-//        case autherized
         guard let stat = status  else {
             self.subTitle(title: "", to: self.exSubTitleLabel)
             return
