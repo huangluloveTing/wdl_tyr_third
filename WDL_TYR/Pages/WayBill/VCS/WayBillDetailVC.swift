@@ -493,6 +493,9 @@ extension WayBillDetailVC {
     
     func addBottom() {
         self.showBottom = false
+        if WDLCoreManager.shared().consignorType == .agency {
+            return
+        }
         switch self.pageInfo?.transportStatus ?? .noStart {
         case .noStart,.willToTransport:
             let bottomCanUse = self.pageInfo?.offerHasVehicle == 1

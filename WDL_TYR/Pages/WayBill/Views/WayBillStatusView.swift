@@ -186,20 +186,20 @@ fileprivate class WayBillProcessView: UIView {
         if rate >= 1 {
             rate = 1
         }
-        let paddingProcessWidth = (self.zt_width + self.padding) * rate - self.padding / 2.0
+        let paddingProcessWidth = (self.zt_width + self.padding) * rate - self.padding / 2.0 - (rate == 1 ? self.padding / 2.0 : 0) - (rate == 1 ? 40 : 20) 
         self.currentProcessLine.zt_width = paddingProcessWidth
         self.loadProcessViews()
     }
     
     
     private lazy var allProcessLine:UIView = {
-        let line = UIView(frame: CGRect(x: 0, y: 19 , width: self.zt_width, height: 2))
+        let line = UIView(frame: CGRect(x: 20, y: 19 , width: self.zt_width - 40, height: 2))
         line.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         return line
     }()
     
     private lazy var currentProcessLine:UIView = {
-        let line = UIView(frame: CGRect(x: 0, y: 19 , width: 0, height: 2))
+        let line = UIView(frame: CGRect(x: 20, y: 19 , width: 0, height: 2))
         line.backgroundColor = UIColor(hex: COLOR_BUTTON)
         return line
     }()
@@ -259,7 +259,6 @@ fileprivate class ProcessItemView:UIView {
         self.titleLabel.textColor = self.item.focus ? UIColor(hex: TEXTFIELD_TEXTCOLOR) : UIColor(hex: TEXTCOLOR_EMPTY)
         self.titleLabel.sizeToFit()
         self.titleLabel.frame = CGRect(origin: CGPoint(x: 0, y: item_height - self.titleLabel.zt_height), size: CGSize(width: width, height: self.titleLabel.zt_height))
-//        self.imageView.frame = CGRect(origin: .zero, size: CGSize(width: self.zt_width, height: self.zt_width))
         var center = self.imageView.center
         center.x = self.zt_width / 2.0
         self.imageView.center = center
