@@ -186,7 +186,7 @@ fileprivate class WayBillProcessView: UIView {
         if rate >= 1 {
             rate = 1
         }
-        let paddingProcessWidth = (self.zt_width + self.padding) * rate - self.padding / 2.0 - 20
+        let paddingProcessWidth = (self.zt_width + self.padding) * rate - self.padding / 2.0 - (rate == 1 ? self.padding / 2.0 : 0) - (rate == 1 ? 40 : 20) 
         self.currentProcessLine.zt_width = paddingProcessWidth
         self.loadProcessViews()
     }

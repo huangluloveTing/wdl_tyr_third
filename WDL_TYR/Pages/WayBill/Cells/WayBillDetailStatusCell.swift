@@ -31,6 +31,7 @@ extension WayBillDetailStatusCell {
     
     func showInfo(status:WayBillTransportStatus , transportNo:String?) -> Void {
         self.wayBillNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号:" , transportNo)
+        
         switch status {
         case .noStart:
             self.wayBillStatusView?.status = WayBillStatus.NOT_Start
