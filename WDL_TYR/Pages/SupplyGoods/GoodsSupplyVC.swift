@@ -213,12 +213,12 @@ class GoodsSupplyVC: MainBaseVC {
             self.startModel.province = province
             self.startModel.city = city
             self.startModel.strict = strict
-            self.startButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
+            self.startButton.setTitle(city?.title ?? ( province?.title), for: .normal)
         }
         placeView.decideClosure = { [weak self](sure) in
             if sure == true {
                 let strict = self?.startModel.strict
-                self?.startButton.setTitle(self?.startModel.strict?.title ?? (self?.startModel.city?.title ?? self?.startModel.province?.title), for: .normal)
+                self?.startButton.setTitle(self?.startModel.city?.title ?? self?.startModel.province?.title, for: .normal)
             } else {
                 self?.startModel = SupplyPlaceModel()
                 self?.startButton.setTitle("发货地", for: .normal)
@@ -238,12 +238,12 @@ class GoodsSupplyVC: MainBaseVC {
             self.endModel.province = province
             self.endModel.city = city
             self.endModel.strict = strict
-            self.endButton.setTitle(strict?.title ?? (city?.title ?? province?.title), for: .normal)
+            self.endButton.setTitle(city?.title ?? (province?.title), for: .normal)
         }
         placeView.decideClosure = { [weak self](sure) in
             if sure == true {
                 let strict = self?.endModel.strict
-                self?.endButton.setTitle(self?.endModel.strict?.title ?? (self?.endModel.city?.title ?? self?.endModel.province?.title), for: .normal)
+                self?.endButton.setTitle(self?.endModel.city?.title ?? self?.endModel.province?.title, for: .normal)
             } else {
                 self?.endModel = SupplyPlaceModel()
                 self?.endButton.setTitle("收货地", for: .normal)
