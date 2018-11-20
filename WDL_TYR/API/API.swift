@@ -179,7 +179,6 @@ func apiMethod(api:API) -> Moya.Method {
          .onShelf(_) ,
          .undercarriage(_) ,
          .sinGletransaction(_),
-         .registerSms(_),
          .deleteOrderHall(_),
          .getZbnConsignor(_),
          .cancelTransport(_),
@@ -187,6 +186,7 @@ func apiMethod(api:API) -> Moya.Method {
          .transportSign(_):
         return .get
     default:
+        
         return .post
     }
 }
