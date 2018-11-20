@@ -35,6 +35,9 @@ enum API {
     case updatePassword(ModifyPasswordModel)    // 修改密码
     case updatePhone(ModityPhoneModel)          // 修改手机号码
     case forgetPassword(ForgetPasswordModel)    // 忘记密码
+    case getMainMessage(MessageQueryBean)   //消息中心主页(无分页)
+    case getDetailMessage(MessageQueryBean)   //消息分类查询消息列表(无分页)
+    
 }
 
 ///commom/upload/file/app/{serverConfigPath}
@@ -48,6 +51,10 @@ enum API {
 // PATH
 func apiPath(api:API) -> String {
     switch api {
+    case .getMainMessage(_):
+        return "/message/getMessage"
+    case .getDetailMessage(_):
+        return "/message/getMessageByType"
     case .login(_, _):
         return "/consignor/login"
     case .register(_, _, _, _):
@@ -159,6 +166,11 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
     case .forgetPassword(let model):
+        return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .getMainMessage(let model):
+        return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+    case .getDetailMessage(let model):
         return .requestParameters(parameters: model.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
     case .uploadImage(let image , _):

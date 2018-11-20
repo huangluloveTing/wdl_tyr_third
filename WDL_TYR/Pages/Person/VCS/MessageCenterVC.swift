@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxDataSources
 
 class MessageCenterVC: NormalBaseVC {
-    
+    //参数
+    private var queryBean : MessageQueryBean = MessageQueryBean()
+    //数组
+    private var hallLists:[MessageQueryBean] = []
     @IBOutlet weak var tableView: UITableView!
     
     private let titles = ["报价信息","运单信息","系统信息"]
@@ -18,6 +24,7 @@ class MessageCenterVC: NormalBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
+        loadInfoRequest()
     }
 }
 
@@ -31,6 +38,39 @@ extension MessageCenterVC {
         tableView.tableFooterView = UIView()
     }
 }
+
+//MARK: - loadData
+extension MessageCenterVC {
+    //数据请求
+    func loadInfoRequest(){
+        //配置参数
+        self.queryBean.startTime = ""
+        self.queryBean.endTime = ""
+        self.queryBean.msgTo = "" //（当前用户的id号）
+        self.queryBean.msgType = -1 // 消息类型 1=系统消息 2=报价消息 3=运单消息 ,
+        self.queryBean.pageNum = 1 //当前页数 （主页没有分页，详情页有）
+
+        BaseApi.request(target: API.getMainMessage(self.queryBean), type: BaseResponseModel<MessageQueryBean>.self)
+            .subscribe(onNext: { [weak self](data) in
+                self?.showSuccess(success: nil)
+//                self?.configNetDataToUI(lists: data.data?.list ?? [])
+            
+                }, onError: {[weak self] (error) in
+                self?.showFail(fail: error.localizedDescription)
+                })
+                .disposed(by: dispose)
+    }
+    
+    // 根据获取数据,组装列表
+    func configNetDataToUI(lists:[MessageQueryBean]) -> Void {
+        self.hallLists = lists
+        self.tableView.reloadData()
+    }
+ 
+    
+}
+
+
 
 //MARK: - UITableViewDelegate , UITableViewDataSource
 extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
