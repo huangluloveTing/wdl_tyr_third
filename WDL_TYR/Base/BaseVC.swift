@@ -79,16 +79,6 @@ extension BaseVC {
         searchBar.contentInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0)
         searchBar.barStyle = UIBarStyle.default
         searchBar.tintColor = UIColor.lightGray
-        
-        searchBar.rx.text.orEmpty.asObservable()
-            .skip(1)
-            .throttle(0.5, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self](text) in
-                self?.currentSearchContent(content: text)
-                searchBar.resignFirstResponder()
-            })
-            .disposed(by: dispose)
-        
         searchBar.delegate = self
         contentView.addSubview(searchBar)
         searchBar.placeholder = placeholder
@@ -150,6 +140,7 @@ extension BaseVC {
 
 extension BaseVC : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.currentSearchContent(content: searchBar.text ?? "")
         searchBar.resignFirstResponder()
     }
 }

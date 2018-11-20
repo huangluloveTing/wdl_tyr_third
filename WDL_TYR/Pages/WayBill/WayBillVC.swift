@@ -123,11 +123,11 @@ class WayBillVC: MainBaseVC {
     private lazy var statusView:DropViewContainer = {
         let statusView = GoodsSupplyStatusDropView(tags: WDLCoreManager.shared().consignorType == .third ? transportStatus : transportStatus_agency)
         // 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
-//        transportStatus (integer): 运单状态 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
+        // transportStatus (integer): 运单状态 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
         statusView.checkClosure = { [weak self] (index) in
-            self?.statusButton.setTitle(self?.transportStatus[index], for: .normal)
-//            transportStatus (integer): 运单状态 1=待起运 2=运输中 3=代签收 10=已签收 ,
-            // 托运人
+            let statusTitles =  WDLCoreManager.shared().consignorType == .third ? self?.transportStatus : self?.transportStatus_agency
+            self?.statusButton.setTitle(statusTitles![index], for: .normal)
+            // transportStatus (integer): 运单状态 1=待起运 2=运输中 3=代签收 10=已签收 // 托运人
             if WDLCoreManager.shared().consignorType == .third {
                 if index == 0 {
                     self?.queryBean.transportStatus = nil
@@ -147,7 +147,6 @@ class WayBillVC: MainBaseVC {
                     self?.queryBean.transportStatus = index - 1
                 }
             }
-            
             self?.showStatusDropView()
             self?.tableView.beginRefresh()
         }

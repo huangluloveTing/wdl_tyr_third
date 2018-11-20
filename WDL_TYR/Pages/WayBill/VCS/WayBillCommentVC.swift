@@ -97,7 +97,8 @@ extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
                               driver: self.pageInfo?.driverName,
                               truckInfo: truckInfo,
                               dealTime: self.pageInfo?.dealTime,
-                              offerTime: self.pageInfo?.dealOfferTime)
+                              offerTime: self.pageInfo?.dealOfferTime,
+                              orderNo: self.pageInfo?.transportNo)
             return cell
         }
         
