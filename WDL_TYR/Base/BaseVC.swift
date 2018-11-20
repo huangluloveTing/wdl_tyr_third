@@ -20,6 +20,8 @@ enum SupplyGoodsCommand<T> {
 class BaseVC: UIViewController {
     
     public var dispose = DisposeBag()
+    
+    private var currentSearchBar:MySearchBar?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,9 +90,9 @@ extension BaseVC {
             .disposed(by: dispose)
         
         searchBar.delegate = self
-       
         contentView.addSubview(searchBar)
         searchBar.placeholder = placeholder
+        currentSearchBar = searchBar
         contentView.backgroundColor = UIColor.clear
         self.navigationItem.titleView = contentView
     }
@@ -115,6 +117,12 @@ extension BaseVC {
         return DropViewContainer(dropView: drop, anchorView: anchorView)
     }
     
+    /**
+     * 关闭j搜索键盘
+     */
+    func registerSearchBar() -> Void {
+        currentSearchBar?.resignFirstResponder()
+    }
     
 }
 

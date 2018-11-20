@@ -235,12 +235,14 @@ extension WayBillVC {
     }
     
     func loadWayBill() -> Observable<WayBillPageBean> {
-        self.queryBean.startCity = self.startModel.city?.title
-        self.queryBean.startDistrict = self.startModel.strict?.title
-        self.queryBean.startProvince = self.startModel.province?.title
-        self.queryBean.endCity = self.endModel.city?.title
-        self.queryBean.endDistrict = self.endModel.strict?.title
-        self.queryBean.endProvince = self.endModel.province?.title
+        
+        self.queryBean.startCity = Util.mapSpecialStrToNil(str: self.startModel.city?.title)
+        self.queryBean.startDistrict = Util.mapSpecialStrToNil(str: self.startModel.strict?.title)
+        self.queryBean.startProvince = Util.mapSpecialStrToNil(str: self.startModel.province?.title)
+        self.queryBean.endCity = Util.mapSpecialStrToNil(str: self.endModel.city?.title)
+        self.queryBean.endDistrict = Util.mapSpecialStrToNil(str: self.endModel.strict?.title)
+        self.queryBean.endProvince = Util.mapSpecialStrToNil(str: self.endModel.province?.title)
+        
         let result = BaseApi.request(target: API.ownTransportPage(self.queryBean), type: BaseResponseModel<WayBillPageBean>.self)
             .retry(2)
             .catchErrorJustReturn(BaseResponseModel<WayBillPageBean>())
@@ -257,6 +259,10 @@ extension WayBillVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.removeCacheHeights(withIndexPaths: [indexPath])
         return tableView.heightForRow(at: indexPath)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        registerSearchBar()
     }
 }
 
