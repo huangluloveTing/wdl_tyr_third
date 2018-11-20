@@ -12,8 +12,8 @@ import RxCocoa
 import RxDataSources
 
 let personImgs:[UIImage] = [#imageLiteral(resourceName: "认证") , #imageLiteral(resourceName: "消息中心"), #imageLiteral(resourceName: "个人设置") , #imageLiteral(resourceName: "联系客服")]
-let personTitles:[String] = ["我的认证","消息中心","个人设置","联系客服"]
-let personAgencyTitles:[String] = ["我的认证","我的承运人","消息中心","个人设置","联系客服"]
+let personTitles:[String] = ["我的认证","消息中心","个人设置"]
+let personAgencyTitles:[String] = ["我的认证","我的承运人","消息中心","个人设置"]
 
 class PersonalVC: MainBaseVC  {
     
@@ -35,6 +35,7 @@ class PersonalVC: MainBaseVC  {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.initialPersonExcuteInfos()
         self.loadInfo()
     }
 
@@ -56,7 +57,6 @@ class PersonalVC: MainBaseVC  {
     }
     
     override func currentConfig() {
-        self.initialPersonExcuteInfos()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
@@ -67,11 +67,6 @@ class PersonalVC: MainBaseVC  {
     }
     
     override func bindViewModel() {
-        self.tableView.rx.itemSelected.asObservable()
-            .subscribe(onNext: { (indexPath) in
-                
-            })
-            .disposed(by: dispose)
     }
 }
 
@@ -174,7 +169,7 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
             if row == 0 {
                 self.toAuthVC()
             }
-            if WDLCoreManager.shared().consignorType == .agency {
+            if WDLCoreManager.shared().consignorType == .agency { // 经销商
                 if row == 2 {
                     self.toMessageCenter()
                 }
@@ -207,6 +202,9 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
+        }
+        if WDLCoreManager.shared().consignorType == .agency {
+            
         }
         return self.personInfos?.count ?? 0
     }
@@ -261,7 +259,7 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
                 self.personInfos?.append(info)
             }
         }
-        
+        self.tableView.reloadData()
     }
     
 }

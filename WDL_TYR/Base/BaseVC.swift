@@ -76,6 +76,7 @@ extension BaseVC {
         let searchBar = MySearchBar(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 70, height: 44))
         searchBar.contentInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0)
         searchBar.barStyle = UIBarStyle.default
+        searchBar.tintColor = UIColor.lightGray
         
         searchBar.rx.text.orEmpty.asObservable()
             .skip(1)
@@ -85,6 +86,8 @@ extension BaseVC {
                 searchBar.resignFirstResponder()
             })
             .disposed(by: dispose)
+        
+        searchBar.delegate = self
        
         contentView.addSubview(searchBar)
         searchBar.placeholder = placeholder
@@ -134,5 +137,11 @@ extension BaseVC {
     // 隐藏tableViewCell分割线
     func hiddenTableViewSeperate(tableView:UITableView) {
         tableView.separatorStyle = .none
+    }
+}
+
+extension BaseVC : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
