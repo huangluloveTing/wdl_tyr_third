@@ -1,29 +1,22 @@
 //
-//  MessageCenterVC.swift
+//  MessageDetailVC.swift
 //  WDL_TYR
 //
-//  Created by 黄露 on 2018/11/3.
+//  Created by Apple on 2018/11/20.
 //  Copyright © 2018 yinli. All rights reserved.
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import RxDataSources
 
-class MessageCenterVC: NormalBaseVC {
+class MessageDetailVC: NormalBaseVC {
     //参数
     private var queryBean : MessageQueryBean = MessageQueryBean()
     //数组
     private var hallLists:[MessageQueryBean] = []
     //用户信息
     private var zbnConsignor:ZbnConsignor?
-  
     @IBOutlet weak var tableView: UITableView!
     
-    private let titles = ["报价信息","运单信息","系统信息"]
-    private let icons = [UIImage.init(named: "message_offer")!,UIImage.init(named: "message_yd")!,UIImage.init(named: "message_alert")!]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         //获取用户信息
@@ -34,7 +27,7 @@ class MessageCenterVC: NormalBaseVC {
 }
 
 //MARK: - config
-extension MessageCenterVC {
+extension MessageDetailVC {
     func configTableView() -> Void {
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,8 +38,8 @@ extension MessageCenterVC {
 }
 
 //MARK: - loadData
-extension MessageCenterVC {
-    //消息中心主页数据请求
+extension MessageDetailVC {
+    //消息详情页数据请求
     func loadInfoRequest(){
         //配置参数
          let id = WDLCoreManager.shared().userInfo?.id ?? ""
@@ -54,23 +47,18 @@ extension MessageCenterVC {
         self.queryBean.endTime = ""
         self.queryBean.msgTo = id //（当前用户的id号）
         self.queryBean.msgType = -1 // 消息类型 1=系统消息 2=报价消息 3=运单消息 ,
-        self.queryBean.pageNum = 1 //当前页数 （主页没有分页，详情页有）
+        self.queryBean.pageNum = 1 //当前页数 （注意这里有分页）
         self.showLoading()
-        BaseApi.request(target: API.getMainMessage(self.queryBean), type: BaseResponseModel<MessageQueryBean>.self)
+        BaseApi.request(target: API.getDetailMessage(self.queryBean), type: BaseResponseModel<MessageQueryBean>.self)
             .subscribe(onNext: { [weak self](data) in
                 self?.showSuccess(success: nil)
-//                self?.configNetDataToUI(lists: data.data?.list ?? [])
-            
+                //                self?.configNetDataToUI(lists: data.data?.list ?? [])
+                
                 }, onError: {[weak self] (error) in
-                self?.showFail(fail: error.localizedDescription)
-                })
-                .disposed(by: dispose)
+                    self?.showFail(fail: error.localizedDescription)
+            })
+            .disposed(by: dispose)
     }
-    
-    
-    
-    
-    
     
     
     // 根据获取数据,组装列表
@@ -78,47 +66,25 @@ extension MessageCenterVC {
         self.hallLists = lists
         self.tableView.reloadData()
     }
- 
+    
     
 }
 
 
 
 //MARK: - UITableViewDelegate , UITableViewDataSource
-extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
+extension MessageDetailVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(MessageCenterCell.self)") as! MessageCenterCell
-        cell.showInfo(icon: icons[indexPath.row], title: titles[indexPath.row], content: nil)
+//        cell.showInfo(icon: icons[indexPath.row], title: titles[indexPath.row], content: nil)
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return 3
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //test
-        self.toOfferMessages()
-        
-    }
-}
-
-//MARK: - Handles
-extension MessageCenterVC {
-    
-    // 去报价信息
-    func toOfferMessages() -> Void {
-        let vc = MessageDetailVC()
-        self.push(vc: vc, animated: true, title: "消息详情")
-    }
-    
-    // 去运单信息
-    func wayBillsMessages() -> Void {
-        
-    }
-    
-    // 去系统信息
-    func systermMessages() -> Void {
         
     }
 }
