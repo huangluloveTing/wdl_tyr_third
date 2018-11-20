@@ -22,6 +22,8 @@ class WayBillDetailVC: NormalBaseVC {
 
     @IBOutlet weak var tableView: UITableView!
     
+    private var isConfirm:Bool? = true // 是否点击确认须知的按钮
+    
     public var wayBillInfo:WayBillInfoBean?
     
     private var pageInfo:WayBillInfoBean? = WayBillInfoBean()
@@ -62,7 +64,10 @@ class WayBillDetailVC: NormalBaseVC {
         self.registerCell(nibName: "\(WayBillCommentAllCell.self)", for: self.tableView)
         self.registerCell(nibName: "\(WayBillReceiptCell.self)", for: self.tableView)
         self.registerCell(nibName: "\(WayBillDetailLinkInfoCell.self)", for: self.tableView)
+        self.registerCell(nibName: "\(WaybillProtocolCell.self)", for: tableView)
     }
+    
+    
 }
 
 extension WayBillDetailVC {
@@ -184,6 +189,20 @@ extension WayBillDetailVC {
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillGoodsCell.self)") as! WayBillGoodsCell
             cell.contentInfo(info: self.pageInfo)
+            return cell
+        }
+        
+        if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(WaybillProtocolCell.self)") as! WaybillProtocolCell
+            cell.currentConfirm(confirm: self.isConfirm)
+            cell.backgroundColor = UIColor.clear
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.readClosure = {[weak self] in
+                self?.toShowConfirmSign()
+            }
+            cell.confirmClosure = {[weak self] (confirm) in
+                self?.isConfirm = confirm
+            }
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
@@ -357,6 +376,9 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
                 }
                 return 3
             }
+            if section == 3 { // 显示确认签收须知 按钮
+                return 2
+            }
             return 1
         }
         return 1
@@ -382,6 +404,11 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
 }
 
 extension WayBillDetailVC {
+    
+    // 查看签收确认须知
+    func toShowConfirmSign() -> Void {
+        RegisterAgreeView.showAgreementView(title: RE_SHELVE_AGREEN_TITLE, content: RE_SHELVE_AGREEN_CONTENT)
+    }
     
     // 取消运单
     func cancelWayBill() -> Void {
@@ -427,6 +454,10 @@ extension WayBillDetailVC {
     
     // 确认签收
     func toPickWayBill() -> Void {
+        if self.isConfirm == false || self.isConfirm == nil {
+            self.showWarn(warn: "请完成签收确认须知", complete: nil)
+            return
+        }
         AlertManager.showTitleAndContentAlert(context:self, title: "确认签收", content: "确认签收？") { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)

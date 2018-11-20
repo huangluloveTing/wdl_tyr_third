@@ -125,6 +125,8 @@
 		708D6A1A2150E19600884A80 /* WayBillReceiptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D6A182150E19600884A80 /* WayBillReceiptCell.xib */; };
 		708D6A1D2150E55D00884A80 /* WayBillReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D6A1B2150E55D00884A80 /* WayBillReceiptItem.swift */; };
 		708D6A1E2150E55D00884A80 /* WayBillReceiptItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D6A1C2150E55D00884A80 /* WayBillReceiptItem.xib */; };
+		709642CF21A3E856006F0389 /* WaybillProtocolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709642CD21A3E856006F0389 /* WaybillProtocolCell.swift */; };
+		709642D021A3E856006F0389 /* WaybillProtocolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709642CE21A3E856006F0389 /* WaybillProtocolCell.xib */; };
 		70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B52137B55C00017356 /* ZTFoldTableView.swift */; };
 		70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B92137D3EC00017356 /* XHStarRateView.m */; };
 		70A319C12137D4C700017356 /* bad_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A319BB2137D4C700017356 /* bad_star@2x.png */; };
@@ -331,6 +333,8 @@
 		708D6A182150E19600884A80 /* WayBillReceiptCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillReceiptCell.xib; sourceTree = "<group>"; };
 		708D6A1B2150E55D00884A80 /* WayBillReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillReceiptItem.swift; sourceTree = "<group>"; };
 		708D6A1C2150E55D00884A80 /* WayBillReceiptItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillReceiptItem.xib; sourceTree = "<group>"; };
+		709642CD21A3E856006F0389 /* WaybillProtocolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaybillProtocolCell.swift; sourceTree = "<group>"; };
+		709642CE21A3E856006F0389 /* WaybillProtocolCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaybillProtocolCell.xib; sourceTree = "<group>"; };
 		70A319B52137B55C00017356 /* ZTFoldTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTFoldTableView.swift; sourceTree = "<group>"; };
 		70A319B82137D3EC00017356 /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		70A319B92137D3EC00017356 /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
@@ -469,6 +473,8 @@
 				70F4602621539A5700821790 /* WayBillToCommentCell.xib */,
 				70BD352B218ACF91001580C3 /* WayBillDetailLinkInfoCell.swift */,
 				70BD352C218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib */,
+				709642CD21A3E856006F0389 /* WaybillProtocolCell.swift */,
+				709642CE21A3E856006F0389 /* WaybillProtocolCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1043,6 +1049,7 @@
 				70F4602821539A5700821790 /* WayBillToCommentCell.xib in Resources */,
 				70BD352E218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib in Resources */,
 				70A319C62137D4C700017356 /* good_star@2x.png in Resources */,
+				709642D021A3E856006F0389 /* WaybillProtocolCell.xib in Resources */,
 				708D69F9214FEBEA00884A80 /* WayBillGoodsCell.xib in Resources */,
 				708D6A1E2150E55D00884A80 /* WayBillReceiptItem.xib in Resources */,
 				70C25251212E5D8E007F2ED5 /* LoginVC.xib in Resources */,
@@ -1269,6 +1276,7 @@
 				70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */,
 				702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */,
 				7037B0CC213A1F7A00BDC718 /* WayBillStatusView.swift in Sources */,
+				709642CF21A3E856006F0389 /* WaybillProtocolCell.swift in Sources */,
 				708150D6213122CA00D42723 /* ZTTagItem.m in Sources */,
 				7058BD2C212E990100B53DF6 /* ZTTransitionManager.swift in Sources */,
 				70E2754A2141513600E1A92B /* DropPlaceChooiceView.swift in Sources */,

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,7 +39,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="pON-L8-XFg">
                                             <rect key="frame" x="0.0" y="0.0" width="275" height="501.5"/>
-                                            <mutableString key="text">一、总则
+                                            <string key="text">一、总则
 
 1.2 用户在注册之前，应当仔细阅读本协议，并同意遵守本协议后方可成为注册用户。一旦注册成功，则用户与保宝网之间自动形成协议关系，用户应当受本协议的约束。用户在使用特殊的服务或产品时，应当同意接受相关协议后方能使用。 
 
@@ -50,7 +50,7 @@
 2.1 积布鸟的具体内容由本站根据实际情况提供。 
 
 2.2 本站仅提供相关的网络服务，除此之外与相关网络服务有关的设备(如个人电脑、手机、及其他与接入互联网或移动网有关的装置)及所需的费用(如为接入互联网而支付的电话费及上网费、为使用移动网而支付的手机费)均应由用户自行负担。
-</mutableString>
+</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -109,12 +109,14 @@
                 <constraint firstItem="pMI-Ke-4WT" firstAttribute="trailing" secondItem="Zde-tC-v5h" secondAttribute="trailing" constant="10" id="v6a-HY-S8w"/>
             </constraints>
             <connections>
+                <outlet property="agreementContentLabel" destination="pON-L8-XFg" id="HHZ-jR-ppM"/>
+                <outlet property="agreementTitleLabel" destination="mQi-Wm-yIy" id="qhZ-B2-FBT"/>
                 <outlet property="contentView" destination="Zde-tC-v5h" id="LX3-jw-VCy"/>
             </connections>
             <point key="canvasLocation" x="74.5" y="99.5"/>
         </view>
     </objects>
     <resources>
-        <image name="close" width="30" height="30"/>
+        <image name="close" width="60" height="60"/>
     </resources>
 </document>
