@@ -810,7 +810,7 @@ extension DeliveryVC {
     
     func loadAllBasicInfo() {
         self.showLoading(title: "正在拉取，请稍等...", canInterface: true)
-        let areaObservable = BaseApi.request(target: API.loadTaskInfo(), type: BaseResponseModel<[RegionModel]>.self)
+        let areaObservable = self.loadAllAreas()
         let hallObservable = BaseApi.request(target: API.getCreateHallDictionary(), type: BaseResponseModel<HallModels>.self)
         
         Observable.zip(areaObservable , hallObservable).asObservable()
@@ -819,7 +819,7 @@ extension DeliveryVC {
                 self?.hiddenToast()
                 let (regions , hall) = result
                 self?.hallItems = hall.data
-                WDLCoreManager.shared().regionAreas = regions.data
+                WDLCoreManager.shared().regionAreas = regions
                 self?.initialRadioCheck()
             }, onError: { [weak self](error) in
                 self?.hiddenToast()

@@ -76,7 +76,11 @@ extension BaseCell {
     
      // (integer): 运单状态 -1不限 1=待起运 0=待办单 2=运输中 3=待签收 10=已签收
     func transportInfoStatusDisplay(status:Int , to label:UILabel) {
-        if status == 1 || status == 0 {
+        if status == 0 {
+            label.text = "待办单"
+            label.textColor = UIColor(hex: "EDC977")
+        }
+        if status == 1 {
             label.text = "待起运"
             label.textColor = UIColor(hex: "EDC977")
         }

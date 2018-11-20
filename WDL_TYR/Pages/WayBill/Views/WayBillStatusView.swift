@@ -259,7 +259,10 @@ fileprivate class ProcessItemView:UIView {
         self.titleLabel.textColor = self.item.focus ? UIColor(hex: TEXTFIELD_TEXTCOLOR) : UIColor(hex: TEXTCOLOR_EMPTY)
         self.titleLabel.sizeToFit()
         self.titleLabel.frame = CGRect(origin: CGPoint(x: 0, y: item_height - self.titleLabel.zt_height), size: CGSize(width: width, height: self.titleLabel.zt_height))
-        self.imageView.frame = CGRect(origin: .zero, size: CGSize(width: self.zt_width, height: self.zt_width))
+//        self.imageView.frame = CGRect(origin: .zero, size: CGSize(width: self.zt_width, height: self.zt_width))
+        var center = self.imageView.center
+        center.x = self.zt_width / 2.0
+        self.imageView.center = center
         self.imageView.image = self.item.focus ? self.item.focusImage : self.item.normalImage
     }
 }

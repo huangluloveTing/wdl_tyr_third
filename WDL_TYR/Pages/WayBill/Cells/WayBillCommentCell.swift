@@ -52,7 +52,7 @@ extension WayBillCommentCell {
 
          self.timeLabel.text = Util.dateFormatter(date: (dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
          self.offerTimeLabel.text = Util.dateFormatter(date: (offerTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
-        self.orderNoLabel.text = orderNo
+        self.orderNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" , orderNo)
         self.wayBillStatus?.status = .Done
 
     }

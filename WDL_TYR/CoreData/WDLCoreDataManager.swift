@@ -11,7 +11,20 @@ import HandyJSON
 
 class WDLCoreManager: NSObject {
     
-    public var regionAreas:[RegionModel]?
+    private var _regions:[RegionModel]?
+    
+    public var regionAreas:[RegionModel]? {
+        set {
+            _regions = newValue
+            UserStore.storeRegionsInfo(regions: newValue)
+        }
+        get {
+            if _regions == nil {
+                _regions = UserStore.loadRegisonInfo()
+            }
+            return _regions
+        }
+    }
     
     public var userInfo: ZbnConsignor? {
         set {
