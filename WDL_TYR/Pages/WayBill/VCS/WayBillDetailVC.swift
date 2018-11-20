@@ -280,15 +280,13 @@ extension WayBillDetailVC {
         let amount = self.pageInfo?.dealTotalPrice
         let cyName = self.pageInfo?.carrierName
         let driver = self.pageInfo?.driverName
-        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver, self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
+        let cyPhone = self.pageInfo?.cellPhone
+        let driverPhone = self.pageInfo?.driverPhone
+        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver ?? "", self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
         
-        cell.showDealInfo(unit: unit,
-                          amount: amount,
-                          cyName: cyName,
-                          driver: driver,
-                          truckInfo: truckInfo,
-                          dealTime: dealTime)
+         cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime)
+     
     }
 }
 
@@ -406,7 +404,12 @@ extension WayBillDetailVC {
     
     // 确认起运
     func sureToTransport() -> Void {
-        AlertManager.showTitleAndContentAlert(context:self, title: "确认起运", content: "确认起运？") { [weak self](index) in
+        
+        let driverName = "驾驶员：" + (self.pageInfo?.driverName ?? "") + "\n"
+        let carNo = "车牌号：" + (self.pageInfo?.vehicleNo ?? "") + "\n"
+        let driverPhone = "联系电话：" + (self.pageInfo?.driverPhone ?? "") + "\n"
+        let message = driverName + carNo + driverPhone
+        AlertManager.showTitleAndContentAlert(context:self, title: "起运前，请确认配载信息？", content: message) { [weak self](index) in
             if index == 1 {
                 self?.showLoading(title: "", complete: nil)
                 let code = self?.pageInfo?.transportNo ?? ""

@@ -408,7 +408,10 @@ extension DeliveryVC {
                 .subscribe(onNext: { (model) in
                     if self.deliveryData?.publishTime == nil {
                         //确认发布
-                        self.showSuccess(success: model.message, complete: nil)
+                        self.showSuccess(success: model.message, complete: {
+                            let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
+                            vc.selectedIndex = 1
+                        })
                     }else{
                         //定时发布
                         let time1 = self.selPushTimeVal
@@ -419,7 +422,8 @@ extension DeliveryVC {
                             vc.selectedIndex = 1
                         })
                     }
-//                    self.clearAllInput()
+                   
+//                   self.clearAllInput()
                 }, onError: { (error) in
 
                     self.showFail(fail: error.localizedDescription, complete: nil)

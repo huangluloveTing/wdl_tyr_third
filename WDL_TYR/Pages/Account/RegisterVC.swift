@@ -144,7 +144,7 @@ extension RegisterVC {
             self.showWarn(warn: "请阅读织布鸟注册协议", complete: nil)
             return
         }
-        
+        //注册
         self.showLoading(title: "正在提交", complete: nil)
         BaseApi.request(target: API.register(self.registerInfo.pwd!, self.registerInfo.phone!, self.registerInfo.veryCode!, self.registerInfo.confirmPwd!), type: BaseResponseModel<AnyObject>.self)
             .subscribe(onNext: { (model) in
@@ -157,10 +157,12 @@ extension RegisterVC {
             .disposed(by: dispose)
     }
     
+    //获取验证码
     func obtainVeryCode(phone:String) {
         self.showLoading()
         self.verifyButton.isEnabled = false
         BaseApi.request(target: API.registerSms(phone), type: BaseResponseModel<Any>.self)
+            .retry(2)
             .subscribe(onNext: { (model) in
                 self.showSuccess(success: "获取验证码成功", complete: nil)
                 self.timedownVeryCodeButton()

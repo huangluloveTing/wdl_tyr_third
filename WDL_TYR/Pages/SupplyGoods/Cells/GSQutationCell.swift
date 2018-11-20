@@ -65,7 +65,7 @@ extension GSQutationCell {
         self.qutationItem = item
         if let item = item {
             self.nameLabel.text = item.carrierName
-            self.phoneLabel.text = Util.formatterPhone(phone: item.driverPhone ?? " ")
+            self.phoneLabel.text = Util.formatterPhone(phone: item.carrierPhone ?? " ")
             self.sumLabel.text = Util.concatSeperateStr(seperete: "", strs: "总价:", Util.showMoney(money: item.totalPrice ?? 0) , "元")
             //评分星星
             self.starView.score = CGFloat(item.carrierScore ?? 0.0)

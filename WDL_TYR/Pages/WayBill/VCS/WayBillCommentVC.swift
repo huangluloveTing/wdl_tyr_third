@@ -47,16 +47,13 @@ extension WayBillCommentVC {
         let unit = self.pageInfo?.dealUnitPrice
         let amount = self.pageInfo?.dealTotalPrice
         let cyName = self.pageInfo?.carrierName
+        let cyPhone = self.pageInfo?.cellPhone
+        let driverPhone = self.pageInfo?.driverPhone
         let driver = self.pageInfo?.driverName
         let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
-        
-        cell.showDealInfo(unit: unit,
-                          amount: amount,
-                          cyName: cyName,
-                          driver: driver,
-                          truckInfo: truckInfo,
-                          dealTime: dealTime)
+
+        cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime)
     }
     
     
@@ -92,14 +89,15 @@ extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillCommentCell.self)") as! WayBillCommentCell
-             let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
+             let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: (self.pageInfo?.vehicleLengthDriver ?? "") + "m" , self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
+
             cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice,
                               amount: self.pageInfo?.dealTotalPrice,
                               cyName: self.pageInfo?.carrierName,
                               driver: self.pageInfo?.driverName,
                               truckInfo: truckInfo,
-                              dealTime: (self.pageInfo?.dealTime) ?? 0 / 1000,
-                              offerTime: (self.pageInfo?.publishTime ?? 0) / 1000)
+                              dealTime: self.pageInfo?.dealTime,
+                              offerTime: self.pageInfo?.dealOfferTime)
             return cell
         }
         

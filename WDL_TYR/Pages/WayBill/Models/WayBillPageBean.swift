@@ -40,6 +40,7 @@ struct WayBillInfoBean : HandyJSON {
     var consignorNo : String?   // (string): 托运人ID ,
     var createTime : String?    // (string, optional),
     var dealTime : TimeInterval? // (string): 成交时间 ,
+    var dealOfferTime: TimeInterval? // (string): 成交货源的报价时间 ,
     var dealTotalPrice : CGFloat? // (number): 成交总价 ,
     var dealUnitPrice : CGFloat? // (number): 成交单价 ,
     var dealWay : Int?          // (integer): 成交方式 1=自动 2=手动 ,

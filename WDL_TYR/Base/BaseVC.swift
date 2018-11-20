@@ -76,13 +76,16 @@ extension BaseVC {
         let searchBar = MySearchBar(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 70, height: 44))
         searchBar.contentInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0)
         searchBar.barStyle = UIBarStyle.default
+        
         searchBar.rx.text.orEmpty.asObservable()
             .skip(1)
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self](text) in
                 self?.currentSearchContent(content: text)
+                searchBar.resignFirstResponder()
             })
             .disposed(by: dispose)
+       
         contentView.addSubview(searchBar)
         searchBar.placeholder = placeholder
         contentView.backgroundColor = UIColor.clear

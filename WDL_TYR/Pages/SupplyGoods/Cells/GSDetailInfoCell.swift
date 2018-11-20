@@ -42,7 +42,7 @@ extension GSDetailInfoCell {
         self.loadTimeLabel.text = Util.dateFormatter(date: (Double(info?.loadingTime ?? "0") ?? 0) / 1000, formatter: "yyyy-MM-dd")
         self.goodsNameLabel.text = info?.goodsName
         self.goodsTypeLabel.text = info?.goodsType
-        self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: info?.goodsWeight , info?.vehicleLength , info?.vehicleWidth  ,info?.vehicleType , info?.packageType)
+        self.goodsSummerLabel.text = Util.concatSeperateStr(seperete: " | ", strs: (info?.goodsWeight ?? "") + "吨" , info?.vehicleLength , info?.vehicleWidth  ,info?.vehicleType , info?.packageType)
         self.unitLabel.text = Util.showMoney(money: info?.refercneceUnitPrice ?? 0, after: 2) + "元/吨"
         self.totalLabel.text = Util.showMoney(money: info?.refercneceTotalPrice ?? 0, after: 2) + "元"
         self.remarkLabel.text = info?.remark

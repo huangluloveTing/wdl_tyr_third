@@ -21,9 +21,6 @@ class AboutZbnVC: NormalBaseVC {
         webView.delegate = self
     }
     
-   
-    
-
 }
 extension AboutZbnVC: UIWebViewDelegate{
     // 该方法是在UIWebView在开发加载时调用
