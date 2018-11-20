@@ -20,6 +20,8 @@ enum SupplyGoodsCommand<T> {
 class BaseVC: UIViewController {
     
     public var dispose = DisposeBag()
+    
+    private var currentSearchBar:MySearchBar?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,20 +79,10 @@ extension BaseVC {
         searchBar.contentInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0)
         searchBar.barStyle = UIBarStyle.default
         searchBar.tintColor = UIColor.lightGray
-        
-        searchBar.rx.text.orEmpty.asObservable()
-            .skip(1)
-            .throttle(0.5, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self](text) in
-                self?.currentSearchContent(content: text)
-                searchBar.resignFirstResponder()
-            })
-            .disposed(by: dispose)
-        
         searchBar.delegate = self
-       
         contentView.addSubview(searchBar)
         searchBar.placeholder = placeholder
+        currentSearchBar = searchBar
         contentView.backgroundColor = UIColor.clear
         self.navigationItem.titleView = contentView
     }
@@ -115,6 +107,12 @@ extension BaseVC {
         return DropViewContainer(dropView: drop, anchorView: anchorView)
     }
     
+    /**
+     * 关闭j搜索键盘
+     */
+    func registerSearchBar() -> Void {
+        currentSearchBar?.resignFirstResponder()
+    }
     
 }
 
@@ -142,6 +140,7 @@ extension BaseVC {
 
 extension BaseVC : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.currentSearchContent(content: searchBar.text ?? "")
         searchBar.resignFirstResponder()
     }
 }

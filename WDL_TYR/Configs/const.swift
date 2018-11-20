@@ -18,6 +18,9 @@ let IPHONE_HEIGHT = UIScreen.main.bounds.size.height
 
 let GAODE_MAP_KEY = "8e99eeada50ef322b5c993eb92acffd6"
 
+let RE_SHELVE_AGREEN_TITLE : String? = nil        // 确认签收收货须知 标题
+let RE_SHELVE_AGREEN_CONTENT : String? = nil        // 确认签收收货须知 内容
+
 //外网测试
 let HOST = "http://182.150.21.104:58092/zbn-web"
 //zhao xiao yang

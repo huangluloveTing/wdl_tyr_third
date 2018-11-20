@@ -123,11 +123,11 @@ class WayBillVC: MainBaseVC {
     private lazy var statusView:DropViewContainer = {
         let statusView = GoodsSupplyStatusDropView(tags: WDLCoreManager.shared().consignorType == .third ? transportStatus : transportStatus_agency)
         // 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
-//        transportStatus (integer): 运单状态 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
+        // transportStatus (integer): 运单状态 0=待办单（经销商有此状态） 1=待起运 2=运输中 3=代签收 10=已签收
         statusView.checkClosure = { [weak self] (index) in
-            self?.statusButton.setTitle(self?.transportStatus[index], for: .normal)
-//            transportStatus (integer): 运单状态 1=待起运 2=运输中 3=代签收 10=已签收 ,
-            // 托运人
+            let statusTitles =  WDLCoreManager.shared().consignorType == .third ? self?.transportStatus : self?.transportStatus_agency
+            self?.statusButton.setTitle(statusTitles![index], for: .normal)
+            // transportStatus (integer): 运单状态 1=待起运 2=运输中 3=代签收 10=已签收 // 托运人
             if WDLCoreManager.shared().consignorType == .third {
                 if index == 0 {
                     self?.queryBean.transportStatus = nil
@@ -147,7 +147,6 @@ class WayBillVC: MainBaseVC {
                     self?.queryBean.transportStatus = index - 1
                 }
             }
-            
             self?.showStatusDropView()
             self?.tableView.beginRefresh()
         }
@@ -235,12 +234,14 @@ extension WayBillVC {
     }
     
     func loadWayBill() -> Observable<WayBillPageBean> {
-        self.queryBean.startCity = self.startModel.city?.title
-        self.queryBean.startDistrict = self.startModel.strict?.title
-        self.queryBean.startProvince = self.startModel.province?.title
-        self.queryBean.endCity = self.endModel.city?.title
-        self.queryBean.endDistrict = self.endModel.strict?.title
-        self.queryBean.endProvince = self.endModel.province?.title
+        
+        self.queryBean.startCity = Util.mapSpecialStrToNil(str: self.startModel.city?.title)
+        self.queryBean.startDistrict = Util.mapSpecialStrToNil(str: self.startModel.strict?.title)
+        self.queryBean.startProvince = Util.mapSpecialStrToNil(str: self.startModel.province?.title)
+        self.queryBean.endCity = Util.mapSpecialStrToNil(str: self.endModel.city?.title)
+        self.queryBean.endDistrict = Util.mapSpecialStrToNil(str: self.endModel.strict?.title)
+        self.queryBean.endProvince = Util.mapSpecialStrToNil(str: self.endModel.province?.title)
+        
         let result = BaseApi.request(target: API.ownTransportPage(self.queryBean), type: BaseResponseModel<WayBillPageBean>.self)
             .retry(2)
             .catchErrorJustReturn(BaseResponseModel<WayBillPageBean>())
@@ -257,6 +258,10 @@ extension WayBillVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.removeCacheHeights(withIndexPaths: [indexPath])
         return tableView.heightForRow(at: indexPath)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        registerSearchBar()
     }
 }
 

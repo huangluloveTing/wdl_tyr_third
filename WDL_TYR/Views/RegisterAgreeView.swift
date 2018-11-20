@@ -9,13 +9,28 @@
 import UIKit
 
 class RegisterAgreeView: UIView {
-
+    
+    @IBOutlet weak var agreementTitleLabel: UILabel!
+    @IBOutlet weak var agreementContentLabel: UILabel!
+    
     @IBOutlet weak var contentView: UIView!
     
     static func showRegisterAgreementView() {
         let agreementView = Bundle.main.loadNibNamed("RegisterAgreeView", owner: nil, options: nil)?.first as? RegisterAgreeView
         agreementView?.backgroundColor = UIColor(hex: "292B2A").withAlphaComponent(0.4)
         agreementView?.contentView.addBorder(color: nil)
+        agreementView?.showOnWindow()
+    }
+    
+    static func showAgreementView(title:String? , content:String?) {
+        let agreementView = Bundle.main.loadNibNamed("RegisterAgreeView", owner: nil, options: nil)?.first as? RegisterAgreeView
+        agreementView?.backgroundColor = UIColor(hex: "292B2A").withAlphaComponent(0.4)
+        if (title != nil) {
+            agreementView?.agreementTitleLabel.text = title
+        }
+        if content != nil {
+            agreementView?.agreementContentLabel.text = content
+        }
         agreementView?.showOnWindow()
     }
     

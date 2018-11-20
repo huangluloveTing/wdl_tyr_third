@@ -10,6 +10,7 @@ import UIKit
 
 class WayBillCommentCell: BaseCell {
 
+    @IBOutlet weak var orderNoLabel: UILabel!
     @IBOutlet weak var offerTimeLabel: UILabel! // 报价时间
     @IBOutlet weak var timeLabel: UILabel! // 成交时间
     @IBOutlet weak var truckInfoLabel: UILabel!
@@ -41,7 +42,8 @@ extension WayBillCommentCell {
                       driver:String? ,
                       truckInfo:String? ,
                       dealTime:TimeInterval? ,
-                      offerTime:TimeInterval? ) -> Void {
+                      offerTime:TimeInterval? ,
+                      orderNo:String?) -> Void {
         self.unitLabel.text = Util.showMoney(money: unit ?? 0, after: 0)+"元/吨"
         self.amountLabel.text = Util.showMoney(money: amount ?? 0, after: 0)+"元"
         self.cyNameLabel.text = cyName
@@ -50,7 +52,7 @@ extension WayBillCommentCell {
 
          self.timeLabel.text = Util.dateFormatter(date: (dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
          self.offerTimeLabel.text = Util.dateFormatter(date: (offerTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
-        
+        self.orderNoLabel.text = orderNo
         self.wayBillStatus?.status = .Done
 
     }

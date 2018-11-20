@@ -50,7 +50,6 @@ class GoodsSupplyVC: MainBaseVC {
             self.tableView.translatesAutoresizingMaskIntoConstraints = false
         }
         self.emptyTitle(title: "暂无货源", to: self.tableView)
-//        self.tableView.beginRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -265,6 +264,10 @@ extension GoodsSupplyVC : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.heightForRow(at: indexPath)
        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        registerSearchBar()
     }
 }
 
