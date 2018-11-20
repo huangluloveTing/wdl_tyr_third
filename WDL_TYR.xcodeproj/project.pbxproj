@@ -12,6 +12,8 @@
 		184F1F7C21993EF7007B9998 /* IdentifingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184F1F7A21993EF7007B9998 /* IdentifingVC.xib */; };
 		184F1F7F219940FE007B9998 /* IdentiferFailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F1F7D219940FE007B9998 /* IdentiferFailVC.swift */; };
 		184F1F80219940FE007B9998 /* IdentiferFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */; };
+		1875DF4421A41C94006312D9 /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875DF4221A41C94006312D9 /* MessageDetailVC.swift */; };
+		1875DF4521A41C94006312D9 /* MessageDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875DF4321A41C94006312D9 /* MessageDetailVC.xib */; };
 		70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103C412189AE0900125F54 /* UIResponse+Extension.swift */; };
 		701144C2219D7FE500BF4522 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C0219D7FE400BF4522 /* UserStore.swift */; };
 		701144C3219D7FE500BF4522 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C1219D7FE500BF4522 /* UserDefault.swift */; };
@@ -210,6 +212,8 @@
 		184F1F7A21993EF7007B9998 /* IdentifingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentifingVC.xib; sourceTree = "<group>"; };
 		184F1F7D219940FE007B9998 /* IdentiferFailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentiferFailVC.swift; sourceTree = "<group>"; };
 		184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentiferFailVC.xib; sourceTree = "<group>"; };
+		1875DF4221A41C94006312D9 /* MessageDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
+		1875DF4321A41C94006312D9 /* MessageDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailVC.xib; sourceTree = "<group>"; };
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70103C412189AE0900125F54 /* UIResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponse+Extension.swift"; sourceTree = "<group>"; };
 		701144C0219D7FE400BF4522 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -509,6 +513,8 @@
 				702E39A8218D31E000329643 /* PersonSettingVC.xib */,
 				702E39AB218D383C00329643 /* MessageCenterVC.swift */,
 				702E39AC218D383C00329643 /* MessageCenterVC.xib */,
+				1875DF4221A41C94006312D9 /* MessageDetailVC.swift */,
+				1875DF4321A41C94006312D9 /* MessageDetailVC.xib */,
 				70B5249E218D780000C8AF4E /* ModityPasswordVC.swift */,
 				70B5249F218D780000C8AF4E /* ModityPasswordVC.xib */,
 				70B524A2218D7C3000C8AF4E /* ModifyPhoneVC.swift */,
@@ -1065,6 +1071,7 @@
 				70B524A5218D7C3000C8AF4E /* ModifyPhoneVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
 				702C1846215252E800601738 /* WayBillCommentVC.xib in Resources */,
+				1875DF4521A41C94006312D9 /* MessageDetailVC.xib in Resources */,
 				70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
@@ -1121,7 +1128,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
@@ -1138,7 +1145,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1169,6 +1176,7 @@
 				70A319CD2137EFD400017356 /* GSDealedCell.swift in Sources */,
 				70E2755321427A5800E1A92B /* BaseVC+Toast.swift in Sources */,
 				70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */,
+				1875DF4421A41C94006312D9 /* MessageDetailVC.swift in Sources */,
 				70C25249212E57DC007F2ED5 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,
 				70C7CB372174761700C10AC4 /* ConsignorAuthVC.swift in Sources */,
