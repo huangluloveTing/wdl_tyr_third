@@ -144,3 +144,26 @@ extension BaseVC : UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
+
+// 获取省市区 数据
+extension BaseVC  {
+    func loadAllAreas() -> Observable<[RegionModel]> {
+        let areaObservable = PublishSubject<[RegionModel]>()
+        BaseApi.request(target: API.loadTaskInfo(), type: BaseResponseModel<[RegionModel]>.self)
+            .retry(10)
+            .subscribe(onNext: { (data) in
+                areaObservable.onNext(data.data ?? [])
+            })
+            .disposed(by: dispose)
+        return areaObservable
+    }
+    
+    func loadAllAreaAndStore(callBack:(()->())? = nil) -> Void {
+        loadAllAreas().asObservable()
+            .subscribe(onNext: { (datas) in
+                WDLCoreManager.shared().regionAreas = datas
+            })
+            .disposed(by: dispose)
+    }
+}

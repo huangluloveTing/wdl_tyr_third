@@ -24,6 +24,9 @@ class WayBillVC: MainBaseVC {
     @IBOutlet weak var startButton: MyButton!
     @IBOutlet weak var tableView: UITableView!
     
+    private var startPlaceView:DropPlaceChooiceView?
+    private var endPlaceView:DropPlaceChooiceView?
+    
     private var startModel:SupplyPlaceModel = SupplyPlaceModel()
     private var endModel:SupplyPlaceModel = SupplyPlaceModel()
     private var listStatus:GoodsSupplyStatus?
@@ -42,6 +45,12 @@ class WayBillVC: MainBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.beginRefresh()
+        if WDLCoreManager.shared().regionAreas == nil || WDLCoreManager.shared().regionAreas?.count == 0 {
+            self.loadAllAreaAndStore {
+                self.startPlaceView?.placeItems = self.initialProinve()
+                self.endPlaceView?.placeItems = self.initialProinve()
+            }
+        }
     }
     
     override func currentConfig() {
@@ -175,6 +184,7 @@ class WayBillVC: MainBaseVC {
             self?.showPlaceDropView()
             self?.tableView.beginRefresh()
         }
+        self.startPlaceView = placeView
         return self.addDropView(drop: placeView, anchorView: dropAnchorView)
     }()
     
@@ -200,6 +210,7 @@ class WayBillVC: MainBaseVC {
             self?.showEndPlaceDropView()
             self?.tableView.beginRefresh()
         }
+        self.endPlaceView = placeView
         return self.addDropView(drop: placeView, anchorView: dropAnchorView)
     }()
     

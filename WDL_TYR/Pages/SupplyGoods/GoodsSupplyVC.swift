@@ -55,6 +55,9 @@ class GoodsSupplyVC: MainBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.beginRefresh()
+        if WDLCoreManager.shared().regionAreas == nil || WDLCoreManager.shared().regionAreas?.count == 0 {
+            self.loadAllAreaAndStore()
+        }
     }
     
     override func currentConfig() {
