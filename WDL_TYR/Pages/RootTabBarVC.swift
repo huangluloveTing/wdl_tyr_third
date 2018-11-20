@@ -18,7 +18,6 @@ class RootTabBarVC: UITabBarController {
         super.viewDidLoad()
         self.tabBar.barTintColor = UIColor.white
         self.tabBar.tintColor = UIColor(hex: "06C06F")
-        self.addControllers()
     }
 
     override func didReceiveMemoryWarning() {

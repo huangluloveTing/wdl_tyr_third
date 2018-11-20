@@ -93,6 +93,7 @@ extension AppDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         if token != nil && (token?.count ?? 0) > 0 {
             let rootVC = RootTabBarVC()
+            rootVC.addControllers()
             window?.rootViewController = rootVC
         } else {
             let login = LoginVC()

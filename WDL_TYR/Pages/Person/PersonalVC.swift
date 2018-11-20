@@ -236,7 +236,7 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
         self.personInfos = []
         let type = WDLCoreManager.shared().consignorType
         if type == .third {
-            for index in 0..<4 {
+            for index in 0..<personTitles.count {
                 var info = PersonExcuteInfo()
                 info.image = personImgs[index]
                 info.exTitle = personTitles[index]

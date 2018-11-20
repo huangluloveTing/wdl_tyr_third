@@ -26,7 +26,9 @@ extension BaseVC {
     
     // 跳转到主模块
     func toMainVC() {
-        UIApplication.shared.keyWindow?.rootViewController = RootTabBarVC()
+        let root = RootTabBarVC()
+        root.addControllers()
+        UIApplication.shared.keyWindow?.rootViewController = root
     }
     
     // 去 货物供应详情

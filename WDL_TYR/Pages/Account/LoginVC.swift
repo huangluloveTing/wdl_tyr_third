@@ -64,6 +64,8 @@ class LoginVC: BaseVC {
     //MARK: - 登录成功操作
     func loginSuccessHandle() -> Void {
         if self.presentingViewController != nil {
+            let vc = self.presentingViewController as? RootTabBarVC
+            vc?.addControllers()
             self.dismiss(animated: true, completion: nil)
         } else {
             self.toMainVC()
