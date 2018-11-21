@@ -21,11 +21,8 @@ enum WayBillEvaluateStatus {
 class WayBillDetailVC: NormalBaseVC {
 
     @IBOutlet weak var tableView: UITableView!
-    
     private var isConfirm:Bool? = true // 是否点击确认须知的按钮
-    
     public var wayBillInfo:WayBillInfoBean?
-    
     private var pageInfo:WayBillInfoBean? = WayBillInfoBean()
     private var showBottom:Bool? = false
     
@@ -51,8 +48,6 @@ class WayBillDetailVC: NormalBaseVC {
         self.tableView.separatorStyle = .singleLine
         self.tableView.separatorColor = UIColor(hex: "DDDDDD")
         self.tableView.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
-        
-        
     }
     
     func registerCells() {

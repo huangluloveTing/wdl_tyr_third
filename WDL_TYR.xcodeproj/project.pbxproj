@@ -14,6 +14,8 @@
 		184F1F80219940FE007B9998 /* IdentiferFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */; };
 		1875DF4421A41C94006312D9 /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875DF4221A41C94006312D9 /* MessageDetailVC.swift */; };
 		1875DF4521A41C94006312D9 /* MessageDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875DF4321A41C94006312D9 /* MessageDetailVC.xib */; };
+		1875DF4821A50618006312D9 /* MessageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875DF4621A50618006312D9 /* MessageDetailCell.swift */; };
+		1875DF4921A50618006312D9 /* MessageDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875DF4721A50618006312D9 /* MessageDetailCell.xib */; };
 		70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103C412189AE0900125F54 /* UIResponse+Extension.swift */; };
 		701144C2219D7FE500BF4522 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C0219D7FE400BF4522 /* UserStore.swift */; };
 		701144C3219D7FE500BF4522 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C1219D7FE500BF4522 /* UserDefault.swift */; };
@@ -223,6 +225,8 @@
 		184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentiferFailVC.xib; sourceTree = "<group>"; };
 		1875DF4221A41C94006312D9 /* MessageDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
 		1875DF4321A41C94006312D9 /* MessageDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailVC.xib; sourceTree = "<group>"; };
+		1875DF4621A50618006312D9 /* MessageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCell.swift; sourceTree = "<group>"; };
+		1875DF4721A50618006312D9 /* MessageDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailCell.xib; sourceTree = "<group>"; };
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70103C412189AE0900125F54 /* UIResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponse+Extension.swift"; sourceTree = "<group>"; };
 		701144C0219D7FE400BF4522 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -567,6 +571,8 @@
 				7058159521A43CD80004A7F8 /* MyCarrierSearchCell.xib */,
 				7058159821A43E370004A7F8 /* MyCarrierInfoCell.swift */,
 				7058159921A43E370004A7F8 /* MyCarrierInfoCell.xib */,
+				1875DF4621A50618006312D9 /* MessageDetailCell.swift */,
+				1875DF4721A50618006312D9 /* MessageDetailCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1080,6 +1086,7 @@
 				70A319DE2137FA4C00017356 /* GSQutationCell.xib in Resources */,
 				7037B0C9213A1F3700BDC718 /* WayBillDetailVC.xib in Resources */,
 				70F4602821539A5700821790 /* WayBillToCommentCell.xib in Resources */,
+				1875DF4921A50618006312D9 /* MessageDetailCell.xib in Resources */,
 				70BD352E218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib in Resources */,
 				70A319C62137D4C700017356 /* good_star@2x.png in Resources */,
 				709642D021A3E856006F0389 /* WaybillProtocolCell.xib in Resources */,
@@ -1159,7 +1166,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
@@ -1176,7 +1183,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1213,6 +1220,7 @@
 				702D2CCE213060020007A11F /* WayBillVC.swift in Sources */,
 				70C7CB372174761700C10AC4 /* ConsignorAuthVC.swift in Sources */,
 				705926D5212A5DE800BE8BB4 /* AppDelegate.swift in Sources */,
+				1875DF4821A50618006312D9 /* MessageDetailCell.swift in Sources */,
 				708D69F8214FEBEA00884A80 /* WayBillGoodsCell.swift in Sources */,
 				7037B112213CFF2000BDC718 /* UIViewController+navigation.swift in Sources */,
 				70C7CB3121745C7B00C10AC4 /* Operators.swift in Sources */,
