@@ -409,6 +409,7 @@ extension DeliveryVC {
                     if self.deliveryData?.publishTime == nil {
                         //确认发布
                         self.showSuccess(success: model.message, complete: {
+                            self.clearAllInput()
                             let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
                             vc.selectedIndex = 1
                         })
@@ -418,14 +419,12 @@ extension DeliveryVC {
                         let time2 = Util.dateFormatter(date: time1, formatter: "yyyy年MM月dd日HH时mm分")
                         let message = "货源发布成功\n" + time2
                         self.showSuccess(success: message, complete: {
+                            self.clearAllInput()
                             let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
                             vc.selectedIndex = 1
                         })
                     }
-                   
-//                   self.clearAllInput()
                 }, onError: { (error) in
-
                     self.showFail(fail: error.localizedDescription, complete: nil)
                     
                 })
@@ -589,6 +588,14 @@ extension DeliveryVC {
         self.endPlace = PlaceCheckModel()
         self.initialRadioCheck()
         self.clearDealWay()
+        self.popRootVC()
+    }
+    
+    // 如果可以返回，跳转到第一级页面
+    func popRootVC() -> Void {
+        if self.presentingViewController != nil {
+            self.popRootVC()
+        }
     }
     
     
@@ -596,7 +603,6 @@ extension DeliveryVC {
     func reShelveGoodsInputContent() -> Void {
         if WDLGlobal.shard().loadReShelveGoods() != nil {
             let goods = WDLGlobal.shard().loadReShelveGoods()
-            
             let startProvinceItem = PlaceChooiceItem(title: goods?.startProvince ?? "", id: "" , selected:false , subItems:nil , level:0)
             let startCityItem = PlaceChooiceItem(title: goods?.startCity ?? "", id: "" , selected:false , subItems:nil , level:0)
             let startDistrictItem = PlaceChooiceItem(title: goods?.startDistrict ?? "", id: "" , selected:false , subItems:nil , level:0)
