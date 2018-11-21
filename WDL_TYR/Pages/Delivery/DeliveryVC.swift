@@ -839,7 +839,7 @@ extension DeliveryVC {
     // 配置车长车型的数据
     private func cartSpec() -> [TruckTypeItem]? {
         var length = TruckTypeItem(typeName: "车长", specs: [])
-        var length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
+        let length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
@@ -847,7 +847,7 @@ extension DeliveryVC {
 //        length_items?.insert(first, at: 0)
         length.specs = length_items ?? []
         var width = TruckTypeItem(typeName: "车宽", specs: [])
-        var width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
+        let width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
@@ -855,7 +855,7 @@ extension DeliveryVC {
         width.specs = width_items ?? []
         
         var cartType = TruckTypeItem(typeName: "车型", specs: [])
-        var type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
+        let type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
