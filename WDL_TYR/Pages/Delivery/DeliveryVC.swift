@@ -843,15 +843,15 @@ extension DeliveryVC {
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
-        let first = TruckSpecItem(specName: "不限", id: "", selected: false)
-        length_items?.insert(first, at: 0)
+//        let first = TruckSpecItem(specName: "不限", id: "", selected: false)
+//        length_items?.insert(first, at: 0)
         length.specs = length_items ?? []
         var width = TruckTypeItem(typeName: "车宽", specs: [])
         var width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
-        width_items?.insert(first, at: 0)
+//        width_items?.insert(first, at: 0)
         width.specs = width_items ?? []
         
         var cartType = TruckTypeItem(typeName: "车型", specs: [])
@@ -859,7 +859,7 @@ extension DeliveryVC {
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
-        type_items?.insert(first, at: 0)
+//        type_items?.insert(first, at: 0)
         cartType.specs = type_items ?? []
         
         return [length , width , cartType]
