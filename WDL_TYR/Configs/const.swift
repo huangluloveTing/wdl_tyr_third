@@ -22,8 +22,8 @@ let RE_SHELVE_AGREEN_TITLE : String? = nil        // 确认签收收货须知 �
 let RE_SHELVE_AGREEN_CONTENT : String? = nil        // 确认签收收货须知 内容
 
 //外网测试
-//let HOST = "http://182.150.21.104:58092/zbn-web"
+let HOST = "http://182.150.21.104:58092/zbn-web"
 //zhao xiao yang
 //let HOST = "http://172.16.59.73:8080/zbn-web"
 //liao bing
-let HOST = "http://172.16.59.47:8081/zbn-web"
+//let HOST = "http://172.16.59.47:8081/zbn-web"
