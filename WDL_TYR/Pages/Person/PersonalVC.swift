@@ -10,9 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-
-let personImgs:[UIImage] = [#imageLiteral(resourceName: "认证") , #imageLiteral(resourceName: "消息中心"), #imageLiteral(resourceName: "个人设置") , #imageLiteral(resourceName: "联系客服")]
+//第三方
+let personThirdImgs:[UIImage] = [#imageLiteral(resourceName: "认证") , #imageLiteral(resourceName: "消息中心"), #imageLiteral(resourceName: "个人设置") , #imageLiteral(resourceName: "联系客服")]
 let personTitles:[String] = ["我的认证","消息中心","个人设置"]
+//经销商
+let personImgs:[UIImage] = [#imageLiteral(resourceName: "认证") , #imageLiteral(resourceName: "运力"), #imageLiteral(resourceName: "消息中心") , #imageLiteral(resourceName: "个人设置")]
 let personAgencyTitles:[String] = ["我的认证","我的承运人","消息中心","个人设置"]
 
 class PersonalVC: MainBaseVC  {
@@ -180,8 +182,7 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
                 if row == 3 {
                     self.toPersonSetting()
                 }
-                self.toLinkKF()
-                
+
             } else {
                 if row == 2 {
                     self.toPersonSetting()
@@ -237,9 +238,10 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
         self.personInfos = []
         let type = WDLCoreManager.shared().consignorType
         if type == .third {
+            //第三方
             for index in 0..<personTitles.count {
                 var info = PersonExcuteInfo()
-                info.image = personImgs[index]
+                info.image = personThirdImgs[index]
                 info.exTitle = personTitles[index]
                 info.showIndicator = true
                 if index == 3 {
@@ -249,14 +251,13 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
             }
         }
         else {
+            //经销商
             for index in 0..<personAgencyTitles.count {
                 var info = PersonExcuteInfo()
                 info.image = personImgs[index]
                 info.exTitle = personAgencyTitles[index]
                 info.showIndicator = true
-                if index == 3 {
-                    info.showIndicator = false
-                }
+                
                 self.personInfos?.append(info)
             }
         }

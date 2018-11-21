@@ -343,14 +343,14 @@ extension DeliveryVC {
             }
         }
     }
-    //时间比较
+    //定时发布时间比较
     func compareTime(time:TimeInterval) -> Bool {
         let selDate = Date(timeIntervalSince1970: time)
         let sysDate = Date()
         let result:ComparisonResult = selDate.compare(sysDate)
         if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
             print("选择的时间 <= 系统时间")
-            self.showWarn(warn: "只能选择大于今天的时间", complete: nil)
+            self.showWarn(warn: "定时发布时间只能选择大于今天的时间", complete: nil)
             return false
         }
         return true
@@ -416,7 +416,7 @@ extension DeliveryVC {
                         //定时发布
                         let time1 = self.selPushTimeVal
                         let time2 = Util.dateFormatter(date: time1, formatter: "yyyy年MM月dd日HH时mm分")
-                        let message = "货源发布成功\n" + time2
+                        let message = "货源发布成功\n" + "货源将在\(time2)自动发布"
                         self.showSuccess(success: message, complete: {
                             let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
                             vc.selectedIndex = 1
@@ -441,11 +441,11 @@ extension DeliveryVC {
     //MARK: - 是否满足发布条件
     private func canCommit() -> Bool {
         if self.startPlace.province == nil {
-            self.showWarn(warn: "请选择开始城市", complete: nil)
+            self.showWarn(warn: "请选择发货地", complete: nil)
             return false
         }
         if self.endPlace.province == nil  {
-            self.showWarn(warn: "请选择终点城市", complete: nil)
+            self.showWarn(warn: "请选择收货地", complete: nil)
             return false
         }
         
@@ -477,7 +477,7 @@ extension DeliveryVC {
         if Util.isEmptyString(str: self.deliveryData?.vehicleLength)  ||
             Util.isEmptyString(str: self.deliveryData?.vehicleWidth) ||
             Util.isEmptyString(str: self.deliveryData?.vehicleType) {
-            self.showWarn(warn: "请填写车长车型", complete: nil)
+            self.showWarn(warn: "请选择车长车型", complete: nil)
             return false
         }
         if Util.isEmptyString(str: self.deliveryData?.goodsWeight) {
@@ -544,7 +544,7 @@ extension DeliveryVC {
         let result:ComparisonResult = selDate.compare(sysDate)
         if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
             print("选择的时间 <= 系统时间")
-            self.showWarn(warn: "只能选择大于今天的时间", complete: nil)
+            self.showWarn(warn: "装货时间只能选择大于今天的时间", complete: nil)
             return false
         }
 

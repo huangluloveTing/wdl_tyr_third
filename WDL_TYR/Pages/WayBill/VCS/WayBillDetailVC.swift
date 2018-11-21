@@ -99,6 +99,7 @@ extension WayBillDetailVC {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+  
         cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
                           loadAddress: self.pageInfo?.startAddress,
                           loadProvince: self.pageInfo?.startProvince,
