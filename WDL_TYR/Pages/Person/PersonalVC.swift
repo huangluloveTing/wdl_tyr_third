@@ -98,7 +98,8 @@ extension PersonalVC {
     
     // 我的承运人
     func toMyCarrier() -> Void {
-        
+        let myCarrier = MyCarrierVC()
+        self.push(vc: myCarrier, title: "我的承运人")
     }
 }
 

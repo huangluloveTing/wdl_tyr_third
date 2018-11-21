@@ -66,6 +66,15 @@
 		70505EF22147A94800CEE672 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF02147A94800CEE672 /* UIActionSheet+Blocks.m */; };
 		70505EF32147A94800CEE672 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF12147A94800CEE672 /* UIAlertView+Blocks.m */; };
 		70505EF52147A99A00CEE672 /* BaseVC+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70505EF42147A99A00CEE672 /* BaseVC+Alert.swift */; };
+		7058159221A43C6F0004A7F8 /* MyCarrierVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058159021A43C6F0004A7F8 /* MyCarrierVC.swift */; };
+		7058159321A43C6F0004A7F8 /* MyCarrierVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7058159121A43C6F0004A7F8 /* MyCarrierVC.xib */; };
+		7058159621A43CD80004A7F8 /* MyCarrierSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058159421A43CD80004A7F8 /* MyCarrierSearchCell.swift */; };
+		7058159721A43CD80004A7F8 /* MyCarrierSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7058159521A43CD80004A7F8 /* MyCarrierSearchCell.xib */; };
+		7058159A21A43E370004A7F8 /* MyCarrierInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058159821A43E370004A7F8 /* MyCarrierInfoCell.swift */; };
+		7058159B21A43E370004A7F8 /* MyCarrierInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7058159921A43E370004A7F8 /* MyCarrierInfoCell.xib */; };
+		7058159D21A4E5C80004A7F8 /* MyCarrierModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058159C21A4E5C80004A7F8 /* MyCarrierModels.swift */; };
+		705815A021A4EEEB0004A7F8 /* AddCarrierVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058159E21A4EEEB0004A7F8 /* AddCarrierVC.swift */; };
+		705815A121A4EEEB0004A7F8 /* AddCarrierVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7058159F21A4EEEB0004A7F8 /* AddCarrierVC.xib */; };
 		7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058BD1C212E849800B53DF6 /* RegisterAgreeView.swift */; };
 		7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7058BD1E212E84A900B53DF6 /* RegisterAgreeView.xib */; };
 		7058BD21212E8B4B00B53DF6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058BD20212E8B4B00B53DF6 /* Util.swift */; };
@@ -271,6 +280,15 @@
 		70505EF02147A94800CEE672 /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
 		70505EF12147A94800CEE672 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		70505EF42147A99A00CEE672 /* BaseVC+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+Alert.swift"; sourceTree = "<group>"; };
+		7058159021A43C6F0004A7F8 /* MyCarrierVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarrierVC.swift; sourceTree = "<group>"; };
+		7058159121A43C6F0004A7F8 /* MyCarrierVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCarrierVC.xib; sourceTree = "<group>"; };
+		7058159421A43CD80004A7F8 /* MyCarrierSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarrierSearchCell.swift; sourceTree = "<group>"; };
+		7058159521A43CD80004A7F8 /* MyCarrierSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCarrierSearchCell.xib; sourceTree = "<group>"; };
+		7058159821A43E370004A7F8 /* MyCarrierInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarrierInfoCell.swift; sourceTree = "<group>"; };
+		7058159921A43E370004A7F8 /* MyCarrierInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCarrierInfoCell.xib; sourceTree = "<group>"; };
+		7058159C21A4E5C80004A7F8 /* MyCarrierModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCarrierModels.swift; sourceTree = "<group>"; };
+		7058159E21A4EEEB0004A7F8 /* AddCarrierVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarrierVC.swift; sourceTree = "<group>"; };
+		7058159F21A4EEEB0004A7F8 /* AddCarrierVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCarrierVC.xib; sourceTree = "<group>"; };
 		7058BD1C212E849800B53DF6 /* RegisterAgreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAgreeView.swift; sourceTree = "<group>"; };
 		7058BD1E212E84A900B53DF6 /* RegisterAgreeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterAgreeView.xib; sourceTree = "<group>"; };
 		7058BD20212E8B4B00B53DF6 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -528,6 +546,10 @@
 				184F1F7A21993EF7007B9998 /* IdentifingVC.xib */,
 				184F1F7D219940FE007B9998 /* IdentiferFailVC.swift */,
 				184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */,
+				7058159021A43C6F0004A7F8 /* MyCarrierVC.swift */,
+				7058159121A43C6F0004A7F8 /* MyCarrierVC.xib */,
+				7058159E21A4EEEB0004A7F8 /* AddCarrierVC.swift */,
+				7058159F21A4EEEB0004A7F8 /* AddCarrierVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -545,6 +567,10 @@
 				704E3505218C3B4D0022122C /* LegalPeronInfoCell.xib */,
 				702E39AF218D39BD00329643 /* MessageCenterCell.swift */,
 				702E39B0218D39BD00329643 /* MessageCenterCell.xib */,
+				7058159421A43CD80004A7F8 /* MyCarrierSearchCell.swift */,
+				7058159521A43CD80004A7F8 /* MyCarrierSearchCell.xib */,
+				7058159821A43E370004A7F8 /* MyCarrierInfoCell.swift */,
+				7058159921A43E370004A7F8 /* MyCarrierInfoCell.xib */,
 				1875DF4621A50618006312D9 /* MessageDetailCell.swift */,
 				1875DF4721A50618006312D9 /* MessageDetailCell.xib */,
 			);
@@ -938,6 +964,7 @@
 			isa = PBXGroup;
 			children = (
 				70C7CB3321746DE600C10AC4 /* PersonModels.swift */,
+				7058159C21A4E5C80004A7F8 /* MyCarrierModels.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1071,6 +1098,7 @@
 				705926DF212A5DEA00BE8BB4 /* LaunchScreen.storyboard in Resources */,
 				7037B0D2213ADD3A00BDC718 /* WayBillDetailStatusCell.xib in Resources */,
 				7037B0D8213C264E00BDC718 /* PersonalInfoHeader.xib in Resources */,
+				7058159721A43CD80004A7F8 /* MyCarrierSearchCell.xib in Resources */,
 				708D69F5214F8B3A00884A80 /* WayBillDealInfoCell.xib in Resources */,
 				708D6A122150D88600884A80 /* WayBillOneCommentCell.xib in Resources */,
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
@@ -1087,6 +1115,7 @@
 				70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */,
 				70B524A1218D780000C8AF4E /* ModityPasswordVC.xib in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
+				705815A121A4EEEB0004A7F8 /* AddCarrierVC.xib in Resources */,
 				70A319C42137D4C700017356 /* bad_star@1x.png in Resources */,
 				7068E0DF213F798800929337 /* DeliveryPlaceChooiceCell.xib in Resources */,
 				704E3503218C3B210022122C /* EnterpriseInfoCell.xib in Resources */,
@@ -1098,12 +1127,14 @@
 				70A319CE2137EFD400017356 /* GSDealedCell.xib in Resources */,
 				702D2CD3213060190007A11F /* PersonalVC.xib in Resources */,
 				704E34FF218C3A8D0022122C /* ConsignorAuthedVC.xib in Resources */,
+				7058159321A43C6F0004A7F8 /* MyCarrierVC.xib in Resources */,
 				708D69EC214D628400884A80 /* GSConfirmDealView.xib in Resources */,
 				702E39AA218D31E000329643 /* PersonSettingVC.xib in Resources */,
 				70A319C12137D4C700017356 /* bad_star@2x.png in Resources */,
 				70A319C52137D4C700017356 /* good_star@1x.png in Resources */,
 				7037B0C4213A13B400BDC718 /* WayBillCell.xib in Resources */,
 				70C2525E212E75B2007F2ED5 /* RegisterVC.xib in Resources */,
+				7058159B21A43E370004A7F8 /* MyCarrierInfoCell.xib in Resources */,
 				708D6A1A2150E19600884A80 /* WayBillReceiptCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1135,7 +1166,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
@@ -1152,7 +1183,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1165,6 +1196,7 @@
 				702B40E021314A2400D3D27A /* DropHintView.swift in Sources */,
 				70C7CB3A2174DBE100C10AC4 /* Demo.swift in Sources */,
 				708D69EF214E6E9400884A80 /* QuerytTransportListBean.swift in Sources */,
+				7058159221A43C6F0004A7F8 /* MyCarrierVC.swift in Sources */,
 				70A319BA2137D3EC00017356 /* XHStarRateView.m in Sources */,
 				70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
@@ -1203,6 +1235,7 @@
 				708D69FF2150837000884A80 /* WDLMapView.swift in Sources */,
 				7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */,
 				70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */,
+				7058159D21A4E5C80004A7F8 /* MyCarrierModels.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
 				184F1F7821993981007B9998 /* AboutZbnVC.swift in Sources */,
@@ -1232,8 +1265,10 @@
 				702D2CCA21305FC70007A11F /* GoodsSupplyVC.swift in Sources */,
 				70F46020215395C900821790 /* UITextView+YLTextView.m in Sources */,
 				70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */,
+				705815A021A4EEEB0004A7F8 /* AddCarrierVC.swift in Sources */,
 				708150D8213123A400D42723 /* DropView.swift in Sources */,
 				7037B0CE213A238600BDC718 /* images.swift in Sources */,
+				7058159A21A43E370004A7F8 /* MyCarrierInfoCell.swift in Sources */,
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
 				70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
@@ -1288,6 +1323,7 @@
 				708150BD2130E85400D42723 /* MyButton.swift in Sources */,
 				705926F0212A5E5500BE8BB4 /* API.swift in Sources */,
 				704E3506218C3B4D0022122C /* LegalPeronInfoCell.swift in Sources */,
+				7058159621A43CD80004A7F8 /* MyCarrierSearchCell.swift in Sources */,
 				70B588FC2140B20E00EF704E /* UIView+ZTTagView.swift in Sources */,
 				70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */,
 				702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */,

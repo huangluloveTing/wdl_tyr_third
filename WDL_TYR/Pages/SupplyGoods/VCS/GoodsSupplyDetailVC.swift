@@ -513,6 +513,12 @@ extension GoodsSupplyDetailVC {
                 self.bottomButtom(titles: [], targetView: self.tableView)
                 break
             }
+        } else {
+            if self.getGoodsSupplyStatus() == .Deal {
+                self.bottomButtom(titles: ["查看运单"], targetView: self.tableView) { [weak self](index) in
+                    self?.toScanWayBill()
+                }
+            }
         }
     }
 }

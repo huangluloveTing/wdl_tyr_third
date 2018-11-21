@@ -37,6 +37,12 @@ enum API {
     case forgetPassword(ForgetPasswordModel)    // 忘记密码
     case getMainMessage(MessageQueryBean)   //消息中心主页(无分页)
     case getDetailMessage(MessageQueryBean)   //消息分类查询消息列表(无分页)
+    case selectFollowCarrier(String)            // 获取我的承运人
+    case selectCarrier(String)                  // 搜索承运人
+    case inviteCarrier(String)                  // 邀请承运人
+    case deleteFollowCarrier(String)            // 删除承运人
+    case addCarrier(String)                     // 添加承运人
+    
     
 }
 
@@ -102,6 +108,19 @@ func apiPath(api:API) -> String {
         return "/consignor/updatePhone"
     case .forgetPassword(_):
         return "/consignor/forgetPassWord"
+    case .selectFollowCarrier(_):
+        return "/followCarrier/selectFollowCarrier"
+        
+    case .selectCarrier(_):
+        return "/followCarrier/selectCarrier"
+    case .inviteCarrier(_):
+        return "/followCarrier/inviteCarrier"
+        
+    case .deleteFollowCarrier(_):
+        return "/followCarrier/deleteFollowCarrier"
+        
+    case .addCarrier(_):
+        return "/followCarrier/addCarrier"
     }
 }
 
@@ -181,6 +200,17 @@ func apiTask(api:API) -> Task {
         let formProvider = MultipartFormData.FormDataProvider.data(imageData!)
         let formData = MultipartFormData.init(provider: formProvider, name: "file", fileName: "img.png", mimeType: "image/png")
         return .uploadMultipart([formData])
+        
+    case .selectFollowCarrier(let search):
+        return .requestParameters(parameters: ["searchWord": search], encoding: JSONEncoding.default)
+    case .selectCarrier(let search):
+        return .requestParameters(parameters: ["searchWord": search], encoding: JSONEncoding.default)
+    case .inviteCarrier(let phone):
+        return .requestParameters(parameters: ["phone":phone], encoding: JSONEncoding.default)
+    case .deleteFollowCarrier(let carrierId):
+        return .requestParameters(parameters: ["carrierId":carrierId], encoding: URLEncoding.default)
+    case .addCarrier(let carrierId):
+        return .requestParameters(parameters: ["carrierId":carrierId], encoding: URLEncoding.default)
     }
 }
 
@@ -195,7 +225,8 @@ func apiMethod(api:API) -> Moya.Method {
          .getZbnConsignor(_),
          .cancelTransport(_),
          .transportTransaction(_),
-         .transportSign(_):
+         .transportSign(_),
+         .deleteFollowCarrier(_):
         return .get
     default:
         
