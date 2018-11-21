@@ -89,6 +89,22 @@ extension BaseVC {
         self.navigationItem.titleView = contentView
     }
     
+    
+    func addLeftNaviHeader(placeholder:String?="") {
+        let contentView = UIView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 100, height: 44))
+        let searchBar = MySearchBar(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 100, height: 44))
+        searchBar.contentInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0)
+        searchBar.barStyle = UIBarStyle.default
+        searchBar.tintColor = UIColor.lightGray
+        searchBar.delegate = self
+        contentView.addSubview(searchBar)
+        searchBar.placeholder = placeholder
+        currentSearchBar = searchBar
+        contentView.backgroundColor = UIColor.clear
+        self.navigationItem.titleView = contentView
+    }
+    
+    
     // 添加头部信息
     func addMessageRihgtItem() {
         let rightBadgeView = BageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))

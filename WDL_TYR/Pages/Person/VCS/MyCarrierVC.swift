@@ -47,6 +47,11 @@ extension MyCarrierVC {
     func reloadMyCarrierList() -> Void {
         tableView.reloadSections([1], with: .none)
     }
+    
+    //MARK: - 删除相应的承运人
+    func deleteCarrier(index:Int) -> Void {
+        
+    }
 }
 
 
@@ -68,6 +73,9 @@ extension MyCarrierVC : UITableViewDelegate , UITableViewDataSource {
                        rate: info.overallScore,
                        tomeNum: info.dealNum,
                        total: info.dealNum)
+        cell.handleClosure = {[weak self] in
+            self?.deleteCarrier(index: indexPath.row)
+        }
         return cell
     }
     

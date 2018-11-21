@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum CarrierInfoStyle {
     case add
@@ -14,6 +16,10 @@ enum CarrierInfoStyle {
 }
 
 class MyCarrierInfoCell: BaseCell {
+    
+    private let dispose = DisposeBag()
+    
+    typealias CarrerInfoHandleClosure = () -> ()
     
     @IBOutlet weak var avatorImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -24,9 +30,10 @@ class MyCarrierInfoCell: BaseCell {
     
     @IBOutlet weak var editButton: UIButton!
     
+    var handleClosure:CarrerInfoHandleClosure?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,6 +42,9 @@ class MyCarrierInfoCell: BaseCell {
         // Configure the view for the selected state
     }
     @IBAction func deleteAction(_ sender: Any) {
+        if let closure = handleClosure {
+            closure()
+        }
     }
     
 }

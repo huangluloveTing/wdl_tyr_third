@@ -18,10 +18,11 @@ class AddCarrierVC: NormalBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
+        configEmptyView()
         self.fd_interactivePopDisabled = true
         self.addRightBarbuttonItem(withTitle: "取消")
         self.addLeftBarbuttonItem(withTitle: "")
-        self.addNaviHeader(placeholder: "请输入承运人电话号码")
+        self.addLeftNaviHeader(placeholder: "请输入承运人电话号码")
     }
     
     override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
@@ -42,6 +43,48 @@ extension AddCarrierVC {
         tableView.tableFooterView = UIView()
         self.registerCell(nibName: "\(MyCarrierInfoCell.self)", for: tableView)
     }
+    
+    func configEmptyView() -> Void {
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+    }
+    
+    //MARK: - 点击发送邀请
+    func tapInvate() -> Void {
+        
+    }
+    
+    //MARK: - 添加承运人
+    func addCarrier(index:Int) -> Void {
+        
+    }
+}
+
+//MARK: -
+extension AddCarrierVC {
+    
+    override func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = "该承运人暂未注册，是否邀请注册?"
+        let att = NSMutableAttributedString(string: title)
+        att.addAttributes([NSAttributedStringKey.foregroundColor:UIColor(hex: "333333"),
+                           NSAttributedStringKey.font:UIFont.systemFont(ofSize: 16)], range: NSRange(title) ?? NSRange(location: 0, length: title.count))
+        return att
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+        let title = "  发送邀请  "
+        let att = NSMutableAttributedString(string: title)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineSpacing = 10
+        paragraph.maximumLineHeight = 40
+        paragraph.minimumLineHeight = 40
+        att.addAttributes([NSAttributedStringKey.foregroundColor:UIColor(hex: "ffffff"),
+                           NSAttributedStringKey.font:UIFont.systemFont(ofSize: 17),
+                           NSAttributedStringKey.backgroundColor:UIColor(hex: "06C06F"),
+                           NSAttributedStringKey.paragraphStyle:paragraph,
+                           NSAttributedStringKey.baselineOffset:8], range: NSRange(title) ?? NSRange(location: 0, length: title.count))
+        return att
+    }
 }
 
 //MARK: - UITableViewDelegate , UITableViewDataSource
@@ -55,7 +98,11 @@ extension AddCarrierVC : UITableViewDelegate , UITableViewDataSource {
                       phone: info.cellPhone,
                       rate: info.overallScore,
                       tomeNum: info.dealNum,
-                      total: info.dealNum)
+                      total: info.dealNum,
+                      style: .add)
+        cell.handleClosure = {[weak self] in
+            self?.addCarrier(index: indexPath.row)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,6 +111,10 @@ extension AddCarrierVC : UITableViewDelegate , UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.registerSearchBar()
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        self.tapInvate()
     }
 }
 
