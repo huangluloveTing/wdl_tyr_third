@@ -69,12 +69,12 @@ extension MyCarrierInfoCell {
     fileprivate func showStyle(style:CarrierInfoStyle?) -> Void {
         switch style ?? .delete {
         case .delete:
-            self.editButton.setTitle(" 添加", for: .normal)
-            self.editButton.setImage(UIImage.init(named: "add_carrier"), for: .normal)
-            break
-        default:
             self.editButton.setTitle(" 删除", for: .normal)
             self.editButton.setImage(UIImage.init(named: "delete_icon"), for: .normal)
+            break
+        default:
+            self.editButton.setTitle(" 添加", for: .normal)
+            self.editButton.setImage(UIImage.init(named: "add_carrier"), for: .normal)
         }
     }
 }

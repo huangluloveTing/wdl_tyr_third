@@ -10,6 +10,8 @@ import UIKit
 
 class MyCarrierVC: NormalBaseVC {
     
+    private var searchText:String?
+    
     private var carrierLists:[ZbnFollowCarrierVo]? = []
     
     @IBOutlet weak var tableView: UITableView!
@@ -17,14 +19,23 @@ class MyCarrierVC: NormalBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configTableView()
-        self.loadMyCarrierLists(search: "")
         self.addRightBarbuttonItem(withTitle: "添加承运人")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadMyCarrierLists(search: searchText ?? "")
     }
     
     override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
         let addCarrier = AddCarrierVC()
         addCarrier.showLeftBack = false
         self.push(vc: addCarrier, title: nil)
+    }
+    
+    override func currentSearchContent(content: String) {
+        searchText = content
+        loadMyCarrierLists(search: content)
     }
 }
 
@@ -50,7 +61,17 @@ extension MyCarrierVC {
     
     //MARK: - 删除相应的承运人
     func deleteCarrier(index:Int) -> Void {
-        
+        let info = carrierLists![index]
+        self.showLoading()
+        BaseApi.request(target: API.deleteFollowCarrier(info.carrierId ?? ""), type: BaseResponseModel<String>.self)
+            .retry(2)
+            .subscribe(onNext: { [weak self](data) in
+                self?.showSuccess(success: data.message, complete: nil)
+                self?.loadMyCarrierLists(search: self?.searchText ?? "")
+            }, onError: { (error) in
+                self.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
     }
 }
 
@@ -65,7 +86,7 @@ extension MyCarrierVC : UITableViewDelegate , UITableViewDataSource {
             }
             return cell
         }
-        let info = carrierLists![indexPath.row - 1]
+        let info = carrierLists![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(MyCarrierInfoCell.self)") as! MyCarrierInfoCell
         cell.showInfo(avatorImage: info.photoUrl,
                        title: info.carrierName,

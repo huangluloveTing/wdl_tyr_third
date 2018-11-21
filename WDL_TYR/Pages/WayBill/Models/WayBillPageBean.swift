@@ -97,7 +97,7 @@ struct WayBillInfoBean : HandyJSON {
     var vehicleLengthDriver : String? // (string): 司机车长 ,
     var vehicleTypeDriver : String?//(string): 司机车型 ,
     var vehicleWeightDriver : String?//(string): 司机车重 
-    
+    var pickupWay : String? // (string): zt=自提 db=代办 ,
     
     
 }

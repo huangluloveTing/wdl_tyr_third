@@ -56,7 +56,16 @@ extension AddCarrierVC {
     
     //MARK: - 添加承运人
     func addCarrier(index:Int) -> Void {
-        
+        let info = carrierLists![index]
+        self.showLoading()
+        BaseApi.request(target: API.addCarrier(info.carrierId ?? ""), type: BaseResponseModel<String>.self)
+            .retry(2)
+            .subscribe(onNext: {[weak self] (data) in
+                self?.showSuccess(success: data.message, complete: nil)
+            }, onError: { [weak self](error) in
+                self?.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
     }
 }
 

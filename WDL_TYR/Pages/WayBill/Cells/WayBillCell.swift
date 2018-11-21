@@ -19,8 +19,9 @@ class WayBillCell: BaseCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var dealTimeLabel: UILabel!
     @IBOutlet weak var cyLabel: UILabel!
-    
     @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var statusImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,15 +29,13 @@ class WayBillCell: BaseCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }
 
 extension WayBillCell {
     //运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝 ,
     func contentInfo(info:WayBillInfoBean?) {
-            //运单号
+        // 运单号
         self.tranportNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" ,info?.transportNo )
         self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.startProvince , info?.startCity)
         self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.endProvince , info?.endCity)
@@ -46,9 +45,18 @@ extension WayBillCell {
         self.dealTimeLabel.text = Util.dateFormatter(date: (info?.dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm:ss")
         self.priceLabel.text = Util.showMoney(money: info?.dealUnitPrice ?? 0, after: 0)
         self.phoneLabel.text = info?.cellPhone ?? ""
-        //物料和装货时间
+        // 物料和装货时间
         let goodsType = info?.goodsType
         let loadTimeStr = Util.dateFormatter(date: (info?.loadingTime ?? 0) / 1000, formatter: "MM-dd")
         self.goodsInfoLabel.text = loadTimeStr + " " + "装货   " + (goodsType ?? "")
+        let image = info?.pickupWay == "zt" ? UIImage.init(named: "运单-自提") : UIImage.init(named: "运单-代办")
+        switch (WDLCoreManager.shared().consignorType ?? .third){
+        case .agency:
+            self.statusImageView.isHidden = false
+            self.statusImageView.image = image
+            break
+        default:
+            self.statusImageView.isHidden = true
+        }
     }
 }
