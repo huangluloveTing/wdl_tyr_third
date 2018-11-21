@@ -369,12 +369,12 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
 // 根据处理状态 ， 判断header
 extension GoodsSupplyDetailVC {
     
-    //MARK: 配置头部信息
+    //MARK: 配置头部信息（详情页的头部信息）
     func toConfigHeaderInfo() {
         let hallInfo = self.pageContentInfo?.zbnOrderHall
         let end = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.endProvince, hallInfo?.endCity , hallInfo?.endDistrict)
         let start = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.startProvince, hallInfo?.startCity , hallInfo?.startDistrict)
-        let sumer = Util.concatSeperateStr(strs: hallInfo?.goodsWeight, hallInfo?.vehicleWidth , hallInfo?.vehicleType ,hallInfo?.goodsType)
+        let sumer = Util.concatSeperateStr(strs:(hallInfo?.goodsWeight ?? "") + "吨", hallInfo?.vehicleWidth , hallInfo?.vehicleType ,hallInfo?.goodsType)
 
         //货源竞价自动成交剩余时间
 //        let time = self.pageContentInfo?.autoTimeInterval

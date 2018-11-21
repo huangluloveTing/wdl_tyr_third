@@ -71,12 +71,6 @@ extension MessageCenterVC {
             .disposed(by: dispose)
     }
     
-    
-    
-    
-    
-    
-    
     // 根据获取数据,组装列表
     func configNetDataToUI(lists:[MessageQueryBean]) -> Void {
         // msgType (integer): 消息类型 1=系统消息 2=报价消息 3=运单消息 ,
@@ -117,28 +111,42 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //test
-        self.toOfferMessages(index: indexPath.row)
-        
+      
+        let info = self.hallLists[indexPath.row]
+        if info.msgType == 1 { //系统消息
+           self.systermMessages()
+        }
+        if info.msgType == 2 { //报价消息
+           self.toOfferMessages()
+        }
+        if info.msgType == 3 { // 运单信息
+           self.wayBillsMessages()
+        }
     }
 }
 
 //MARK: - Handles
 extension MessageCenterVC {
     
+    
     // 去报价信息
-    func toOfferMessages(index:Int) -> Void {
+    func toOfferMessages() -> Void {
         let vc = MessageDetailVC()
+        vc.currentMsgType = 2
         self.push(vc: vc, animated: true, title: "消息详情")
     }
     
     // 去运单信息
     func wayBillsMessages() -> Void {
-        
+        let vc = MessageDetailVC()
+        vc.currentMsgType = 3
+        self.push(vc: vc, animated: true, title: "消息详情")
     }
     
     // 去系统信息
     func systermMessages() -> Void {
-        
+        let vc = MessageDetailVC()
+        vc.currentMsgType = 1
+        self.push(vc: vc, animated: true, title: "消息详情")
     }
 }
