@@ -638,7 +638,7 @@ extension DeliveryVC {
             self.deliveryData?.loadLinkPhone = goods?.loadingPersonPhone ?? ""
             self.reDetailAddressTextField.text = goods?.endAddress
             self.deliveryData?.endAddress = goods?.endAddress ?? ""
-            self.reLinkManTextField.text = goods?.consignorName
+            self.reLinkManTextField.text = goods?.consigneeName
             self.deliveryData?.endLinkMan = goods?.consigneeName ?? ""
             self.rePhoneTextField.text = goods?.consigneePhone
             self.deliveryData?.endLinkPhone = goods?.consigneePhone ?? ""
