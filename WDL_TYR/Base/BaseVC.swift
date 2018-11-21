@@ -68,6 +68,8 @@ class BaseVC: UIViewController {
     //MARK: - override
     // 搜索回调
     func currentSearchContent(content:String) -> Void { }
+    
+    func currentSearchOnTimeContent(content:String) -> Void { }
 }
 
 
@@ -85,6 +87,13 @@ extension BaseVC {
         contentView.addSubview(searchBar)
         searchBar.placeholder = placeholder
         currentSearchBar = searchBar
+        searchBar.rx.text.orEmpty.asObservable()
+            .distinctUntilChanged()
+            .throttle(2, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self](text) in
+                self?.currentSearchOnTimeContent(content: text)
+            })
+            .disposed(by: dispose)
         contentView.backgroundColor = UIColor.clear
         self.navigationItem.titleView = contentView
     }
@@ -100,6 +109,13 @@ extension BaseVC {
         contentView.addSubview(searchBar)
         searchBar.placeholder = placeholder
         currentSearchBar = searchBar
+        searchBar.rx.text.orEmpty.asObservable()
+            .distinctUntilChanged()
+            .throttle(2, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self](text) in
+                self?.currentSearchOnTimeContent(content: text)
+            })
+            .disposed(by: dispose)
         contentView.backgroundColor = UIColor.clear
         self.navigationItem.titleView = contentView
     }

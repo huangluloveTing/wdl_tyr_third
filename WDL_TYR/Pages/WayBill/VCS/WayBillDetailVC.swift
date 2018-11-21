@@ -90,6 +90,9 @@ extension WayBillDetailVC {
                 return cell
             }
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDealInfoCell.self)") as! WayBillDealInfoCell
+            cell.changeClosure = {[weak self] in
+                self?.changeCarrierHandle()
+            }
             self.showInfoForDealCell(cell: cell)
             return cell
         }
@@ -298,8 +301,11 @@ extension WayBillDetailVC {
         let driverPhone = self.pageInfo?.driverPhone
         let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver ?? "", self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
-        
-         cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime)
+        var show = false
+        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.pickupWay == "zt" && self.pageInfo?.transportStatus == .noStart {
+            show = true
+        }
+        cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime , showChange: show)
      
     }
 }
@@ -484,6 +490,11 @@ extension WayBillDetailVC {
                 self.showFail(fail: error.localizedDescription, complete: nil)
             })
             .disposed(by: dispose)
+    }
+    
+    //MARK: - 修改承运人
+    func changeCarrierHandle() -> Void {
+        
     }
     
     func addBottom() {

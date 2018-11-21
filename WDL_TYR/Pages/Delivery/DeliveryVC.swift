@@ -588,14 +588,12 @@ extension DeliveryVC {
         self.endPlace = PlaceCheckModel()
         self.initialRadioCheck()
         self.clearDealWay()
-        self.popRootVC()
+        self.popFirstStack()
     }
     
     // 如果可以返回，跳转到第一级页面
-    func popRootVC() -> Void {
-        if self.presentingViewController != nil {
-            self.popRootVC()
-        }
+    func popFirstStack() -> Void {
+        self.pop(toRootViewControllerAnimation: true)
     }
     
     

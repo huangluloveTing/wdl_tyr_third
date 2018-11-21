@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -37,13 +37,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总价：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA3-8d-AK5">
-                        <rect key="frame" x="187.5" y="61" width="46" height="18"/>
+                        <rect key="frame" x="187" y="61" width="46" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fp-Cy-xtn">
-                        <rect key="frame" x="238.5" y="61" width="37.5" height="18"/>
+                        <rect key="frame" x="238" y="61" width="37.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -91,13 +91,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzI-GO-hZ4">
-                        <rect key="frame" x="96.5" y="207.5" width="37.5" height="18"/>
+                        <rect key="frame" x="96.5" y="207" width="37.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuL-pz-ZoD">
+                        <rect key="frame" x="328" y="126.5" width="77" height="26"/>
+                        <color key="backgroundColor" red="1" green="0.37647058823529411" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                        <state key="normal" title="修改承运人">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="changeHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="amd-1p-1aX"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="IuL-pz-ZoD" secondAttribute="trailing" constant="15" id="34f-cq-Wsu"/>
                     <constraint firstItem="Wuz-er-3ex" firstAttribute="centerY" secondItem="qJK-h4-Tks" secondAttribute="centerY" id="6vG-a8-L2X"/>
                     <constraint firstItem="qJK-h4-Tks" firstAttribute="leading" secondItem="faP-gS-oWv" secondAttribute="leading" id="7mS-hj-fVV"/>
                     <constraint firstItem="JzI-GO-hZ4" firstAttribute="leading" secondItem="Atk-We-3Dt" secondAttribute="trailing" constant="5" id="AK6-kC-4PD"/>
@@ -106,6 +119,7 @@
                     <constraint firstItem="faP-gS-oWv" firstAttribute="top" secondItem="l3S-qw-EQp" secondAttribute="bottom" constant="15" id="G4F-cP-BrH"/>
                     <constraint firstItem="DO7-w9-O2J" firstAttribute="leading" secondItem="faP-gS-oWv" secondAttribute="trailing" constant="5" id="IJF-kX-W41"/>
                     <constraint firstItem="RA3-8d-AK5" firstAttribute="centerY" secondItem="DO7-w9-O2J" secondAttribute="centerY" id="KYg-CI-12N"/>
+                    <constraint firstItem="IuL-pz-ZoD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="NMY-VL-6VP"/>
                     <constraint firstItem="9fp-Cy-xtn" firstAttribute="centerY" secondItem="RA3-8d-AK5" secondAttribute="centerY" id="S95-1N-WCw"/>
                     <constraint firstItem="oqc-rJ-qyb" firstAttribute="leading" secondItem="faP-gS-oWv" secondAttribute="leading" id="Sc7-Sk-Rxi"/>
                     <constraint firstItem="2UR-PO-xET" firstAttribute="leading" secondItem="SBp-Rg-lyj" secondAttribute="trailing" constant="5" id="SsE-mX-pK8"/>
@@ -129,6 +143,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="amountLabel" destination="9fp-Cy-xtn" id="LCb-Dd-MVK"/>
+                <outlet property="changeCarrierButton" destination="IuL-pz-ZoD" id="8MS-R8-mcb"/>
                 <outlet property="cyNameLabel" destination="ahZ-NG-TPX" id="cGc-xP-Mi4"/>
                 <outlet property="dealTimeLabel" destination="JzI-GO-hZ4" id="hbK-wq-Lt9"/>
                 <outlet property="driverLabel" destination="Wuz-er-3ex" id="P5D-RZ-4bc"/>

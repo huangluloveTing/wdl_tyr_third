@@ -219,6 +219,10 @@ class WayBillVC: MainBaseVC {
         self.queryBean.searchWord = content
         self.tableView.beginRefresh()
     }
+    
+    override func currentSearchOnTimeContent(content: String) {
+        self.queryBean.searchWord = content
+    }
 }
 
 // observable
