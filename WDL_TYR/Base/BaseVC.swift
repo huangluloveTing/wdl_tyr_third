@@ -19,6 +19,8 @@ enum SupplyGoodsCommand<T> {
 
 class BaseVC: UIViewController {
     
+    public var showLeftBack:Bool = true // 是否显示左边返回
+    
     public var dispose = DisposeBag()
     
     private var currentSearchBar:MySearchBar?
@@ -119,7 +121,9 @@ extension BaseVC {
 // navigationBar
 extension BaseVC {
     private func configNavigationBar() {
-        self.backBarButtonItem()
+        if showLeftBack == true {
+            self.backBarButtonItem()
+        }
     }
 }
 
