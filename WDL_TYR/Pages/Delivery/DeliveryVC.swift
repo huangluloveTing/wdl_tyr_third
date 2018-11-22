@@ -409,6 +409,7 @@ extension DeliveryVC {
                     if self.deliveryData?.publishTime == nil {
                         //确认发布
                         self.showSuccess(success: model.message, complete: {
+                            self.clearAllInput()
                             let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
                             vc.selectedIndex = 1
                         })
@@ -418,14 +419,12 @@ extension DeliveryVC {
                         let time2 = Util.dateFormatter(date: time1, formatter: "yyyy年MM月dd日HH时mm分")
                         let message = "货源发布成功\n" + "货源将在\(time2)自动发布"
                         self.showSuccess(success: message, complete: {
+                            self.clearAllInput()
                             let vc = UIApplication.shared.keyWindow?.rootViewController as! RootTabBarVC
                             vc.selectedIndex = 1
                         })
                     }
-                   
-//                   self.clearAllInput()
                 }, onError: { (error) in
-
                     self.showFail(fail: error.localizedDescription, complete: nil)
                     
                 })
@@ -589,6 +588,12 @@ extension DeliveryVC {
         self.endPlace = PlaceCheckModel()
         self.initialRadioCheck()
         self.clearDealWay()
+        self.popFirstStack()
+    }
+    
+    // 如果可以返回，跳转到第一级页面
+    func popFirstStack() -> Void {
+        self.pop(toRootViewControllerAnimation: true)
     }
     
     
@@ -596,7 +601,6 @@ extension DeliveryVC {
     func reShelveGoodsInputContent() -> Void {
         if WDLGlobal.shard().loadReShelveGoods() != nil {
             let goods = WDLGlobal.shard().loadReShelveGoods()
-            
             let startProvinceItem = PlaceChooiceItem(title: goods?.startProvince ?? "", id: "" , selected:false , subItems:nil , level:0)
             let startCityItem = PlaceChooiceItem(title: goods?.startCity ?? "", id: "" , selected:false , subItems:nil , level:0)
             let startDistrictItem = PlaceChooiceItem(title: goods?.startDistrict ?? "", id: "" , selected:false , subItems:nil , level:0)
@@ -638,7 +642,7 @@ extension DeliveryVC {
             self.deliveryData?.loadLinkPhone = goods?.loadingPersonPhone ?? ""
             self.reDetailAddressTextField.text = goods?.endAddress
             self.deliveryData?.endAddress = goods?.endAddress ?? ""
-            self.reLinkManTextField.text = goods?.consignorName
+            self.reLinkManTextField.text = goods?.consigneeName
             self.deliveryData?.endLinkMan = goods?.consigneeName ?? ""
             self.rePhoneTextField.text = goods?.consigneePhone
             self.deliveryData?.endLinkPhone = goods?.consigneePhone ?? ""
@@ -833,27 +837,27 @@ extension DeliveryVC {
     // 配置车长车型的数据
     private func cartSpec() -> [TruckTypeItem]? {
         var length = TruckTypeItem(typeName: "车长", specs: [])
-        var length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
+        let length_items = self.hallItems?.VehicleLength?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
-        let first = TruckSpecItem(specName: "不限", id: "", selected: false)
-        length_items?.insert(first, at: 0)
+//        let first = TruckSpecItem(specName: "不限", id: "", selected: false)
+//        length_items?.insert(first, at: 0)
         length.specs = length_items ?? []
         var width = TruckTypeItem(typeName: "车宽", specs: [])
-        var width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
+        let width_items = self.hallItems?.VehicleWidth?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
-        width_items?.insert(first, at: 0)
+//        width_items?.insert(first, at: 0)
         width.specs = width_items ?? []
         
         var cartType = TruckTypeItem(typeName: "车型", specs: [])
-        var type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
+        let type_items = self.hallItems?.VehicleType?.map({ (item) -> TruckSpecItem in
             let spec_item = TruckSpecItem(specName: item.dictionaryName ?? "", id: item.id ?? "", selected: false)
             return spec_item
         })
-        type_items?.insert(first, at: 0)
+//        type_items?.insert(first, at: 0)
         cartType.specs = type_items ?? []
         
         return [length , width , cartType]

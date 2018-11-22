@@ -259,6 +259,10 @@ class GoodsSupplyVC: MainBaseVC {
         self.requestBean.searchWord = content
         self.tableView.beginRefresh()
     }
+    
+    override func currentSearchOnTimeContent(content: String) {
+        self.requestBean.searchWord = content
+    }
 }
 
 // 获取数据

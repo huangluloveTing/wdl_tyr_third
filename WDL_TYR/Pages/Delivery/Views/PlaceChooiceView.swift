@@ -150,6 +150,10 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
     private  func tapItem(row:Int) {
         if self.tabIndex == 0 {
             if self.provinceTapIndex != row {
+                if self.provinceTapIndex >= self.showItems.count {
+//                    self.updateCollectionWhenTap(tabIndex: self.tabIndex, row: row)
+                    return
+                }
                 self.provinceTapIndex = row
                 self.cityTapIndex = 0
                 self.strictTapIndex = 0
@@ -158,6 +162,11 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
         }
         if self.tabIndex == 1 {
             if self.cityTapIndex != row {
+                let citys = self.showItems[self.provinceTapIndex].subItems
+                if row >= (citys?.count ?? 0) {
+//                    self.updateCollectionWhenTap(tabIndex: self.tabIndex, row: row)
+                    return
+                }
                 self.cityTapIndex = row
                 self.strictTapIndex = 0
                 self.updateCollectionWhenTap(tabIndex: self.tabIndex, row: row)
@@ -165,6 +174,11 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
         }
         if self.tabIndex == 2 {
             if self.strictTapIndex != row {
+                let stricts = self.showItems[self.provinceTapIndex].subItems![self.cityTapIndex].subItems
+                if row >= (stricts?.count ?? 0) {
+//                    self.updateCollectionWhenTap(tabIndex: self.tabIndex, row: row)
+                    return;
+                }
                 self.strictTapIndex = row
                 self.updateCollectionWhenTap(tabIndex: self.tabIndex, row: row)
                 self.strictItem = self.currentShowItems[self.strictTapIndex]
