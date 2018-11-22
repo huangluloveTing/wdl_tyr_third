@@ -53,6 +53,7 @@ class GSDetailBidingHeader: UIView {
     @IBOutlet weak var secLabel: UILabel!
     @IBOutlet weak var minuLabel: UILabel!
     @IBOutlet weak var timeDownView: UIView!
+    @IBOutlet weak var singleHandleView: UIView!
     
     
     private var downTime : TimeInterval = 0
@@ -72,6 +73,15 @@ class GSDetailBidingHeader: UIView {
             closure(.GSTapExpand(sender.isSelected))
         }
     }
+    
+    @IBAction func singleEnpandAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        self.foldHeader(isFolder: sender.isSelected)
+        if let closure = self.bidingTapClosure {
+            closure(.GSTapExpand(sender.isSelected))
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -125,7 +135,7 @@ extension GSDetailBidingHeader {
         }
     }
     //MARK:头部试图界面赋值
-    func headerContent(item:BidingContentItem?) -> Void {
+    func headerContent(item:BidingContentItem? , singleHandle:Bool? = false) -> Void {
         if let item = item {
             self.contentItem = item
             self.goodsNameLabel.text = item.goodsName
@@ -135,6 +145,10 @@ extension GSDetailBidingHeader {
             self.sendPlaceLabel.text = item.startPlace
             self.goodsCodeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , item.supplyCode , ")")
             self.timedown(time: fabs(item.autoDealTime ?? 0))
+            self.singleHandleView.isHidden = true
+            if singleHandle == true {
+                self.singleHandleView.isHidden = false
+            }
         }
     }
     
