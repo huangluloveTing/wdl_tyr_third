@@ -25,21 +25,15 @@ enum SortEnum : String {
 }
 
 class GoodsSupplyDetailVC: NormalBaseVC  {
-    
     // 上级页面传过来的数据
     public var supplyDetail:GoodsSupplyListItem?
-
     // 请求的bean
     private var offerQueyBean:QuerySupplyDetailBean = QuerySupplyDetailBean()
-    
     // 获取的数据
     private var pageContentInfo:OrderAndOffer?
-    
-//    private var offerAmountSort: SortEnum! = .ASC
-//    private var timeSort:SortEnum! = .DESC
-    
     private var offerAmountSort: SortEnum!
     private var timeSort:SortEnum!
+
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -356,7 +350,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     }
     
     func showDealAldert(item:SupplyOfferBean?) {
-        let alertItem = GSConfirmAlertItem(name: item?.driverName, phone: item?.driverPhone, unit: item?.quotedPrice, total: item?.totalPrice, time: Double(item?.offerTime ?? "0"), score: item?.carrierScore ?? 0.0)
+        let alertItem = GSConfirmAlertItem(name: item?.carrierName, phone: item?.carrierPhone, unit: item?.quotedPrice, total: item?.totalPrice, time: Double(item?.offerTime ?? "0"), score: item?.carrierScore ?? 0.0)
         GSConfirmDealView.showConfirmDealView(confirm: alertItem) {[weak self] (index) in
             if index == 1 {
                 self?.dealHall(item: item)
@@ -391,7 +385,11 @@ extension GoodsSupplyDetailVC {
                                            goodsName: hallInfo?.goodsName,
                                            goodsType: hallInfo?.goodsType,
                                            goodsSummer: sumer,
-                                           remark: hallInfo?.remark ?? " ")
+                                           remark: hallInfo?.remark ?? " ",
+                                           loadMan:hallInfo?.loadingPersonName ,   // 装货人
+                                           loadAddress:hallInfo?.startAddress, // 装货地址
+                                           reManName:hallInfo?.consigneeName ,  // 收货人
+                                           reAddress:hallInfo?.endAddress)   // 收货地址)
         self.bidingHeader.headerContent(item: headerItem , singleHandle: WDLCoreManager.shared().consignorType == .agency)
         self.bidingHeader.showTimeDown(show: self.pageContentInfo?.zbnOrderHall?.dealWay == 1)
     }

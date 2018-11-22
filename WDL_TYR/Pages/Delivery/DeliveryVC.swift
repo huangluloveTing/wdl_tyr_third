@@ -399,7 +399,7 @@ extension DeliveryVC {
             sourceModel.endDistrict = self.endPlace.strict?.title
             sourceModel.remark = self.deliveryData?.remark
             sourceModel.loadingPersonName = self.deliveryData?.loadLinkMan//装货信息
-            sourceModel.loadingPersonAddress = self.deliveryData?.loadAddress
+            sourceModel.startAddress = self.deliveryData?.loadAddress
             sourceModel.loadingPersonPhone = self.deliveryData?.loadLinkPhone
             sourceModel.endAddress = self.deliveryData?.endAddress//收货信息
             sourceModel.consigneeName = self.deliveryData?.endLinkMan
@@ -632,13 +632,19 @@ extension DeliveryVC {
             self.deliveryData?.validTime = goods?.orderAvailabilityPeriodCode
             if goods?.dealWay == 1 { // 自动成交
                 self.isAutoPost(auto: true)
-                self.dealTimeTextField.text = String(goods?.autoTimeInterval ?? 0)
-                self.deliveryData?.dealTime = String(goods?.autoTimeInterval ?? 0)
+                let time = String(goods?.autoTimeInterval ?? 0)
+                let timeNum = Int(time)
+//                self.dealTimeTextField.text = String(goods?.autoTimeInterval ?? 0)
+//                self.deliveryData?.dealTime = String(goods?.autoTimeInterval ?? 0)
+                print("fffff===\(String(describing: timeNum))" )
+                self.dealTimeTextField.text = String(format: "%d", timeNum ?? 0)
+                self.deliveryData?.dealTime = String(format: "%d", timeNum ?? 0)
+                
             } else {
                 self.isAutoPost(auto: false)
             }
-            self.loadDetailAddressTextField.text = goods?.loadingPersonAddress
-            self.deliveryData?.loadAddress = goods?.loadingPersonAddress ?? ""
+            self.loadDetailAddressTextField.text = goods?.startAddress
+            self.deliveryData?.loadAddress = goods?.startAddress ?? ""
             self.loadLinkManTextField.text = goods?.loadingPersonName
             self.deliveryData?.loadLinkMan = goods?.loadingPersonName ?? ""
             self.loadLinkPhoneTextField.text = goods?.loadingPersonPhone

@@ -23,6 +23,11 @@ class GSTimerShelveCell: BaseCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var shelveTimeLabel: UILabel!
     
+    @IBOutlet weak var loadManLabel: UILabel!
+    @IBOutlet weak var loadAddressLabel: UILabel!
+    @IBOutlet weak var reManLabel: UILabel!
+    @IBOutlet weak var reAddressLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -48,5 +53,9 @@ extension GSTimerShelveCell {
         self.priceLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(info?.refercneceUnitPrice ?? 0)) + "元" , "吨")
         self.amountLabel.text = String(Float(info?.refercneceTotalPrice ?? 0)) + "/元"
         self.shelveTimeLabel.text = Util.concatSeperateStr(seperete: "", strs: "定时上架 ", Util.dateFormatter(date: Double(info?.publishTime ?? "0")! / 1000, formatter: "MM-dd HH:mm"))
+        self.loadManLabel.text = info?.loadingPersonName
+        self.loadAddressLabel.text = info?.startAddress
+        self.reAddressLabel.text = info?.endAddress
+        self.reManLabel.text = info?.consigneeName
     }
 }

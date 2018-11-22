@@ -38,9 +38,7 @@ struct SupplyOfferBean : HandyJSON {
 struct OrderAndOffer : HandyJSON {
     var offerPage: SupplyOfferDetailBean?
     var surplusTurnoverTime:TimeInterval? //交易剩余时间秒 ,
-    
     var autoTimeInterval : TimeInterval? // 自动成交时间间隔 ,
-    
     var zbnOrderHall : OderHallBean?
 }
 
@@ -131,8 +129,7 @@ struct QuerySupplyDetailBean : HandyJSON {
     var hallId:String?
     var pageNum:Int = 1
     var pageSize:Int = 20
-//    var amountSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
-//    var timeSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
+
     var amountSort:QueryDetailOrderBy?
     var timeSort:QueryDetailOrderBy?
 }

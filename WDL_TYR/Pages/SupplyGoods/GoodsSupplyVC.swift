@@ -108,17 +108,6 @@ class GoodsSupplyVC: MainBaseVC {
             .map { [weak self](indexPath) -> Observable<IndexPath> in
                 return Observable<IndexPath>.create({ (observer) -> Disposable in
                     
-            
-//                    self?.deleteDataRequest(indexPath: indexPath, closure: { (error) in
-//                        guard let _ = error else {
-//                            observer.onNext(indexPath)
-//                            observer.onCompleted()
-//                            return
-//                        }
-//                        observer.onCompleted()
-//                    })
-                    
-                    
                     AlertManager.showTitleAndContentAlert(context:self!, title: "提示", content: "是否确认删除该货源？", closure: { (index) in
                         if index == 1 {
                             self?.deleteDataRequest(indexPath: indexPath, closure: { (error) in
