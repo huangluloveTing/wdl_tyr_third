@@ -25,6 +25,10 @@ struct BidingContentItem {
     var goodsType:String?   //货品分类
     var goodsSummer:String? // 货品简介
     var remark:String?      //备注
+    var loadMan:String?     // 装货人
+    var loadAddress:String? // 装货地址
+    var reManName:String?   // 收货人
+    var reAddress:String?   // 收货地址
 }
 
 class GSDetailBidingHeader: UIView {
@@ -55,6 +59,14 @@ class GSDetailBidingHeader: UIView {
     @IBOutlet weak var timeDownView: UIView!
     @IBOutlet weak var singleHandleView: UIView!
     
+    @IBOutlet weak var reAddressTitleLabel: UILabel!
+    @IBOutlet weak var reManTitleLabel: UILabel!
+    @IBOutlet weak var loadAdressTitleLabel: UILabel!
+    @IBOutlet weak var loadManTitleLabel: UILabel!
+    @IBOutlet weak var loadManLabel: UILabel!
+    @IBOutlet weak var loadAddressLabel: UILabel!
+    @IBOutlet weak var reManLabel: UILabel!
+    @IBOutlet weak var reAddressLabel: UILabel!
     
     private var downTime : TimeInterval = 0
     private var contentItem:BidingContentItem?
@@ -120,6 +132,19 @@ extension GSDetailBidingHeader {
             self.remarkTitleLabel.text = nil
             self.goodsSummaryTitleLabel.hiddenByUpdateHeight()
             self.cateTitleLabel.hiddenByUpdateHeight()
+            self.loadManTitleLabel.text = nil
+            self.loadAdressTitleLabel.text = nil
+            self.reManTitleLabel.text = nil
+            self.reAddressTitleLabel.text = nil
+            self.loadManLabel.text = nil
+            self.loadAddressLabel.text = nil
+            self.reManLabel.text = nil
+            self.reAddressLabel.text = nil
+            
+            self.loadManTitleLabel.hiddenByUpdateHeight()
+            self.loadAdressTitleLabel.hiddenByUpdateHeight()
+            self.reManTitleLabel.hiddenByUpdateHeight()
+            self.reAddressTitleLabel.hiddenByUpdateHeight()
         }
         else {
             self.goodsSummaryTitleLabel.text = "货品简介："
@@ -132,6 +157,22 @@ extension GSDetailBidingHeader {
             self.goodsSummaryTitleLabel.isHidden = false
             let _ = self.goodsSummaryTitleLabel.updateHeight(height: 25)
             let _ = self.cateTitleLabel.updateHeight(height: 25)
+            self.loadManTitleLabel.text = "装货联系人:"
+            self.loadAdressTitleLabel.text = "装货地址:"
+            self.reManTitleLabel.text = "收货联系人:"
+            self.reAddressTitleLabel.text = "收货地址:"
+            self.loadManTitleLabel.isHidden = false
+            self.loadAdressTitleLabel.isHidden = false
+            self.reManTitleLabel.isHidden = false
+            self.reAddressTitleLabel.isHidden = false
+            self.loadManLabel.text = self.contentItem?.loadMan
+            self.loadAddressLabel.text = self.contentItem?.loadAddress
+            self.reManLabel.text = self.contentItem?.reManName
+            self.reAddressLabel.text = self.contentItem?.reAddress
+            let _ = self.loadManTitleLabel.updateHeight(height: 24)
+            let _ = self.loadAdressTitleLabel.updateHeight(height: 24)
+            let _ = self.reManTitleLabel.updateHeight(height: 24)
+            let _ = self.reAddressTitleLabel.updateHeight(height: 24)
         }
     }
     //MARK:头部试图界面赋值

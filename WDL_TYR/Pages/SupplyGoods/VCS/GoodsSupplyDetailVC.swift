@@ -387,7 +387,11 @@ extension GoodsSupplyDetailVC {
                                            goodsName: hallInfo?.goodsName,
                                            goodsType: hallInfo?.goodsType,
                                            goodsSummer: sumer,
-                                           remark: hallInfo?.remark ?? " ")
+                                           remark: hallInfo?.remark ?? " ",
+                                           loadMan:hallInfo?.loadingPersonName ,   // 装货人
+                                           loadAddress:hallInfo?.loadingPersonAddress, // 装货地址
+                                           reManName:hallInfo?.consigneeName ,  // 收货人
+                                           reAddress:hallInfo?.endAddress)   // 收货地址)
         self.bidingHeader.headerContent(item: headerItem , singleHandle: WDLCoreManager.shared().consignorType == .agency)
         self.bidingHeader.showTimeDown(show: self.pageContentInfo?.zbnOrderHall?.dealWay == 1)
     }
