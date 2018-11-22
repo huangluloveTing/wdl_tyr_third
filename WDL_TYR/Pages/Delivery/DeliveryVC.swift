@@ -54,6 +54,8 @@ class DeliveryVC: MainBaseVC {
     private var hallItems:HallModels?
     private var deliveryData:DeliveryCommitModel? = DeliveryCommitModel()
     
+     var id:String = ""              //重新上架需要传入的id（修改货源时，货源的id）
+    
     @IBOutlet weak var endTextField: UITextField!           //收货地
     @IBOutlet weak var startPlaceTextField: UITextField!    //发货地
     @IBOutlet weak var placeContentView: UIView!
@@ -402,7 +404,7 @@ extension DeliveryVC {
             sourceModel.endAddress = self.deliveryData?.endAddress//收货信息
             sourceModel.consigneeName = self.deliveryData?.endLinkMan
             sourceModel.consigneePhone = self.deliveryData?.endLinkPhone
-        
+            sourceModel.id = self.id//重新上架需要传入的id（修改货源时，货源的id）
             self.showLoading()
             BaseApi.request(target: API.releaseSource(sourceModel), type: BaseResponseModel<String>.self)
                 .subscribe(onNext: { (model) in
@@ -583,6 +585,7 @@ extension DeliveryVC {
         self.reDetailAddressTextField.text = nil
         self.reLinkManTextField.text = nil
         self.rePhoneTextField.text = nil
+        self.id = ""
         self.deliveryData = DeliveryCommitModel()
         self.startPlace = PlaceCheckModel()
         self.endPlace = PlaceCheckModel()

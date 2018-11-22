@@ -43,17 +43,15 @@ struct ReleaseDeliverySourceModel : HandyJSON { // 发布货源的对象
     var endAddress:String?  //收货详情地址
     var consigneeName:String?  // 收货联系人
     var consigneePhone:String? // 收货联系人电话
-    
+    var id: String? //重新上架需要传入的id（修改货源时，货源的id）
     var loadingPersonAddress:String? //装货详情地址
     var loadingPersonName:String?//装货联系人
     var loadingPersonPhone:String?//装货联系人电话
-    
     var endDistrict:String?
     var endProvince:String?
     var goodsName:String?
     var goodsType:String?
     var goodsWeight:Float?
-    
     var loadingTime:String?
     var orderAvailabilityPeriod:String?
     var startAddress:String? //发货详情地址
@@ -63,7 +61,6 @@ struct ReleaseDeliverySourceModel : HandyJSON { // 发布货源的对象
     var vehicleWidth:String?
     var packageType:String?
     var publishTime:String? //发布时间
-    
     var startCity:String?
     var startDistrict:String?
     var remark:String?

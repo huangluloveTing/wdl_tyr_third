@@ -28,6 +28,7 @@ class RegisterVC: BaseVC {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.fd_interactivePopDisabled = true
+        self.registerInfo.readedProtocol = true
     }
     
     override func currentConfig() {
@@ -141,7 +142,7 @@ extension RegisterVC {
             return
         }
         if self.registerInfo.readedProtocol == false || self.registerInfo.readedProtocol == nil {
-            self.showWarn(warn: "请阅读织布鸟注册协议", complete: nil)
+            self.showWarn(warn: "请阅读并勾选织布鸟注册协议", complete: nil)
             return
         }
         //注册

@@ -72,7 +72,7 @@ struct OderHallBean : HandyJSON {
     var goodsName : String? // (string): 货品名称 ,
     var goodsType : String? // (string): 货品分类 ,
     var goodsWeight : String? // (number): 货源总重 ,
-    var id : String? // (string),
+    var id : String? // (string), 货源id
     var infoFee : CGFloat? // (number): 服务费 ,
     var isDeal : Int? // (integer): 是否成交 0=竞价中 1=成交 2=未上架 3=已下架 ,
     var isEnable : Int? // (integer): 上下架 0=下架 1=上架 ,
@@ -131,6 +131,8 @@ struct QuerySupplyDetailBean : HandyJSON {
     var hallId:String?
     var pageNum:Int = 1
     var pageSize:Int = 20
-    var amountSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
-    var timeSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
+//    var amountSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
+//    var timeSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
+    var amountSort:QueryDetailOrderBy?
+    var timeSort:QueryDetailOrderBy?
 }

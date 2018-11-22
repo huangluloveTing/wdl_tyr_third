@@ -35,8 +35,11 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     // 获取的数据
     private var pageContentInfo:OrderAndOffer?
     
-    private var offerAmountSort: SortEnum! = .ASC
-    private var timeSort:SortEnum! = .DESC
+//    private var offerAmountSort: SortEnum! = .ASC
+//    private var timeSort:SortEnum! = .DESC
+    
+    private var offerAmountSort: SortEnum!
+    private var timeSort:SortEnum!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -301,6 +304,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     func toReShelveGoods() -> Void {
         WDLGlobal.shard().reShelveGoodsSupply(goods: self.pageContentInfo?.zbnOrderHall)
         let deliveryVC = DeliveryVC()
+        deliveryVC.id = self.pageContentInfo?.zbnOrderHall?.id ?? ""
         self.push(vc: deliveryVC, title: "重新上架")
     }
     
@@ -374,7 +378,7 @@ extension GoodsSupplyDetailVC {
         let hallInfo = self.pageContentInfo?.zbnOrderHall
         let end = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.endProvince, hallInfo?.endCity , hallInfo?.endDistrict)
         let start = Util.concatSeperateStr(seperete:"" , strs: hallInfo?.startProvince, hallInfo?.startCity , hallInfo?.startDistrict)
-        let sumer = Util.concatSeperateStr(strs:(hallInfo?.goodsWeight ?? "") + "吨", hallInfo?.vehicleWidth , hallInfo?.vehicleType ,hallInfo?.goodsType)
+        let sumer = Util.concatSeperateStr(strs:(hallInfo?.goodsWeight ?? "") + "吨", hallInfo?.vehicleLength , hallInfo?.vehicleType ,hallInfo?.packageType)
 
         //货源竞价自动成交剩余时间
 //        let time = self.pageContentInfo?.autoTimeInterval

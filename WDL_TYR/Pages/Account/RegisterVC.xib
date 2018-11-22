@@ -160,7 +160,7 @@
                                         <constraint firstAttribute="height" constant="1" id="T8w-Cy-N4h"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyA-es-5O0">
+                                <button opaque="NO" contentMode="scaleAspectFill" selected="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyA-es-5O0">
                                     <rect key="frame" x="20" y="395.5" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="30s-YD-sUp"/>
