@@ -35,8 +35,8 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     // 获取的数据
     private var pageContentInfo:OrderAndOffer?
     
-    private var offerAmountSort: SortEnum! = .ASC
-    private var timeSort:SortEnum! = .DESC
+    private var offerAmountSort: SortEnum?
+    private var timeSort:SortEnum?
     
     @IBOutlet weak var tableView: UITableView!
     

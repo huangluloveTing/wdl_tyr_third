@@ -131,6 +131,6 @@ struct QuerySupplyDetailBean : HandyJSON {
     var hallId:String?
     var pageNum:Int = 1
     var pageSize:Int = 20
-    var amountSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
-    var timeSort:QueryDetailOrderBy? = QueryDetailOrderBy.OrderBy_ASC
+    var amountSort:QueryDetailOrderBy?
+    var timeSort:QueryDetailOrderBy?
 }
