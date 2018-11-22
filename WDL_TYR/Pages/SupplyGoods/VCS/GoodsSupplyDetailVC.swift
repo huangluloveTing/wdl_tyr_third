@@ -388,7 +388,7 @@ extension GoodsSupplyDetailVC {
                                            goodsType: hallInfo?.goodsType,
                                            goodsSummer: sumer,
                                            remark: hallInfo?.remark ?? " ")
-        self.bidingHeader.headerContent(item: headerItem)
+        self.bidingHeader.headerContent(item: headerItem , singleHandle: WDLCoreManager.shared().consignorType == .agency)
         self.bidingHeader.showTimeDown(show: self.pageContentInfo?.zbnOrderHall?.dealWay == 1)
     }
     

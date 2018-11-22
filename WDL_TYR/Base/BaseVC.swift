@@ -91,6 +91,10 @@ extension BaseVC {
             .distinctUntilChanged()
             .throttle(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self](text) in
+                if text.count == 0 || text == "" {
+                    self?.currentSearchContent(content: text)
+                    return
+                }
                 self?.currentSearchOnTimeContent(content: text)
             })
             .disposed(by: dispose)
@@ -113,6 +117,10 @@ extension BaseVC {
             .distinctUntilChanged()
             .throttle(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self](text) in
+                if text.count == 0 || text == "" {
+                    self?.currentSearchContent(content: text)
+                    return
+                }
                 self?.currentSearchOnTimeContent(content: text)
             })
             .disposed(by: dispose)

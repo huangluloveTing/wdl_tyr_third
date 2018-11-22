@@ -501,6 +501,37 @@ extension WayBillDetailVC {
     func addBottom() {
         self.showBottom = false
         if WDLCoreManager.shared().consignorType == .agency {
+            if self.pageInfo?.transportStatus == .transporting {
+                self.bottomButtom(titles: ["确认签收"], targetView: self.tableView) { [weak self](_) in
+                    self?.toPickWayBill()
+                }
+                self.showBottom = true
+            }
+            if self.pageInfo?.transportStatus ==  .willToPickup {
+                self.bottomButtom(titles: ["确认签收"], targetView: self.tableView) {[weak self] (_) in
+                    self?.toPickWayBill()
+                }
+                self.showBottom = true
+            }
+            if self.pageInfo?.transportStatus == .done {
+                let wayBillStatus = self.currrentEvaluatedStatus()
+                switch wayBillStatus {
+                case .noEvaluate: // 未评价
+                    self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
+                        self?.toCommentWayBill(info:self?.wayBillInfo)
+                    }
+                    self.showBottom = true
+                    break;
+                case .toMe:
+                    self.bottomButtom(titles: ["评价此单"], targetView: self.tableView) { [weak self](_) in
+                        self?.toCommentWayBill(info:self?.wayBillInfo)
+                    }
+                    self.showBottom = true
+                    break;
+                default:      // 已评价我
+                    self.bottomButtom(titles: [], targetView: self.tableView)
+                }
+            }
             return
         }
         switch self.pageInfo?.transportStatus ?? .noStart {
