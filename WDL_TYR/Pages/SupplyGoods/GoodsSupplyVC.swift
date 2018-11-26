@@ -198,14 +198,34 @@ class GoodsSupplyVC: MainBaseVC {
     //MARK: - drop
     // 状态下拉视图
     private lazy var statusView:DropViewContainer = {
-       let statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
-        //0=竞价中 1=成交 2=未上架 3=已下架
+        var statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
+        let type = WDLCoreManager.shared().consignorType
+        
+          if type == .third {
+            statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
+          }else{
+            statusView = GoodsSupplyStatusDropView(tags: AgentGoodsStatus)
+          }
+        
+        //0=竞价中 1=成交 2=未上架 3=已下架,未成交
         statusView.checkClosure = { [weak self] (index) in
             if index == 0 {
                 self?.requestBean.isDeal = nil
             }
-            self?.statusButton.setTitle(GoodsStatus[index], for: .normal)
-            self?.requestBean.isDeal = index - 1
+            if type == .third {
+                self?.statusButton.setTitle(GoodsStatus[index], for: .normal)
+                self?.requestBean.isDeal = index - 1
+            }else{
+                self?.statusButton.setTitle(AgentGoodsStatus[index], for: .normal)
+                if self?.statusButton.titleLabel?.text == "未成交"{
+                    self?.requestBean.isDeal = 3
+                }else{
+                    self?.requestBean.isDeal = index - 1
+                }
+                
+            }
+            
+
             self?.showStatusDropView()
             self?.tableView.beginRefresh()
         }

@@ -7,9 +7,10 @@
 //
 
 import UIKit
-
+//第三方货源下拉筛选
 let GoodsStatus = ["不限","竞价中","已成交","未上架","已下架"]
-
+//经销商货源下拉筛选
+let AgentGoodsStatus = ["不限","竞价中","已成交","未成交"]
 class MainBaseVC: BaseVC {
 
     override func viewDidLoad() {

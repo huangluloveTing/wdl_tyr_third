@@ -240,7 +240,7 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
         if type == .third {
             //第三方
             for index in 0..<personTitles.count {
-                var info = PersonExcuteInfo()
+                var  info = PersonExcuteInfo()
                 info.image = personThirdImgs[index]
                 info.exTitle = personTitles[index]
                 info.showIndicator = true
