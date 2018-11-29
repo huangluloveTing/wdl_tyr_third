@@ -104,7 +104,7 @@ struct MessageQueryBean: HandyJSON{
     var startTime: String?  //开始时间
     var endTime: String?    //结束时间
     var msgType: Int?       // 消息类型 1=系统消息 2=报价消息 3=运单消息 ,
-    var pageNum: Int?       //当前页数
+    var pageNum: Int  = 0       //当前页数
     var createTime: TimeInterval?  //发送时间
     var hallNo: String?     //货源号(货源id/运单id)
     var msgFrom: String?    //消息发送人

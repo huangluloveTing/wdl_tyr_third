@@ -25,3 +25,9 @@ struct CarrierPageInfo<T:HandyJSON> : HandyJSON {
     var pageSize : Int? // (integer, optional),
     var total : Int? // (integer, optional)
 }
+
+struct SelectCarrierQueryModel : HandyJSON {
+    var pageNum : Int = 0 // (integer): 当前页数 ,
+    var pageSize : Int = 20 // (integer): 页面大小 ,
+    var searchWord : String? // (string, optional): 搜索值 ,
+}

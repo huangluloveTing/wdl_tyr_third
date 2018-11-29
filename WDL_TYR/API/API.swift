@@ -37,8 +37,8 @@ enum API {
     case forgetPassword(ForgetPasswordModel)    // 忘记密码
     case getMainMessage(MessageQueryBean)   //消息中心主页(无分页)
     case getDetailMessage(MessageQueryBean)   //消息分类查询消息列表(无分页)
-    case selectFollowCarrier(String)            // 获取我的承运人
-    case selectCarrier(String)                  // 搜索承运人
+    case selectFollowCarrier(SelectCarrierQueryModel)            // 获取我的承运人
+    case selectCarrier(SelectCarrierQueryModel)                  // 搜索承运人
     case inviteCarrier(String)                  // 邀请承运人
     case deleteFollowCarrier(String)            // 删除承运人
     case addCarrier(String)                     // 添加承运人
@@ -201,9 +201,9 @@ func apiTask(api:API) -> Task {
         return .uploadMultipart([formData])
         
     case .selectFollowCarrier(let search):
-        return .requestParameters(parameters: ["searchWord": search], encoding: JSONEncoding.default)
+        return .requestParameters(parameters: search.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     case .selectCarrier(let search):
-        return .requestParameters(parameters: ["searchWord": search], encoding: JSONEncoding.default)
+        return .requestParameters(parameters:  search.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     case .inviteCarrier(let phone):
         return .requestParameters(parameters: ["phone":phone], encoding: JSONEncoding.default)
     case .deleteFollowCarrier(let carrierId):

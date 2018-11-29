@@ -256,6 +256,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     func loadAllOffers() {
         self.showLoading()
         BaseApi.request(target: API.getOfferByOrderHallId(self.offerQueyBean), type: BaseResponseModel<OrderAndOffer?>.self)
+            .retry(5)
             .subscribe(onNext: {[weak self] (data) in
                 self?.clearAllCacheHeight()
                 self?.showSuccess()
@@ -263,6 +264,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
                 self?.addRefresh()
                 self?.toConfigHeaderInfo()
                 self?.toAddHeader()
+                self?.showTitle()
                 self?.tableView.reloadData()
             }, onError: {[weak self] (error) in
                 self?.showFail(fail: error.localizedDescription, complete: nil)
@@ -361,6 +363,14 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     //MARK: - 删除缓存的tableViewCell 的高度
     func clearAllCacheHeight() -> Void {
         self.tableView.removeCacheHeights()
+    }
+    
+    // h设置 title
+    func showTitle() -> Void {
+        let start = Util.concatSeperateStr(seperete: "", strs: self.pageContentInfo?.zbnOrderHall?.startProvince , self.pageContentInfo?.zbnOrderHall?.startCity)
+        let end = Util.concatSeperateStr(seperete: "", strs: self.pageContentInfo?.zbnOrderHall?.endProvince , self.pageContentInfo?.zbnOrderHall?.endCity)
+        let title = Util.concatSeperateStr(seperete: "——", strs: start , end)
+        self.navigationItem.title = title
     }
 }
 

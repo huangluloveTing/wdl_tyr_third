@@ -17,6 +17,7 @@ class MessageDetailVC: NormalBaseVC {
     private var zbnConsignor:ZbnConsignor?
     //当前消息类型
     public var currentMsgType:Int?
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -111,19 +112,13 @@ extension MessageDetailVC : UITableViewDelegate , UITableViewDataSource {
                 //跳转货源详情
                 var supplyDetail = GoodsSupplyListItem()
                 supplyDetail.id = hallId
-                
-                let vc = GoodsSupplyDetailVC()
-                vc.supplyDetail = supplyDetail
-              
-                self?.push(vc: vc, title: "货源详情")
+                self?.toGoodsSupplyDetail(item: supplyDetail)
             }
             else if sender.titleLabel?.text == "查看运单" {
                 //跳转运单详情
                 var wayBillInfo = WayBillInfoBean()
                 wayBillInfo.id = hallId
-                let vc = WayBillDetailVC()
-                vc.wayBillInfo = wayBillInfo
-                self?.push(vc: vc, title: "运单详情")
+                self?.toWayBillDetail(wayBillInfo: wayBillInfo)
             }
             
         }

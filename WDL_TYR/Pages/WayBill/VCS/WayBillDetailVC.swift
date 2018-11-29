@@ -481,6 +481,7 @@ extension WayBillDetailVC {
     func loadDetailInfo() -> Void {
         self.showLoading()
         BaseApi.request(target: API.sinGletransaction(self.wayBillInfo?.id ?? ""), type: BaseResponseModel<WayBillInfoBean>.self)
+            .retry(5)
             .subscribe(onNext: { (data) in
                 self.showSuccess()
                 self.pageInfo = data.data

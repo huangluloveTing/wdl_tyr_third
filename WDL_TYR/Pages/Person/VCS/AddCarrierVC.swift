@@ -13,12 +13,15 @@ class AddCarrierVC: NormalBaseVC {
     
     private var carrierLists:[ZbnFollowCarrierVo]? = []
     
+    private var searchQuery:SelectCarrierQueryModel = SelectCarrierQueryModel()
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
         configEmptyView()
+        tableViewRefreshState()
         self.fd_interactivePopDisabled = true
         self.addRightBarbuttonItem(withTitle: "取消")
         self.addLeftBarbuttonItem(withTitle: "")
@@ -31,7 +34,8 @@ class AddCarrierVC: NormalBaseVC {
     }
     
     override func currentSearchContent(content: String) {
-        self.searchCarrierForAdd(search: content)
+        self.searchQuery.searchWord = content
+        self.tableView.beginRefresh()
     }
 }
 
@@ -40,9 +44,37 @@ extension AddCarrierVC {
     func configTableView() -> Void {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.initEstmatedHeights()
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         self.registerCell(nibName: "\(MyCarrierInfoCell.self)", for: tableView)
+    }
+    
+    func tableViewRefreshState() -> Void {
+        tableView.pullRefresh()
+        tableView.upRefresh()
+        tableView.refreshAndLoadState()
+            .subscribe(onNext: { [weak self](state) in
+                if state == .LoadMore {
+                    self?.loadMoreTableView()
+                }
+                if state == .Refresh {
+                    self?.refreshTableView()
+                }
+            })
+            .disposed(by: dispose)
+        
+    }
+    
+    func loadMoreTableView() -> Void {
+        searchQuery.pageSize += 20
+        searchCarrierForAdd()
+    }
+    
+    func refreshTableView() -> Void {
+        tableView.removeCacheHeights()
+        searchQuery.pageSize = 20
+        searchCarrierForAdd()
     }
     
     func configEmptyView() -> Void {
@@ -125,6 +157,10 @@ extension AddCarrierVC : UITableViewDelegate , UITableViewDataSource {
         self.registerSearchBar()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.heightForRow(at: indexPath)
+    }
+    
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
         self.tapInvate()
     }
@@ -133,15 +169,15 @@ extension AddCarrierVC : UITableViewDelegate , UITableViewDataSource {
 //MARK: - load data
 extension AddCarrierVC {
     
-    func searchCarrierForAdd(search:String) -> Void {
-
-        BaseApi.request(target: API.selectCarrier(search), type:  BaseResponseModel<CarrierPageInfo<ZbnFollowCarrierVo>>.self)
+    func searchCarrierForAdd() -> Void {
+        BaseApi.request(target: API.selectCarrier(self.searchQuery), type:  BaseResponseModel<CarrierPageInfo<ZbnFollowCarrierVo>>.self)
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
+                self?.tableView.endRefresh()
                 self?.carrierLists = data.data?.list ?? []
                 self?.tableView.reloadData()
-                }, onError: { (error) in
-                    
+            },onError: { (error) in
+                self.tableView.endRefresh()
             })
             .disposed(by: dispose)
         

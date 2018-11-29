@@ -18,6 +18,8 @@ class MessageCenterVC: NormalBaseVC {
     private var hallLists:[MessageQueryBean] = []
     //用户信息
     private var zbnConsignor:ZbnConsignor?
+    
+    private var pageSize:Int = 20
   
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,7 +33,7 @@ class MessageCenterVC: NormalBaseVC {
         //获取用户信息
         self.zbnConsignor = WDLCoreManager.shared().userInfo
         configTableView()
-        loadInfoRequest()
+        
     }
 }
 
@@ -43,29 +45,59 @@ extension MessageCenterVC {
         self.registerCell(nibName: "\(MessageCenterCell.self)", for: tableView)
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+        tableView.pullRefresh()
+        tableView.upRefresh()
+        tableView.estimatedRowHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.refreshState.asObservable()
+            .distinctUntilChanged()
+            .throttle(1, scheduler: MainScheduler.instance)
+            .filter({ (state) -> Bool in
+                return state != .EndRefresh
+            })
+            .subscribe(onNext: { [weak self](state) in
+                if state == .LoadMore {
+                    self?.refreshMessage()
+                }
+                if state == .Refresh {
+                    self?.loadMoreMessage()
+                }
+            })
+            .disposed(by: dispose)
+        tableView.beginRefresh()
+    }
+    
+    func refreshMessage() -> Void {
+        self.pageSize = 20
+        tableView.resetFooter()
+        tableView.removeCacheHeights()
+        loadInfoRequest(pageSize: self.pageSize)
+    }
+    
+    func loadMoreMessage() -> Void {
+        self.pageSize += 20
+        loadInfoRequest(pageSize: self.pageSize)
     }
 }
 
 //MARK: - loadData
 extension MessageCenterVC {
     //消息中心主页数据请求
-    func loadInfoRequest(){
+    func loadInfoRequest(pageSize:Int){
         //配置参数
-//         let id = WDLCoreManager.shared().userInfo?.id ?? ""
-//        self.queryBean.startTime = ""
-//        self.queryBean.endTime = ""
-//        self.queryBean.msgTo = id //（当前用户的id号）
-//        self.queryBean.msgType = -1 // 消息类型 1=系统消息 2=报价消息 3=运单消息 ,
-//        self.queryBean.pageNum = 1 //当前页数 （主页没有分页，详情页有）
         self.showLoading()
-        
+        self.queryBean.pageSize = pageSize
         BaseApi.request(target: API.getMainMessage(self.queryBean), type: BaseResponseModel<PageInfo<MessageQueryBean>>.self)
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
+                self?.tableView.endRefresh()
                 self?.showSuccess(success: nil)
                 self?.configNetDataToUI(lists: data.data?.list ?? [])
-                },
-                       onError: {[weak self] (error) in
+                if (data.data?.list?.count ?? 0) >= (data.data?.total ?? 0) {
+                    self?.tableView.noMore()
+                }
+            },onError: {[weak self] (error) in
                 self?.showFail(fail: error.localizedDescription)
             })
             .disposed(by: dispose)
@@ -122,6 +154,10 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
         if info.msgType == 3 { // 运单信息
            self.wayBillsMessages()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.heightForRow(at: indexPath)
     }
 }
 

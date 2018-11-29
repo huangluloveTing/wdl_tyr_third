@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MyCarrierVC: NormalBaseVC {
     
@@ -14,18 +16,20 @@ class MyCarrierVC: NormalBaseVC {
     
     private var carrierLists:[ZbnFollowCarrierVo]? = []
     
+    private var carrierQuery:SelectCarrierQueryModel = SelectCarrierQueryModel()
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configTableView()
         self.addRightBarbuttonItem(withTitle: "添加承运人")
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor(hex: "06C06F")], for: UIControlState.normal)
+    self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor(hex: "06C06F")], for: UIControlState.normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.loadMyCarrierLists(search: searchText ?? "")
+        self.tableView.beginRefresh()
     }
     
     override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
@@ -35,8 +39,8 @@ class MyCarrierVC: NormalBaseVC {
     }
     
     override func currentSearchContent(content: String) {
-        searchText = content
-        loadMyCarrierLists(search: content)
+        self.carrierQuery.searchWord = content
+        self.tableView.beginRefresh()
     }
 }
 
@@ -45,14 +49,39 @@ extension MyCarrierVC {
     func configTableView() -> Void {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.initEstmatedHeights()
         self.registerCell(nibName: "\(MyCarrierSearchCell.self)", for: tableView)
         self.registerCell(nibName: "\(MyCarrierInfoCell.self)", for: tableView)
         tableView.separatorStyle = .none
+        tableViewStateSigle()
+    }
+    
+    //MARK: - 注册 上拉 和下拉的 信息
+    func tableViewStateSigle() -> Void {
+        tableView.pullRefresh()
+        tableView.upRefresh()
+        tableView.refreshState.asObservable()
+            .throttle(2, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .filter { (state) -> Bool in
+                return state != .EndRefresh
+            }
+            .subscribe(onNext: { [weak self](state) in
+                if state == .LoadMore {
+                    self?.carrierQuery.pageSize += 20
+                }
+                if state == .Refresh {
+                    self?.carrierQuery.pageSize = 20
+                }
+                self?.loadMyCarrierLists()
+            })
+            .disposed(by: dispose)
     }
     
     // 搜索回调
     func searchHandle(search:String) -> Void {
-        self.loadMyCarrierLists(search: search)
+        self.carrierQuery.searchWord = search
+        tableView.beginRefresh()
     }
     
     // 刷新列表数据
@@ -68,7 +97,7 @@ extension MyCarrierVC {
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
                 self?.showSuccess(success: data.message, complete: nil)
-                self?.loadMyCarrierLists(search: self?.searchText ?? "")
+                self?.loadMyCarrierLists()
             }, onError: { (error) in
                 self.showFail(fail: error.localizedDescription, complete: nil)
             })
@@ -117,6 +146,10 @@ extension MyCarrierVC : UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.heightForRow(at: indexPath)
+    }
 }
 
 
@@ -124,21 +157,19 @@ extension MyCarrierVC : UITableViewDelegate , UITableViewDataSource {
 extension MyCarrierVC {
     
     // 获取我的承运人数据
-    func loadMyCarrierLists(search:String) -> Void {
+    func loadMyCarrierLists() -> Void {
         self.showLoading()
-
-        BaseApi.request(target: API.selectFollowCarrier(search), type: BaseResponseModel<CarrierPageInfo<ZbnFollowCarrierVo>>.self)
-            .retry(2)
+        BaseApi.request(target: API.selectFollowCarrier(self.carrierQuery), type: BaseResponseModel<CarrierPageInfo<ZbnFollowCarrierVo>>.self)
+            .retry(5)
             .subscribe(onNext: { [weak self](data) in
                 self?.hiddenToast()
+                self?.tableView.endRefresh()
                 self?.carrierLists = data.data?.list ?? []
                 self?.reloadMyCarrierList()
-                }, onError: { [weak self](error) in
-                    self?.showFail(fail: error.localizedDescription, complete: nil)
+            }, onError: { [weak self](error) in
+                self?.tableView.endRefresh()
+                self?.showFail(fail: error.localizedDescription, complete: nil)
             })
             .disposed(by: dispose)
-        
-        
-        
     }
 }
