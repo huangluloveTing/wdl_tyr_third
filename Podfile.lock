@@ -10,6 +10,9 @@ PODS:
   - FLAnimatedImage (1.0.12)
   - HandyJSON (4.2.0)
   - IQKeyboardManager (6.2.0)
+  - JCore (1.2.5)
+  - JPush (3.1.1.1):
+    - JCore (~> 1.2.5)
   - Kingfisher (4.10.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.15.7)
@@ -66,6 +69,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - HandyJSON (~> 4.2.0)
   - IQKeyboardManager
+  - JPush
   - Kingfisher
   - MJRefresh
   - Moya/RxSwift
@@ -87,6 +91,8 @@ SPEC REPOS:
     - FLAnimatedImage
     - HandyJSON
     - IQKeyboardManager
+    - JCore
+    - JPush
     - Kingfisher
     - MBProgressHUD
     - MJRefresh
@@ -112,6 +118,8 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  JCore: 14706de2640b25fb77dbd02332696491407f37c9
+  JPush: 25dd9013fbe106082c14f9f30a82364ee98852fb
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
@@ -127,6 +135,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZTHExtension: 924db453c38d748321023af4d5d637eeae45828f
 
-PODFILE CHECKSUM: ae3b3d4e72ee9f7b28567f3427e29acff0f853f9
+PODFILE CHECKSUM: 07cfa8421514195b72134f43a7a76301d5d274f1
 
 COCOAPODS: 1.5.3

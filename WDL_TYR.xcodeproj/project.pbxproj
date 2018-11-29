@@ -231,6 +231,7 @@
 		1875DF4321A41C94006312D9 /* MessageDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailVC.xib; sourceTree = "<group>"; };
 		1875DF4621A50618006312D9 /* MessageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCell.swift; sourceTree = "<group>"; };
 		1875DF4721A50618006312D9 /* MessageDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailCell.xib; sourceTree = "<group>"; };
+		18AEF42F21AFE21100FE2468 /* WDL_TYR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WDL_TYR.entitlements; sourceTree = "<group>"; };
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70103C412189AE0900125F54 /* UIResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponse+Extension.swift"; sourceTree = "<group>"; };
 		701144C0219D7FE400BF4522 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -633,6 +634,7 @@
 		705926D3212A5DE800BE8BB4 /* WDL_TYR */ = {
 			isa = PBXGroup;
 			children = (
+				18AEF42F21AFE21100FE2468 /* WDL_TYR.entitlements */,
 				70E2754F21425F0700E1A92B /* CoreData */,
 				70C25252212E5E0E007F2ED5 /* Configs */,
 				70C2524B212E5B23007F2ED5 /* Base */,
@@ -1056,6 +1058,9 @@
 						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -1496,9 +1501,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WDL_TYR/WDL_TYR.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4QAJ2K396;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5426J2FLKL;
 				INFOPLIST_FILE = WDL_TYR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1507,10 +1513,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Differentiator/Differentiator.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/HandyJSON/HandyJSON.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Moya/Moya.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Result/Result.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa/RxCocoa.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RxDataSources/RxDataSources.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift/RxSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.modulemap\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.driverThird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = WDLtyrThirdProvisioningProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/WDL_TYR/WDL_TYR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1524,9 +1530,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WDL_TYR/WDL_TYR.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4QAJ2K396;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WDL_TYR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1534,7 +1541,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.driverThird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
