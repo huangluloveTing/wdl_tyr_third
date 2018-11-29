@@ -62,7 +62,12 @@ extension MessageCenterVC {
         BaseApi.request(target: API.getMainMessage(self.queryBean), type: BaseResponseModel<PageInfo<MessageQueryBean>>.self)
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
-                self?.showSuccess(success: nil)
+                
+                if data.data?.list?.count == 0 {
+                    self?.showSuccess(success: "暂无数据", complete: nil)
+                }else{
+                    self?.showSuccess(success: nil)
+                }
                 self?.configNetDataToUI(lists: data.data?.list ?? [])
                 },
                        onError: {[weak self] (error) in

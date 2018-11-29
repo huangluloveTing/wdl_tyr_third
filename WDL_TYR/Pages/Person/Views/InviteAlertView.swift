@@ -19,19 +19,28 @@ class InviteAlertView: UIView {
     @IBOutlet weak var copyButton: UIButton!
     
     
-    
-    override init(frame:CGRect){
-        super.init(frame: frame)
-        self.alertView.addBorder(color:nil, width: 0, radius: 10)
-        self.copyButton.addBorder(color:nil, width: 0, radius: 4)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hiddenAlertView))
-        self.addGestureRecognizer(tap)
+    static func showInviteAlertView() {
+        let view = Bundle.main.loadNibNamed("InviteAlertView", owner: nil, options: nil)?.first as? InviteAlertView
+        view?.showOnWindow()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func showOnWindow() {
+        let window = UIApplication.shared.keyWindow
+        self.frame = (window?.bounds)!
+        window?.addSubview(self)
     }
+//    override init(frame:CGRect){
+//        super.init(frame: frame)
+//        self.alertView.addBorder(color:nil, width: 0, radius: 10)
+//        self.copyButton.addBorder(color:nil, width: 0, radius: 4)
+//
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(hiddenAlertView))
+//        self.addGestureRecognizer(tap)
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 
     
     
@@ -52,19 +61,23 @@ class InviteAlertView: UIView {
          [[UIApplication sharedApplication] openURL:url];
          */
         
-       
         UIPasteboard.general.string = "我在织布鸟发布了一条货源，带来承运吧！"
+        SVProgressHUD.showSuccess(withStatus: "复制成功")
+        SVProgressHUD.dismiss(withDelay: 1.0)
+        
+
+
     }
  
-//    override func draw(_ rect: CGRect) {
-//
-//        self.alertView.addBorder(color:nil, width: 0, radius: 10)
-//        self.copyButton.addBorder(color:nil, width: 0, radius: 4)
-//        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(hiddenAlertView))
-//        self.addGestureRecognizer(tap)
-//
-//    }
+    override func draw(_ rect: CGRect) {
+
+        self.alertView.addBorder(color:nil, width: 0, radius: 10)
+        self.copyButton.addBorder(color:nil, width: 0, radius: 4)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hiddenAlertView))
+        self.addGestureRecognizer(tap)
+
+    }
  
 
 }
