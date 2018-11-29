@@ -19,3 +19,9 @@ struct ZbnFollowCarrierVo : HandyJSON {
     var overallScore : Float? // (number, optional): 综合评分 ,
     var photoUrl : String? // (string, optional): 承运人头像
 }
+struct CarrierPageInfo<T:HandyJSON> : HandyJSON {
+    var list : [T]? // (Array[ZbnMessage], optional),
+    var pageNum : Int? // (integer, optional),
+    var pageSize : Int? // (integer, optional),
+    var total : Int? // (integer, optional)
+}

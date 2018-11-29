@@ -23,6 +23,7 @@ class AddCarrierVC: NormalBaseVC {
         self.addRightBarbuttonItem(withTitle: "取消")
         self.addLeftBarbuttonItem(withTitle: "")
         self.addLeftNaviHeader(placeholder: "请输入承运人电话号码")
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
     }
     
     override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
@@ -62,6 +63,8 @@ extension AddCarrierVC {
             .retry(2)
             .subscribe(onNext: {[weak self] (data) in
                 self?.showSuccess(success: data.message, complete: nil)
+                self?.carrierLists?.remove(at: index)
+                self?.tableView.reloadData()
             }, onError: { [weak self](error) in
                 self?.showFail(fail: error.localizedDescription, complete: nil)
             })
@@ -131,15 +134,18 @@ extension AddCarrierVC : UITableViewDelegate , UITableViewDataSource {
 extension AddCarrierVC {
     
     func searchCarrierForAdd(search:String) -> Void {
-        BaseApi.request(target: API.selectCarrier(search), type: BaseResponseModel<[ZbnFollowCarrierVo]>.self)
+
+        BaseApi.request(target: API.selectCarrier(search), type:  BaseResponseModel<CarrierPageInfo<ZbnFollowCarrierVo>>.self)
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
-                self?.carrierLists = data.data ?? []
+                self?.carrierLists = data.data?.list ?? []
                 self?.tableView.reloadData()
-            }, onError: { (error) in
-                
+                }, onError: { (error) in
+                    
             })
             .disposed(by: dispose)
+        
+       
     }
 }
 

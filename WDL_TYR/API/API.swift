@@ -110,7 +110,6 @@ func apiPath(api:API) -> String {
         return "/consignor/forgetPassWord"
     case .selectFollowCarrier(_):
         return "/followCarrier/selectFollowCarrier"
-        
     case .selectCarrier(_):
         return "/followCarrier/selectCarrier"
     case .inviteCarrier(_):
@@ -226,6 +225,7 @@ func apiMethod(api:API) -> Moya.Method {
          .cancelTransport(_),
          .transportTransaction(_),
          .transportSign(_),
+         .addCarrier(_),
          .deleteFollowCarrier(_):
         return .get
     default:

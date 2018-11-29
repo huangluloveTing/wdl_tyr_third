@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1833EE2521AE8C54007D4880 /* InviteAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833EE2421AE8C54007D4880 /* InviteAlertView.swift */; };
+		1833EE2721AE8C62007D4880 /* InviteAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833EE2621AE8C62007D4880 /* InviteAlertView.xib */; };
 		184F1F7821993981007B9998 /* AboutZbnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F1F7721993981007B9998 /* AboutZbnVC.swift */; };
 		184F1F7B21993EF7007B9998 /* IdentifingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F1F7921993EF7007B9998 /* IdentifingVC.swift */; };
 		184F1F7C21993EF7007B9998 /* IdentifingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184F1F7A21993EF7007B9998 /* IdentifingVC.xib */; };
@@ -218,6 +220,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1833EE2421AE8C54007D4880 /* InviteAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteAlertView.swift; sourceTree = "<group>"; };
+		1833EE2621AE8C62007D4880 /* InviteAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteAlertView.xib; sourceTree = "<group>"; };
 		184F1F7721993981007B9998 /* AboutZbnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutZbnVC.swift; sourceTree = "<group>"; };
 		184F1F7921993EF7007B9998 /* IdentifingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifingVC.swift; sourceTree = "<group>"; };
 		184F1F7A21993EF7007B9998 /* IdentifingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentifingVC.xib; sourceTree = "<group>"; };
@@ -456,6 +460,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1833EE2321AE8C18007D4880 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1833EE2421AE8C54007D4880 /* InviteAlertView.swift */,
+				1833EE2621AE8C62007D4880 /* InviteAlertView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7017ABFC21462E4E00EB7ED3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,12 +580,12 @@
 				704E3505218C3B4D0022122C /* LegalPeronInfoCell.xib */,
 				702E39AF218D39BD00329643 /* MessageCenterCell.swift */,
 				702E39B0218D39BD00329643 /* MessageCenterCell.xib */,
+				1875DF4621A50618006312D9 /* MessageDetailCell.swift */,
+				1875DF4721A50618006312D9 /* MessageDetailCell.xib */,
 				7058159421A43CD80004A7F8 /* MyCarrierSearchCell.swift */,
 				7058159521A43CD80004A7F8 /* MyCarrierSearchCell.xib */,
 				7058159821A43E370004A7F8 /* MyCarrierInfoCell.swift */,
 				7058159921A43E370004A7F8 /* MyCarrierInfoCell.xib */,
-				1875DF4621A50618006312D9 /* MessageDetailCell.swift */,
-				1875DF4721A50618006312D9 /* MessageDetailCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -716,6 +729,7 @@
 		706C5A60212EBF1A00C037F2 /* Person */ = {
 			isa = PBXGroup;
 			children = (
+				1833EE2321AE8C18007D4880 /* Views */,
 				70C7CB3221746DD400C10AC4 /* models */,
 				7037B0D4213C24C300BDC718 /* Cells */,
 				7037B0D3213C24AB00BDC718 /* VCS */,
@@ -1131,6 +1145,7 @@
 				708D69EC214D628400884A80 /* GSConfirmDealView.xib in Resources */,
 				702E39AA218D31E000329643 /* PersonSettingVC.xib in Resources */,
 				70A319C12137D4C700017356 /* bad_star@2x.png in Resources */,
+				1833EE2721AE8C62007D4880 /* InviteAlertView.xib in Resources */,
 				70A319C52137D4C700017356 /* good_star@1x.png in Resources */,
 				7037B0C4213A13B400BDC718 /* WayBillCell.xib in Resources */,
 				70C2525E212E75B2007F2ED5 /* RegisterVC.xib in Resources */,
@@ -1209,6 +1224,7 @@
 				702E39B1218D39BD00329643 /* MessageCenterCell.swift in Sources */,
 				70C25258212E649F007F2ED5 /* BaseVC+router.swift in Sources */,
 				708D69F4214F8B3A00884A80 /* WayBillDealInfoCell.swift in Sources */,
+				1833EE2521AE8C54007D4880 /* InviteAlertView.swift in Sources */,
 				7037B0D1213ADD3A00BDC718 /* WayBillDetailStatusCell.swift in Sources */,
 				70A319DD2137FA4C00017356 /* GSQutationCell.swift in Sources */,
 				708D6A112150D88600884A80 /* WayBillOneCommentCell.swift in Sources */,

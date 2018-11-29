@@ -61,7 +61,6 @@ extension MessageDetailVC {
             })
             .disposed(by: dispose)
         
-        
     }
     
     
@@ -81,6 +80,7 @@ extension MessageDetailVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(MessageDetailCell.self)") as! MessageDetailCell
+        cell.btnHeightConstant.constant = 30 //默认按钮高度30
         let info = self.hallLists[indexPath.row]
         var title:String? = ""
         var btnTitle:String? = ""
@@ -88,6 +88,7 @@ extension MessageDetailVC : UITableViewDelegate , UITableViewDataSource {
             title = "系统消息"
             btnTitle = ""
             cell.rightBtn.isHidden = true
+            cell.btnHeightConstant.constant = 0
         }
         if info.msgType == 2 { //报价消息
             title = "报价消息"
@@ -101,6 +102,32 @@ extension MessageDetailVC : UITableViewDelegate , UITableViewDataSource {
         }
        
         cell.showDetalMessageInfo(title: title ?? "", content: info.msgInfo, time: info.createTime, buttonTitle: btnTitle ?? "",hallId: info.hallNo ?? "")
+        
+        //cell按钮点击跳转事件
+        
+        cell.buttonClosure = { [weak self] (sender, hallId) in
+            
+            if sender.titleLabel?.text == "查看货源" {
+                //跳转货源详情
+                var supplyDetail = GoodsSupplyListItem()
+                supplyDetail.id = hallId
+                
+                let vc = GoodsSupplyDetailVC()
+                vc.supplyDetail = supplyDetail
+              
+                self?.push(vc: vc, title: "货源详情")
+            }
+            else if sender.titleLabel?.text == "查看运单" {
+                //跳转运单详情
+                var wayBillInfo = WayBillInfoBean()
+                wayBillInfo.id = hallId
+                let vc = WayBillDetailVC()
+                vc.wayBillInfo = wayBillInfo
+                self?.push(vc: vc, title: "运单详情")
+            }
+            
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,4 +138,7 @@ extension MessageDetailVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    
+    
+    
 }

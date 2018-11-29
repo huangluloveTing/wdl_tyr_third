@@ -43,8 +43,8 @@
                         <rect key="frame" x="0.0" y="88.5" width="484" height="135"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IQ-SV-b4f">
-                        <rect key="frame" x="80" y="51" width="35.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IQ-SV-b4f">
+                        <rect key="frame" x="80" y="51" width="394" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -52,6 +52,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="hMe-YZ-RtA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="1Pi-Bo-bjX"/>
+                    <constraint firstAttribute="trailing" secondItem="2IQ-SV-b4f" secondAttribute="trailing" constant="10" id="4zg-6a-oPH"/>
                     <constraint firstItem="yfQ-cM-Wvt" firstAttribute="leading" secondItem="jN4-Ls-WcW" secondAttribute="leading" id="8M7-Gm-3fI"/>
                     <constraint firstItem="2IQ-SV-b4f" firstAttribute="top" secondItem="jN4-Ls-WcW" secondAttribute="bottom" constant="10" id="FRA-Tn-hlG"/>
                     <constraint firstItem="hMe-YZ-RtA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="LR2-wU-Que"/>

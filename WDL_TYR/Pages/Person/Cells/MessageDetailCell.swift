@@ -17,9 +17,14 @@ class MessageDetailCell: UITableViewCell {
     @IBOutlet weak var dateLab: UILabel!
     
     @IBOutlet weak var rightBtn: UIButton!
-    
+    //按钮高度
+    @IBOutlet weak var btnHeightConstant: NSLayoutConstraint!
     //货源或运单id
     var hallId: String?
+    
+    // 声明一个闭包(有两个整形参数，且返回值为整形的闭包)
+    typealias ButtonClosure = (_ sender: UIButton, _ hallId: String) ->()
+    public var buttonClosure : ButtonClosure?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,15 +32,13 @@ class MessageDetailCell: UITableViewCell {
     }
     //MARK:按钮
     @IBAction func buttonClick(_ sender: UIButton) {
-        if sender.titleLabel?.text == "查看货源" {
-            //跳转货源详情
+        
+        
+        if let closure = self.buttonClosure {
+            closure(sender, self.hallId ?? "")
         }
-        else if sender.titleLabel?.text == "查看运单" {
-            //跳转运单详情
-//            let wayBillDetail = WayBillDetailVC()
-//            wayBillDetail.wayBillInfo?.id = self.hallId
-//            push(vc: wayBillDetail, title: "运单详情")
-        }
+        
+     
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

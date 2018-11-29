@@ -66,6 +66,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnHeightConstant" destination="Ixb-oZ-E6S" id="JwC-4t-PtB"/>
                 <outlet property="dateLab" destination="LqA-SE-IJL" id="nEz-cQ-QoP"/>
                 <outlet property="detailInfoLab" destination="7uE-rB-qHv" id="MaA-Oo-Xoj"/>
                 <outlet property="rightBtn" destination="x85-kc-XbF" id="keT-aN-pxb"/>

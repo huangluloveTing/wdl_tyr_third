@@ -20,6 +20,7 @@ class MyCarrierVC: NormalBaseVC {
         super.viewDidLoad()
         self.configTableView()
         self.addRightBarbuttonItem(withTitle: "添加承运人")
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor(hex: "06C06F")], for: UIControlState.normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,15 +126,19 @@ extension MyCarrierVC {
     // 获取我的承运人数据
     func loadMyCarrierLists(search:String) -> Void {
         self.showLoading()
-        BaseApi.request(target: API.selectFollowCarrier(search), type: BaseResponseModel<[ZbnFollowCarrierVo]>.self)
+
+        BaseApi.request(target: API.selectFollowCarrier(search), type: BaseResponseModel<CarrierPageInfo<ZbnFollowCarrierVo>>.self)
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
                 self?.hiddenToast()
-                self?.carrierLists = data.data ?? []
+                self?.carrierLists = data.data?.list ?? []
                 self?.reloadMyCarrierList()
-            }, onError: { [weak self](error) in
-                self?.showFail(fail: error.localizedDescription, complete: nil)
+                }, onError: { [weak self](error) in
+                    self?.showFail(fail: error.localizedDescription, complete: nil)
             })
             .disposed(by: dispose)
+        
+        
+        
     }
 }
