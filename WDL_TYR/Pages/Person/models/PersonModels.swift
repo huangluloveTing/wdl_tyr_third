@@ -121,3 +121,18 @@ struct PageInfo<T:HandyJSON> : HandyJSON {
     var pageSize : Int? // (integer, optional),
     var total : Int? // (integer, optional)
 }
+
+
+struct AuthConsignorVo : HandyJSON {
+    var businessLicense : String? // (string): 营业执照 ,
+    var businessLicenseNo:String? // (string): 营业执照号 ,
+    var companyAbbreviation : String? // (string): 企业简称 ,
+    var companyLogo : String? // (string): 企业logo ,
+    var companyName : String? // (string): 企业名称 ,
+    var consignorName : String? // (string): 联系人 ,
+    var legalPerson :String? // (string): 法人姓名 ,
+    var legalPersonId : String? // (string): 法人身份证号 ,
+    var legalPersonIdFrontage : String? // (string): 身份证正面照 ,
+    var legalPersonIdOpposite : String? // (string): 身份证反面照 ,
+    var officeAddress : String? // (string): 办公地址
+}

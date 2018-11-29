@@ -22,6 +22,8 @@ class ConsignorAuthVC: NormalBaseVC {
     @IBOutlet weak var liencesImageView: UIImageView!
     @IBOutlet weak var liencesNoTextField: UITextField!
     
+    private var authModel:AuthConsignorVo = AuthConsignorVo()
+    
     @IBOutlet weak var bottomView: UIView!
     
     override func viewDidLoad() {
@@ -41,8 +43,11 @@ class ConsignorAuthVC: NormalBaseVC {
         // logo
         self.logoImageView.singleTap { [weak self](_) in
             self?.takePhotoAlert(closure: { (image) in
-                self?.logoImageView.image = image
-                self?.uploadImage(image: image , imageView: (self?.logoImageView)! , mode: .license_path)
+                self?.uploadImage(image: image ,
+                                  imageView: (self?.logoImageView)! ,
+                                  mode: .license_path, callBack: {(imgUrl) in
+                    self?.authModel.companyLogo = imgUrl
+                })
             })
         }
         
@@ -71,14 +76,18 @@ class ConsignorAuthVC: NormalBaseVC {
 
 extension ConsignorAuthVC {
     
-    func uploadImage(image:UIImage? , imageView:UIImageView , mode:UploadImagTypeMode) -> Void {
+    func uploadImage(image:UIImage? , imageView:UIImageView , mode:UploadImagTypeMode , callBack:((String?) -> ())?) -> Void {
         self.showLoading()
-        BaseApi.request(target: API.uploadImage(image! , mode), type: BaseResponseModel<String>.self)
-            .retry(3)
+        BaseApi.request(target: API.uploadImage(image! , mode), type: BaseResponseModel<[String]>.self)
+            .retry(5)
             .subscribe(onNext: {[weak self] (data) in
-                self?.showSuccess()
+                self?.showSuccess(success: data.message, complete: nil)
+                imageView.image = image
+                if let callBakc = callBack {
+                    callBakc(data.data?.first)
+                }
             }, onError: { [weak self](error) in
-                self?.showFail(fail: "上传失败", complete: nil)
+                self?.showFail(fail: error.localizedDescription, complete: nil)
             })
             .disposed(by: dispose)
     }
