@@ -42,7 +42,7 @@ class ConsignorAuthVC: NormalBaseVC {
         self.logoImageView.singleTap { [weak self](_) in
             self?.takePhotoAlert(closure: { (image) in
                 self?.logoImageView.image = image
-                self?.uploadImage(image: image , imageView: (self?.logoImageView)! , mode: .driverLicense)
+                self?.uploadImage(image: image , imageView: (self?.logoImageView)! , mode: .license_path)
             })
         }
         

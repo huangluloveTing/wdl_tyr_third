@@ -101,7 +101,7 @@ func apiPath(api:API) -> String {
     case .createEvaluate(_):
         return "/message/createEvaluate"
     case .uploadImage(_ , let mode):
-        return "/commom/upload/file/app/" + mode.rawValue
+        return "/commom/upload/file/" + mode.rawValue
     case .updatePassword(_):
         return "/consignor/updatePassword"
     case .updatePhone(_):
