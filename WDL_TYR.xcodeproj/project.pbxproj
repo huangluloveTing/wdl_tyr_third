@@ -140,6 +140,10 @@
 		708D6A1A2150E19600884A80 /* WayBillReceiptCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D6A182150E19600884A80 /* WayBillReceiptCell.xib */; };
 		708D6A1D2150E55D00884A80 /* WayBillReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D6A1B2150E55D00884A80 /* WayBillReceiptItem.swift */; };
 		708D6A1E2150E55D00884A80 /* WayBillReceiptItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708D6A1C2150E55D00884A80 /* WayBillReceiptItem.xib */; };
+		7092934721B029B3005E8DA6 /* ChangeCarrierVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092934521B029B3005E8DA6 /* ChangeCarrierVC.swift */; };
+		7092934821B029B3005E8DA6 /* ChangeCarrierVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7092934621B029B3005E8DA6 /* ChangeCarrierVC.xib */; };
+		7092934B21B02A3B005E8DA6 /* SearchCarrierCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092934921B02A3B005E8DA6 /* SearchCarrierCell.swift */; };
+		7092934C21B02A3B005E8DA6 /* SearchCarrierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7092934A21B02A3B005E8DA6 /* SearchCarrierCell.xib */; };
 		709642CF21A3E856006F0389 /* WaybillProtocolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709642CD21A3E856006F0389 /* WaybillProtocolCell.swift */; };
 		709642D021A3E856006F0389 /* WaybillProtocolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709642CE21A3E856006F0389 /* WaybillProtocolCell.xib */; };
 		70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A319B52137B55C00017356 /* ZTFoldTableView.swift */; };
@@ -231,6 +235,7 @@
 		1875DF4321A41C94006312D9 /* MessageDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailVC.xib; sourceTree = "<group>"; };
 		1875DF4621A50618006312D9 /* MessageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCell.swift; sourceTree = "<group>"; };
 		1875DF4721A50618006312D9 /* MessageDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailCell.xib; sourceTree = "<group>"; };
+		18AEF42F21AFE21100FE2468 /* WDL_TYR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WDL_TYR.entitlements; sourceTree = "<group>"; };
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70103C412189AE0900125F54 /* UIResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponse+Extension.swift"; sourceTree = "<group>"; };
 		701144C0219D7FE400BF4522 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
@@ -363,6 +368,10 @@
 		708D6A182150E19600884A80 /* WayBillReceiptCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillReceiptCell.xib; sourceTree = "<group>"; };
 		708D6A1B2150E55D00884A80 /* WayBillReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayBillReceiptItem.swift; sourceTree = "<group>"; };
 		708D6A1C2150E55D00884A80 /* WayBillReceiptItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WayBillReceiptItem.xib; sourceTree = "<group>"; };
+		7092934521B029B3005E8DA6 /* ChangeCarrierVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCarrierVC.swift; sourceTree = "<group>"; };
+		7092934621B029B3005E8DA6 /* ChangeCarrierVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeCarrierVC.xib; sourceTree = "<group>"; };
+		7092934921B02A3B005E8DA6 /* SearchCarrierCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCarrierCell.swift; sourceTree = "<group>"; };
+		7092934A21B02A3B005E8DA6 /* SearchCarrierCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCarrierCell.xib; sourceTree = "<group>"; };
 		709642CD21A3E856006F0389 /* WaybillProtocolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaybillProtocolCell.swift; sourceTree = "<group>"; };
 		709642CE21A3E856006F0389 /* WaybillProtocolCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaybillProtocolCell.xib; sourceTree = "<group>"; };
 		70A319B52137B55C00017356 /* ZTFoldTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZTFoldTableView.swift; sourceTree = "<group>"; };
@@ -514,6 +523,8 @@
 				70BD352C218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib */,
 				709642CD21A3E856006F0389 /* WaybillProtocolCell.swift */,
 				709642CE21A3E856006F0389 /* WaybillProtocolCell.xib */,
+				7092934921B02A3B005E8DA6 /* SearchCarrierCell.swift */,
+				7092934A21B02A3B005E8DA6 /* SearchCarrierCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -525,6 +536,8 @@
 				7037B0C7213A1F3700BDC718 /* WayBillDetailVC.xib */,
 				702C1843215252E800601738 /* WayBillCommentVC.swift */,
 				702C1844215252E800601738 /* WayBillCommentVC.xib */,
+				7092934521B029B3005E8DA6 /* ChangeCarrierVC.swift */,
+				7092934621B029B3005E8DA6 /* ChangeCarrierVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -633,6 +646,7 @@
 		705926D3212A5DE800BE8BB4 /* WDL_TYR */ = {
 			isa = PBXGroup;
 			children = (
+				18AEF42F21AFE21100FE2468 /* WDL_TYR.entitlements */,
 				70E2754F21425F0700E1A92B /* CoreData */,
 				70C25252212E5E0E007F2ED5 /* Configs */,
 				70C2524B212E5B23007F2ED5 /* Base */,
@@ -1058,6 +1072,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -1120,6 +1137,7 @@
 				70B524A5218D7C3000C8AF4E /* ModifyPhoneVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
 				702C1846215252E800601738 /* WayBillCommentVC.xib in Resources */,
+				7092934821B029B3005E8DA6 /* ChangeCarrierVC.xib in Resources */,
 				1875DF4521A41C94006312D9 /* MessageDetailVC.xib in Resources */,
 				70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
@@ -1144,6 +1162,7 @@
 				7058159321A43C6F0004A7F8 /* MyCarrierVC.xib in Resources */,
 				708D69EC214D628400884A80 /* GSConfirmDealView.xib in Resources */,
 				702E39AA218D31E000329643 /* PersonSettingVC.xib in Resources */,
+				7092934C21B02A3B005E8DA6 /* SearchCarrierCell.xib in Resources */,
 				70A319C12137D4C700017356 /* bad_star@2x.png in Resources */,
 				1833EE2721AE8C62007D4880 /* InviteAlertView.xib in Resources */,
 				70A319C52137D4C700017356 /* good_star@1x.png in Resources */,
@@ -1252,6 +1271,7 @@
 				7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */,
 				70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */,
 				7058159D21A4E5C80004A7F8 /* MyCarrierModels.swift in Sources */,
+				7092934721B029B3005E8DA6 /* ChangeCarrierVC.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
 				184F1F7821993981007B9998 /* AboutZbnVC.swift in Sources */,
@@ -1319,6 +1339,7 @@
 				70B524A4218D7C3000C8AF4E /* ModifyPhoneVC.swift in Sources */,
 				7037B0BF2139903100BDC718 /* BaseVC+Bottom.swift in Sources */,
 				708150D5213122CA00D42723 /* ZTTagView.m in Sources */,
+				7092934B21B02A3B005E8DA6 /* SearchCarrierCell.swift in Sources */,
 				708D6A192150E19600884A80 /* WayBillReceiptCell.swift in Sources */,
 				70FE54852147F53C0095CEFD /* String+Extension.swift in Sources */,
 				704E34FE218C3A8D0022122C /* ConsignorAuthedVC.swift in Sources */,
@@ -1496,9 +1517,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WDL_TYR/WDL_TYR.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4QAJ2K396;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5426J2FLKL;
 				INFOPLIST_FILE = WDL_TYR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1507,10 +1529,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Differentiator/Differentiator.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/HandyJSON/HandyJSON.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Moya/Moya.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Result/Result.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa/RxCocoa.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RxDataSources/RxDataSources.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift/RxSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.modulemap\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.driverThird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = WDLtyrThirdProvisioningProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/WDL_TYR/WDL_TYR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1524,9 +1546,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WDL_TYR/WDL_TYR.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T4QAJ2K396;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WDL_TYR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1534,7 +1557,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.tyrthird;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wdl.driverThird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

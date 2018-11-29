@@ -120,6 +120,12 @@ extension UITableView {
                 return state != .EndRefresh
             })
     }
+    
+    func tableResultHandle(currentListCount:Int? , total:Int?) -> Void {
+        if (currentListCount ?? 0) >= (total ?? 0) {
+            self.noMore()
+        }
+    }
 }
 
 extension Reactive where Base : UITableView {

@@ -157,3 +157,10 @@ struct ZbnEvaluate  : HandyJSON {
     var commonts : String?
     var createTime : TimeInterval = 0 // (string): 时间 ,
 }
+
+struct UpdateCarrierVo : HandyJSON {
+    var carrierId : String? // (string): 承运人id ,
+    var carrierName : String? // (string): 承运人姓名 ,
+    var carrierPhone : String? // (string): 承运人电话 ,
+    var transportNo : String? // (string): 运单号
+}

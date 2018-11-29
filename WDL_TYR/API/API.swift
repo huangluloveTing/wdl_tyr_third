@@ -42,6 +42,8 @@ enum API {
     case inviteCarrier(String)                  // 邀请承运人
     case deleteFollowCarrier(String)            // 删除承运人
     case addCarrier(String)                     // 添加承运人
+    case corporateCertification(AuthConsignorVo) // 托运人企业认证或修改认证信息
+    case updateCarrier(UpdateCarrierVo)     // 经销商修改自提运单承运人
     
     
 }
@@ -114,12 +116,14 @@ func apiPath(api:API) -> String {
         return "/followCarrier/selectCarrier"
     case .inviteCarrier(_):
         return "/followCarrier/inviteCarrier"
-        
     case .deleteFollowCarrier(_):
         return "/followCarrier/deleteFollowCarrier"
-        
     case .addCarrier(_):
         return "/followCarrier/addCarrier"
+    case .corporateCertification(_):
+        return "/consignor/corporateCertification"
+    case .updateCarrier(_):
+        return "/transport/updateCarrier"
     }
 }
 
@@ -210,6 +214,11 @@ func apiTask(api:API) -> Task {
         return .requestParameters(parameters: ["carrierId":carrierId], encoding: URLEncoding.default)
     case .addCarrier(let carrierId):
         return .requestParameters(parameters: ["carrierId":carrierId], encoding: URLEncoding.default)
+    case .corporateCertification(let vo):
+        return .requestParameters(parameters: vo.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
+        
+    case .updateCarrier(let carrier):
+        return .requestParameters(parameters: carrier.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     }
 }
 

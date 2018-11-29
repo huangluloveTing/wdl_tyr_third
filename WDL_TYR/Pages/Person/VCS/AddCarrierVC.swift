@@ -84,7 +84,7 @@ extension AddCarrierVC {
     
     //MARK: - 点击发送邀请
     func tapInvate() -> Void {
-        
+        InviteAlertView.showInviteAlertView()
     }
     
     //MARK: - 添加承运人

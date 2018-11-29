@@ -54,8 +54,9 @@ extension BaseVC {
     
     
     // 去认证页面
-    func toCarriorAth(title:String = "认证") -> Void {
+    func toCarriorAth(consignor:ZbnConsignor?,title:String = "认证") -> Void {
         let consignorAuth = ConsignorAuthVC()
+        consignorAuth.authModel = AuthConsignorVo.deserialize(from: consignor?.toJSON()) ?? AuthConsignorVo()
         self.push(vc: consignorAuth, title: title)
     }
     

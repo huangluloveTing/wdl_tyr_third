@@ -124,25 +124,25 @@ extension PersonalVC {
 extension PersonalVC {
     
     func toAuthVC() -> Void {
-//        let authStauts = self.zbnConsignor?.status ?? .not_start
-//        switch authStauts {
-//        case .not_start: // 未审核
+        let authStauts = self.zbnConsignor?.status ?? .not_start
+        switch authStauts {
+        case .not_start: // 未审核
             self.toAuditHandle()
-//            break;
-//        case .autherizing: // s正在审核
-//            self.auditingHandle()
-//            break;
-//        case .autherizedFail: // 审核失败
-//            self.auditFailedHandle()
-//            break
-//        case .autherized:   // 审核通过
-//            self.auditSuccessHandle()
-//        }
+            break;
+        case .autherizing: // s正在审核
+            self.auditingHandle()
+            break;
+        case .autherizedFail: // 审核失败
+            self.auditFailedHandle()
+            break
+        case .autherized:   // 审核通过
+            self.auditSuccessHandle()
+        }
     }
 
     //MARK: - 未认证
     func toAuditHandle() -> Void {
-        self.toCarriorAth()
+        self.toCarriorAth(consignor: self.zbnConsignor)
     }
     
     //MARK: - 审核中

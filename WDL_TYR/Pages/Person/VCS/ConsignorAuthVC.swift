@@ -22,12 +22,26 @@ class ConsignorAuthVC: NormalBaseVC {
     @IBOutlet weak var liencesImageView: UIImageView!
     @IBOutlet weak var liencesNoTextField: UITextField!
     
-    private var authModel:AuthConsignorVo = AuthConsignorVo()
+    public var authModel:AuthConsignorVo = AuthConsignorVo()
     
     @IBOutlet weak var bottomView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func initInfo() -> Void {
+        self.companyNameTextField.text = authModel.companyName
+        self.companyIntroTextField.text = authModel.companyAbbreviation
+        self.linkManTextField.text = authModel.consignorName
+        self.companyAddressTextField.text = authModel.officeAddress
+        self.liencesNoTextField.text = authModel.businessLicenseNo
+        self.legalPersonTextField.text = authModel.legalPerson
+        self.legalPersonIdNoTextField.text = authModel.legalPersonId
+        Util.showImage(imageView: self.logoImageView, imageUrl: authModel.companyLogo)
+        Util.showImage(imageView: self.liencesImageView, imageUrl: authModel.businessLicense)
+        Util.showImage(imageView: self.idCardMainImageView, imageUrl: authModel.legalPersonIdFrontage)
+        Util.showImage(imageView: self.idCardOpsiteImageView, imageUrl: authModel.legalPersonIdOpposite)
     }
     
     override func currentConfig() {
@@ -54,23 +68,89 @@ class ConsignorAuthVC: NormalBaseVC {
         // 点击营业执照
         self.liencesImageView.singleTap { [weak self](_) in
             self?.takePhotoAlert(closure: { (image) in
-                self?.liencesImageView.image = image
+                self?.uploadImage(image: image, imageView: (self?.liencesImageView)!, mode: .license_path, callBack: { (path) in
+                    self?.authModel.businessLicense = path
+                })
             })
         }
         
         // 点击身份证正面
         self.idCardMainImageView.singleTap { [weak self](_) in
             self?.takePhotoAlert(closure: { (image) in
-                self?.idCardMainImageView.image = image
+                self?.uploadImage(image: image, imageView: (self?.idCardMainImageView)!, mode: .card_path, callBack: { (path) in
+                    self?.authModel.legalPersonIdFrontage = path
+                })
             })
         }
         
         // 点击身份证背面面
         self.idCardOpsiteImageView.singleTap { [weak self](view) in
             self?.takePhotoAlert(closure: { (image) in
-                self?.idCardOpsiteImageView.image = image
+                self?.uploadImage(image: image, imageView: (self?.idCardOpsiteImageView)!, mode: .card_path, callBack: { (path) in
+                    self?.authModel.legalPersonIdOpposite = path
+                })
             })
         }
+    }
+    
+    override func bindViewModel() {
+        self.initInfo()
+        self.companyNameTextField.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { [weak self](text) in
+                self?.authModel.companyName = text
+            })
+            .disposed(by: dispose)
+        
+        self.companyIntroTextField.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { [weak self](text) in
+                self?.authModel.companyAbbreviation = text
+            })
+            .disposed(by: dispose)
+        
+        self.linkManTextField.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { [weak self](text) in
+                self?.authModel.consignorName = text
+            })
+            .disposed(by: dispose)
+        
+        self.companyAddressTextField.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { [weak self](text) in
+                self?.authModel.officeAddress = text
+            })
+            .disposed(by: dispose)
+        
+        self.liencesNoTextField.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { [weak self](text) in
+                self?.authModel.businessLicenseNo = text
+            })
+            .disposed(by: dispose)
+        
+        self.legalPersonTextField.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { [weak self](text) in
+                self?.authModel.legalPerson = text
+            })
+            .disposed(by: dispose)
+        
+        self.legalPersonIdNoTextField.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { [weak self](text) in
+                self?.authModel.legalPersonId = text
+            })
+            .disposed(by: dispose)
+    }
+    
+    //MARK: - commit
+    @IBAction func commitHandle(_ sender: Any) {
+        self.showLoading()
+        BaseApi.request(target: API.corporateCertification(self.authModel), type: BaseResponseModel<String>.self)
+            .retry(5)
+            .subscribe(onNext: { [weak self](data) in
+                self?.showSuccess(success: data.message, complete: {
+                    self?.pop(toRootViewControllerAnimation: true)
+                })
+            }, onError: { [weak self](error) in
+                self?.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
     }
 }
 

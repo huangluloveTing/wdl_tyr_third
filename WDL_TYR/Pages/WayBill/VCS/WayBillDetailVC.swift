@@ -358,7 +358,9 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
                 }
                 return 3
             }
+            
             return 1
+            
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.done { // 已签收
             if section == 0 {
@@ -391,7 +393,15 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+      
+         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup || self.pageInfo?.transportStatus == WayBillTransportStatus.transporting { // 待签收，运输中
+            if section == 3 {
+                return 60
+            }
+        }
+        
         return 10
+        
     }
     
    
@@ -496,7 +506,9 @@ extension WayBillDetailVC {
     
     //MARK: - 修改承运人
     func changeCarrierHandle() -> Void {
-        
+        let changeCarrier = ChangeCarrierVC()
+        changeCarrier.transportNo = self.pageInfo?.transportNo
+        self.push(vc: changeCarrier, title: "选择承运人")
     }
     
     func addBottom() {

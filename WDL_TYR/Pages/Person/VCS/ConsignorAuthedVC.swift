@@ -22,7 +22,7 @@ class ConsignorAuthedVC: NormalBaseVC {
     }
     
     override func zt_rightBarButtonAction(_ sender: UIBarButtonItem!) {
-        self.toCarriorAth(title:"变更认证信息")
+        self.toCarriorAth(consignor: zbnConsignor, title:"变更认证信息")
     }
 }
 

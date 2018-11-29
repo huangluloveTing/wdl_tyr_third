@@ -322,6 +322,9 @@
                             <rect key="frame" x="12" y="10" width="497" height="40"/>
                             <color key="backgroundColor" red="0.023529411764705882" green="0.75294117647058822" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="提交"/>
+                            <connections>
+                                <action selector="commitHandle:" destination="-1" eventType="touchUpInside" id="ga3-Zd-EJX"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
