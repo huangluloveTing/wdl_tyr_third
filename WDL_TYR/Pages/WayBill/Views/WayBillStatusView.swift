@@ -9,12 +9,12 @@
 import UIKit
 
 enum WayBillStatus:Int {
-    case NOT_Start   = 0  // 未开始
+    case NOT_Start   = -1  // 未开始
     case Start = 1         // 待起运
     case Transporting = 2   // 运输中
     case ToReceive = 3      // 待签收
     case Done = 4           // 完成
-    case willToDo = 5          // 待办单
+    case willToDo = 0          // 待办单
 }
 
 enum ShowCommentType {
@@ -63,7 +63,8 @@ class WayBillStatusView: UIView {
     }
     
     private func toConfigProcessView() {
-        self.processView.currentProccess = CGFloat(self.status.rawValue) / (showType == .Four ? 4 : 5)
+        
+        self.processView.currentProccess = CGFloat((self.showType == .Five) ? self.status.rawValue + 1 : self.status.rawValue) / (showType == .Four ? 4 : 5)
         self.updateStatus()
     }
     
