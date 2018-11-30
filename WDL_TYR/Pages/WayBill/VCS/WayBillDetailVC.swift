@@ -367,7 +367,7 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart { // 待起运
+        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart || self.pageInfo?.transportStatus == WayBillTransportStatus.willStart { // 待起运
             if section == 0 {
                 return 2
             }

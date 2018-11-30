@@ -63,8 +63,8 @@ class WayBillStatusView: UIView {
     }
     
     private func toConfigProcessView() {
-        
-        self.processView.currentProccess = CGFloat((self.showType == .Five) ? self.status.rawValue + 1 : self.status.rawValue) / (showType == .Four ? 4 : 5)
+        let value = CGFloat((self.showType == .Five) ? self.status.rawValue + 1 : self.status.rawValue)
+        self.processView.currentProccess = (value <= 0 ? 1 : value) / (showType == .Four ? 4 : 5)
         self.updateStatus()
     }
     
@@ -263,7 +263,7 @@ fileprivate class WayBillProcessView: UIView {
         if rate >= 1 {
             rate = 1
         }
-        let paddingProcessWidth = (self.zt_width + self.padding) * rate - self.padding / 2.0 - (rate == 1 ? self.padding / 2.0 : 0) - (rate == 1 ? 40 : 20) 
+        let paddingProcessWidth = (self.zt_width + self.padding) * rate - self.padding / 2.0 - (rate == 1 ? self.padding / 2.0 : 0) - (rate == 1 ? 40 : 20)
         self.currentProcessLine.zt_width = paddingProcessWidth
         self.loadProcessViews()
     }
