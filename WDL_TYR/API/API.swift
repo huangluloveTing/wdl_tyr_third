@@ -45,6 +45,7 @@ enum API {
     case corporateCertification(AuthConsignorVo) // 托运人企业认证或修改认证信息
     case updateCarrier(UpdateCarrierVo)     // 经销商修改自提运单承运人
     
+    case getMessageNum() //消息个数
     
 }
 
@@ -124,6 +125,8 @@ func apiPath(api:API) -> String {
         return "/consignor/corporateCertification"
     case .updateCarrier(_):
         return "/transport/updateCarrier"
+    case .getMessageNum():
+        return "/message/messageNumber"
     }
 }
 
@@ -138,6 +141,8 @@ func apiTask(api:API) -> Task {
     case .login(let account , let pwd):
         return .requestParameters(parameters: ["cellphone":account,"password":pwd], encoding: JSONEncoding.default)
     case .loadTaskInfo():
+        return .requestPlain
+    case .getMessageNum():
         return .requestPlain
     case .getCreateHallDictionary():
         return .requestPlain
@@ -235,6 +240,7 @@ func apiMethod(api:API) -> Moya.Method {
          .transportTransaction(_),
          .transportSign(_),
          .addCarrier(_),
+         .getMessageNum(),
          .deleteFollowCarrier(_):
         return .get
     default:

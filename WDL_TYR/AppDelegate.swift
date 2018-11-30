@@ -109,6 +109,8 @@ extension AppDelegate {
         window?.makeKeyAndVisible()
     }
     
+   
+    
     // 获取 托运人信息
     func loadConsignorInfo() -> Void {
         let id = WDLCoreManager.shared().userInfo?.id ?? ""

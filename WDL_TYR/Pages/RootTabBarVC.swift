@@ -27,6 +27,7 @@ class RootTabBarVC: UITabBarController {
         self.tabBar.barTintColor = UIColor.white
         self.tabBar.tintColor = UIColor(hex: "06C06F")
         self.delegate = self
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +35,7 @@ class RootTabBarVC: UITabBarController {
         
     }
     
+   
     func addControllers() {
         let deliverVC = DeliveryVC()
         let supplyVC = GoodsSupplyVC()

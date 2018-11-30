@@ -11,7 +11,7 @@ import UIKit
 struct PersonExcuteInfo {
     var image:UIImage?
     var exTitle:String?
-    var exSubTitle:String?
+    var exSubTitle:String? //右侧文字
     var showIndicator:Bool?
 }
 
@@ -35,11 +35,22 @@ class PersonalExcuteCell: BaseCell {
 }
 
 extension PersonalExcuteCell {
-    func contentInfo(info:PersonExcuteInfo) -> Void {
+    func contentInfo(info:PersonExcuteInfo, messageNum: String) -> Void {
         self.headerImageView.image = info.image
         self.exTitleLabel.text = info.exTitle
-        self.exSubTitleLabel.text = info.exSubTitle
         self.indicatorView.isHidden = !(info.showIndicator ?? true)
+        if info.exTitle == "消息中心" {
+            self.exSubTitleLabel.text = messageNum  //右侧的文字
+            if messageNum != "0" {
+                self.exSubTitleLabel.backgroundColor = UIColor.red
+                self.exSubTitleLabel.textColor = UIColor.white
+                self.exSubTitleLabel.font = UIFont.systemFont(ofSize: 11)
+                self.exSubTitleLabel.addBorder(color: nil, radius: 10)
+                
+            }
+
+        }
+
     }
     
     func showAuthStatus(status:AutherizStatus?) -> Void {
