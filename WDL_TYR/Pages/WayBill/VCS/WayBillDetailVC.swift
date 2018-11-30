@@ -126,6 +126,9 @@ extension WayBillDetailVC {
             }
             if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillTransLocationCell.self)") as! WayBillTransLocationCell
+                cell.changeModeClosure = {[weak self] in
+                    self?.showWordLocationPaths()
+                }
                 cell.showLocation(locations: self.pageInfo?.locationList ?? [])
                 return cell
             }
@@ -183,6 +186,9 @@ extension WayBillDetailVC {
             }
             if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillTransLocationCell.self)") as! WayBillTransLocationCell
+                cell.changeModeClosure = {[weak self] in
+                    self?.showWordLocationPaths()
+                }
                 cell.showLocation(locations: self.pageInfo?.locationList ?? [])
                 return cell
             }
@@ -243,6 +249,9 @@ extension WayBillDetailVC {
             if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillTransLocationCell.self)") as! WayBillTransLocationCell
                 cell.showLocation(locations: self.pageInfo?.locationList ?? [])
+                cell.changeModeClosure = {[weak self] in
+                    self?.showWordLocationPaths()
+                }
                 return cell
             }
             //回执单
@@ -331,7 +340,8 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     //运单状态 1=待起运 2=运输中 3=待签收 10=已签收
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport
-        || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart{ // 待起运
+        || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart
+        || self.pageInfo?.transportStatus == WayBillTransportStatus.willStart { // 待起运
             return 3
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.transporting { // 运输中
@@ -431,6 +441,15 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
 }
 
 extension WayBillDetailVC {
+    
+    // 显示文字轨迹
+    func showWordLocationPaths() -> Void {
+        let locations = self.pageInfo?.locationList
+        let locationsLineVC = WordLocationPathsVC()
+        locationsLineVC.locations = locations
+        let navi = UINavigationController(rootViewController: locationsLineVC)
+        self.smallSheetPresent(vc: navi)
+    }
     
     // 查看签收确认须知
     func toShowConfirmSign() -> Void {

@@ -109,11 +109,11 @@ extension BaseVC : UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ZTTransitionManager.halfTransparentTransition(duration: 0.5, topHeight: self._topHeight)
+        return ZTTransitionManager.halfTransparentTransition(duration: 0.2, topHeight: self._topHeight)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ZTTransitionManager.halfDissmissTransition(duration: 0.5)
+        return ZTTransitionManager.halfDissmissTransition(duration: 0.2)
     }
     
     func smallSheetPresent(vc:UIViewController) {

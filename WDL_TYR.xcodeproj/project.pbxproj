@@ -61,6 +61,10 @@
 		7047769B21B0D09700628C6F /* PictureBroweManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7047769A21B0D09700628C6F /* PictureBroweManager.swift */; };
 		7047769D21B0DC3B00628C6F /* ConsignorAuthAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7047769C21B0DC3B00628C6F /* ConsignorAuthAlertView.swift */; };
 		704776A121B0DC8600628C6F /* ConsignorAuthAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776A021B0DC8600628C6F /* ConsignorAuthAlertView.xib */; };
+		704776A421B10D2700628C6F /* WordLocationPathsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704776A221B10D2700628C6F /* WordLocationPathsVC.swift */; };
+		704776A521B10D2700628C6F /* WordLocationPathsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776A321B10D2700628C6F /* WordLocationPathsVC.xib */; };
+		704776A821B10EEC00628C6F /* LocationLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704776A621B10EEC00628C6F /* LocationLineCell.swift */; };
+		704776A921B10EEC00628C6F /* LocationLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776A721B10EEC00628C6F /* LocationLineCell.xib */; };
 		704E34FE218C3A8D0022122C /* ConsignorAuthedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */; };
 		704E34FF218C3A8D0022122C /* ConsignorAuthedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */; };
 		704E3502218C3B210022122C /* EnterpriseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E3500218C3B210022122C /* EnterpriseInfoCell.swift */; };
@@ -283,6 +287,10 @@
 		7047769A21B0D09700628C6F /* PictureBroweManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureBroweManager.swift; sourceTree = "<group>"; };
 		7047769C21B0DC3B00628C6F /* ConsignorAuthAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthAlertView.swift; sourceTree = "<group>"; };
 		704776A021B0DC8600628C6F /* ConsignorAuthAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthAlertView.xib; sourceTree = "<group>"; };
+		704776A221B10D2700628C6F /* WordLocationPathsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordLocationPathsVC.swift; sourceTree = "<group>"; };
+		704776A321B10D2700628C6F /* WordLocationPathsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordLocationPathsVC.xib; sourceTree = "<group>"; };
+		704776A621B10EEC00628C6F /* LocationLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLineCell.swift; sourceTree = "<group>"; };
+		704776A721B10EEC00628C6F /* LocationLineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationLineCell.xib; sourceTree = "<group>"; };
 		704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthedVC.swift; sourceTree = "<group>"; };
 		704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthedVC.xib; sourceTree = "<group>"; };
 		704E3500218C3B210022122C /* EnterpriseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterpriseInfoCell.swift; sourceTree = "<group>"; };
@@ -531,6 +539,8 @@
 				709642CE21A3E856006F0389 /* WaybillProtocolCell.xib */,
 				7092934921B02A3B005E8DA6 /* SearchCarrierCell.swift */,
 				7092934A21B02A3B005E8DA6 /* SearchCarrierCell.xib */,
+				704776A621B10EEC00628C6F /* LocationLineCell.swift */,
+				704776A721B10EEC00628C6F /* LocationLineCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -544,6 +554,8 @@
 				702C1844215252E800601738 /* WayBillCommentVC.xib */,
 				7092934521B029B3005E8DA6 /* ChangeCarrierVC.swift */,
 				7092934621B029B3005E8DA6 /* ChangeCarrierVC.xib */,
+				704776A221B10D2700628C6F /* WordLocationPathsVC.swift */,
+				704776A321B10D2700628C6F /* WordLocationPathsVC.xib */,
 			);
 			path = VCS;
 			sourceTree = "<group>";
@@ -1133,6 +1145,7 @@
 				708D69F9214FEBEA00884A80 /* WayBillGoodsCell.xib in Resources */,
 				708D6A1E2150E55D00884A80 /* WayBillReceiptItem.xib in Resources */,
 				70C25251212E5D8E007F2ED5 /* LoginVC.xib in Resources */,
+				704776A521B10D2700628C6F /* WordLocationPathsVC.xib in Resources */,
 				702E39B2218D39BD00329643 /* MessageCenterCell.xib in Resources */,
 				70B1301521354DA5002A473F /* GoodsSupplyDetailVC.xib in Resources */,
 				705926DF212A5DEA00BE8BB4 /* LaunchScreen.storyboard in Resources */,
@@ -1143,6 +1156,7 @@
 				708D6A122150D88600884A80 /* WayBillOneCommentCell.xib in Resources */,
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
 				70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */,
+				704776A921B10EEC00628C6F /* LocationLineCell.xib in Resources */,
 				70B524A5218D7C3000C8AF4E /* ModifyPhoneVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
 				702C1846215252E800601738 /* WayBillCommentVC.xib in Resources */,
@@ -1261,6 +1275,7 @@
 				70A319DD2137FA4C00017356 /* GSQutationCell.swift in Sources */,
 				708D6A112150D88600884A80 /* WayBillOneCommentCell.swift in Sources */,
 				70A319CD2137EFD400017356 /* GSDealedCell.swift in Sources */,
+				704776A821B10EEC00628C6F /* LocationLineCell.swift in Sources */,
 				70E2755321427A5800E1A92B /* BaseVC+Toast.swift in Sources */,
 				70C2525A212E7382007F2ED5 /* UIColor+extension.swift in Sources */,
 				1875DF4421A41C94006312D9 /* MessageDetailVC.swift in Sources */,
@@ -1375,6 +1390,7 @@
 				705926F0212A5E5500BE8BB4 /* API.swift in Sources */,
 				704E3506218C3B4D0022122C /* LegalPeronInfoCell.swift in Sources */,
 				7058159621A43CD80004A7F8 /* MyCarrierSearchCell.swift in Sources */,
+				704776A421B10D2700628C6F /* WordLocationPathsVC.swift in Sources */,
 				70B588FC2140B20E00EF704E /* UIView+ZTTagView.swift in Sources */,
 				70F72AF92145F80A00C9156E /* DeliveryModels.swift in Sources */,
 				702D2CBF2130545A0007A11F /* UIView+Extension.swift in Sources */,

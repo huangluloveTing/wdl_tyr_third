@@ -8,10 +8,15 @@
 
 import UIKit
 
+let LOCATION_LINES_KEY = "LOCATION_LINES_KEY"
+
 class WayBillTransLocationCell: BaseCell {
 
     @IBOutlet weak var mapViewContainer: WDLMapView!
     
+    typealias LocationChangeModeClosure = () -> ()
+    
+    public var changeModeClosure:LocationChangeModeClosure?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +32,11 @@ class WayBillTransLocationCell: BaseCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    @IBAction func tapLocationLinesAction(_ sender: Any) {
+        if let closure = self.changeModeClosure {
+            closure()
+        }
     }
 }
 

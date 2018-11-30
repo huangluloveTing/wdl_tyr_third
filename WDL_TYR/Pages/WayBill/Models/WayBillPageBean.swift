@@ -127,6 +127,7 @@ struct ZbnLocation : HandyJSON { // 定位信息
     var startTime : TimeInterval? // (string): 开始时间 ,
     var transportNo : String? // (string, optional),
     var vehicleNo : String? // (string, optional)
+    var createTime: TimeInterval? //
 }
 
 struct ZbnTransportReturn : HandyJSON { // 回单信息 ,

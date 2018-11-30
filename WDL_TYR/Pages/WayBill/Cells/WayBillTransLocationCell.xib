@@ -28,30 +28,31 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkn-xK-HY8" customClass="WDLMapView" customModule="WDL_TYR" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="155.5" width="374" height="187"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsS-na-D0c">
-                                <rect key="frame" x="299" y="10" width="65" height="24"/>
-                                <color key="backgroundColor" red="0.77254901960784317" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
-                                <state key="normal" title="文字模式">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="nkn-xK-HY8" secondAttribute="height" multiplier="2:1" id="BWl-ZF-nHI"/>
-                            <constraint firstItem="bsS-na-D0c" firstAttribute="top" secondItem="nkn-xK-HY8" secondAttribute="top" constant="10" id="Yxg-Og-zSs"/>
-                            <constraint firstAttribute="trailing" secondItem="bsS-na-D0c" secondAttribute="trailing" constant="10" id="gEf-DV-Ylk"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsS-na-D0c">
+                        <rect key="frame" x="299" y="165.5" width="65" height="24"/>
+                        <color key="backgroundColor" red="0.77254901960784317" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                        <state key="normal" title="文字模式">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="tapLocationLinesAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GhV-sg-ejt"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="nkn-xK-HY8" secondAttribute="trailing" id="33m-qK-ps4"/>
                     <constraint firstAttribute="bottom" secondItem="nkn-xK-HY8" secondAttribute="bottom" id="8cj-zB-R7O"/>
                     <constraint firstItem="nkn-xK-HY8" firstAttribute="top" secondItem="4f7-DE-hSO" secondAttribute="bottom" id="CBO-Az-J1k"/>
                     <constraint firstItem="nkn-xK-HY8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EUi-v4-Dd3"/>
+                    <constraint firstAttribute="trailing" secondItem="bsS-na-D0c" secondAttribute="trailing" constant="10" id="GPC-zo-Ne6"/>
+                    <constraint firstItem="bsS-na-D0c" firstAttribute="top" secondItem="4f7-DE-hSO" secondAttribute="bottom" constant="10" id="Vki-ck-Ydd"/>
                     <constraint firstItem="4f7-DE-hSO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ztk-9v-awZ"/>
                     <constraint firstItem="4f7-DE-hSO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hCE-68-6bP"/>
                     <constraint firstAttribute="trailing" secondItem="4f7-DE-hSO" secondAttribute="trailing" id="viu-J1-HGt"/>
