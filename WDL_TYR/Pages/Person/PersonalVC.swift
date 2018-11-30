@@ -29,6 +29,8 @@ class PersonalVC: MainBaseVC  {
     
     private var zbnConsignor:ZbnConsignor?
     
+    private var currentMessageNum: String = ""//当前信息个数
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.zbnConsignor = WDLCoreManager.shared().userInfo
@@ -38,6 +40,8 @@ class PersonalVC: MainBaseVC  {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.initialPersonExcuteInfos()
+        //获取消息个数
+        self.getMessageNumRequest()
         self.loadInfo()
     }
 
@@ -112,6 +116,24 @@ extension PersonalVC {
 //                self?.showFail(fail: error.localizedDescription, complete: nil)
             })
     }
+    
+    
+    
+    //获取消息个数
+    func getMessageNumRequest() -> Void {
+        BaseApi.request(target: API.getMessageNum(), type: BaseResponseModel<Int>.self).subscribe(onNext: {[weak self] (model) in
+            
+            
+            self?.currentMessageNum = String(format: "%ld", model.data ?? 0)
+            self?.tableView.reloadData()
+            
+           
+        }, onError: { (error) in
+            print("获取消息个数失败")
+        }).disposed(by: dispose)
+    
+    }
+    
 }
 
 // 点击 我的认证
@@ -215,12 +237,18 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(PersonalExcuteCell.self)") as! PersonalExcuteCell
-        cell.contentInfo(info: self.personInfos![indexPath.row])
-        if indexPath.row == 0 {
-            cell.showAuthStatus(status: self.zbnConsignor?.status)
-        } else {
-            cell.showAuthStatus(status: nil)
+        //显示数据
+        let info = self.personInfos![indexPath.row]
+        cell.contentInfo(info: info,messageNum: self.currentMessageNum)
+        if cell.exTitleLabel.text != "消息中心" {
+            if indexPath.row == 0 {
+                cell.showAuthStatus(status: self.zbnConsignor?.status)
+            } else {
+                cell.showAuthStatus(status: nil)
+            }
         }
+        
+      
         return cell
     }
     
