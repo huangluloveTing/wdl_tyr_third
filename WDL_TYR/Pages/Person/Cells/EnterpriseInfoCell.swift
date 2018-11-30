@@ -44,6 +44,6 @@ extension EnterpriseInfoCell {
         self.linkNameLabel.text = linkName
         self.linkAddressLabel.text = address
         self.lienseceCodeLabel.text = lienceCode
-        Util.showImage(imageView: self.licenseImageView, imageUrl: lienceImage)
+        Util.showImage(imageView: self.licenseImageView, imageUrl: lienceImage ,placeholder: (UIImage.init(named: "认证-营业执照"))!)
     }
 }

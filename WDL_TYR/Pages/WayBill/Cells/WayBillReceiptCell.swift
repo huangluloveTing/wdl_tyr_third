@@ -10,7 +10,7 @@ import UIKit
 
 class WayBillReceiptCell: BaseCell {
 
-    typealias WayBillReceiptTapClosure = (Int) -> ()
+    typealias WayBillReceiptTapClosure = (Int , UIView) -> ()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -60,7 +60,8 @@ extension WayBillReceiptCell : UICollectionViewDelegate , UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let closure = self.tapClosure {
-            closure(indexPath.row)
+            let cell = collectionView.cellForItem(at: indexPath)
+            closure(indexPath.row , (cell?.contentView)!)
         }
     }
 }

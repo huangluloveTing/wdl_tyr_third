@@ -54,6 +54,6 @@ extension WayBillDealInfoCell {
         self.driverLabel.text = (driver ?? "") + " " + (driverPhone ?? "")
         self.truckInfoLabel.text = truckInfo
         self.dealTimeLabel.text = Util.dateFormatter(date: dealTime ?? 0, formatter: "MM-dd HH:mm")
-        self.changeCarrierButton.isHidden = !(showChange ?? false)
+//        self.changeCarrierButton.isHidden = !(showChange ?? false)
     }
 }

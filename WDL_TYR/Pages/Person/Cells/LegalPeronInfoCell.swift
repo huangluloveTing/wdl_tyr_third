@@ -32,7 +32,7 @@ extension LegalPeronInfoCell {
                              idOppositeImage:String?) -> Void {
         self.legalNameLabel.text = legalName
         self.legalIDCardNoLabel.text = id
-        Util.showImage(imageView: self.idCardMainImageView, imageUrl: idMainImage)
-        Util.showImage(imageView: self.idCardOppositeImageVIew, imageUrl: idOppositeImage)
+        Util.showImage(imageView: self.idCardMainImageView, imageUrl: idMainImage ,placeholder: (UIImage.init(named: "我的认证-身份证人像页"))!)
+        Util.showImage(imageView: self.idCardOppositeImageVIew, imageUrl: idOppositeImage ,placeholder: (UIImage.init(named: "我的认证-身份证"))!)
     }
 }

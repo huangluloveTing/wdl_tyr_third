@@ -26,6 +26,7 @@ class PictureBroweManager: NSObject {
         let imgs = imgItems.map { (img) -> LBPhotoLocalItem in
             let item = LBPhotoLocalItem()
             item.localImage = img
+            item.frame = CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
             return item
         }
         photoBrower?.showImage(with: imgs, selectedIndex: defalutIndex, fromImageViewSuperView: imageSuperView)
@@ -35,6 +36,7 @@ class PictureBroweManager: NSObject {
         let imgs = webItems.map { (img) -> LBPhotoWebItem in
             let item = LBPhotoWebItem()
             item.urlString = img
+            item.frame = CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
             return item
         }
         photoBrower?.showImage(with: imgs, selectedIndex: defaultIndex, fromImageViewSuperView: imageSuperView)

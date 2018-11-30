@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.configIQKeyboard()
         self.configGAODEMap()
         self.configHUD()
-//        self.loadConsignorInfo()
         
         return true
     }

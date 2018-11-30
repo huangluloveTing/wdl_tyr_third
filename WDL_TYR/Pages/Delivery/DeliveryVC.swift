@@ -48,6 +48,8 @@ struct DeliveryCommitModel : HandyJSON {
 
 class DeliveryVC: MainBaseVC {
     
+    private var cacheGoods:OderHallBean?
+    
     public var showMessage:Bool = true
     
     private var startPlace:PlaceCheckModel = PlaceCheckModel()
@@ -445,114 +447,115 @@ extension DeliveryVC {
     
     //MARK: - 是否满足发布条件
     private func canCommit() -> Bool {
-        if self.startPlace.province == nil {
-            self.showWarn(warn: "请选择发货地", complete: nil)
-            return false
+        if self.confirmAuthed() {
+            if self.startPlace.province == nil {
+                self.showWarn(warn: "请选择发货地", complete: nil)
+                return false
+            }
+            if self.endPlace.province == nil  {
+                self.showWarn(warn: "请选择收货地", complete: nil)
+                return false
+            }
+            
+            if self.startPlace.province?.title == "全国" {
+                self.showWarn(warn: "起点不能选择全国", complete: nil)
+                return false
+            }
+            if self.endPlace.province?.title == "全国" {
+                self.showWarn(warn: "终点不能选择全国", complete: nil)
+                return false
+            }
+            if Util.isEmptyString(str: self.deliveryData?.goodsName)  {
+                self.showWarn(warn: "请填写货品名称", complete: nil)
+                return false
+            }
+            if Util.isEmptyString(str: self.deliveryData?.goodsCate) {
+                self.showWarn(warn: "请选择货品分类", complete: nil)
+                return false
+            }
+            if Util.isEmptyString(str: self.deliveryData?.packageType) {
+                self.showWarn(warn: "请选择包装类型", complete: nil)
+                return false
+            }
+            
+            if Util.isEmptyString(str: self.deliveryData?.loadTime) {
+                self.showWarn(warn: "请选择装货时间", complete: nil)
+                return false
+            }
+            if Util.isEmptyString(str: self.deliveryData?.vehicleLength)  ||
+                Util.isEmptyString(str: self.deliveryData?.vehicleWidth) ||
+                Util.isEmptyString(str: self.deliveryData?.vehicleType) {
+                self.showWarn(warn: "请选择车长车型", complete: nil)
+                return false
+            }
+            if Util.isEmptyString(str: self.deliveryData?.goodsWeight) {
+                self.showWarn(warn: "请填写货物重量", complete: nil)
+                return false
+            }
+            if Util.isEmptyString(str: self.deliveryData?.loadTime) {
+                self.showWarn(warn: "请选择装货时间", complete: nil)
+                return false
+            }
+            if Util.isEmptyString(str: self.deliveryData?.validTime) {
+                self.showWarn(warn: "请选择货物有效期", complete: nil)
+                return false
+            }
+            if self.deliveryData?.postType == nil {
+                self.showWarn(warn: "请选择成交方式", complete: nil)
+                return false
+            }
+            if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
+                self.showWarn(warn: "请输入成交时间", complete: nil)
+                return false
+            }
+            //自动成交必须填写参考价
+            if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.unitTextField.text) && Util.isEmptyString(str:self.amountTextField.text) {
+                self.showWarn(warn: "自动成交需要输入参考价和总价", complete: nil)
+                return false
+            }
+            
+            
+            if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto &&  Int((self.deliveryData?.dealTime)!) == 0  {
+                self.showWarn(warn: "输入的成交时间必须大于0", complete: nil)
+                return false
+            }
+            if self.deliveryData?.loadAddress.stringISOk() == false  {
+                self.showWarn(warn: "请输入装货详细街道", complete: nil)
+                return false
+            }
+            if self.deliveryData?.loadLinkMan.stringISOk() == false {
+                self.showWarn(warn: "请输入装货联系人姓名", complete: nil)
+                return false
+            }
+            if self.deliveryData?.loadLinkPhone.stringISOk() == false {
+                self.showWarn(warn: "请输入装货联系人手机号", complete: nil)
+                return false
+            }
+            
+            if self.deliveryData?.endAddress.stringISOk() == false  {
+                self.showWarn(warn: "请输入收货详细街道", complete: nil)
+                return false
+            }
+            if self.deliveryData?.endLinkMan.stringISOk() == false {
+                self.showWarn(warn: "请输入收货联系人姓名", complete: nil)
+                return false
+            }
+            if self.deliveryData?.endLinkPhone.stringISOk() == false {
+                self.showWarn(warn: "请输入收货联系人手机号", complete: nil)
+                return false
+            }
+            
+            
+            //判断装货时间是否正确（只能选择大于当天的时间日期）
+            let selDate = Date(timeIntervalSince1970: self.selLoadTimeVal)
+            let sysDate = Date()
+            let result:ComparisonResult = selDate.compare(sysDate)
+            if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
+                print("选择的时间 <= 系统时间")
+                self.showWarn(warn: "装货时间只能选择大于今天的时间", complete: nil)
+                return false
+            }
         }
-        if self.endPlace.province == nil  {
-            self.showWarn(warn: "请选择收货地", complete: nil)
-            return false
-        }
-        
-        if self.startPlace.province?.title == "全国" {
-            self.showWarn(warn: "起点不能选择全国", complete: nil)
-            return false
-        }
-        if self.endPlace.province?.title == "全国" {
-            self.showWarn(warn: "终点不能选择全国", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.goodsName)  {
-            self.showWarn(warn: "请填写货品名称", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.goodsCate) {
-            self.showWarn(warn: "请选择货品分类", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.packageType) {
-            self.showWarn(warn: "请选择包装类型", complete: nil)
-            return false
-        }
-
-        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
-            self.showWarn(warn: "请选择装货时间", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.vehicleLength)  ||
-            Util.isEmptyString(str: self.deliveryData?.vehicleWidth) ||
-            Util.isEmptyString(str: self.deliveryData?.vehicleType) {
-            self.showWarn(warn: "请选择车长车型", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.goodsWeight) {
-            self.showWarn(warn: "请填写货物重量", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.loadTime) {
-            self.showWarn(warn: "请选择装货时间", complete: nil)
-            return false
-        }
-        if Util.isEmptyString(str: self.deliveryData?.validTime) {
-            self.showWarn(warn: "请选择货物有效期", complete: nil)
-            return false
-        }
-        if self.deliveryData?.postType == nil {
-            self.showWarn(warn: "请选择成交方式", complete: nil)
-            return false
-        }
-        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.deliveryData?.dealTime) {
-            self.showWarn(warn: "请输入成交时间", complete: nil)
-            return false
-        }
-        //自动成交必须填写参考价
-        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto && Util.isEmptyString(str:self.unitTextField.text) && Util.isEmptyString(str:self.amountTextField.text) {
-            self.showWarn(warn: "自动成交需要输入参考价和总价", complete: nil)
-            return false
-        }
-
-        
-        if self.deliveryData?.postType == DeliveryMethod.Delivery_Auto &&  Int((self.deliveryData?.dealTime)!) == 0  {
-            self.showWarn(warn: "输入的成交时间必须大于0", complete: nil)
-            return false
-        }
-        if self.deliveryData?.loadAddress.stringISOk() == false  {
-            self.showWarn(warn: "请输入装货详细街道", complete: nil)
-            return false
-        }
-        if self.deliveryData?.loadLinkMan.stringISOk() == false {
-            self.showWarn(warn: "请输入装货联系人姓名", complete: nil)
-            return false
-        }
-        if self.deliveryData?.loadLinkPhone.stringISOk() == false {
-            self.showWarn(warn: "请输入装货联系人手机号", complete: nil)
-            return false
-        }
-        
-        if self.deliveryData?.endAddress.stringISOk() == false  {
-            self.showWarn(warn: "请输入收货详细街道", complete: nil)
-            return false
-        }
-        if self.deliveryData?.endLinkMan.stringISOk() == false {
-            self.showWarn(warn: "请输入收货联系人姓名", complete: nil)
-            return false
-        }
-        if self.deliveryData?.endLinkPhone.stringISOk() == false {
-            self.showWarn(warn: "请输入收货联系人手机号", complete: nil)
-            return false
-        }
-
-
-        //判断装货时间是否正确（只能选择大于当天的时间日期）
-        let selDate = Date(timeIntervalSince1970: self.selLoadTimeVal)
-        let sysDate = Date()
-        let result:ComparisonResult = selDate.compare(sysDate)
-        if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
-            print("选择的时间 <= 系统时间")
-            self.showWarn(warn: "装货时间只能选择大于今天的时间", complete: nil)
-            return false
-        }
-
         return true
     }
     
@@ -665,7 +668,7 @@ extension DeliveryVC {
             self.deliveryData?.unit = String(Float(goods?.refercneceUnitPrice ?? 0))
             self.amountTextField.text = String(Float(goods?.refercneceTotalPrice ?? 0))
             self.deliveryData?.total = String(Float(goods?.refercneceTotalPrice ?? 0))
-            
+            self.cacheGoods = goods
             WDLGlobal.shard().clearReShelveGoods()
         }
     }
@@ -838,6 +841,7 @@ extension DeliveryVC {
                 self?.hallItems = hall.data
                 WDLCoreManager.shared().regionAreas = regions
                 self?.initialRadioCheck()
+                self?.toAutoInputGoodsInvalidTimeRange()
             }, onError: { [weak self](error) in
                 self?.hiddenToast()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
@@ -845,6 +849,11 @@ extension DeliveryVC {
                 })
             })
             .disposed(by: dispose)
+    }
+    
+    // 根据获取的数据字典，组装货物有效期
+    func toAutoInputGoodsInvalidTimeRange() -> Void {
+        self.goodsValidTextField.text = reShelveValidPeriodTime(code: cacheGoods?.orderAvailabilityPeriodCode)
     }
     
     // 配置车长车型的数据

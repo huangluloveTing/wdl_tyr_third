@@ -144,8 +144,8 @@ extension WayBillDetailVC {
             //回执单
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillReceiptCell.self)") as! WayBillReceiptCell
             cell.showReceiptInfo(info: self.pageInfo?.returnList ?? [])
-            cell.tapClosure = {[weak self] (index) in
-                self?.tapReciptHandle(index: index)
+            cell.tapClosure = {[weak self] (index , superView) in
+                self?.tapReciptHandle(index: index , superView: superView)
             }
             return cell
         }
@@ -206,8 +206,8 @@ extension WayBillDetailVC {
             }
             //回执单
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillReceiptCell.self)") as! WayBillReceiptCell
-            cell.tapClosure = {[weak self] (index) in
-                self?.tapReciptHandle(index: index)
+            cell.tapClosure = {[weak self] (index , superView) in
+                self?.tapReciptHandle(index: index , superView: superView)
             }
             cell.showReceiptInfo(info: self.pageInfo?.returnList ?? [])
             return cell
@@ -271,8 +271,8 @@ extension WayBillDetailVC {
             }
             //回执单
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillReceiptCell.self)") as! WayBillReceiptCell
-            cell.tapClosure = {[weak self] (index) in
-                self?.tapReciptHandle(index: index)
+            cell.tapClosure = {[weak self] (index , superView) in
+                self?.tapReciptHandle(index: index ,superView: superView)
             }
             cell.showReceiptInfo(info: self.pageInfo?.returnList ?? [])
             return cell
@@ -340,13 +340,20 @@ extension WayBillDetailVC {
         let driver = self.pageInfo?.driverName
         let cyPhone = self.pageInfo?.cellPhone
         let driverPhone = self.pageInfo?.driverPhone
-        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver ?? "", self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
+        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs:self.pageInfo?.vehicleNo, self.pageInfo?.vehicleType, self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
 //        var show = false
 //        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.pickupWay == "zt" && self.pageInfo?.transportStatus == .willStart {
 //            show = true
 //        }
-        cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime)
+        cell.showDealInfo(unit: unit,
+                          amount: amount,
+                          cyName: cyName,
+                          cyPhone: cyPhone,
+                          driverPhone: driverPhone,
+                          driver: driver,
+                          truckInfo: truckInfo,
+                          dealTime: dealTime)
      
     }
     
@@ -498,13 +505,13 @@ extension WayBillDetailVC {
     }
     
     // 点击回执单z操作
-    func tapReciptHandle(index:Int) -> Void {
+    func tapReciptHandle(index:Int , superView:UIView) -> Void {
         let lists = self.pageInfo?.returnList
         if let lists = lists {
             let webItems = lists.map { (retrunList) -> String in
                 return retrunList.returnBillUrl ?? ""
             }
-            self.showWebImages(imgs: webItems)
+            self.showWebImages(imgs: webItems, imageSuperView: superView)
         }
     }
     
@@ -604,7 +611,7 @@ extension WayBillDetailVC {
     
     //MARK: - 是否显示 修改承运人 的 cell
     func changeCarrier() -> Bool {
-        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.transportStatus == .willStart {
+        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.transportStatus == .willStart && (self.pageInfo?.driverStatus ?? 0) < 4 {
             return true
         }
         return false
@@ -653,7 +660,7 @@ extension WayBillDetailVC {
         }
         switch self.pageInfo?.transportStatus ?? .noStart {
         case .noStart,.willToTransport:
-            let bottomCanUse = self.pageInfo?.offerHasVehicle == 1
+            let bottomCanUse = self.pageInfo?.offerHasVehicle == 1 || self.pageInfo?.driverStatus == 4
             self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView , enable: bottomCanUse) { [weak self](index) in
                 if index == 0 {
                     self?.cancelWayBill() // 取消起运

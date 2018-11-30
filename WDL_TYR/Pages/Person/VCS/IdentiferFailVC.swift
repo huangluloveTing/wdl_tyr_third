@@ -27,6 +27,7 @@ class IdentiferFailVC: NormalBaseVC {
     }
     //重新提交
     @IBAction func reSummitClick(_ sender: UIButton) {
-        
+        let info = WDLCoreManager.shared().userInfo
+        self.toCarriorAth(consignor: info, title: "修改认证")
     }
 }

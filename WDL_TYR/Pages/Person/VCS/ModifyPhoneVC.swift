@@ -71,7 +71,7 @@ class ModifyPhoneVC: NormalBaseVC {
             .take(RxTimeInterval(dueTime), scheduler: MainScheduler.instance)
             .subscribe(onNext: {[weak self] (time) in
                 self?.verifyButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-                self?.verifyButton.setTitle(String(format: "%ds", time), for: UIControlState.normal)
+                self?.verifyButton.setTitle(String(format: "%ds", (60 - time)), for: UIControlState.normal)
                 }, onCompleted: { [weak self] in
                     self?.verifyButton.isEnabled = true
                     self?.verifyButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
