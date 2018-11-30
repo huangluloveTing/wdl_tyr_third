@@ -170,7 +170,7 @@ struct UpdateCarrierVo : HandyJSON {
 struct ZbnTransportVehicle : HandyJSON {
     var carrierId:String? // (string): 承运人ID ,
     var carrierName : String? // (string): 承运人姓名 ,
-    var createTime : String? // (string),
+    var createTime : TimeInterval? // (string),
     var driverId : String? //(string): 司机ID ,
     var driverName : String? // (string): 司机姓名 ,
     var endTime : String? // (string): 结束时间 ,

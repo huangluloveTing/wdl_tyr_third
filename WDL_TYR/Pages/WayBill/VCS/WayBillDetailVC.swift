@@ -361,7 +361,8 @@ extension WayBillDetailVC {
     //MARK: - 经销商 承运人 修改记录的cell
     func agencyChangeLogCell(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(CarrierChangeLogCell.self)") as! CarrierChangeLogCell
-        
+        let info  = self.pageInfo?.transportVehicleList?.first
+        cell.showCarrierInfo(name: info?.carrierName, phone: "", time: info?.createTime)
         return cell
     }
     
