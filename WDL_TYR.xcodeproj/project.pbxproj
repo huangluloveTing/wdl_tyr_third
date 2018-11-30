@@ -65,6 +65,10 @@
 		704776A521B10D2700628C6F /* WordLocationPathsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776A321B10D2700628C6F /* WordLocationPathsVC.xib */; };
 		704776A821B10EEC00628C6F /* LocationLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704776A621B10EEC00628C6F /* LocationLineCell.swift */; };
 		704776A921B10EEC00628C6F /* LocationLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776A721B10EEC00628C6F /* LocationLineCell.xib */; };
+		704776AC21B130B100628C6F /* AgencyChangeCarrierCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704776AA21B130B100628C6F /* AgencyChangeCarrierCell.swift */; };
+		704776AD21B130B100628C6F /* AgencyChangeCarrierCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776AB21B130B100628C6F /* AgencyChangeCarrierCell.xib */; };
+		704776B021B1323B00628C6F /* CarrierChangeLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704776AE21B1323B00628C6F /* CarrierChangeLogCell.swift */; };
+		704776B121B1323B00628C6F /* CarrierChangeLogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776AF21B1323B00628C6F /* CarrierChangeLogCell.xib */; };
 		704E34FE218C3A8D0022122C /* ConsignorAuthedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */; };
 		704E34FF218C3A8D0022122C /* ConsignorAuthedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */; };
 		704E3502218C3B210022122C /* EnterpriseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E3500218C3B210022122C /* EnterpriseInfoCell.swift */; };
@@ -291,6 +295,10 @@
 		704776A321B10D2700628C6F /* WordLocationPathsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordLocationPathsVC.xib; sourceTree = "<group>"; };
 		704776A621B10EEC00628C6F /* LocationLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLineCell.swift; sourceTree = "<group>"; };
 		704776A721B10EEC00628C6F /* LocationLineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationLineCell.xib; sourceTree = "<group>"; };
+		704776AA21B130B100628C6F /* AgencyChangeCarrierCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyChangeCarrierCell.swift; sourceTree = "<group>"; };
+		704776AB21B130B100628C6F /* AgencyChangeCarrierCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgencyChangeCarrierCell.xib; sourceTree = "<group>"; };
+		704776AE21B1323B00628C6F /* CarrierChangeLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierChangeLogCell.swift; sourceTree = "<group>"; };
+		704776AF21B1323B00628C6F /* CarrierChangeLogCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarrierChangeLogCell.xib; sourceTree = "<group>"; };
 		704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthedVC.swift; sourceTree = "<group>"; };
 		704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthedVC.xib; sourceTree = "<group>"; };
 		704E3500218C3B210022122C /* EnterpriseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterpriseInfoCell.swift; sourceTree = "<group>"; };
@@ -541,6 +549,10 @@
 				7092934A21B02A3B005E8DA6 /* SearchCarrierCell.xib */,
 				704776A621B10EEC00628C6F /* LocationLineCell.swift */,
 				704776A721B10EEC00628C6F /* LocationLineCell.xib */,
+				704776AA21B130B100628C6F /* AgencyChangeCarrierCell.swift */,
+				704776AB21B130B100628C6F /* AgencyChangeCarrierCell.xib */,
+				704776AE21B1323B00628C6F /* CarrierChangeLogCell.swift */,
+				704776AF21B1323B00628C6F /* CarrierChangeLogCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1156,6 +1168,7 @@
 				708D6A122150D88600884A80 /* WayBillOneCommentCell.xib in Resources */,
 				705926DC212A5DEA00BE8BB4 /* Assets.xcassets in Resources */,
 				70ED087B212F0236001DCCB2 /* DeliveryVC.xib in Resources */,
+				704776B121B1323B00628C6F /* CarrierChangeLogCell.xib in Resources */,
 				704776A921B10EEC00628C6F /* LocationLineCell.xib in Resources */,
 				70B524A5218D7C3000C8AF4E /* ModifyPhoneVC.xib in Resources */,
 				702D2CCF213060020007A11F /* WayBillVC.xib in Resources */,
@@ -1188,6 +1201,7 @@
 				702E39AA218D31E000329643 /* PersonSettingVC.xib in Resources */,
 				7092934C21B02A3B005E8DA6 /* SearchCarrierCell.xib in Resources */,
 				70A319C12137D4C700017356 /* bad_star@2x.png in Resources */,
+				704776AD21B130B100628C6F /* AgencyChangeCarrierCell.xib in Resources */,
 				1833EE2721AE8C62007D4880 /* InviteAlertView.xib in Resources */,
 				70A319C52137D4C700017356 /* good_star@1x.png in Resources */,
 				7037B0C4213A13B400BDC718 /* WayBillCell.xib in Resources */,
@@ -1224,7 +1238,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/LBPhotoBrowser/test/LBPhotoBrowser/LBPhotoBrowser.bundle",
@@ -1243,7 +1257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1300,6 +1314,7 @@
 				70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */,
 				7058159D21A4E5C80004A7F8 /* MyCarrierModels.swift in Sources */,
 				7092934721B029B3005E8DA6 /* ChangeCarrierVC.swift in Sources */,
+				704776AC21B130B100628C6F /* AgencyChangeCarrierCell.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
 				7047769B21B0D09700628C6F /* PictureBroweManager.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
@@ -1359,6 +1374,7 @@
 				701144C2219D7FE500BF4522 /* UserStore.swift in Sources */,
 				703C12672153548B00A6180D /* DemoVC.swift in Sources */,
 				70721D742131B20500E12CEC /* AMapHandleManager.swift in Sources */,
+				704776B021B1323B00628C6F /* CarrierChangeLogCell.swift in Sources */,
 				70A319D92137F7A500017356 /* GSOffShelveCell.swift in Sources */,
 				708150CB2131039C00D42723 /* SKTag.m in Sources */,
 				70F72AF72144A6AE00C9156E /* Regx.swift in Sources */,

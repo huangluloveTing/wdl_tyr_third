@@ -60,6 +60,8 @@ class WayBillDetailVC: NormalBaseVC {
         self.registerCell(nibName: "\(WayBillReceiptCell.self)", for: self.tableView)
         self.registerCell(nibName: "\(WayBillDetailLinkInfoCell.self)", for: self.tableView)
         self.registerCell(nibName: "\(WaybillProtocolCell.self)", for: tableView)
+        self.registerCell(nibName: "\(AgencyChangeCarrierCell.self)", for: tableView)
+        self.registerCell(nibName: "\(CarrierChangeLogCell.self)", for: tableView)
     }
     
     
@@ -89,12 +91,19 @@ extension WayBillDetailVC {
                 cell.showInfo(status: (self.pageInfo?.transportStatus ?? .noStart) , transportNo: pageInfo?.transportNo)
                 return cell
             }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDealInfoCell.self)") as! WayBillDealInfoCell
-            cell.changeClosure = {[weak self] in
-                self?.changeCarrierHandle()
+            if indexPath.row == 1 {
+                if changeCarrier() == true {
+                    return agencyWillStartCellForZt(tableView: tableView)
+                }
+                let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDealInfoCell.self)") as! WayBillDealInfoCell
+                cell.changeClosure = {[weak self] in
+                    self?.changeCarrierHandle()
+                }
+                self.showInfoForDealCell(cell: cell)
+                return cell
             }
-            self.showInfoForDealCell(cell: cell)
-            return cell
+            return agencyChangeLogCell(tableView: tableView)
+            
         }
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillGoodsCell.self)") as! WayBillGoodsCell
@@ -333,13 +342,29 @@ extension WayBillDetailVC {
         let driverPhone = self.pageInfo?.driverPhone
         let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver ?? "", self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
-        var show = false
-        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.pickupWay == "zt" && self.pageInfo?.transportStatus == .noStart {
-            show = true
-        }
-        cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime , showChange: show)
+//        var show = false
+//        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.pickupWay == "zt" && self.pageInfo?.transportStatus == .willStart {
+//            show = true
+//        }
+        cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime)
      
     }
+    
+    //MARK: - 经销商，待办单 自提 修改 承运人 的 成交信息  的cell
+    func agencyWillStartCellForZt(tableView:UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(AgencyChangeCarrierCell.self)") as! AgencyChangeCarrierCell
+        let canChange = (self.pageInfo?.driverStatus == 4)
+        cell.showCarrierInfo(name: self.pageInfo?.carrierName, phone: self.pageInfo?.cellPhone, time: self.pageInfo?.dealOfferTime, canChange: canChange)
+        return cell
+    }
+    
+    //MARK: - 经销商 承运人 修改记录的cell
+    func agencyChangeLogCell(tableView:UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(CarrierChangeLogCell.self)") as! CarrierChangeLogCell
+        
+        return cell
+    }
+    
 }
 
 
@@ -376,7 +401,18 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart || self.pageInfo?.transportStatus == WayBillTransportStatus.willStart { // 待起运
+        if self.pageInfo?.transportStatus == WayBillTransportStatus.willStart  { // 经销商才会有的情况
+            if section == 0 {
+                if changeCarrier() { // 可以进行 修改承运人的操作
+                    if (self.changeHositoryList()?.count ?? 0) > 0 { // 有修改记录的情况
+                        return 3
+                    }
+                }
+                return 2
+            }
+            return 1
+        }
+        if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart { // 待起运
             if section == 0 {
                 return 2
             }
@@ -563,6 +599,19 @@ extension WayBillDetailVC {
         let changeCarrier = ChangeCarrierVC()
         changeCarrier.transportNo = self.pageInfo?.transportNo
         self.push(vc: changeCarrier, title: "选择承运人")
+    }
+    
+    //MARK: - 是否显示 修改承运人 的 cell
+    func changeCarrier() -> Bool {
+        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.transportStatus == .willStart {
+            return true
+        }
+        return false
+    }
+    
+    //MARK: - 经销商的修改记录
+    func changeHositoryList() -> [ZbnTransportVehicle]? {
+        return self.pageInfo?.transportVehicleList
     }
     
     func addBottom() {

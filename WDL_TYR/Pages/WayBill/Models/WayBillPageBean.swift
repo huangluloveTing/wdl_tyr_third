@@ -46,6 +46,7 @@ struct WayBillInfoBean : HandyJSON {
     var dealUnitPrice : CGFloat? // (number): 成交单价 ,
     var dealWay : Int?          // (integer): 成交方式 1=自动 2=手动 ,
     var driverName : String?    // (string): 司机姓名 ,
+    var driverStatus:Int?       // 承运人状态 2=无车竞价待指派 ,
     var driverPhone : String?   // (string): 司机手机号 ,
     var endAddress : String?    // (string, optional),
     var endCity : String?       // (string): 收货地市 ,
@@ -99,8 +100,7 @@ struct WayBillInfoBean : HandyJSON {
     var vehicleTypeDriver : String?//(string): 司机车型 ,
     var vehicleWeightDriver : String?//(string): 司机车重 
     var pickupWay : String? // (string): zt=自提 db=代办 ,
-    
-    
+    var transportVehicleList:[ZbnTransportVehicle]? //修改记录（如果经销商有修改过承运人
 }
 
 extension WayBillInfoBean : IdentifiableType , Equatable {
@@ -165,4 +165,21 @@ struct UpdateCarrierVo : HandyJSON {
     var carrierName : String? // (string): 承运人姓名 ,
     var carrierPhone : String? // (string): 承运人电话 ,
     var transportNo : String? // (string): 运单号
+}
+
+struct ZbnTransportVehicle : HandyJSON {
+    var carrierId:String? // (string): 承运人ID ,
+    var carrierName : String? // (string): 承运人姓名 ,
+    var createTime : String? // (string),
+    var driverId : String? //(string): 司机ID ,
+    var driverName : String? // (string): 司机姓名 ,
+    var endTime : String? // (string): 结束时间 ,
+    var id : String? // (string),
+    var isAccepted : String? // (string): 接受还是拒绝 ,
+    var loadWeight : Float = 0 // (number): 载重 ,
+    var opType : String? // (string, optional),
+    var ordNo : String? // (string): 订单号 ,
+    var startTime : TimeInterval = 0// (string): 开始时间 ,
+    var transportNo : String? // (string): 运单ID ,
+    var vehicleNo : String? // (string): 车牌号
 }
