@@ -66,11 +66,11 @@ extension BaseVC {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imagePicker.sourceType = .photoLibrary
         }
-        #if DEBUG
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            imagePicker.sourceType = .photoLibrary
+        if Util.isSimulator() {
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                imagePicker.sourceType = .photoLibrary
+            }
         }
-        #endif
     }
     
     // 相册获取图片
@@ -78,11 +78,11 @@ extension BaseVC {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
         }
-        #if DEBUG
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            imagePicker.sourceType = .photoLibrary
+        if Util.isSimulator() {
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                imagePicker.sourceType = .photoLibrary
+            }
         }
-        #endif
     }
 }
 

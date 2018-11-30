@@ -210,6 +210,16 @@ extension BaseVC : UISearchBarDelegate {
     }
 }
 
+// 调用图片浏览器
+extension BaseVC {
+    func showLocalImags(imgs:[UIImage]) -> Void {
+        PictureBroweManager.shard().showPictures(imgItems: imgs, imageSuperView: self.view)
+    }
+    func showWebImages(imgs:[String]) -> Void {
+        PictureBroweManager.shard().showWebPictures(webItems: imgs, imageSuperView: self.view)
+    }
+}
+
 
 // 获取省市区 数据
 extension BaseVC  {

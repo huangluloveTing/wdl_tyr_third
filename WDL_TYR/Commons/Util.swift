@@ -113,6 +113,14 @@ class Util {
         let app_version = appInfos?["CFBundleShortVersionString"] as! String
         return app_version
     }
+    
+    static func isSimulator() -> Bool{
+        var isSim = false
+        #if arch(i386) || arch(x86_64)
+            isSim = true
+        #endif
+        return isSim
+    }
 }
 
 // 富文本 YYText

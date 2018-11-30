@@ -10,7 +10,11 @@ import UIKit
 
 class WayBillReceiptCell: BaseCell {
 
+    typealias WayBillReceiptTapClosure = (Int) -> ()
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    public var tapClosure:WayBillReceiptTapClosure?
     
     private var receiptList:[ZbnTransportReturn]?
     
@@ -52,6 +56,12 @@ extension WayBillReceiptCell : UICollectionViewDelegate , UICollectionViewDataSo
         let receipt = self.receiptList![indexPath.row]
         cell.showReceipt(imageUrl: receipt.returnBillUrl, time: receipt.createTime)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let closure = self.tapClosure {
+            closure(indexPath.row)
+        }
     }
 }
 

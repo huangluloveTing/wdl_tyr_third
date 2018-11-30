@@ -135,6 +135,9 @@ extension WayBillDetailVC {
             //回执单
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillReceiptCell.self)") as! WayBillReceiptCell
             cell.showReceiptInfo(info: self.pageInfo?.returnList ?? [])
+            cell.tapClosure = {[weak self] (index) in
+                self?.tapReciptHandle(index: index)
+            }
             return cell
         }
         // 成交信息
@@ -194,6 +197,9 @@ extension WayBillDetailVC {
             }
             //回执单
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillReceiptCell.self)") as! WayBillReceiptCell
+            cell.tapClosure = {[weak self] (index) in
+                self?.tapReciptHandle(index: index)
+            }
             cell.showReceiptInfo(info: self.pageInfo?.returnList ?? [])
             return cell
         }
@@ -256,6 +262,9 @@ extension WayBillDetailVC {
             }
             //回执单
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillReceiptCell.self)") as! WayBillReceiptCell
+            cell.tapClosure = {[weak self] (index) in
+                self?.tapReciptHandle(index: index)
+            }
             cell.showReceiptInfo(info: self.pageInfo?.returnList ?? [])
             return cell
         }
@@ -449,6 +458,17 @@ extension WayBillDetailVC {
         locationsLineVC.locations = locations
         let navi = UINavigationController(rootViewController: locationsLineVC)
         self.smallSheetPresent(vc: navi)
+    }
+    
+    // 点击回执单z操作
+    func tapReciptHandle(index:Int) -> Void {
+        let lists = self.pageInfo?.returnList
+        if let lists = lists {
+            let webItems = lists.map { (retrunList) -> String in
+                return retrunList.returnBillUrl ?? ""
+            }
+            self.showWebImages(imgs: webItems)
+        }
     }
     
     // 查看签收确认须知
