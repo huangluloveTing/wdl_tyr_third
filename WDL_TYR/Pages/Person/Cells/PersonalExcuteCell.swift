@@ -39,6 +39,7 @@ extension PersonalExcuteCell {
         self.headerImageView.image = info.image
         self.exTitleLabel.text = info.exTitle
         self.indicatorView.isHidden = !(info.showIndicator ?? true)
+        self.exSubTitleLabel.isHidden = false
         if info.exTitle == "消息中心" {
             self.exSubTitleLabel.text = messageNum  //右侧的文字
             if messageNum != "0" {
@@ -46,7 +47,9 @@ extension PersonalExcuteCell {
                 self.exSubTitleLabel.textColor = UIColor.white
                 self.exSubTitleLabel.font = UIFont.systemFont(ofSize: 11)
                 self.exSubTitleLabel.addBorder(color: nil, radius: 10)
-                
+                self.exSubTitleLabel.isHidden = false
+            }else {
+                self.exSubTitleLabel.isHidden = true
             }
 
         }

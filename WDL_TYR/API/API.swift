@@ -46,6 +46,7 @@ enum API {
     case updateCarrier(UpdateCarrierVo)     // 经销商修改自提运单承运人
     
     case getMessageNum() //消息个数
+    case markHasSeenMessage(String)                     // 标记查看过的消息
     
 }
 
@@ -62,6 +63,8 @@ func apiPath(api:API) -> String {
     switch api {
     case .getMainMessage(_):
         return "/message/getMessage"
+    case .markHasSeenMessage(_):
+        return "/message/markMessage"
     case .getDetailMessage(_):
         return "/message/getMessageByType"
     case .login(_, _):
@@ -156,6 +159,8 @@ func apiTask(api:API) -> Task {
     case .onShelf(let id):
         return .requestParameters(parameters: ["hallId" : id], encoding: URLEncoding.default)
         
+    case .markHasSeenMessage(let id):
+        return .requestParameters(parameters: ["id" : id], encoding: URLEncoding.default)
     case .undercarriage(let hallId):
         return .requestParameters(parameters: ["hallId": hallId], encoding: URLEncoding.default)
         
@@ -241,6 +246,7 @@ func apiMethod(api:API) -> Moya.Method {
          .transportSign(_),
          .addCarrier(_),
          .getMessageNum(),
+         .markHasSeenMessage(_),
          .deleteFollowCarrier(_):
         return .get
     default:

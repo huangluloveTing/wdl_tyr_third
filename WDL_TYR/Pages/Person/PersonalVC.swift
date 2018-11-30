@@ -41,7 +41,8 @@ class PersonalVC: MainBaseVC  {
         super.viewWillAppear(animated)
         self.initialPersonExcuteInfos()
         //获取消息个数
-        self.getMessageNumRequest()
+        self.getMessageNum()
+      
         self.loadInfo()
     }
 
@@ -119,8 +120,8 @@ extension PersonalVC {
     
     
     
-    //获取消息个数
-    func getMessageNumRequest() -> Void {
+        //获取消息个数
+      func getMessageNum() -> Void {
         BaseApi.request(target: API.getMessageNum(), type: BaseResponseModel<Int>.self).subscribe(onNext: {[weak self] (model) in
             
             

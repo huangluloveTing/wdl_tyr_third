@@ -29,4 +29,5 @@ class IdentiferFailVC: NormalBaseVC {
     @IBAction func reSummitClick(_ sender: UIButton) {
         
     }
+    
 }
