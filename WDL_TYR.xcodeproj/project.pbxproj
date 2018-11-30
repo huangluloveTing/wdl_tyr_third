@@ -19,6 +19,7 @@
 		1875DF4821A50618006312D9 /* MessageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875DF4621A50618006312D9 /* MessageDetailCell.swift */; };
 		1875DF4921A50618006312D9 /* MessageDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875DF4721A50618006312D9 /* MessageDetailCell.xib */; };
 		7003A34621B160E200838323 /* BaseVC+AuthAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7003A34521B160E200838323 /* BaseVC+AuthAlert.swift */; };
+		7003A34821B1693F00838323 /* JPushUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7003A34721B1693F00838323 /* JPushUtil.swift */; };
 		70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103C412189AE0900125F54 /* UIResponse+Extension.swift */; };
 		701144C2219D7FE500BF4522 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C0219D7FE400BF4522 /* UserStore.swift */; };
 		701144C3219D7FE500BF4522 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701144C1219D7FE500BF4522 /* UserDefault.swift */; };
@@ -250,6 +251,7 @@
 		18AEF42F21AFE21100FE2468 /* WDL_TYR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WDL_TYR.entitlements; sourceTree = "<group>"; };
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7003A34521B160E200838323 /* BaseVC+AuthAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+AuthAlert.swift"; sourceTree = "<group>"; };
+		7003A34721B1693F00838323 /* JPushUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPushUtil.swift; sourceTree = "<group>"; };
 		70103C412189AE0900125F54 /* UIResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponse+Extension.swift"; sourceTree = "<group>"; };
 		701144C0219D7FE400BF4522 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		701144C1219D7FE500BF4522 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 				70721D732131B20500E12CEC /* AMapHandleManager.swift */,
 				70F72AF62144A6AE00C9156E /* Regx.swift */,
 				7047769A21B0D09700628C6F /* PictureBroweManager.swift */,
+				7003A34721B1693F00838323 /* JPushUtil.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -1312,6 +1315,7 @@
 				702C1845215252E800601738 /* WayBillCommentVC.swift in Sources */,
 				7037B0C8213A1F3700BDC718 /* WayBillDetailVC.swift in Sources */,
 				7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */,
+				7003A34821B1693F00838323 /* JPushUtil.swift in Sources */,
 				708D69FF2150837000884A80 /* WDLMapView.swift in Sources */,
 				7068E0EA213F979D00929337 /* UITextField+PlaceInput.swift in Sources */,
 				70505EED21478E3300CEE672 /* OnTimePostView.swift in Sources */,

@@ -19,5 +19,5 @@
 #import "UIAlertView+Blocks.h"
 #import <UITableView+ZTCategory.h>
 #import "UITextView+YLTextView.h"
-#import "JPUSHService.h"
+#import <JPUSHService.h>
 #import <LBPhotoBrowserManager.h>
