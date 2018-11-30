@@ -18,6 +18,7 @@ class IdentiferFailVC: NormalBaseVC {
 
         reSuButton.layer.cornerRadius = 4
         reSuButton.clipsToBounds = true
+        self.failResonLable.text = "驳回原因：" + (WDLCoreManager.shared().userInfo?.authenticationMsg ?? "")
     }
 
     @IBAction func callClick(_ sender: UIButton) {

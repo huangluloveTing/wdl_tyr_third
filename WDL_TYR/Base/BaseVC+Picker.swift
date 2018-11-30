@@ -63,6 +63,9 @@ extension BaseVC {
     
     // 相机获取图片
     func photoFromAlbum(imagePicker:UIImagePickerController ) -> Void {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.sourceType = .photoLibrary
+        }
         #if DEBUG
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imagePicker.sourceType = .photoLibrary
@@ -72,6 +75,9 @@ extension BaseVC {
     
     // 相册获取图片
     func photoFromCarmera(imagePicker:UIImagePickerController) -> Void {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+        }
         #if DEBUG
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imagePicker.sourceType = .photoLibrary

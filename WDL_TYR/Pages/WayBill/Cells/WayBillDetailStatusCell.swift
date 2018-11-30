@@ -17,7 +17,11 @@ class WayBillDetailStatusCell: BaseCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.wayBillStatusView = WayBillStatusView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 80, height: 64))
+        var type:ShowCommentType = .Four
+        if WDLCoreManager.shared().consignorType == .agency {
+            type = .Five
+        }
+        self.wayBillStatusView = WayBillStatusView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH - 80, height: 64) , type:type)
         self.statusView.addSubview(self.wayBillStatusView!)
     }
 
@@ -31,8 +35,10 @@ extension WayBillDetailStatusCell {
     
     func showInfo(status:WayBillTransportStatus , transportNo:String?) -> Void {
         self.wayBillNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号:" , transportNo)
-        
         switch status {
+        case .willStart:
+            self.wayBillStatusView?.status = WayBillStatus.willToDo
+            break
         case .noStart:
             self.wayBillStatusView?.status = WayBillStatus.NOT_Start
             break

@@ -19,6 +19,8 @@ enum SupplyGoodsCommand<T> {
 
 class BaseVC: UIViewController {
     
+    private var badgeValueView:BageView? // 消息图标
+    
     public var showLeftBack:Bool = true // 是否显示左边返回
     
     public var dispose = DisposeBag()
@@ -33,6 +35,10 @@ class BaseVC: UIViewController {
         self.bindViewModel()
         self.configNavigationBar()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -45,6 +51,7 @@ class BaseVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        self.badgeValueView?.badgeValue(text: self.messageBadgeValue())
     }
     
     // 绑定vm
@@ -70,6 +77,11 @@ class BaseVC: UIViewController {
     func currentSearchContent(content:String) -> Void { }
     
     func currentSearchOnTimeContent(content:String) -> Void { }
+    
+    //MARK: - 当前消息个数
+    func messageBadgeValue() -> String {
+        return "2"
+    }
 }
 
 
@@ -137,6 +149,10 @@ extension BaseVC {
         rightBadgeView.textFont()
         rightBadgeView.badgeColor(color: UIColor.white)
         rightBadgeView.bgColor(bgColor: UIColor.clear)
+        self.badgeValueView = rightBadgeView
+        self.badgeValueView?.singleTap(closure: { [weak self](view) in
+            self?.tapMessageHandle()
+        })
         self.addRightBarbuttonItem(with: rightBadgeView)
     }
     
@@ -154,6 +170,11 @@ extension BaseVC {
      */
     func registerSearchBar() -> Void {
         currentSearchBar?.resignFirstResponder()
+    }
+    
+    //MARK: - q点击消息
+    func tapMessageHandle() -> Void {
+        self.toMessageCenter()
     }
     
 }

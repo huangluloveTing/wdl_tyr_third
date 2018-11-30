@@ -14,10 +14,17 @@ enum WayBillStatus:Int {
     case Transporting = 2   // 运输中
     case ToReceive = 3      // 待签收
     case Done = 4           // 完成
+    case willToDo = 5          // 待办单
 }
 
+enum ShowCommentType {
+    case Four
+    case Five
+}
 
 class WayBillStatusView: UIView {
+    
+    public var showType:ShowCommentType = .Four
     
     private var _status : WayBillStatus = WayBillStatus.NOT_Start
     public var status:WayBillStatus! {
@@ -39,6 +46,13 @@ class WayBillStatusView: UIView {
         self.initialProcessView()
     }
     
+    init(frame:CGRect , type:ShowCommentType) {
+        super.init(frame: frame)
+        self.showType = type
+        self.initialProcessItems()
+        self.initialProcessView()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -49,21 +63,46 @@ class WayBillStatusView: UIView {
     }
     
     private func toConfigProcessView() {
-        self.processView.currentProccess = CGFloat(self.status.rawValue) / 4.0
+        self.processView.currentProccess = CGFloat(self.status.rawValue) / (showType == .Four ? 4 : 5)
         self.updateStatus()
     }
     
     private func initialProcessView() {
         self.processView = WayBillProcessView(frame: self.bounds)
+        self.processView.padding = (showType == .Five) ? 15 : 45
         self.addSubview(self.processView)
     }
     
     private func initialProcessItems() {
         self.processItems = []
+        switch self.showType {
+        case .Four:
+            self.proccessItemsFour()
+            break
+        default:
+            self.proccessItemsFive()
+        }
+    }
+    
+    //MARK: - four
+    func proccessItemsFour() -> Void {
         let item1 = WayBillProcessItem(title: "待起运", normalImage: image_waybill_notShip!, focusImage: image_waybill_ship!, focus: false)
         let item2 = WayBillProcessItem(title: "运输中", normalImage: image_waybill_notTrans!, focusImage: image_waybill_trans!, focus: false)
         let item3 = WayBillProcessItem(title: "待签收", normalImage: image_waybill_notrecevie!, focusImage: image_waybill_receive!, focus: false)
         let item4 = WayBillProcessItem(title: "已签收", normalImage: image_waybill_willdone!, focusImage: image_waybill_done!, focus: false)
+        self.processItems?.append(item1)
+        self.processItems?.append(item2)
+        self.processItems?.append(item3)
+        self.processItems?.append(item4)
+    }
+    //MARK: - five
+    func proccessItemsFive() -> Void {
+        let item0 = WayBillProcessItem(title: "待办单", normalImage: image_waybill_notTodo!, focusImage: image_waybill_todo!, focus: false)
+        let item1 = WayBillProcessItem(title: "待起运", normalImage: image_waybill_notShip!, focusImage: image_waybill_ship!, focus: false)
+        let item2 = WayBillProcessItem(title: "运输中", normalImage: image_waybill_notTrans!, focusImage: image_waybill_trans!, focus: false)
+        let item3 = WayBillProcessItem(title: "待签收", normalImage: image_waybill_notrecevie!, focusImage: image_waybill_receive!, focus: false)
+        let item4 = WayBillProcessItem(title: "已签收", normalImage: image_waybill_willdone!, focusImage: image_waybill_done!, focus: false)
+        self.processItems?.append(item0)
         self.processItems?.append(item1)
         self.processItems?.append(item2)
         self.processItems?.append(item3)
@@ -78,31 +117,68 @@ class WayBillStatusView: UIView {
             items.append(newItem)
         }
         
-        if self.status == .NOT_Start {
-            self.processView.items = items
+        if showType == .Four {
+            if self.status == .NOT_Start {
+                self.processView.items = items
+            }
+            if self.status == .Start {
+                items[0].focus = true
+                self.processView.items = items
+            }
+            if self.status == .Transporting {
+                items[0].focus = true
+                items[1].focus = true
+                self.processView.items = items
+            }
+            if self.status == .ToReceive {
+                items[0].focus = true
+                items[1].focus = true
+                items[2].focus = true
+                self.processView.items = items
+            }
+            if self.status == .Done {
+                items[0].focus = true
+                items[1].focus = true
+                items[2].focus = true
+                items[3].focus = true
+                self.processView.items = items
+            }
         }
         
-        if self.status == .Start {
-            items[0].focus = true
-            self.processView.items = items
-        }
-        if self.status == .Transporting {
-            items[0].focus = true
-            items[1].focus = true
-            self.processView.items = items
-        }
-        if self.status == .ToReceive {
-            items[0].focus = true
-            items[1].focus = true
-            items[2].focus = true
-            self.processView.items = items
-        }
-        if self.status == .Done {
-            items[0].focus = true
-            items[1].focus = true
-            items[2].focus = true
-            items[3].focus = true
-            self.processView.items = items
+        if showType == .Five {
+            if self.status == .NOT_Start {
+                self.processView.items = items
+            }
+            if self.status == .willToDo {
+                items[0].focus = true
+                self.processView.items = items
+            }
+            if self.status == .Start {
+                items[0].focus = true
+                items[1].focus = true
+                self.processView.items = items
+            }
+            if self.status == .Transporting {
+                items[0].focus = true
+                items[1].focus = true
+                items[2].focus = true
+                self.processView.items = items
+            }
+            if self.status == .ToReceive {
+                items[0].focus = true
+                items[1].focus = true
+                items[2].focus = true
+                items[3].focus = true
+                self.processView.items = items
+            }
+            if self.status == .Done {
+                items[0].focus = true
+                items[1].focus = true
+                items[2].focus = true
+                items[3].focus = true
+                items[4].focus = true
+                self.processView.items = items
+            }
         }
     }
     
@@ -110,7 +186,7 @@ class WayBillStatusView: UIView {
 
 fileprivate class WayBillProcessView: UIView {
     
-    private let padding:CGFloat = 45
+    public var padding:CGFloat = 45
     
     private var _currentProccess:CGFloat = 0 //(>= 0 , <=1)
     

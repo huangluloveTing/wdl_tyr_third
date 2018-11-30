@@ -121,7 +121,7 @@ class DeliveryVC: MainBaseVC {
         self.surePostButton.addBorder(color: nil, width: 0, radius: 22)
         self.addMessageRihgtItem()
     }
-
+    
     override func bindViewModel() {
         self.loadGoodsTimeTextField.datePickerInput(mode: .date)
             .asObservable()

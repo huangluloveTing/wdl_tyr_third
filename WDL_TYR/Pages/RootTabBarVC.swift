@@ -12,12 +12,21 @@ import RxSwift
 
 class RootTabBarVC: UITabBarController {
 
+    lazy private var authAlert:ConsignorAuthAlertView = {
+       let alert = ConsignorAuthAlertView.authAlertView()
+        alert.authClosure = {[weak self] in
+            self?.toAuthNow()
+        }
+        return alert
+    }()
+    
     private let dispose = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.barTintColor = UIColor.white
         self.tabBar.tintColor = UIColor(hex: "06C06F")
+        self.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,5 +62,40 @@ extension RootTabBarVC {
         naviVC.tabBarItem = item
 
         return naviVC
+    }
+}
+
+extension RootTabBarVC : UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = (viewControllers ?? []).firstIndex(of: viewController)
+        return self.confirmAuthed(index: index ?? 0)
+    }
+    
+    
+    // 判断是否是 托运人 角色，并且是否认证
+    func confirmAuthed(index:Int) -> Bool {
+        if WDLCoreManager.shared().consignorType == .third {
+            if WDLCoreManager.shared().userInfo?.status != .autherized {
+                if index == 1 {
+                    self.authAlert.showAlert(title: "您还没有认证，认证后可进行货源相关操作")
+                    return false
+                }
+                if index == 2 {
+                    self.authAlert.showAlert(title: "您还没有认证，认证后可进行运单相关操作")
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    // 立即认证
+    func toAuthNow() -> Void {
+        let vc = self.viewControllers![self.selectedIndex] as! UINavigationController
+        let authVC = ConsignorAuthVC()
+        authVC.authModel = AuthConsignorVo.deserialize(from: WDLCoreManager.shared().userInfo?.toJSON()) ?? AuthConsignorVo()
+        authVC.title = "认证"
+        vc.pushViewController(authVC, animated: true)
     }
 }

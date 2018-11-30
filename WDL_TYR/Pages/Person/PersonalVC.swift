@@ -87,12 +87,6 @@ extension PersonalVC {
         self.push(vc: settingVC, title: "个人设置")
     }
     
-    // 信息中心
-    func toMessageCenter() -> Void {
-        let messageCenterVC = MessageCenterVC()
-        self.push(vc: messageCenterVC, title: "信息中心")
-    }
-    
     // 联系客服
     func linkService() -> Void {
         self.toLinkKF()
@@ -214,7 +208,10 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(PersonalInfoHeader.self)") as! PersonalInfoHeader
-            cell.showInfo(name: self.zbnConsignor?.companyAbbreviation, phone: self.zbnConsignor?.cellPhone, logo: self.zbnConsignor?.companyLogo)
+            let status = self.zbnConsignor?.status
+            let name = status == .autherized ? self.zbnConsignor?.companyAbbreviation : ""
+            let logo = status == .autherized ? self.zbnConsignor?.companyLogo : ""
+            cell.showInfo(name: name, phone: self.zbnConsignor?.cellPhone, logo: logo)
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(PersonalExcuteCell.self)") as! PersonalExcuteCell

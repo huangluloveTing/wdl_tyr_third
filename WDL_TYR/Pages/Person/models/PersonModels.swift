@@ -23,6 +23,7 @@ enum AutherizStatus:Int , HandyJSONEnum {
 }
 
 struct ZbnConsignor : HandyJSON {
+    var authenticationMsg:String? //认证信息 ,
     var businessLicense:String? // 营业执照
     var businessLicenseNo:String? //营业执照号
     var cellPhone:String? // h手机号码

@@ -20,4 +20,4 @@
 #import <UITableView+ZTCategory.h>
 #import "UITextView+YLTextView.h"
 #import "JPUSHService.h"
-#import "LBPhotoBrowserManager.h"
+#import <LBPhotoBrowserManager.h>

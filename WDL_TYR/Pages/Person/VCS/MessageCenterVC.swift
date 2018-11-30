@@ -58,10 +58,10 @@ extension MessageCenterVC {
             })
             .subscribe(onNext: { [weak self](state) in
                 if state == .LoadMore {
-                    self?.refreshMessage()
+                    self?.loadMoreMessage()
                 }
                 if state == .Refresh {
-                    self?.loadMoreMessage()
+                    self?.refreshMessage()
                 }
             })
             .disposed(by: dispose)

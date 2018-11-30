@@ -58,6 +58,9 @@
 		7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */; };
 		70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */; };
 		703C12672153548B00A6180D /* DemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703C12662153548B00A6180D /* DemoVC.swift */; };
+		7047769B21B0D09700628C6F /* PictureBroweManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7047769A21B0D09700628C6F /* PictureBroweManager.swift */; };
+		7047769D21B0DC3B00628C6F /* ConsignorAuthAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7047769C21B0DC3B00628C6F /* ConsignorAuthAlertView.swift */; };
+		704776A121B0DC8600628C6F /* ConsignorAuthAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776A021B0DC8600628C6F /* ConsignorAuthAlertView.xib */; };
 		704E34FE218C3A8D0022122C /* ConsignorAuthedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */; };
 		704E34FF218C3A8D0022122C /* ConsignorAuthedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */; };
 		704E3502218C3B210022122C /* EnterpriseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704E3500218C3B210022122C /* EnterpriseInfoCell.swift */; };
@@ -277,6 +280,9 @@
 		7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneChooseInputView.swift; sourceTree = "<group>"; };
 		70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RefreshExtension.swift"; sourceTree = "<group>"; };
 		703C12662153548B00A6180D /* DemoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoVC.swift; sourceTree = "<group>"; };
+		7047769A21B0D09700628C6F /* PictureBroweManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureBroweManager.swift; sourceTree = "<group>"; };
+		7047769C21B0DC3B00628C6F /* ConsignorAuthAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthAlertView.swift; sourceTree = "<group>"; };
+		704776A021B0DC8600628C6F /* ConsignorAuthAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthAlertView.xib; sourceTree = "<group>"; };
 		704E34FC218C3A8D0022122C /* ConsignorAuthedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthedVC.swift; sourceTree = "<group>"; };
 		704E34FD218C3A8D0022122C /* ConsignorAuthedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthedVC.xib; sourceTree = "<group>"; };
 		704E3500218C3B210022122C /* EnterpriseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterpriseInfoCell.swift; sourceTree = "<group>"; };
@@ -933,6 +939,8 @@
 			children = (
 				7058BD1C212E849800B53DF6 /* RegisterAgreeView.swift */,
 				7058BD1E212E84A900B53DF6 /* RegisterAgreeView.xib */,
+				7047769C21B0DC3B00628C6F /* ConsignorAuthAlertView.swift */,
+				704776A021B0DC8600628C6F /* ConsignorAuthAlertView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -958,6 +966,7 @@
 				708150CE21311FA800D42723 /* DropViewManage.swift */,
 				70721D732131B20500E12CEC /* AMapHandleManager.swift */,
 				70F72AF62144A6AE00C9156E /* Regx.swift */,
+				7047769A21B0D09700628C6F /* PictureBroweManager.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -1140,6 +1149,7 @@
 				7092934821B029B3005E8DA6 /* ChangeCarrierVC.xib in Resources */,
 				1875DF4521A41C94006312D9 /* MessageDetailVC.xib in Resources */,
 				70A319D22137F27000017356 /* GSDetailInfoCell.xib in Resources */,
+				704776A121B0DC8600628C6F /* ConsignorAuthAlertView.xib in Resources */,
 				7058BD27212E8D2600B53DF6 /* ForgetPwdVC.xib in Resources */,
 				705926DA212A5DE800BE8BB4 /* Main.storyboard in Resources */,
 				702E39AE218D383C00329643 /* MessageCenterVC.xib in Resources */,
@@ -1200,7 +1210,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/LBPhotoBrowser/test/LBPhotoBrowser/LBPhotoBrowser.bundle",
@@ -1219,7 +1229,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1237,6 +1247,7 @@
 				70ECEEE9213842A10015CA7D /* BaseVC+Empty.swift in Sources */,
 				705926EF212A5E5500BE8BB4 /* BaseModel.swift in Sources */,
 				7068E0DE213F798800929337 /* DeliveryPlaceChooiceCell.swift in Sources */,
+				7047769D21B0DC3B00628C6F /* ConsignorAuthAlertView.swift in Sources */,
 				702E39AD218D383C00329643 /* MessageCenterVC.swift in Sources */,
 				705926D7212A5DE800BE8BB4 /* ViewController.swift in Sources */,
 				70721D722131B12000E12CEC /* UIViewController+Location.swift in Sources */,
@@ -1275,6 +1286,7 @@
 				7058159D21A4E5C80004A7F8 /* MyCarrierModels.swift in Sources */,
 				7092934721B029B3005E8DA6 /* ChangeCarrierVC.swift in Sources */,
 				7058BD26212E8D2600B53DF6 /* ForgetPwdVC.swift in Sources */,
+				7047769B21B0D09700628C6F /* PictureBroweManager.swift in Sources */,
 				7058BD1D212E849800B53DF6 /* RegisterAgreeView.swift in Sources */,
 				184F1F7821993981007B9998 /* AboutZbnVC.swift in Sources */,
 				70BD352D218ACF91001580C3 /* WayBillDetailLinkInfoCell.swift in Sources */,

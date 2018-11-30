@@ -65,4 +65,20 @@ class AlertManager: NSObject {
 //        }
     }
     
+    // 自定义的有 title 和 content 的alert （eg：货源确认下架）
+    static func showCustomTitleAndContentAlert(context:UIViewController , actionTitles:[String], title:String? , content:String? , closure:((Int) -> ())?) {
+        let alertVC = UIAlertController(title: title, message: content, preferredStyle: .alert)
+        
+        actionTitles.enumerated().forEach { ( index,title) in
+            let action = UIAlertAction(title: title, style: .default) { (_) in
+                if let closure = closure {
+                    closure(index)
+                }
+            }
+            alertVC.addAction(action)
+        }
+        
+        context.present(alertVC, animated: true, completion: nil)
+    }
+    
 }

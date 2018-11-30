@@ -70,7 +70,7 @@ extension WayBillDetailVC {
     // 根据 对应的状态 ， 展示不同的cells
     func tableViewCells(tableView:UITableView , indexPath:IndexPath) -> UITableViewCell {
         switch self.wayBillInfo?.transportStatus ?? .noStart {
-        case .willToTransport , .noStart:
+        case .willToTransport , .noStart , .willStart:
             return self.willToTransportTableViewCell(tableView:tableView, indexPath:indexPath)
         case .transporting:
             return self.transportingCells(indexPath: indexPath, tableView: tableView)
@@ -144,6 +144,19 @@ extension WayBillDetailVC {
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillGoodsCell.self)") as! WayBillGoodsCell
             cell.contentInfo(info: self.pageInfo)
+            return cell
+        }
+        if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(WaybillProtocolCell.self)") as! WaybillProtocolCell
+            cell.currentConfirm(confirm: self.isConfirm)
+            cell.backgroundColor = UIColor.clear
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.readClosure = {[weak self] in
+                self?.toShowConfirmSign()
+            }
+            cell.confirmClosure = {[weak self] (confirm) in
+                self?.isConfirm = confirm
+            }
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
@@ -358,7 +371,9 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
                 }
                 return 3
             }
-            
+            if section == 3 { // 显示确认签收须知 按钮
+                return 2
+            }
             return 1
             
         }
@@ -590,6 +605,8 @@ extension WayBillDetailVC {
                 self.bottomButtom(titles: [], targetView: self.tableView)
             }
             break
+        default:
+            self.bottomButtom(titles: [], targetView: self.tableView)
         }
         self.tableViewFooterHeightChange()
     }

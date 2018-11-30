@@ -38,10 +38,24 @@ class ConsignorAuthVC: NormalBaseVC {
         self.liencesNoTextField.text = authModel.businessLicenseNo
         self.legalPersonTextField.text = authModel.legalPerson
         self.legalPersonIdNoTextField.text = authModel.legalPersonId
-        Util.showImage(imageView: self.logoImageView, imageUrl: authModel.companyLogo)
-        Util.showImage(imageView: self.liencesImageView, imageUrl: authModel.businessLicense)
-        Util.showImage(imageView: self.idCardMainImageView, imageUrl: authModel.legalPersonIdFrontage)
-        Util.showImage(imageView: self.idCardOpsiteImageView, imageUrl: authModel.legalPersonIdOpposite)
+        Util.showImage(imageView: self.logoImageView, imageUrl: authModel.companyLogo ,placeholder: UIImage.init(named: "认证-企业logo")!)
+        Util.showImage(imageView: self.liencesImageView, imageUrl: authModel.businessLicense , placeholder: UIImage.init(named: "认证-营业执照")!)
+        Util.showImage(imageView: self.idCardMainImageView, imageUrl: authModel.legalPersonIdFrontage , placeholder: UIImage.init(named: "我的认证-身份证人像页")!)
+        Util.showImage(imageView: self.idCardOpsiteImageView, imageUrl: authModel.legalPersonIdOpposite , placeholder: UIImage.init(named: "我的认证-身份证")!)
+        let status = WDLCoreManager.shared().userInfo?.status
+        if status == .autherized {
+            companyNameTextField.isUserInteractionEnabled = false
+            self.companyIntroTextField.isUserInteractionEnabled = false
+            self.linkManTextField.isUserInteractionEnabled = true
+            self.companyAddressTextField.isUserInteractionEnabled = true
+            self.liencesNoTextField.isUserInteractionEnabled = false
+            self.legalPersonTextField.isUserInteractionEnabled = false
+            self.legalPersonIdNoTextField.isUserInteractionEnabled = false
+            self.logoImageView.isUserInteractionEnabled = false
+            self.liencesImageView.isUserInteractionEnabled = false
+            self.idCardMainImageView.isUserInteractionEnabled = false
+            self.idCardOpsiteImageView.isUserInteractionEnabled = false
+        }
     }
     
     override func currentConfig() {
@@ -140,17 +154,68 @@ class ConsignorAuthVC: NormalBaseVC {
     
     //MARK: - commit
     @IBAction func commitHandle(_ sender: Any) {
-        self.showLoading()
-        BaseApi.request(target: API.corporateCertification(self.authModel), type: BaseResponseModel<String>.self)
-            .retry(5)
-            .subscribe(onNext: { [weak self](data) in
-                self?.showSuccess(success: data.message, complete: {
-                    self?.pop(toRootViewControllerAnimation: true)
+        if canCommitAuth() == true {
+            self.showLoading()
+            BaseApi.request(target: API.corporateCertification(self.authModel), type: BaseResponseModel<String>.self)
+                .retry(5)
+                .subscribe(onNext: { [weak self](data) in
+                    self?.showSuccess(success: data.message, complete: {
+                        self?.pop(toRootViewControllerAnimation: true)
+                    })
+                    }, onError: { [weak self](error) in
+                        self?.showFail(fail: error.localizedDescription, complete: nil)
                 })
-            }, onError: { [weak self](error) in
-                self?.showFail(fail: error.localizedDescription, complete: nil)
-            })
-            .disposed(by: dispose)
+                .disposed(by: dispose)
+        }
+    }
+    
+    //MARK: - 判断是否可以提交
+    func canCommitAuth() -> Bool {
+        if (self.authModel.companyName?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请填写企业名称", complete: nil)
+            return false
+        }
+        if (self.authModel.companyAbbreviation?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请填写企业简称", complete: nil)
+            return false
+        }
+        if (self.authModel.companyLogo?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请上传企业logo", complete: nil)
+            return false
+        }
+        if (self.authModel.consignorName?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请填写联系人", complete: nil)
+            return false
+        }
+        if (self.authModel.officeAddress?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请填写办公地址", complete: nil)
+            return false
+        }
+        if (self.authModel.businessLicenseNo?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请填写营业执照号", complete: nil)
+            return false
+        }
+        if (self.authModel.businessLicense?.count ?? 0) <= 0 {
+            self.showWarn(warn: "填上传企业营业执照", complete: nil)
+            return false
+        }
+        if (self.authModel.legalPerson?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请填写法人姓名", complete: nil)
+            return false
+        }
+        if (self.authModel.legalPersonId?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请填写法人身份证号码", complete: nil)
+            return false
+        }
+        if (self.authModel.legalPersonIdFrontage?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请上传法人身份证正面照", complete: nil)
+            return false
+        }
+        if (self.authModel.legalPersonIdOpposite?.count ?? 0) <= 0 {
+            self.showWarn(warn: "请上传法人身份证背面照", complete: nil)
+            return false
+        }
+        return true
     }
 }
 
