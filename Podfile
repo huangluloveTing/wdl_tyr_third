@@ -19,6 +19,7 @@ pod 'DZNEmptyDataSet'
 pod 'MJRefresh'
 pod 'SVProgressHUD'
 pod 'Kingfisher'
+pod 'LBPhotoBrowser'
 
 end
 
