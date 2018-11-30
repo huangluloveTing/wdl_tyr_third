@@ -48,6 +48,8 @@ struct DeliveryCommitModel : HandyJSON {
 
 class DeliveryVC: MainBaseVC {
     
+    public var showMessage:Bool = true
+    
     private var startPlace:PlaceCheckModel = PlaceCheckModel()
     private var endPlace:PlaceCheckModel = PlaceCheckModel()
     
@@ -119,7 +121,9 @@ class DeliveryVC: MainBaseVC {
         
         self.timerPostButton.addBorder(color: nil, width: 0, radius: 22)
         self.surePostButton.addBorder(color: nil, width: 0, radius: 22)
-        self.addMessageRihgtItem()
+        if self.showMessage == true {
+            self.addMessageRihgtItem()
+        }
     }
     
     override func bindViewModel() {

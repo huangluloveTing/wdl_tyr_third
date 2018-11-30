@@ -301,6 +301,7 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
         WDLGlobal.shard().reShelveGoodsSupply(goods: self.pageContentInfo?.zbnOrderHall)
         let deliveryVC = DeliveryVC()
         deliveryVC.id = self.pageContentInfo?.zbnOrderHall?.id ?? ""
+        deliveryVC.showMessage = false
         self.push(vc: deliveryVC, title: "重新上架")
     }
     
