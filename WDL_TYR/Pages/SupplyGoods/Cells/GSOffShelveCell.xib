@@ -330,6 +330,7 @@
                 <outlet property="remarkLabel" destination="7ii-Mz-XZT" id="jEi-c1-A6Q"/>
                 <outlet property="startLabel" destination="U5s-re-Usg" id="B7k-5a-FZX"/>
                 <outlet property="statusLabel" destination="ZxJ-QE-eCG" id="XNu-ag-rMN"/>
+                <outlet property="topTitleLab" destination="6QF-rf-yYR" id="9ne-A8-MdZ"/>
                 <outlet property="totalLabel" destination="ACS-57-tut" id="8qI-uu-5rM"/>
                 <outlet property="unableLabel" destination="ItS-j6-tU8" id="WNa-po-Axf"/>
                 <outlet property="unitLabel" destination="iE4-jQ-gDu" id="GYl-Lk-FXH"/>

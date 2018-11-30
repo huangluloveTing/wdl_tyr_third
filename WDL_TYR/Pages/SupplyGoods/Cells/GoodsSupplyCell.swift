@@ -110,7 +110,16 @@ extension GoodsSupplyCell {
             self.statusLabel.textColor = UIColor(hex: TEXTCOLOR_EMPTY)
             break
         default:
-            self.statusLabel.text = "已下架"
+            
+            let type = WDLCoreManager.shared().consignorType
+            //第三方
+            if type == .third {
+               self.statusLabel.text = "已下架"
+            }else{
+                //经销商
+              self.statusLabel.text = "未成交"
+            }
+            
             self.statusLabel.textColor = UIColor(hex: TEXTCOLOR_EMPTY)
             break
         }

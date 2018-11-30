@@ -90,7 +90,7 @@ extension PersonalVC {
     // 信息中心
     func toMessageCenter() -> Void {
         let messageCenterVC = MessageCenterVC()
-        self.push(vc: messageCenterVC, title: "信息中心")
+        self.push(vc: messageCenterVC, title: "消息中心")
     }
     
     // 联系客服
