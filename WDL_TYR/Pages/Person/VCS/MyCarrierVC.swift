@@ -123,7 +123,7 @@ extension MyCarrierVC : UITableViewDelegate , UITableViewDataSource {
                        phone: info.cellPhone,
                        rate: info.overallScore,
                        tomeNum: info.dealNum,
-                       total: info.dealNum)
+                       total: info.dealSum)
         cell.handleClosure = {[weak self] in
             self?.deleteCarrier(index: indexPath.row)
         }

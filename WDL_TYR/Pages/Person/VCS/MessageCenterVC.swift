@@ -32,8 +32,12 @@ class MessageCenterVC: NormalBaseVC {
         super.viewDidLoad()
         //获取用户信息
         self.zbnConsignor = WDLCoreManager.shared().userInfo
-        configTableView()
+       
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configTableView()
     }
 }
 
@@ -110,7 +114,18 @@ extension MessageCenterVC {
         self.tableView.reloadData()
     }
  
-    
+    //标记已经看过的消息
+    func markMessegeRequest(id: String){
+       
+        BaseApi.request(target: API.markHasSeenMessage(id),  type: BaseResponseModel<AnyObject>.self)
+            .subscribe(onNext: { (_) in
+                print("标记成功")
+            }, onError: { (error) in
+//                self.showFail(fail: error.localizedDescription, complete: nil)
+                
+            })
+            .disposed(by: dispose)
+    }
 }
 
 
@@ -135,7 +150,13 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
             icon = icons[1]
             title = "运单消息"
         }
-        cell.showInfo(icon: icon ?? icons[0], title: title ?? "", content: info.msgInfo)
+        //消息状态： 0=未读 1=已读 2=接受 3=拒绝
+        if info.msgStatus == 0 {
+           cell.indicView.isHidden = false
+        }else{
+           cell.indicView.isHidden = true
+        }
+        cell.showInfo(icon: icon ?? icons[0], title: title ?? "", content: info.msgInfo, time: info.createTime)
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -145,7 +166,8 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
         let info = self.hallLists[indexPath.row]
-  
+        //标记看过的数据
+        self.markMessegeRequest(id: info.id ?? "")
         if info.msgType == 1 { //系统消息
             self.systermMessages(info: info)
         }

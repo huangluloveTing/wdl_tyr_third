@@ -43,7 +43,7 @@ class GoodsSupplyVC: MainBaseVC {
         super.viewDidLoad()
         self.wr_setNavBarShadowImageHidden(true)
         self.addNaviHeader(placeholder: "搜索我的货源(货源名称、承运人、线路)")
-        self.addMessageRihgtItem()
+
         if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
         } else {
@@ -54,12 +54,14 @@ class GoodsSupplyVC: MainBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //设置消息个数
+        self.getMessageNumRequest()
         self.tableView.beginRefresh()
         if WDLCoreManager.shared().regionAreas == nil || WDLCoreManager.shared().regionAreas?.count == 0 {
             self.loadAllAreaAndStore()
         }
     }
-    
+   
     override func currentConfig() {
         self.tableView.register(UINib.init(nibName: goodsSupplyCellIdentity, bundle: nil), forCellReuseIdentifier: goodsSupplyCellIdentity)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -371,7 +373,6 @@ extension GoodsSupplyVC {
         return items
     }
 }
-
 
 //MARK: - 删除数据
 extension GoodsSupplyVC {

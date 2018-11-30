@@ -142,7 +142,7 @@ extension AddCarrierVC : UITableViewDelegate , UITableViewDataSource {
                       phone: info.cellPhone,
                       rate: info.overallScore,
                       tomeNum: info.dealNum,
-                      total: info.dealNum,
+                      total: info.dealSum,
                       style: .add)
         cell.handleClosure = {[weak self] in
             self?.addCarrier(index: indexPath.row)

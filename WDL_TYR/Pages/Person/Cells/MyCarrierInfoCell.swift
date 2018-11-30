@@ -25,8 +25,8 @@ class MyCarrierInfoCell: BaseCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
-    @IBOutlet weak var tomeLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var tomeLabel: UILabel!//与我成交金额
+    @IBOutlet weak var totalLabel: UILabel!//总笔数
     
     @IBOutlet weak var editButton: UIButton!
     

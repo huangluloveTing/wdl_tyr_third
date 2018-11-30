@@ -36,7 +36,7 @@ class WayBillVC: MainBaseVC {
         super.viewDidLoad()
         self.wr_setNavBarShadowImageHidden(true)
         self.addNaviHeader(placeholder: "搜索我的运单(运单号、承运人、车牌号、线路)")
-        self.addMessageRihgtItem()
+
         self.emptyTitle(title: "暂无运单", to: self.tableView)
         self.hiddenTableViewSeperate(tableView: self.tableView)
         self.tableView.beginRefresh()
@@ -44,6 +44,8 @@ class WayBillVC: MainBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //设置消息个数
+        self.getMessageNumRequest()
         self.tableView.beginRefresh()
         if WDLCoreManager.shared().regionAreas == nil || WDLCoreManager.shared().regionAreas?.count == 0 {
             self.loadAllAreaAndStore {

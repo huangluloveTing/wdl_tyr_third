@@ -30,4 +30,5 @@ class IdentiferFailVC: NormalBaseVC {
         let info = WDLCoreManager.shared().userInfo
         self.toCarriorAth(consignor: info, title: "修改认证")
     }
+    
 }

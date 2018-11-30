@@ -101,6 +101,7 @@ struct ModityPhoneModel : HandyJSON {
 
 //消息中心
 struct MessageQueryBean: HandyJSON{
+    var id: String? //消息id
     var msgTo: String?      //消息接收人（当前用户的id号）
     var startTime: String?  //开始时间
     var endTime: String?    //结束时间

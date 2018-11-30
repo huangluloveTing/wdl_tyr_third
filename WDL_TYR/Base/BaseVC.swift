@@ -19,6 +19,7 @@ enum SupplyGoodsCommand<T> {
 
 class BaseVC: UIViewController {
     
+    
     private var badgeValueView:BageView? // 消息图标
     
     public var showLeftBack:Bool = true // 是否显示左边返回
@@ -26,11 +27,13 @@ class BaseVC: UIViewController {
     public var dispose = DisposeBag()
     
     private var currentSearchBar:MySearchBar?
+    var numString: String? //消息个数
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
         self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
+        
         self.currentConfig()
         self.bindViewModel()
         self.configNavigationBar()
@@ -140,12 +143,32 @@ extension BaseVC {
         self.navigationItem.titleView = contentView
     }
     
+    //获取消息个数
+    func getMessageNumRequest() -> Void {
+        BaseApi.request(target: API.getMessageNum(), type: BaseResponseModel<Int>.self).subscribe(onNext: {[weak self] (model) in
+            
+            //消息个数
+            let numString = String(format: "%ld", model.data ?? 0)
+            self?.numString = numString
+            //设置ui
+            self?.addMessageRihgtItem()
+            }, onError: { (error) in
+                print("获取消息个数失败")
+        }).disposed(by: dispose)
+        
+    }
     
-    // 添加头部信息
+    // 添加头部消息个数提示
     func addMessageRihgtItem() {
         let rightBadgeView = BageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         rightBadgeView.bgImage(image: #imageLiteral(resourceName: "message"))
-        rightBadgeView.badgeValue(text: "99")
+        if self.numString == "0" {
+             rightBadgeView.badgeLabel.isHidden = true
+        }else{
+            rightBadgeView.badgeLabel.isHidden = false
+            rightBadgeView.badgeValue(text: self.numString)
+        }
+        
         rightBadgeView.textFont()
         rightBadgeView.badgeColor(color: UIColor.white)
         rightBadgeView.bgColor(bgColor: UIColor.clear)
@@ -155,6 +178,8 @@ extension BaseVC {
         })
         self.addRightBarbuttonItem(with: rightBadgeView)
     }
+    
+    
     
     // 添加下拉展开视图
     /**

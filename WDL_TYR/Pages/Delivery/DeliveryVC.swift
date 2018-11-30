@@ -101,7 +101,12 @@ class DeliveryVC: MainBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if self.showMessage == true {
+            //设置消息个数
+            self.getMessageNumRequest()
+        }
         self.reShelveGoodsInputContent()
+        
     }
     
     override func currentConfig() {
@@ -123,9 +128,7 @@ class DeliveryVC: MainBaseVC {
         
         self.timerPostButton.addBorder(color: nil, width: 0, radius: 22)
         self.surePostButton.addBorder(color: nil, width: 0, radius: 22)
-        if self.showMessage == true {
-            self.addMessageRihgtItem()
-        }
+ 
     }
     
     override func bindViewModel() {
