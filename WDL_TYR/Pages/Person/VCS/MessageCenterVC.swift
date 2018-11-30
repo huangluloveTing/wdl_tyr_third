@@ -133,7 +133,7 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
         }
         if info.msgType == 3 { // 运单信息
             icon = icons[1]
-            title = "运单信息"
+            title = "运单消息"
         }
         cell.showInfo(icon: icon ?? icons[0], title: title ?? "", content: info.msgInfo)
         return cell
@@ -145,14 +145,15 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
         let info = self.hallLists[indexPath.row]
+  
         if info.msgType == 1 { //系统消息
-           self.systermMessages()
+            self.systermMessages(info: info)
         }
         if info.msgType == 2 { //报价消息
-           self.toOfferMessages()
+           self.toOfferMessages(info: info)
         }
         if info.msgType == 3 { // 运单信息
-           self.wayBillsMessages()
+           self.wayBillsMessages(info: info)
         }
     }
     
@@ -164,25 +165,27 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
 //MARK: - Handles
 extension MessageCenterVC {
     
-    
     // 去报价信息
-    func toOfferMessages() -> Void {
+    func toOfferMessages(info: MessageQueryBean) -> Void {
         let vc = MessageDetailVC()
         vc.currentMsgType = 2
+        vc.currentInfo = info
         self.push(vc: vc, animated: true, title: "消息详情")
     }
     
     // 去运单信息
-    func wayBillsMessages() -> Void {
+    func wayBillsMessages(info: MessageQueryBean) -> Void {
         let vc = MessageDetailVC()
         vc.currentMsgType = 3
+        vc.currentInfo = info
         self.push(vc: vc, animated: true, title: "消息详情")
     }
     
     // 去系统信息
-    func systermMessages() -> Void {
+    func systermMessages(info: MessageQueryBean) -> Void {
         let vc = MessageDetailVC()
         vc.currentMsgType = 1
+        vc.currentInfo = info
         self.push(vc: vc, animated: true, title: "消息详情")
     }
 }

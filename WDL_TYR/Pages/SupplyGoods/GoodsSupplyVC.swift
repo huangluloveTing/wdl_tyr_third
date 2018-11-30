@@ -200,10 +200,11 @@ class GoodsSupplyVC: MainBaseVC {
     private lazy var statusView:DropViewContainer = {
         var statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
         let type = WDLCoreManager.shared().consignorType
-        
+            //第三方
           if type == .third {
             statusView = GoodsSupplyStatusDropView(tags: GoodsStatus)
           }else{
+            //经销商
             statusView = GoodsSupplyStatusDropView(tags: AgentGoodsStatus)
           }
         

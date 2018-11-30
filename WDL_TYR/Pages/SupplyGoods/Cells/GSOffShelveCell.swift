@@ -9,7 +9,8 @@
 import UIKit
 
 class GSOffShelveCell: BaseCell {
-    
+    //该货源已下架顶部标签
+    @IBOutlet weak var topTitleLab: UILabel!
     
     @IBOutlet weak var reAddressLabel: UILabel!     // 收货地址
     @IBOutlet weak var reManLabel: UILabel!         // 收货人
@@ -43,8 +44,22 @@ class GSOffShelveCell: BaseCell {
 
 extension GSOffShelveCell {
     func contentInfo(info:OderHallBean?) -> Void {
+        let type = WDLCoreManager.shared().consignorType
+        //第三方
+        if type == .third {
+            self.topTitleLab.text = "该货源已下架"
+            //状态
+            self.goodsStauts(to: self.statusLabel, status: info?.isDeal ?? 0)
+        
+        }else{
+            //经销商
+            self.statusLabel.text = "未成交"
+            self.topTitleLab.text = "该货源未成交"
+        }
+        
+        
         self.codeLabel.text = Util.concatSeperateStr(seperete: "", strs: "货源编号(" , info?.supplyCode , ")")
-        self.goodsStauts(to: self.statusLabel, status: info?.isDeal ?? 0)
+        
         self.startLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.startProvince , info?.startCity , info?.startDistrict)
         self.endLabel.text = Util.concatSeperateStr(seperete: "", strs: info?.endProvince,info?.endCity,info?.endDistrict)
         self.loadTimeLabel.text = Util.dateFormatter(date: (Double(info?.loadingTime ?? "0") ?? 0) / 1000, formatter: "yyyy-MM-dd")
