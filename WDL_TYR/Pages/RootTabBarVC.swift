@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwift
 
 class RootTabBarVC: UITabBarController {
-
+    private var infoDispose:Disposable? = nil
+    
     lazy private var authAlert:ConsignorAuthAlertView = {
        let alert = ConsignorAuthAlertView.authAlertView()
         alert.authClosure = {[weak self] in
@@ -29,6 +30,8 @@ class RootTabBarVC: UITabBarController {
         self.delegate = self
       
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
