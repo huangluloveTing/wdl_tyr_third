@@ -25,7 +25,7 @@ extension AppDelegate {
     func initJPush(lanchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Void {
         var production = true
         #if DEBUG
-        production = false
+            production = false
         #endif
         JPUSHService.setup(withOption: lanchOptions,
                            appKey: JPushAppKey,
