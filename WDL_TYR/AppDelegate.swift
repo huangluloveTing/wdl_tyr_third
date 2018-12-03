@@ -141,10 +141,17 @@ extension AppDelegate {
            let _ = BaseApi.request(target: API.getZbnConsignor(id), type: BaseResponseModel<ZbnConsignor>.self)
                 .retry()
                 .subscribe(onNext: { (data) in
-                    WDLCoreManager.shared().userInfo = data.data
+                    var newInfo = data.data
+                    let userInfo = WDLCoreManager.shared().userInfo
+                    if (newInfo?.token?.count ?? 0) <= 0 {
+                        newInfo?.token = userInfo?.token
+                    }
+                    WDLCoreManager.shared().userInfo = newInfo
                 }, onError: { (error) in
                 })
         }
+        
+        WDLCoreManager.shared().loadUnReadMessage(closure: nil)
     }
 }
 

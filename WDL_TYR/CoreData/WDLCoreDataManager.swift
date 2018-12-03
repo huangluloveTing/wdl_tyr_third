@@ -8,6 +8,8 @@
 
 import Foundation
 import HandyJSON
+import RxSwift
+import RxCocoa
 
 class WDLCoreManager: NSObject {
     
@@ -35,12 +37,19 @@ class WDLCoreManager: NSObject {
         }
     }
     
+    public var unreadMessageCount:Int = 0
+    
     private static let instance = WDLCoreManager()
-    private override init() {}
+    private override init() {
+        super.init()
+    }
     
     public static func shared() -> WDLCoreManager {
+        instance.messageLisnter()
         return instance
     }
+    
+    public var messageLisnterClosure:((Int) -> ())?
     
     // 当前用户的身份
     public var consignorType:ConsignorType?  {
@@ -53,5 +62,21 @@ class WDLCoreManager: NSObject {
     
     private func loadUserInfo() -> ZbnConsignor? {
         return UserStore.loadUserInfo()
+    }
+    
+    public func loadUnReadMessage(closure:((Int)->())?) {
+        let _ = BaseApi.request(target: API.getMessageNum(), type: BaseResponseModel<Int>.self)
+            .retry()
+            .subscribe(onNext: { (data) in
+                self.unreadMessageCount = data.data ?? 0
+                if let closure = closure {
+                    closure(data.data ?? 0)
+                }
+            })
+    }
+    
+    //MARK: - 监听 消息 变化
+    func messageLisnter() -> Void {
+       
     }
 }

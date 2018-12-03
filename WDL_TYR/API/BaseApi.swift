@@ -45,6 +45,7 @@ func requestClosure(endPoint:Endpoint , done:MoyaProvider<API>.RequestResultClos
         request.addValue(WDLCoreManager.shared().userInfo?.token ?? "", forHTTPHeaderField:"Token" )
         request.addValue("", forHTTPHeaderField: "consignorToken")
         print(request.allHTTPHeaderFields ?? Dictionary())
+        print("URL:" ,request.url?.absoluteString ?? "")
         done(.success(request))
     }
     catch let error {

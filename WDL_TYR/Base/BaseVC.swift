@@ -41,6 +41,8 @@ class BaseVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.numString = String(WDLCoreManager.shared().unreadMessageCount)
+        updateUnreadMessageCount()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +56,6 @@ class BaseVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.badgeValueView?.badgeValue(text: self.messageBadgeValue())
     }
     
     // 绑定vm
@@ -83,7 +84,7 @@ class BaseVC: UIViewController {
     
     //MARK: - 当前消息个数
     func messageBadgeValue() -> String {
-        return self.numString ?? ""
+        return self.numString ?? "0"
     }
 }
 
@@ -143,31 +144,10 @@ extension BaseVC {
         self.navigationItem.titleView = contentView
     }
     
-    //获取消息个数
-    func getMessageNumRequest() -> Void {
-        BaseApi.request(target: API.getMessageNum(), type: BaseResponseModel<Int>.self).subscribe(onNext: {[weak self] (model) in
-            
-            //消息个数
-            let numString = String(format: "%ld", model.data ?? 0)
-            self?.numString = numString
-            //设置ui
-            self?.addMessageRihgtItem()
-            }, onError: { (error) in
-                print("获取消息个数失败")
-        }).disposed(by: dispose)
-        
-    }
-    
     // 添加头部消息个数提示
     func addMessageRihgtItem() {
         let rightBadgeView = BageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         rightBadgeView.bgImage(image: #imageLiteral(resourceName: "message"))
-        if self.numString == "0" {
-             rightBadgeView.badgeLabel.isHidden = true
-        }else{
-            rightBadgeView.badgeLabel.isHidden = false
-            rightBadgeView.badgeValue(text: self.numString)
-        }
         
         rightBadgeView.textFont()
         rightBadgeView.badgeColor(color: UIColor.white)
@@ -202,6 +182,15 @@ extension BaseVC {
         self.toMessageCenter()
     }
     
+    //MARK: - 更新消息
+    func updateUnreadMessageCount() -> Void {
+        let count = self.messageBadgeValue()
+        self.badgeValueView?.badgeLabel.isHidden = false
+        if Int(count) == 0 {
+            self.badgeValueView?.badgeLabel.isHidden = true
+        }
+        self.badgeValueView?.badgeValue(text: count)
+    }
 }
 
 // navigationBar
@@ -265,5 +254,16 @@ extension BaseVC  {
                 WDLCoreManager.shared().regionAreas = datas
             })
             .disposed(by: dispose)
+    }
+    
+    //获取消息个数
+    func getMessageNumRequest() -> Void {
+        WDLCoreManager.shared().loadUnReadMessage(closure: { [weak self](count) in
+            //消息个数
+            let numString = String(format: "%ld", count)
+            self?.numString = numString
+            //设置ui
+            self?.updateUnreadMessageCount()
+        })
     }
 }

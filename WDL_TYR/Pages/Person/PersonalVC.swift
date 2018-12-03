@@ -113,6 +113,8 @@ extension PersonalVC {
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
                 self?.zbnConsignor = data.data
+                let token = WDLCoreManager.shared().userInfo?.token
+                self?.zbnConsignor?.token = token
                 WDLCoreManager.shared().userInfo = self?.zbnConsignor
                 self?.tableView.reloadData()
             }, onError: { /*[weak self]*/(error) in
@@ -123,18 +125,11 @@ extension PersonalVC {
     
     
         //获取消息个数
-      func getMessageNum() -> Void {
-        BaseApi.request(target: API.getMessageNum(), type: BaseResponseModel<Int>.self).subscribe(onNext: {[weak self] (model) in
-            
-            
-            self?.currentMessageNum = String(format: "%ld", model.data ?? 0)
+    func getMessageNum() -> Void {
+        WDLCoreManager.shared().loadUnReadMessage { [weak self](count) in
+            self?.currentMessageNum = String(format: "%ld", count)
             self?.tableView.reloadData()
-            
-           
-        }, onError: { (error) in
-            print("获取消息个数失败")
-        }).disposed(by: dispose)
-    
+        }
     }
     
 }

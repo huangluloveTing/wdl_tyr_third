@@ -103,6 +103,7 @@ class DeliveryVC: MainBaseVC {
         super.viewWillAppear(animated)
         if self.showMessage == true {
             //设置消息个数
+            self.addMessageRihgtItem()
             self.getMessageNumRequest()
         }
         self.reShelveGoodsInputContent()

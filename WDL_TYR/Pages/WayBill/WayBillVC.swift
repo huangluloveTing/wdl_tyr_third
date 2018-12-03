@@ -34,6 +34,7 @@ class WayBillVC: MainBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addMessageRihgtItem()
         self.wr_setNavBarShadowImageHidden(true)
         self.addNaviHeader(placeholder: "搜索我的运单(运单号、承运人、车牌号、线路)")
 
