@@ -83,7 +83,7 @@ class BaseVC: UIViewController {
     
     //MARK: - 当前消息个数
     func messageBadgeValue() -> String {
-        return "2"
+        return self.numString ?? ""
     }
 }
 

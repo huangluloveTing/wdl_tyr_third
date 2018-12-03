@@ -21,8 +21,6 @@ extension AppDelegate {
         }
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
         
-       
-        
     }
     
     func initJPush(lanchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Void {
@@ -65,18 +63,6 @@ extension AppDelegate : JPUSHRegisterDelegate {
         completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue|UNNotificationPresentationOptions.sound.rawValue|UNNotificationPresentationOptions.badge.rawValue))
     }
     
-    // iOS 10 Support
-//    @available(iOS 10.0, *)
-//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
-//        let userInfo = response.notification.request.content.userInfo
-//        if response.notification.request.trigger is UNPushNotificationTrigger {
-//            JPUSHService.handleRemoteNotification(userInfo)
-//        }
-//        // 系统要求执行这个方法
-//        completionHandler()
-//    }
-//
-    
     @available(iOS 10.0, *)
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
         print(">JPUSHRegisterDelegate jpushNotificationCenter didReceive");
@@ -91,27 +77,7 @@ extension AppDelegate : JPUSHRegisterDelegate {
         completionHandler()
         
         //自定义跳转界面方法,也可以根据需要在首页做监听事件
-        let userDic = userInfo as NSDictionary
-//        if userDic["sourceType"] != nil{
-//            if userDic["sourceType"] as! String == "2"{
-//                //消息类型
-//                messageCode = 2  //粉丝列表
-//                if userDic["id"] != nil{
-//                    remotePushId = userDic["id"] as! String
-//                }
-//                mainVC.removeFromParentViewController()
-//                let mainVc = MainViewController()
-//                mainVC = mainVc
-//                window?.rootViewController = mainVc
-//            }
-//        }
+//        let userDic = userInfo as NSDictionary
     }
-  
-    
-    //    - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger options))completionHandler;
-    
-    //    - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler;
-    
-    //    - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(nullable UNNotification *)notification NS_AVAILABLE_IOS(12.0);
 }
 

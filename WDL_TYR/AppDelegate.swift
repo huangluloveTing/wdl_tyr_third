@@ -73,6 +73,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerToken(token: deviceToken)
     }
     
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+    }
+    
     
 }
 
