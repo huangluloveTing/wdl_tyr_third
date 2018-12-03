@@ -87,17 +87,43 @@ extension RootTabBarVC : UITabBarControllerDelegate {
                     self.authAlert.showAlert(title: "您还没有认证，认证后可进行运单相关操作")
                     return false
                 }
+                if index == 3 || index == 0{
+                    self.authAlert.showAlert(title: "您还没有认证，认证后可进行运单相关操作")
+                    return true
+                }
             }
+        }else{
+            //经销商
+            if index == 1 {
+                //运单
+                self.authAlert.showAlert(title: "您还没有认证，认证后可进行货源相关操作")
+                return false
+            }
+            if index == 2  || index == 0 {
+                self.authAlert.showAlert(title: "您还没有认证，认证后可进行运单相关操作")
+                return true
+            }
+            
         }
         return true
     }
     
     // 立即认证
     func toAuthNow() -> Void {
+        
         let vc = self.viewControllers![self.selectedIndex] as! UINavigationController
-        let authVC = ConsignorAuthVC()
-        authVC.authModel = AuthConsignorVo.deserialize(from: WDLCoreManager.shared().userInfo?.toJSON()) ?? AuthConsignorVo()
-        authVC.title = "认证"
-        vc.pushViewController(authVC, animated: true)
+        //如果是审核中
+        if WDLCoreManager.shared().userInfo?.status == .autherizing {
+            let authVC = IdentifingVC()
+            authVC.title = "认证"
+            vc.pushViewController(authVC, animated: true)
+        }else {
+            
+            let authVC = ConsignorAuthVC()
+            authVC.authModel = AuthConsignorVo.deserialize(from: WDLCoreManager.shared().userInfo?.toJSON()) ?? AuthConsignorVo()
+            authVC.title = "认证"
+            vc.pushViewController(authVC, animated: true)
+        }
+        
     }
 }

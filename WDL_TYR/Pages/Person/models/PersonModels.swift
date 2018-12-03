@@ -14,7 +14,7 @@ enum ConsignorType:Int , HandyJSONEnum {
     case third = 2
 }
 
-//0:未审核，1：审核中，2：审核失败，3：审核中
+ //状态(0:未审核，1：审核中，2：审核失败（驳回），3：审核通过) ,
 enum AutherizStatus:Int , HandyJSONEnum {
     case not_start = 0
     case autherizing = 1
@@ -45,7 +45,7 @@ struct ZbnConsignor : HandyJSON {
     var remark : String? // (string): 备注 ,
     var score : Float = 0 // (number): 平分 ,
     var startTime : TimeInterval = 0 // (string): 开始时间 ,
-    var status : AutherizStatus = .not_start // (integer): 状态(0:未审核，1：审核中，2：审核失败，3：审核中) ,
+    var status : AutherizStatus = .not_start // (integer): 状态(0:未审核，1：审核中，2：审核失败（驳回），3：审核通过) ,
     var transactionCount : Int = 0 // (integer): 成交数量
     var token:String?
 }

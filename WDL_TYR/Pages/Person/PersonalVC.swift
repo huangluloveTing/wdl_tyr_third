@@ -189,28 +189,39 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
             if row == 0 {
                 self.toAuthVC()
             }
-            if WDLCoreManager.shared().consignorType == .agency { // 经销商
-                if row == 2 {
-                    self.toMessageCenter()
+//            if WDLCoreManager.shared().userInfo?.status != .autherized {
+//                //没有认证
+//                SVProgressHUD .showInfo(withStatus: "还未认证，无法查看")
+//                SVProgressHUD.dismiss(withDelay: 1.0)
+//            }else {
+                //认证通过
+                
+                if WDLCoreManager.shared().consignorType == .agency { // 经销商
+                    if row == 2 {
+                        self.toMessageCenter()
+                    }
+                    if row == 1 {
+                        self.toMyCarrier()
+                    }
+                    if row == 3 {
+                        self.toPersonSetting()
+                    }
+                    
+                } else {
+                    if row == 2 {
+                        self.toPersonSetting()
+                    }
+                    if row == 1 {
+                        self.toMessageCenter()
+                    }
+                    if row == 3 {
+                        self.linkService()
+                    }
                 }
-                if row == 1 {
-                    self.toMyCarrier()
-                }
-                if row == 3 {
-                    self.toPersonSetting()
-                }
-
-            } else {
-                if row == 2 {
-                    self.toPersonSetting()
-                }
-                if row == 1 {
-                    self.toMessageCenter()
-                }
-                if row == 3 {
-                    self.linkService()
-                }
-            }
+                
+                
+//            }
+           
         }
     }
     
@@ -242,11 +253,14 @@ extension PersonalVC :  UITableViewDelegate , UITableViewDataSource {
         let info = self.personInfos![indexPath.row]
         cell.contentInfo(info: info,messageNum: self.currentMessageNum)
         if cell.exTitleLabel.text != "消息中心" {
-            if indexPath.row == 0 {
-                cell.showAuthStatus(status: self.zbnConsignor?.status)
-            } else {
-                cell.showAuthStatus(status: nil)
-            }
+        
+        if indexPath.row == 0 {
+            cell.showAuthStatus(status: self.zbnConsignor?.status)
+        } else {
+            cell.showAuthStatus(status: nil)
+        }
+            
+           
         }
         
       
