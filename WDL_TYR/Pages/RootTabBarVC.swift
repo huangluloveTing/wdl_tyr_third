@@ -93,17 +93,18 @@ extension RootTabBarVC : UITabBarControllerDelegate {
                 }
             }
         }else{
-            //经销商
-            if index == 1 {
-                //运单
-                self.authAlert.showAlert(title: "您还没有认证，认证后可进行货源相关操作")
-                return false
+            if WDLCoreManager.shared().userInfo?.status != .autherized {
+                //经销商
+                if index == 1 {
+                    //运单
+                    self.authAlert.showAlert(title: "您还没有认证，认证后可进行货源相关操作")
+                    return false
+                }
+                if index == 2  || index == 0 {
+                    self.authAlert.showAlert(title: "您还没有认证，认证后可进行运单相关操作")
+                    return true
+                }
             }
-            if index == 2  || index == 0 {
-                self.authAlert.showAlert(title: "您还没有认证，认证后可进行运单相关操作")
-                return true
-            }
-            
         }
         return true
     }

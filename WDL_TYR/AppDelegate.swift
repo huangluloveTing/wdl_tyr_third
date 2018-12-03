@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.configIQKeyboard()
         self.configGAODEMap()
         self.configHUD()
+        
         //通过这个
         JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
             if resCode == 0{
