@@ -33,7 +33,7 @@ class PersonalVC: MainBaseVC  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.zbnConsignor = WDLCoreManager.shared().userInfo
+//        self.zbnConsignor = WDLCoreManager.shared().userInfo
         self.fd_prefersNavigationBarHidden = true
     }
     
@@ -42,7 +42,7 @@ class PersonalVC: MainBaseVC  {
         self.initialPersonExcuteInfos()
         //获取消息个数
         self.getMessageNum()
-      
+        //获取认证信息
         self.loadInfo()
     }
 
@@ -107,11 +107,13 @@ extension PersonalVC {
 //MARK: load data
 extension PersonalVC {
     func loadInfo() -> Void {
+        //获取认证信息信息
         let id = WDLCoreManager.shared().userInfo?.id ?? ""
         self.infoDispose = BaseApi.request(target: API.getZbnConsignor(id), type: BaseResponseModel<ZbnConsignor>.self)
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
                 self?.zbnConsignor = data.data
+                WDLCoreManager.shared().userInfo = self?.zbnConsignor
                 self?.tableView.reloadData()
             }, onError: { /*[weak self]*/(error) in
 //                self?.showFail(fail: error.localizedDescription, complete: nil)
