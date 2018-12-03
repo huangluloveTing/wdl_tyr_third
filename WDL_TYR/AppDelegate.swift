@@ -23,7 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.configIQKeyboard()
         self.configGAODEMap()
         self.configHUD()
-        
+        //通过这个
+        JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
+            if resCode == 0{
+                print("registrationID获取成功：\(String(describing: registrationID))")
+            }else {
+                print("registrationID获取失败：\(String(describing: registrationID))")
+            }
+        }
         
         return true
     }

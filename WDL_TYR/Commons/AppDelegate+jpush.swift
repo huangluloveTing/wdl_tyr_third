@@ -20,6 +20,9 @@ extension AppDelegate {
             
         }
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        
+       
+        
     }
     
     func initJPush(lanchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Void {
@@ -36,6 +39,10 @@ extension AppDelegate {
     func registerToken(token:Data) -> Void {
         JPUSHService.registerDeviceToken(token)
     }
+    
+  
+    
+ 
 }
 
 extension AppDelegate : JPUSHRegisterDelegate {
@@ -59,15 +66,47 @@ extension AppDelegate : JPUSHRegisterDelegate {
     }
     
     // iOS 10 Support
+//    @available(iOS 10.0, *)
+//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+//        let userInfo = response.notification.request.content.userInfo
+//        if response.notification.request.trigger is UNPushNotificationTrigger {
+//            JPUSHService.handleRemoteNotification(userInfo)
+//        }
+//        // 系统要求执行这个方法
+//        completionHandler()
+//    }
+//
+    
     @available(iOS 10.0, *)
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        print(">JPUSHRegisterDelegate jpushNotificationCenter didReceive");
         let userInfo = response.notification.request.content.userInfo
-        if response.notification.request.trigger is UNPushNotificationTrigger {
+        print("打印极光推送消息内容\(userInfo as NSDictionary)")
+        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
             JPUSHService.handleRemoteNotification(userInfo)
         }
-        // 系统要求执行这个方法
+        //角标清空
+        JPUSHService.setBadge(0)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler()
+        
+        //自定义跳转界面方法,也可以根据需要在首页做监听事件
+        let userDic = userInfo as NSDictionary
+//        if userDic["sourceType"] != nil{
+//            if userDic["sourceType"] as! String == "2"{
+//                //消息类型
+//                messageCode = 2  //粉丝列表
+//                if userDic["id"] != nil{
+//                    remotePushId = userDic["id"] as! String
+//                }
+//                mainVC.removeFromParentViewController()
+//                let mainVc = MainViewController()
+//                mainVC = mainVc
+//                window?.rootViewController = mainVc
+//            }
+//        }
     }
+  
     
     //    - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger options))completionHandler;
     
