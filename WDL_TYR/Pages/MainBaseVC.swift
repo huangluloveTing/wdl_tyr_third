@@ -11,6 +11,7 @@ import UIKit
 let GoodsStatus = ["不限","竞价中","已成交","未上架","已下架"]
 //经销商货源下拉筛选
 let AgentGoodsStatus = ["不限","竞价中","已成交","未成交"]
+
 class MainBaseVC: BaseVC {
 
     override func viewDidLoad() {
@@ -21,11 +22,7 @@ class MainBaseVC: BaseVC {
         self.wr_setNavBarTitleColor(UIColor.white)
         self.view.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+  
 }
 
