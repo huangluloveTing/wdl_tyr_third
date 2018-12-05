@@ -39,6 +39,6 @@ extension LocationLineCell {
             self.bottomLineView.isHidden  = true
         }
         self.addressLabel.text = address
-        self.timeLabel.text = Util.dateFormatter(date: time, formatter: "MM-dd HH:mm")
+        self.timeLabel.text = Util.dateFormatter(date: time / 1000, formatter: "MM-dd HH:mm")
     }
 }
