@@ -17,15 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        //初始化配置
         initJPush(lanchOptions: launchOptions)
-        
+        //注册设备
+        registerJPush()
         autoLogin()
         self.configIQKeyboard()
         self.configGAODEMap()
         self.configHUD()
         
-        //通过这个
+//        [[UIApplicationsharedApplication]registerForRemoteNotifications];
+        UIApplication.shared.registerForRemoteNotifications()
+        //通过这个获取registrationID 发送消息
         JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
             if resCode == 0{
                 print("registrationID获取成功：\(String(describing: registrationID))")
