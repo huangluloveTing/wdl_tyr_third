@@ -70,7 +70,7 @@ class WayBillStatusView: UIView {
     
     private func initialProcessView() {
         self.processView = WayBillProcessView(frame: self.bounds)
-        self.processView.padding = (showType == .Five) ? 15 : 45
+        self.processView.padding = (showType == .Five) ? 15 * IPHONE_RATE : 45 * IPHONE_RATE
         self.addSubview(self.processView)
     }
     
@@ -270,13 +270,13 @@ fileprivate class WayBillProcessView: UIView {
     
     
     private lazy var allProcessLine:UIView = {
-        let line = UIView(frame: CGRect(x: 20, y: 19 , width: self.zt_width - 40, height: 2))
+        let line = UIView(frame: CGRect(x: 20, y: 19 * IPHONE_RATE, width: self.zt_width - 40, height: 2))
         line.backgroundColor = UIColor(hex: COLOR_BACKGROUND)
         return line
     }()
     
     private lazy var currentProcessLine:UIView = {
-        let line = UIView(frame: CGRect(x: 20, y: 19 , width: 0, height: 2))
+        let line = UIView(frame: CGRect(x: 20, y: 19 * IPHONE_RATE , width: 0, height: 2))
         line.backgroundColor = UIColor(hex: COLOR_BUTTON)
         return line
     }()
@@ -285,13 +285,13 @@ fileprivate class WayBillProcessView: UIView {
 fileprivate class ProcessItemView:UIView {
     
     private lazy var imageView:UIImageView = {
-       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40 * IPHONE_RATE, height: 40 * IPHONE_RATE))
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         return imageView
     }()
     private lazy var titleLabel : UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 13 * IPHONE_RATE)
         label.textAlignment = NSTextAlignment.center
         return label
     }()

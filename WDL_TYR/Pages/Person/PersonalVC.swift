@@ -22,13 +22,10 @@ class PersonalVC: MainBaseVC  {
     private var infoDispose:Disposable? = nil
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var dropHintView: DropHintView!
     
     private var personInfos:[PersonExcuteInfo]?
-    
     private var zbnConsignor:ZbnConsignor?
-    
     private var currentMessageNum: String = ""//当前信息个数
     
     override func viewDidLoad() {
