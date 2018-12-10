@@ -32,6 +32,7 @@ class PersonalVC: MainBaseVC  {
         super.viewDidLoad()
 //        self.zbnConsignor = WDLCoreManager.shared().userInfo
         self.fd_prefersNavigationBarHidden = true
+        registerMessageNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +72,10 @@ class PersonalVC: MainBaseVC  {
     }
     
     override func bindViewModel() {
+    }
+    
+    override func receiveMessageResultHandler() {
+        getMessageNum()
     }
 }
 

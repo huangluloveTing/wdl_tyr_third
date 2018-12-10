@@ -96,6 +96,7 @@ class DeliveryVC: MainBaseVC {
 //    var isClearAllData: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerMessageNotification()
         self.loadAllBasicInfo()
     }
     
@@ -108,6 +109,10 @@ class DeliveryVC: MainBaseVC {
         }
         self.reShelveGoodsInputContent()
         
+    }
+
+    override func receiveMessageResultHandler() {
+        getMessageNumRequest()
     }
     
     override func currentConfig() {

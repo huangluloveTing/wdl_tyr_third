@@ -51,8 +51,13 @@ class GoodsSupplyVC: MainBaseVC {
         }
         self.emptyTitle(title: "暂无货源", to: self.tableView)
         self.addMessageRihgtItem()
+        registerMessageNotification()
     }
-    
+
+    override func receiveMessageResultHandler() {
+        getMessageNumRequest()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //设置消息个数

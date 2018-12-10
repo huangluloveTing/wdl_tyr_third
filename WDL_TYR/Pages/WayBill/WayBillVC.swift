@@ -41,6 +41,7 @@ class WayBillVC: MainBaseVC {
         self.emptyTitle(title: "暂无运单", to: self.tableView)
         self.hiddenTableViewSeperate(tableView: self.tableView)
         self.tableView.beginRefresh()
+        registerMessageNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +70,9 @@ class WayBillVC: MainBaseVC {
         super.didReceiveMemoryWarning()
     }
     
+    override func receiveMessageResultHandler() {
+        getMessageNumRequest()
+    }
     
     override func bindViewModel() {
         self.tableView.upRefresh()
