@@ -83,8 +83,7 @@ class LoginVC: BaseVC {
 
     // 点击我是承运人
     @IBAction func toCYRAction(_ sender: Any) {
-        let demoVC = DemoVC()
-        self.push(vc: demoVC, title: "")
+       self.gotoAppStore()
     }
     
     // 点击联系客服

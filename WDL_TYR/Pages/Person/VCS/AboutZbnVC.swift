@@ -9,19 +9,20 @@
 import UIKit
 
 class AboutZbnVC: NormalBaseVC {
-
+    var urlString: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.title = "关于织布鸟"
         let webView = UIWebView.init(frame: CGRect(origin: CGPoint.zero, size: CGSize.init(width: IPHONE_WIDTH, height:self.view.frame.size.height)))
         self.view.addSubview(webView)
-//        let urlString = HOST + "/app/common/companyProfile"
-        let urlString = HOST + "/html/profile.html"
-        webView.loadRequest(URLRequest.init(url: URL.init(string: urlString)!))
+
+        webView.loadRequest(URLRequest.init(url: URL.init(string: urlString ?? "")!))
         webView.delegate = self
     }
     
+    deinit {
+        self.hiddenToast()
+    }
 }
 extension AboutZbnVC: UIWebViewDelegate{
     // 该方法是在UIWebView在开发加载时调用

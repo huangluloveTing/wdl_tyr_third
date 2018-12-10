@@ -9,7 +9,12 @@
 import Foundation
 
 extension BaseVC {
-    
+    //跳转到应用的AppStore页页面
+    func gotoAppStore() {
+        let urlString = "itms-apps://itunes.apple.com/app/id1446242710"
+        let url = URL.init(string: urlString)
+        UIApplication.shared.openURL(url!)
+    }
     func toRegisterVC(title:String?) { // 去注册页面
         let registerVC = RegisterVC()
         self.push(vc: registerVC , title:title)
