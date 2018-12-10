@@ -59,6 +59,7 @@ extension AppDelegate : JPUSHRegisterDelegate {
         if notification.request.trigger is UNPushNotificationTrigger {
             JPUSHService.handleRemoteNotification(userInfo)
         }
+        NotificationCenter.default.post(name: .init(PUSH_MESSAGE_VALUE), object: nil, userInfo: nil)
         // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
         completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue|UNNotificationPresentationOptions.sound.rawValue|UNNotificationPresentationOptions.badge.rawValue))
     }
@@ -71,6 +72,7 @@ extension AppDelegate : JPUSHRegisterDelegate {
         if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))!{
             JPUSHService.handleRemoteNotification(userInfo)
         }
+        NotificationCenter.default.post(name: .init(PUSH_MESSAGE_VALUE), object: nil, userInfo: nil)
         //角标清空
         JPUSHService.setBadge(0)
         UIApplication.shared.applicationIconBadgeNumber = 0

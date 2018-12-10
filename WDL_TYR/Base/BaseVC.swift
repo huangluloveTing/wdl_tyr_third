@@ -86,6 +86,11 @@ class BaseVC: UIViewController {
     func messageBadgeValue() -> String {
         return self.numString ?? "0"
     }
+    
+    //MARK: - 消息接受 回调
+    func receiveMessageResultHandler() -> Void {
+        
+    }
 }
 
 
@@ -265,5 +270,15 @@ extension BaseVC  {
             //设置ui
             self?.updateUnreadMessageCount()
         })
+    }
+}
+
+extension BaseVC {
+    func registerMessageNotification() -> Void {
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveMessegeHandler), name: .init(PUSH_MESSAGE_VALUE), object: nil)
+    }
+    
+    @objc private func receiveMessegeHandler() {
+        receiveMessageResultHandler()
     }
 }

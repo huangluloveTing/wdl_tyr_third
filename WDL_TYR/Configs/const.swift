@@ -18,6 +18,9 @@ let IPHONE_HEIGHT = UIScreen.main.bounds.size.height
 
 let IPHONE_RATE = (IPHONE_WIDTH / 375.0) > 1 ? 1 : (IPHONE_WIDTH / 375.0)
 
+//MARK: - 通知中心
+let PUSH_MESSAGE_VALUE = "PUSH_MESSAGE_VALUE"
+
 let GAODE_MAP_KEY = "8e99eeada50ef322b5c993eb92acffd6"
 
 let RE_SHELVE_AGREEN_TITLE : String? = nil        // 确认签收收货须知 标题
