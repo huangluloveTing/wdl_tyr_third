@@ -9,7 +9,7 @@
 import UIKit
 
 class AboutZbnVC: NormalBaseVC {
-
+    var urlString: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 

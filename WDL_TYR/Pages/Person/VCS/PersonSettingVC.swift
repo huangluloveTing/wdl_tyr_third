@@ -12,7 +12,7 @@ class PersonSettingVC: NormalBaseVC {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private let settingTitles = ["修改密码","修改手机号","关于织布鸟","联系客服"]
+    private let settingTitles = ["修改密码","修改手机号","关于织布鸟","联系客服","用户隐私协议"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +88,18 @@ extension PersonSettingVC : UITableViewDelegate , UITableViewDataSource {
                 self.modifyPhone()
             }
             if row == 2 {
-                self.toZbnIntroduction()
+                //关于织布鸟
+                let urlString = HOST + "/html/profile.html"
+                self.toZbnIntroduction(urlString:urlString,title: "关于织布鸟")
             }
             if row == 3 {
                 self.linkService()
+            }
+            
+            if row == 4 {
+                //关于用户隐私协议
+                let urlString = HOST + "/html/zbnPrivacyPolicy.html"
+                self.toZbnIntroduction(urlString:urlString,title: "用户隐私协议")
             }
         }
     }
@@ -126,10 +134,11 @@ extension PersonSettingVC {
         self.push(vc: modify, title: "修改手机号码")
     }
     
-    // 关于织布鸟
-    func toZbnIntroduction() -> Void {
+    // 关于织布鸟/用户隐私协议
+    func toZbnIntroduction(urlString: String,title: String) -> Void {
         let about = AboutZbnVC()
-        self.push(vc: about, title: "关于织布鸟")
+        about.urlString = urlString
+        self.push(vc: about, title: title)
     }
     // 联系客服
     func linkService() -> Void {
