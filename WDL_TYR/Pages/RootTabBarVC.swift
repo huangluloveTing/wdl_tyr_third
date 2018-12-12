@@ -74,6 +74,10 @@ extension RootTabBarVC : UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = (viewControllers ?? []).firstIndex(of: viewController)
+        let count = self.viewControllers?.count
+        if index == count! - 1 {
+            return true
+        }
         return self.confirmAuthed(index: index ?? 0)
     }
     

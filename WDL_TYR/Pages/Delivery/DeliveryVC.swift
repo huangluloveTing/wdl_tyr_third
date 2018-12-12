@@ -367,10 +367,10 @@ extension DeliveryVC {
         let result:ComparisonResult = selDate.compare(sysDate)
         if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
             print("选择的时间 <= 系统时间")
-            self.showWarn(warn: "定时发布时间只能选择大于今天的时间", complete: nil)
-            return false
+          
+            return true
         }
-        return true
+        return false
     }
     
     //MARK: 确认发布

@@ -237,6 +237,7 @@ func apiMethod(api:API) -> Moya.Method {
     switch api {
     case .getCreateHallDictionary() ,
          .onShelf(_) ,
+         .registerSms(_) ,
          .undercarriage(_) ,
          .sinGletransaction(_),
          .deleteOrderHall(_),
