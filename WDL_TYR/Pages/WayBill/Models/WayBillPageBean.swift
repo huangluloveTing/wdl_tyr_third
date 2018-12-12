@@ -30,6 +30,7 @@ enum WayBillTransportStatus : Int , HandyJSONEnum { // 运单状态
 }
 
 struct WayBillInfoBean : HandyJSON {
+ 
     var autoTimeInterval : Int? // (integer): 自动成交时间间隔 ,
     var bidPriceWay : Int?      // (integer, optional),
     var carrierName : String?   // (string): 承运人姓名 ,
@@ -69,7 +70,7 @@ struct WayBillInfoBean : HandyJSON {
     var offerType : String? // (integer, optional),
     var offerHasVehicle : Int = 1 // (string): 报价类型（0-无车报价 1-有车报价） ,
     var offerWay :Int? // (integer): 报价方式[1：有车报价 2：无车报价] ,
-    var orderAvailabilityPeriod : String? // (string): 货源有效期 ,
+    var orderAvailabilityPeriod : TimeInterval? // (string): 货源有效期 ,
     var packageType : String? // (string): 包装类型 ,
     var payType :String? // (string, optional),
     var publishTime : TimeInterval? // (string): 发布时间 ,
@@ -95,7 +96,6 @@ struct WayBillInfoBean : HandyJSON {
     var vehicleType : String? // (string): 车型 ,
     var vehicleWidth : String? // (string): 车宽
     var evaluateList : [ZbnEvaluate]? // 评价信息
-    
     var vehicleLengthDriver : String? // (string): 司机车长 ,
     var vehicleTypeDriver : String?//(string): 司机车型 ,
     var vehicleWeightDriver : String?//(string): 司机车重 

@@ -622,6 +622,18 @@ extension WayBillDetailVC {
         return self.pageInfo?.transportVehicleList
     }
     
+    //时间比较
+    func compareTime(time:TimeInterval) -> Bool {
+        let selDate = Date(timeIntervalSince1970: time)
+        let sysDate = Date()
+        let result:ComparisonResult = selDate.compare(sysDate)
+        if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
+            print("货物有效期时间 <= 系统时间")
+            return false
+        }
+        return true
+    }
+    
     func addBottom() {
         self.showBottom = false
         if WDLCoreManager.shared().consignorType == .agency {
@@ -660,7 +672,27 @@ extension WayBillDetailVC {
         }
         switch self.pageInfo?.transportStatus ?? .noStart {
         case .noStart,.willToTransport:
-            let bottomCanUse = self.pageInfo?.offerHasVehicle == 1 || self.pageInfo?.driverStatus == 4
+            var bottomCanUse = self.pageInfo?.offerHasVehicle == 1 || self.pageInfo?.driverStatus == 4
+            //未配载司机根据有无车牌号,所有按钮置灰
+            if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil {
+                bottomCanUse = false
+            }
+            //未配载司机 且货源已过期:取消按钮可点击，起运按钮置灰
+//            print("\(String(describing: Util.dateFormatter(date: (self.pageInfo?.loadingTime ?? 0)/1000 )))，\(String(describing: Util.dateFormatter(date: (self.pageInfo?.orderAvailabilityPeriod ?? 0)/1000 ))), \(String(describing: self.pageInfo?.isDeal))")
+            if  self.compareTime(time: (self.pageInfo?.loadingTime ?? 0) / 1000) == false {
+                //过期了 未配载
+                if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil {
+                    //取消按钮可点击，起运按钮置灰
+                    let cancelItem = BottomHandleItem(title:"取消运单" ,enable:true)
+                    let sureItem = BottomHandleItem(title:"确认起运" ,enable:false)
+                    self.bottomButtom(items: [cancelItem , sureItem], targetView: self.tableView){ [weak self](index) in
+                        if index == 0 {
+                            self?.cancelWayBill() // 取消起运
+                        }
+                    }
+                }
+            }
+            
             self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView , enable: bottomCanUse) { [weak self](index) in
                 if index == 0 {
                     self?.cancelWayBill() // 取消起运
