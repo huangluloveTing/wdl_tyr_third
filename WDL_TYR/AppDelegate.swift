@@ -140,7 +140,8 @@ extension AppDelegate {
     // 获取 托运人信息
     func loadConsignorInfo() -> Void {
         let id = WDLCoreManager.shared().userInfo?.id ?? ""
-        if id.count > 0 {
+        let token = WDLCoreManager.shared().userInfo?.token ?? ""
+        if token.count > 0 {
            let _ = BaseApi.request(target: API.getZbnConsignor(id), type: BaseResponseModel<ZbnConsignor>.self)
                 .throttle(2, scheduler: MainScheduler.instance)
                 .retry()
@@ -153,9 +154,8 @@ extension AppDelegate {
                     WDLCoreManager.shared().userInfo = newInfo
                 }, onError: { (error) in
                 })
+            WDLCoreManager.shared().loadUnReadMessage(closure: nil)
         }
-        
-        WDLCoreManager.shared().loadUnReadMessage(closure: nil)
     }
 }
 
