@@ -60,6 +60,11 @@
 		7037B115213D1B3B00BDC718 /* OneChooseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */; };
 		70383E8421362E6C00D1DC32 /* UITableView+RefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */; };
 		703C12672153548B00A6180D /* DemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703C12662153548B00A6180D /* DemoVC.swift */; };
+		7044A03221C0F29F007A963F /* MoreSelectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044A03121C0F29F007A963F /* MoreSelectionModels.swift */; };
+		7044A03521C0F2DD007A963F /* MoreScreenSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044A03321C0F2DD007A963F /* MoreScreenSelectionVC.swift */; };
+		7044A03621C0F2DD007A963F /* MoreScreenSelectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7044A03421C0F2DD007A963F /* MoreScreenSelectionVC.xib */; };
+		7044A03921C0F2F2007A963F /* MoreScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044A03721C0F2F2007A963F /* MoreScreenCell.swift */; };
+		7044A03A21C0F2F2007A963F /* MoreScreenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7044A03821C0F2F2007A963F /* MoreScreenCell.xib */; };
 		7047769B21B0D09700628C6F /* PictureBroweManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7047769A21B0D09700628C6F /* PictureBroweManager.swift */; };
 		7047769D21B0DC3B00628C6F /* ConsignorAuthAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7047769C21B0DC3B00628C6F /* ConsignorAuthAlertView.swift */; };
 		704776A121B0DC8600628C6F /* ConsignorAuthAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704776A021B0DC8600628C6F /* ConsignorAuthAlertView.xib */; };
@@ -292,6 +297,11 @@
 		7037B114213D1B3B00BDC718 /* OneChooseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneChooseInputView.swift; sourceTree = "<group>"; };
 		70383E8321362E6C00D1DC32 /* UITableView+RefreshExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RefreshExtension.swift"; sourceTree = "<group>"; };
 		703C12662153548B00A6180D /* DemoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoVC.swift; sourceTree = "<group>"; };
+		7044A03121C0F29F007A963F /* MoreSelectionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSelectionModels.swift; sourceTree = "<group>"; };
+		7044A03321C0F2DD007A963F /* MoreScreenSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreScreenSelectionVC.swift; sourceTree = "<group>"; };
+		7044A03421C0F2DD007A963F /* MoreScreenSelectionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreScreenSelectionVC.xib; sourceTree = "<group>"; };
+		7044A03721C0F2F2007A963F /* MoreScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreScreenCell.swift; sourceTree = "<group>"; };
+		7044A03821C0F2F2007A963F /* MoreScreenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreScreenCell.xib; sourceTree = "<group>"; };
 		7047769A21B0D09700628C6F /* PictureBroweManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureBroweManager.swift; sourceTree = "<group>"; };
 		7047769C21B0DC3B00628C6F /* ConsignorAuthAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsignorAuthAlertView.swift; sourceTree = "<group>"; };
 		704776A021B0DC8600628C6F /* ConsignorAuthAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsignorAuthAlertView.xib; sourceTree = "<group>"; };
@@ -650,6 +660,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		7044A03021C0F280007A963F /* MoreScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7044A03121C0F29F007A963F /* MoreSelectionModels.swift */,
+				7044A03321C0F2DD007A963F /* MoreScreenSelectionVC.swift */,
+				7044A03421C0F2DD007A963F /* MoreScreenSelectionVC.xib */,
+				7044A03721C0F2F2007A963F /* MoreScreenCell.swift */,
+				7044A03821C0F2F2007A963F /* MoreScreenCell.xib */,
+			);
+			path = MoreScreen;
+			sourceTree = "<group>";
+		};
 		7058BD28212E94FE00B53DF6 /* VCTransition */ = {
 			isa = PBXGroup;
 			children = (
@@ -1003,6 +1025,7 @@
 		70C2524B212E5B23007F2ED5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				7044A03021C0F280007A963F /* MoreScreen */,
 				702C18402152308100601738 /* AlertManager */,
 				708150C12130F51B00D42723 /* Views */,
 				708150B42130E4B600D42723 /* Extension */,
@@ -1151,10 +1174,12 @@
 				70C7CB382174761700C10AC4 /* ConsignorAuthVC.xib in Resources */,
 				70B588FA2140B12F00EF704E /* DeliveryTruckTypeCell.xib in Resources */,
 				708D69FD214FFE9800884A80 /* WayBillTransLocationCell.xib in Resources */,
+				7044A03621C0F2DD007A963F /* MoreScreenSelectionVC.xib in Resources */,
 				70A319C32137D4C700017356 /* bad_star@3x.png in Resources */,
 				7058BD1F212E84A900B53DF6 /* RegisterAgreeView.xib in Resources */,
 				70A319DE2137FA4C00017356 /* GSQutationCell.xib in Resources */,
 				7037B0C9213A1F3700BDC718 /* WayBillDetailVC.xib in Resources */,
+				7044A03A21C0F2F2007A963F /* MoreScreenCell.xib in Resources */,
 				70F4602821539A5700821790 /* WayBillToCommentCell.xib in Resources */,
 				1875DF4921A50618006312D9 /* MessageDetailCell.xib in Resources */,
 				70BD352E218ACF91001580C3 /* WayBillDetailLinkInfoCell.xib in Resources */,
@@ -1244,7 +1269,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/LBPhotoBrowser/test/LBPhotoBrowser/LBPhotoBrowser.bundle",
@@ -1263,7 +1288,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WDL_TYR/Pods-WDL_TYR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1342,6 +1367,7 @@
 				708D6A152150D89800884A80 /* WayBillCommentAllCell.swift in Sources */,
 				70C25254212E5E36007F2ED5 /* colors.swift in Sources */,
 				7074C91D2148DAF000E689CB /* UITableView+ProxyDelegate.swift in Sources */,
+				7044A03221C0F29F007A963F /* MoreSelectionModels.swift in Sources */,
 				704E3502218C3B210022122C /* EnterpriseInfoCell.swift in Sources */,
 				70AD82AE213245D200A6715A /* GoodsSupplyCell.swift in Sources */,
 				7068E0E6213F830700929337 /* DeliveryPlaceTabHeader.swift in Sources */,
@@ -1360,6 +1386,7 @@
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
 				7037B0D7213C264E00BDC718 /* PersonalInfoHeader.swift in Sources */,
 				70A319B62137B55D00017356 /* ZTFoldTableView.swift in Sources */,
+				7044A03521C0F2DD007A963F /* MoreScreenSelectionVC.swift in Sources */,
 				70FD7A02213D952B00E6AA05 /* InputBaseVC.swift in Sources */,
 				70A319C82137DDBE00017356 /* GoodsSupplyFoldInfoView.swift in Sources */,
 				706C5A5C212EBE7D00C037F2 /* RootTabBarVC.swift in Sources */,
@@ -1371,6 +1398,7 @@
 				70A319D52137F43A00017356 /* GSTimerShelveCell.swift in Sources */,
 				708D69EA214D626300884A80 /* GSConfirmDealView.swift in Sources */,
 				708150BB2130E7CF00D42723 /* UIButton+Extension.swift in Sources */,
+				7044A03921C0F2F2007A963F /* MoreScreenCell.swift in Sources */,
 				184F1F7B21993EF7007B9998 /* IdentifingVC.swift in Sources */,
 				70505EF32147A94800CEE672 /* UIAlertView+Blocks.m in Sources */,
 				708D69FC214FFE9800884A80 /* WayBillTransLocationCell.swift in Sources */,
