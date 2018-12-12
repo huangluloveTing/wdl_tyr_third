@@ -678,7 +678,6 @@ extension WayBillDetailVC {
                 bottomCanUse = false
             }
             //未配载司机 且货源已过期:取消按钮可点击，起运按钮置灰
-//            print("\(String(describing: Util.dateFormatter(date: (self.pageInfo?.loadingTime ?? 0)/1000 )))，\(String(describing: Util.dateFormatter(date: (self.pageInfo?.orderAvailabilityPeriod ?? 0)/1000 ))), \(String(describing: self.pageInfo?.isDeal))")
             if  self.compareTime(time: (self.pageInfo?.loadingTime ?? 0) / 1000) == false {
                 //过期了 未配载
                 if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil {
