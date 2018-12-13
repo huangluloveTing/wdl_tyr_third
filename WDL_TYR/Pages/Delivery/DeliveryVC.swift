@@ -368,9 +368,9 @@ extension DeliveryVC {
         if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
             print("选择的时间 <= 系统时间")
           
-            return true
+            return false
         }
-        return false
+        return true
     }
     
     //MARK: 确认发布
