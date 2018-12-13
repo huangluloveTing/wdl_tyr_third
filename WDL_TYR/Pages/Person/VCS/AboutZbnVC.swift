@@ -13,15 +13,12 @@ class AboutZbnVC: NormalBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.title = "关于织布鸟"
         let webView = UIWebView()
         self.view.addSubview(webView)
-//        let urlString = HOST + "/app/common/companyProfile"
         webView.snp.makeConstraints { (maker) in
             maker.top.left.right.bottom.equalTo(0)
         }
-        let urlString = HOST + "/html/profile.html"
-        webView.loadRequest(URLRequest.init(url: URL.init(string: urlString)!))
+        webView.loadRequest(URLRequest.init(url: URL.init(string: urlString ?? "")!))
         webView.delegate = self
     }
     
