@@ -628,9 +628,9 @@ extension WayBillDetailVC {
         let sysDate = Date().timeIntervalSince1970
         if selDate <= sysDate {
             print("货物有效期时间 <= 系统时间")
-            return false
+            return true
         }
-        return true
+        return false
     }
     
     func addBottom() {
@@ -672,12 +672,14 @@ extension WayBillDetailVC {
         switch self.pageInfo?.transportStatus ?? .noStart {
         case .noStart,.willToTransport:
             var bottomCanUse = self.pageInfo?.offerHasVehicle == 1 || self.pageInfo?.driverStatus == 4
-            //未配载司机根据有无车牌号,所有按钮置灰
-            if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil {
+            //未配载司机根据有无车牌号，或者无车报价,所有按钮置灰，
+            if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil ||  self.pageInfo?.offerHasVehicle == 0 {
                 bottomCanUse = false
             }
+            
+         
             //未配载司机 且货源已过期:取消按钮可点击，起运按钮置灰
-            if  self.compareTime(time: (self.pageInfo?.loadingTime ?? 0) / 1000) == false {
+            if  self.compareTime(time: (self.pageInfo?.loadingTime ?? 0) / 1000) == true {
                 //过期了 未配载
                 if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil {
                     //取消按钮可点击，起运按钮置灰
@@ -687,12 +689,12 @@ extension WayBillDetailVC {
                         if index == 0 {
                             self?.cancelWayBill() // 取消起运
                         }
+                        
                     }
                     return
                 }
                 
             }
-            
             self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView , enable: bottomCanUse) { [weak self](index) in
                 if index == 0 {
                     self?.cancelWayBill() // 取消起运
@@ -700,6 +702,8 @@ extension WayBillDetailVC {
                     self?.sureToTransport() // 确认起运
                 }
             }
+            
+           
             self.showBottom = true
             break
         case .transporting:

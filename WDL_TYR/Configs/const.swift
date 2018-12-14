@@ -30,7 +30,6 @@ let RE_SHELVE_AGREEN_CONTENT : String = "1、当您收到货物时，请与送�
 let JPushAppKey = "20aeb9ef1cdc4a5185da6bb6"
 let JPushMasterSecret = "71b55a4396de63853ad08c68"
 
-
 //外网测试
 let HOST = "http://182.150.21.104:58092/zbn-web"
 //zhao xiao yang
