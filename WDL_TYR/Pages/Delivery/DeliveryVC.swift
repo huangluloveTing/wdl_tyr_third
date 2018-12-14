@@ -564,8 +564,9 @@ extension DeliveryVC {
                 self.showWarn(warn: "装货时间只能选择大于今天的时间", complete: nil)
                 return false
             }
+            return true
         }
-        return true
+        return false
     }
     
 

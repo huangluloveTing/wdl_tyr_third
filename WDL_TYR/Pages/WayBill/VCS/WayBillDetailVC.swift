@@ -624,10 +624,9 @@ extension WayBillDetailVC {
     
     //时间比较
     func compareTime(time:TimeInterval) -> Bool {
-        let selDate = Date(timeIntervalSince1970: time)
-        let sysDate = Date()
-        let result:ComparisonResult = selDate.compare(sysDate)
-        if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
+        let selDate = time
+        let sysDate = Date().timeIntervalSince1970
+        if selDate <= sysDate {
             print("货物有效期时间 <= 系统时间")
             return false
         }
@@ -689,7 +688,9 @@ extension WayBillDetailVC {
                             self?.cancelWayBill() // 取消起运
                         }
                     }
+                    return
                 }
+                
             }
             
             self.bottomButtom(titles: ["取消运单" ,"确认起运"], targetView: self.tableView , enable: bottomCanUse) { [weak self](index) in

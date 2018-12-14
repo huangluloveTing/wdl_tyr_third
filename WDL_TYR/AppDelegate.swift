@@ -143,7 +143,6 @@ extension AppDelegate {
         let token = WDLCoreManager.shared().userInfo?.token ?? ""
         if token.count > 0 {
            let _ = BaseApi.request(target: API.getZbnConsignor(id), type: BaseResponseModel<ZbnConsignor>.self)
-                .throttle(2, scheduler: MainScheduler.instance)
                 .retry()
                 .subscribe(onNext: { (data) in
                     var newInfo = data.data
