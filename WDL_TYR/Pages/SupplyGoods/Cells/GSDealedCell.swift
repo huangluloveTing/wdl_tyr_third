@@ -34,8 +34,12 @@ extension GSDealedCell {
         self.dealTimeLabel.text = Util.dateFormatter(date: (Double(info?.dealTime ?? "0") ?? 0) / 1000, formatter: "MM-dd  HH:mm")
         self.cyLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer?.carrierName , "")
         self.driverLabel.text = Util.concatSeperateStr(seperete: " ", strs: offer?.driverName , offer?.driverPhone)
-        self.offerTimeLabel.text = Util.dateFormatter(date: (Double(offer?.offerTime ?? "0") ?? 0) / 1000, formatter: "MM-dd  HH:mm")
-        self.priceLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(offer?.quotedPrice ?? 0)) , "吨")
-        self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: String(Float(offer?.totalPrice ?? 0)) , "元")
+//        self.offerTimeLabel.text = Util.dateFormatter(date: (Double(offer?.offerTime ?? "0") ?? 0) / 1000, formatter: "MM-dd  HH:mm")//报价时间
+//        self.priceLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(offer?.quotedPrice ?? 0)) , "吨")//单价
+//        self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: String(Float(offer?.totalPrice ?? 0)) , "元")//总价
+        
+        self.offerTimeLabel.text = Util.dateFormatter(date: (info?.dealOfferTime ?? 0) / 1000, formatter: "MM-dd  HH:mm")//报价时间
+        self.priceLabel.text = Util.concatSeperateStr(seperete: "/", strs: String(Float(info?.dealUnitPrice ?? 0)) , "吨")//单价
+        self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: String(Float(info?.dealTotalPrice ?? 0)) , "元")//总价
     }
 }

@@ -15,7 +15,6 @@ class DropPlaceChooiceView: UIView {
     typealias DropPlaceDecideClosure = (Bool) -> ()
 
     @IBOutlet weak var contentView: UIView!
-    
     @IBOutlet weak var sureButton: UIButton!
     @IBOutlet weak var canButton: UIButton!
     @IBOutlet weak var bottomView: UIView!

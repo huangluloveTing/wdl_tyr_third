@@ -54,7 +54,7 @@ struct OderHallBean : HandyJSON {
     var consignorName : String? // (string): 拖运人名称 ,
     var consignorNo : String? // (string): 托运人ID ,
     var createTime : String? // (string),
-    var dealOfferTime : String? // (string): 成交货源的报价时间 ,
+    var dealOfferTime : TimeInterval? // (string): 成交货源的报价时间 ,
     var dealTime : String? // (string): 成交时间 ,
     var dealTotalPrice : CGFloat? // (number): 成交总价 ,
     var dealUnitPrice : CGFloat? // (number): 成交单价 ,
