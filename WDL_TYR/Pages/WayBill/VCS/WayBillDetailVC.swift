@@ -673,8 +673,8 @@ extension WayBillDetailVC {
         switch self.pageInfo?.transportStatus ?? .noStart {
         case .noStart,.willToTransport:
             var bottomCanUse = self.pageInfo?.offerHasVehicle == 1 || self.pageInfo?.driverStatus == 4
-            //未配载司机根据有无车牌号,所有按钮置灰
-            if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil {
+            //未配载司机根据有无车牌号，或者无车报价,所有按钮置灰，
+            if self.pageInfo?.vehicleNo == "" || self.pageInfo?.vehicleNo == nil ||  self.pageInfo?.offerHasVehicle == 0 {
                 bottomCanUse = false
             }
             
