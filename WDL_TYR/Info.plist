@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.2</string>
+	<string>1.1.4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -29,8 +29,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>为了你能在上传图片以及修改个人资料的时候拍摄照片。需要您的同意才能访问相机。</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>为了能获取目的地距离您当前位置的距离，以及您在访问地图导航时规划到目的地的路线。需要您允许获取位置信息。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>为了你能在上传图片以及修改个人资料的时候选择本地图片。需要您的同意才能获取多媒体资料。</string>
 	<key>UIBackgroundModes</key>
