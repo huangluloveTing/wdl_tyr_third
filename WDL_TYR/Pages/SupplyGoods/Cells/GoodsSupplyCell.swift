@@ -9,6 +9,8 @@
 import UIKit
 
 class GoodsSupplyCell: BaseCell {
+    //货源编号：id
+     @IBOutlet weak var goodCodeId: UILabel!
     //底部视图
     @IBOutlet weak var containerView: UIView!
     //开始城市
@@ -55,6 +57,8 @@ extension GoodsSupplyCell {
             self.numLabel.text = String(num)
             self.reportLabel.text = "报价"
         }
+        //货源编号
+        self.goodCodeId.text = "货源编号：" + (item.id ?? "")
         //已成交和已下架,未上架不显示暂无报价
         if item.isDeal == GoodsSupplyListStatus.status_soldout{
             self.reportLabel.isHidden = true
