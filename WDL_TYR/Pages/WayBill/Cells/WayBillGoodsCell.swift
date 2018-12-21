@@ -19,7 +19,7 @@ class WayBillGoodsCell: BaseCell {
     @IBOutlet weak var loadTimeLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var startLabel: UILabel!
-    @IBOutlet weak var codeLabel: UILabel!
+    @IBOutlet weak var codeLabel: UILabel!//货源编号
     
     override func awakeFromNib() {
         super.awakeFromNib()
