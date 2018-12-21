@@ -15,7 +15,6 @@ class WayBillVC: MainBaseVC {
     
     // 运单状态 1=待起运 0=待办单 2=运输中 3=已签收 4=被拒绝
     private let transportStatus = ["不限"/*,"待办单"*/,"待起运","运输中","待签收", "已签收"]
-    
     private let transportStatus_agency = ["不限","待办单","待起运","运输中","待签收", "已签收"]
 
     @IBOutlet weak var dropAnchorView: UIView!
@@ -26,7 +25,6 @@ class WayBillVC: MainBaseVC {
     
     private var startPlaceView:DropPlaceChooiceView?
     private var endPlaceView:DropPlaceChooiceView?
-    
     private var startModel:SupplyPlaceModel = SupplyPlaceModel()
     private var endModel:SupplyPlaceModel = SupplyPlaceModel()
     private var listStatus:GoodsSupplyStatus?
@@ -37,7 +35,6 @@ class WayBillVC: MainBaseVC {
         self.addMessageRihgtItem()
         self.wr_setNavBarShadowImageHidden(true)
         self.addNaviHeader(placeholder: "搜索我的运单(运单号、承运人、车牌号、线路)")
-
         self.emptyTitle(title: "暂无运单", to: self.tableView)
         self.hiddenTableViewSeperate(tableView: self.tableView)
         self.tableView.beginRefresh()
