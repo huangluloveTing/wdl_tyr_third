@@ -361,7 +361,10 @@ extension WayBillDetailVC {
     func agencyWillStartCellForZt(tableView:UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(AgencyChangeCarrierCell.self)") as! AgencyChangeCarrierCell
         let canChange = (self.pageInfo?.driverStatus == 4)
-        cell.showCarrierInfo(name: self.pageInfo?.carrierName, phone: self.pageInfo?.cellPhone, time: self.pageInfo?.dealOfferTime, canChange: canChange)
+        cell.showCarrierInfo(name: self.pageInfo?.carrierName,
+                             phone: self.pageInfo?.cellPhone,
+                             time: self.pageInfo?.dealOfferTime,
+                             canChange: canChange)
         return cell
     }
     

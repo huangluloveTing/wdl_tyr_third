@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.configIQKeyboard()
         self.configGAODEMap()
         self.configHUD()
+        self.loadConsignorInfo()
         
 //        [[UIApplicationsharedApplication]registerForRemoteNotifications];
         UIApplication.shared.registerForRemoteNotifications()
