@@ -98,7 +98,8 @@ struct WayBillInfoBean : HandyJSON {
     var evaluateList : [ZbnEvaluate]? // 评价信息
     var vehicleLengthDriver : String? // (string): 司机车长 ,
     var vehicleTypeDriver : String?//(string): 司机车型 ,
-    var vehicleWeightDriver : String?//(string): 司机车重 
+    var vehicleWeightDriver : String?//(string): 司机车重
+    var vehicleWidthDriver : String?//(string): 司机车宽
     var pickupWay : String? // (string): zt=自提 db=代办 ,
     var transportVehicleList:[ZbnTransportVehicle]? //修改记录（如果经销商有修改过承运人
 }

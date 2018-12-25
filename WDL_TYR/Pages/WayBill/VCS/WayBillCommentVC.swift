@@ -50,9 +50,10 @@ extension WayBillCommentVC {
         let cyPhone = self.pageInfo?.cellPhone
         let driverPhone = self.pageInfo?.driverPhone
         let driver = self.pageInfo?.driverName
-        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
+        
+        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver , self.pageInfo?.vehicleWeightDriver , self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
-
+        
         cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime)
     }
     

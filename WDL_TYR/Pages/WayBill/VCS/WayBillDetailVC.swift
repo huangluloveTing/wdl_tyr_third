@@ -340,8 +340,10 @@ extension WayBillDetailVC {
         let driver = self.pageInfo?.driverName
         let cyPhone = self.pageInfo?.cellPhone
         let driverPhone = self.pageInfo?.driverPhone
-        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs:self.pageInfo?.vehicleNo, self.pageInfo?.vehicleType, self.pageInfo?.vehicleLength , self.pageInfo?.vehicleWidth)
+        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs:self.pageInfo?.vehicleNo, self.pageInfo?.vehicleTypeDriver, self.pageInfo?.vehicleLengthDriver, self.pageInfo?.vehicleWidthDriver)
         let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
+        
+
 //        var show = false
 //        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.pickupWay == "zt" && self.pageInfo?.transportStatus == .willStart {
 //            show = true
