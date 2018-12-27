@@ -61,7 +61,6 @@ extension MyCarrierVC {
         tableView.pullRefresh()
         tableView.upRefresh()
         tableView.refreshState.asObservable()
-            .throttle(2, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .filter { (state) -> Bool in
                 return state != .EndRefresh
@@ -71,6 +70,7 @@ extension MyCarrierVC {
                     self?.carrierQuery.pageSize += 20
                 }
                 if state == .Refresh {
+                    self?.tableView.resetFooter()
                     self?.carrierQuery.pageSize = 20
                 }
                 self?.loadMyCarrierLists()
@@ -165,11 +165,19 @@ extension MyCarrierVC {
                 self?.hiddenToast()
                 self?.tableView.endRefresh()
                 self?.carrierLists = data.data?.list ?? []
+                if (self?.carrierLists?.count ?? 0) >= (data.data?.total ?? 0) {
+                    self?.tableView.noMore()
+                }
                 self?.reloadMyCarrierList()
             }, onError: { [weak self](error) in
                 self?.tableView.endRefresh()
                 self?.showFail(fail: error.localizedDescription, complete: nil)
+                }
+                , onCompleted:{[weak self] in
+                    self?.tableView.endRefresh()
             })
             .disposed(by: dispose)
     }
+    
+    
 }

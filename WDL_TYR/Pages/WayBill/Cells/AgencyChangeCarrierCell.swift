@@ -39,7 +39,7 @@ class AgencyChangeCarrierCell: BaseCell {
 extension AgencyChangeCarrierCell {
     func showCarrierInfo(name:String? , phone:String? , time:TimeInterval? ,canChange:Bool = true) -> Void {
         self.carrierNameLabel.text = Util.concatSeperateStr(seperete: " ", strs: name , phone)
-        self.dealTimeLabel.text = Util.dateFormatter(date: time ?? 0 , formatter: "MM-dd HH:mm")
+        self.dealTimeLabel.text = (time == nil || (time ?? 0 <= 0)) ? "" : Util.dateFormatter(date: time ?? 0 , formatter: "MM-dd HH:mm")
         self.changeButton.isHidden = !canChange
     }
 }

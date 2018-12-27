@@ -16,6 +16,7 @@ import Foundation
 extension ObservableType where E == Response {
     public func mapModel<T: BaseResponse>(_ type: T.Type) -> Observable<T> {
         return flatMap { response -> Observable<T> in
+            
             let resModel = response.mapModel(type: T.self)
             guard let reuslt = resModel else {
                 throw CustomerError.serialDataError("数据解析异常")
