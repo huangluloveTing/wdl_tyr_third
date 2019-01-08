@@ -17,6 +17,16 @@ enum GoodsSupplyListStatus : Int , HandyJSONEnum {
     case status_putway = 2      // 未上架
     case status_soldout = 3     // 下架
 }
+//软件更新
+struct UpdateSoftWareModel : HandyJSON {
+    
+    var content:String = ""
+    var downloadUrl:String = ""
+    var must:Int = 2 //(integer): 是否强制更新 1=是 2=否 ,
+    var softwareType:Int = 1 // (integer): 软件类型：1=托运人 2=承运人 ,
+    var terminalType:Int = 1 // (integer): 终端类型：1=ios 2=Android ,
+    var versionCode:Int = 1
+}
 
 
 struct GoodsSupplyQueryBean : HandyJSON {

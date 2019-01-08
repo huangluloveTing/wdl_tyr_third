@@ -38,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        //软件更新
+        self.updateSoftWare()
+        
         return true
     }
     
@@ -88,6 +91,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 extension AppDelegate {
+    //MARK: - 软件更新
+    //    must (integer): 是否强制更新 1=是 2=否 ,
+    //softwareType (integer): 软件类型：1=托运人 2=承运人 ,
+    //terminalType (integer): 终端类型：1=ios 2=Android ,
+    func updateSoftWare(){
+        BaseApi.request(target: API.updateSoftWare(UpdateSoftWareModel()), type: BaseResponseModel<UpdateSoftWareModel>.self)
+            .subscribe(onNext: { (model) in
+                let upModel = model.data
+                print("更新数据：\(String(describing: upModel))")
+                if upModel?.softwareType == 2 && upModel?.terminalType == 1{
+                    
+                    //判断需不需要更新(CFBundleVersion:对应配置的build 不是version: 1.1.0)
+                    let infoDic: Dictionary = Bundle.main.infoDictionary ?? Dictionary()
+                    let str = infoDic["CFBundleVersion"] as? String ?? ""
+                    let loccationVison = Int(str) ?? 0
+                    let nowVison: Int = upModel?.versionCode ?? 0
+                    
+                    if (loccationVison < nowVison) {
+                        if upModel?.must == 1{
+                            //强制更新
+                            self.showCusAlert(title: "重要提示", content:upModel?.content ?? "有新版本啦，为不影响您的使用，快去appStore更新吧！" , isMust: true)
+                        }else{
+                            //自由更新
+                            self.showCusAlert(title: "重要提示", content:upModel?.content ?? "有新版本啦，快去appStore更新吧！" , isMust: false)
+                        }
+                    }
+                    
+                }
+            }).disposed(by: dispose)
+    }
+    
+    func showCusAlert(title: String, content: String, isMust: Bool)  {
+        let alertVC = UIAlertController(title: title, message: content, preferredStyle: .alert)
+        
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in
+            
+        }
+        let sureAction = UIAlertAction(title: "去更新", style: .destructive) { (_) in
+            
+            let urlString = "itms-apps://itunes.apple.com/app/id1446242710"
+            let url = URL.init(string: urlString)
+            UIApplication.shared.openURL(url!)
+            
+        }
+        
+        if isMust == true {
+            //强制更新
+            alertVC.addAction(sureAction)
+        }else{
+            //自由更新
+            alertVC.addAction(cancelAction)
+            alertVC.addAction(sureAction)
+        }
+        
+        window?.rootViewController?.present(alertVC, animated: true, completion: nil)
+        
+    }
     
     // 获取基础信息
     static func loadNormalInfo()  {
