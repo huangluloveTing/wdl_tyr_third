@@ -100,7 +100,7 @@ extension AppDelegate {
             .subscribe(onNext: { (model) in
                 let upModel = model.data
                 print("更新数据：\(String(describing: upModel))")
-                if upModel?.softwareType == 2 && upModel?.terminalType == 1{
+                if upModel?.softwareType == 1 && upModel?.terminalType == 1{
                     
                     //判断需不需要更新(CFBundleVersion:对应配置的build 不是version: 1.1.0)
                     let infoDic: Dictionary = Bundle.main.infoDictionary ?? Dictionary()
@@ -111,10 +111,10 @@ extension AppDelegate {
                     if (loccationVison < nowVison) {
                         if upModel?.must == 1{
                             //强制更新
-                            self.showCusAlert(title: "重要提示", content:upModel?.content ?? "有新版本啦，为不影响您的使用，快去appStore更新吧！" , isMust: true)
+                            self.showCusAlert(title: "重要提示", content:upModel?.content ?? "有新版本啦，为不影响您的使用，快去appStore升级吧！" , isMust: true)
                         }else{
                             //自由更新
-                            self.showCusAlert(title: "重要提示", content:upModel?.content ?? "有新版本啦，快去appStore更新吧！" , isMust: false)
+                            self.showCusAlert(title: "重要提示", content:upModel?.content ?? "有新版本啦，快去appStore升级吧！" , isMust: false)
                         }
                     }
                     
@@ -129,9 +129,9 @@ extension AppDelegate {
         let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in
             
         }
-        let sureAction = UIAlertAction(title: "去更新", style: .destructive) { (_) in
+        let sureAction = UIAlertAction(title: "去升级", style: .destructive) { (_) in
             
-            let urlString = "itms-apps://itunes.apple.com/app/id1446242710"
+            let urlString = "itms-apps://itunes.apple.com/app/id1446242703"
             let url = URL.init(string: urlString)
             UIApplication.shared.openURL(url!)
             
