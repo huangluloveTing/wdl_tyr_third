@@ -12,7 +12,7 @@ class PersonSettingVC: NormalBaseVC {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private let settingTitles = ["修改密码","修改手机号","关于织布鸟","联系客服","用户隐私协议"]
+    private let settingTitles = ["修改密码","修改手机号","","联系客服","用户隐私协议"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,7 @@ extension PersonSettingVC {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "infoCell")
+        self.registerCell(nibName: "\(BoutCell.self)", for: self.tableView)
     }
 }
 
@@ -38,6 +39,7 @@ extension PersonSettingVC : UITableViewDelegate , UITableViewDataSource {
         let section = indexPath.section
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell");
+        let cell1 = tableView.dequeueReusableCell(withIdentifier: "\(BoutCell.self)") as! BoutCell
         if section == 0 {
             cell?.textLabel?.text = settingTitles[row]
             cell?.detailTextLabel?.text = ""
@@ -45,6 +47,13 @@ extension PersonSettingVC : UITableViewDelegate , UITableViewDataSource {
             cell?.textLabel?.font = UIFont.systemFont(ofSize: 15)
             cell?.accessoryType = .disclosureIndicator
             cell?.textLabel?.textAlignment = .left
+            if indexPath.row == 2 {
+                let infoDic: Dictionary = Bundle.main.infoDictionary ?? Dictionary()
+                let str = infoDic["CFBundleShortVersionString"] as? String ?? ""
+                cell1.exSubTitleLabel.text = "版本" + str
+                return cell1
+            }
+
         }
         if section == 1 {
             cell?.accessoryType = .none

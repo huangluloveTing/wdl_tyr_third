@@ -18,6 +18,8 @@
 		1875DF4521A41C94006312D9 /* MessageDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875DF4321A41C94006312D9 /* MessageDetailVC.xib */; };
 		1875DF4821A50618006312D9 /* MessageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875DF4621A50618006312D9 /* MessageDetailCell.swift */; };
 		1875DF4921A50618006312D9 /* MessageDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875DF4721A50618006312D9 /* MessageDetailCell.xib */; };
+		18BD10D621E5D72200048D42 /* BoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BD10D421E5D72200048D42 /* BoutCell.xib */; };
+		18BD10D721E5D72200048D42 /* BoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD10D521E5D72200048D42 /* BoutCell.swift */; };
 		7003A34621B160E200838323 /* BaseVC+AuthAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7003A34521B160E200838323 /* BaseVC+AuthAlert.swift */; };
 		7003A34A21B177A600838323 /* AppDelegate+jpush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7003A34921B177A600838323 /* AppDelegate+jpush.swift */; };
 		70103C422189AE0900125F54 /* UIResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103C412189AE0900125F54 /* UIResponse+Extension.swift */; };
@@ -254,6 +256,8 @@
 		1875DF4621A50618006312D9 /* MessageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCell.swift; sourceTree = "<group>"; };
 		1875DF4721A50618006312D9 /* MessageDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailCell.xib; sourceTree = "<group>"; };
 		18AEF42F21AFE21100FE2468 /* WDL_TYR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WDL_TYR.entitlements; sourceTree = "<group>"; };
+		18BD10D421E5D72200048D42 /* BoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoutCell.xib; sourceTree = "<group>"; };
+		18BD10D521E5D72200048D42 /* BoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoutCell.swift; sourceTree = "<group>"; };
 		56BFCD95760ACFD99314CCA9 /* libPods-WDL_TYR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WDL_TYR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7003A34521B160E200838323 /* BaseVC+AuthAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseVC+AuthAlert.swift"; sourceTree = "<group>"; };
 		7003A34921B177A600838323 /* AppDelegate+jpush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+jpush.swift"; sourceTree = "<group>"; };
@@ -627,6 +631,8 @@
 		7037B0D4213C24C300BDC718 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				18BD10D521E5D72200048D42 /* BoutCell.swift */,
+				18BD10D421E5D72200048D42 /* BoutCell.xib */,
 				7037B0D5213C264E00BDC718 /* PersonalInfoHeader.swift */,
 				7037B0D6213C264E00BDC718 /* PersonalInfoHeader.xib */,
 				7037B0D9213C27F300BDC718 /* PersonalExcuteCell.swift */,
@@ -1223,6 +1229,7 @@
 				184F1F7C21993EF7007B9998 /* IdentifingVC.xib in Resources */,
 				184F1F80219940FE007B9998 /* IdentiferFailVC.xib in Resources */,
 				704E3507218C3B4D0022122C /* LegalPeronInfoCell.xib in Resources */,
+				18BD10D621E5D72200048D42 /* BoutCell.xib in Resources */,
 				7037B0DC213C27F300BDC718 /* PersonalExcuteCell.xib in Resources */,
 				70A319CE2137EFD400017356 /* GSDealedCell.xib in Resources */,
 				702D2CD3213060190007A11F /* PersonalVC.xib in Resources */,
@@ -1381,6 +1388,7 @@
 				708150D8213123A400D42723 /* DropView.swift in Sources */,
 				7037B0CE213A238600BDC718 /* images.swift in Sources */,
 				7058159A21A43E370004A7F8 /* MyCarrierInfoCell.swift in Sources */,
+				18BD10D721E5D72200048D42 /* BoutCell.swift in Sources */,
 				70ED087D212F05BD001DCCB2 /* UITextField+Extension.swift in Sources */,
 				70B1300D2134D8AE002A473F /* BaseBean.swift in Sources */,
 				708150BF2130F18C00D42723 /* MySearchBar.swift in Sources */,
