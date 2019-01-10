@@ -12,6 +12,7 @@ import Moya
 import Alamofire
 
 enum API {
+    case updateSoftWare(UpdateSoftWareModel) //更新软件
     case login(String , String)             // 登录接口
     case register(String , String , String , String) // 注册
     case registerSms(String)                // 获取验证码
@@ -61,6 +62,8 @@ enum API {
 // PATH
 func apiPath(api:API) -> String {
     switch api {
+    case .updateSoftWare(_):
+        return "/app/common/getApkVersion"
     case .getMainMessage(_):
         return "/message/getMessage"
     case .markHasSeenMessage(_):
@@ -141,6 +144,8 @@ func apiTask(api:API) -> Task {
     return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["cellphone":phpne])
     case .register(let pwd, let phone, let vcode, let vpwd):
         return .requestParameters(parameters: ["password": pwd,"phone": phone,"verificationCode": vcode,"verificationPassword": vpwd], encoding: JSONEncoding.default)
+    case .updateSoftWare(let query):
+        return .requestParameters(parameters: query.toJSON() ?? [String:String](), encoding: JSONEncoding.default)
     case .login(let account , let pwd):
         return .requestParameters(parameters: ["cellphone":account,"password":pwd], encoding: JSONEncoding.default)
     case .loadTaskInfo():
