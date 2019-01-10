@@ -122,7 +122,7 @@ class PlaceChooiceView: UIView  , UICollectionViewDataSource, UICollectionViewDe
         }
         selectHeader = headr
         selectHeader?.selectedIndex(index: self.currentTabIndex)
-        return selectHeader
+        return selectHeader!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
