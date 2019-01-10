@@ -77,7 +77,7 @@ class DeliveryPlaceTabHeader: UICollectionReusableView {
             .disposed(by: disposeBag)
     }
     
-    private func tapTab(index:Int) {
+    func tapTab(index:Int) {
         self.selectedIndex(index: index)
         if let closure = self.tabTapClosure {
             closure(index)
