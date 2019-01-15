@@ -49,12 +49,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="精装小麦粉优级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIM-Sc-2fO">
-                                <rect key="frame" x="20" y="89" width="273.5" height="45"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02-11 装货 玻璃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5f-gD-ufR">
                                 <rect key="frame" x="20" y="149" width="101" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -103,16 +97,14 @@
                             <constraint firstItem="7y3-0a-P2N" firstAttribute="centerY" secondItem="XnH-HI-kPo" secondAttribute="centerY" id="Mii-9w-JiY"/>
                             <constraint firstItem="ZV1-SO-yua" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" constant="20" id="OAE-q6-bVd"/>
                             <constraint firstItem="hUI-XQ-vgJ" firstAttribute="top" secondItem="UvR-LO-24C" secondAttribute="top" id="PnQ-vt-PS5"/>
-                            <constraint firstItem="D5f-gD-ufR" firstAttribute="top" secondItem="NIM-Sc-2fO" secondAttribute="bottom" constant="15" id="QM2-AJ-18M"/>
-                            <constraint firstItem="NIM-Sc-2fO" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="leading" id="Yos-Ve-z7a"/>
                             <constraint firstAttribute="trailing" secondItem="tKF-7O-C1M" secondAttribute="trailing" constant="10" id="Zdd-we-7HB"/>
+                            <constraint firstItem="D5f-gD-ufR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bjy-RV-LOO" secondAttribute="bottom" constant="20" id="bL5-t8-Je8"/>
                             <constraint firstItem="dGS-aO-G8X" firstAttribute="centerY" secondItem="mbe-03-H1R" secondAttribute="centerY" id="esM-at-Nyj"/>
                             <constraint firstItem="tKF-7O-C1M" firstAttribute="top" secondItem="D5f-gD-ufR" secondAttribute="bottom" constant="15" id="fOl-at-Xx5"/>
                             <constraint firstAttribute="bottom" secondItem="1Kc-wC-UII" secondAttribute="bottom" constant="10" id="fdN-NK-trb"/>
                             <constraint firstItem="hUI-XQ-vgJ" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" id="hOY-R1-AdO"/>
                             <constraint firstAttribute="trailing" secondItem="dGS-aO-G8X" secondAttribute="trailing" constant="20" id="j6j-yP-af5"/>
                             <constraint firstItem="tek-uo-uxk" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="trailing" constant="10" id="jIZ-u9-Rbj"/>
-                            <constraint firstItem="NIM-Sc-2fO" firstAttribute="top" secondItem="bjy-RV-LOO" secondAttribute="bottom" constant="20" id="khy-QI-WoF"/>
                             <constraint firstItem="1Kc-wC-UII" firstAttribute="top" secondItem="tKF-7O-C1M" secondAttribute="bottom" constant="10" id="kkR-54-Bx5"/>
                             <constraint firstItem="D5f-gD-ufR" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="leading" id="lef-tA-16C"/>
                             <constraint firstItem="bjy-RV-LOO" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" constant="20" id="llT-fD-Eah"/>
@@ -123,7 +115,6 @@
                             <constraint firstItem="XnH-HI-kPo" firstAttribute="trailing" secondItem="dGS-aO-G8X" secondAttribute="trailing" id="xlr-KX-ctV"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="leading" secondItem="tek-uo-uxk" secondAttribute="trailing" constant="10" id="zYL-Bk-hBe"/>
                             <constraint firstItem="ZV1-SO-yua" firstAttribute="top" secondItem="UvR-LO-24C" secondAttribute="top" constant="15" id="ziK-Ml-SJt"/>
-                            <constraint firstItem="7y3-0a-P2N" firstAttribute="leading" secondItem="NIM-Sc-2fO" secondAttribute="trailing" constant="5" id="zlu-a0-pfe"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -142,7 +133,6 @@
                 <outlet property="containerView" destination="UvR-LO-24C" id="x5c-Z3-vOL"/>
                 <outlet property="endLabel" destination="mbe-03-H1R" id="KAG-g1-TJy"/>
                 <outlet property="goodCodeId" destination="ZV1-SO-yua" id="mfY-yQ-THt"/>
-                <outlet property="goodsNameLabel" destination="NIM-Sc-2fO" id="vJJ-EA-Xfz"/>
                 <outlet property="goodsSpecLabel" destination="D5f-gD-ufR" id="WrL-HT-DlB"/>
                 <outlet property="numLabel" destination="7y3-0a-P2N" id="yY6-k3-XSU"/>
                 <outlet property="reportLabel" destination="XnH-HI-kPo" id="gjM-Yp-fFu"/>
