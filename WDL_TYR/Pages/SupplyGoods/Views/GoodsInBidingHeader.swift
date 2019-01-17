@@ -10,7 +10,7 @@ import UIKit
 
 class GoodsInBidingHeader: UIView {
     
-    typealias GoodsTapOrderClosure = (Bool? , Bool?) -> ()
+    typealias GoodsTapOrderClosure = (Bool? , Bool?, UIButton?) -> ()
 
     @IBOutlet weak var timeButton: MyButton!
     @IBOutlet weak var offerButton: MyButton!
@@ -25,19 +25,21 @@ class GoodsInBidingHeader: UIView {
     
     @IBAction func offerTapAction(_ sender: MyButton) {
         sender.isSelected = !sender.isSelected
+        sender.tag = 154 //报价金额按钮
         self.offerAsc = sender.isSelected
-        self.handleClosure()
+        self.handleClosure(sender: sender)
     }
     @IBAction func timeTapAction(_ sender: MyButton) {
         sender.isSelected = !sender.isSelected
+        sender.tag = 155//报价时间按钮
         self.timeAsc = sender.isSelected
-        self.handleClosure()
+        self.handleClosure(sender: sender)
     }
     
     
-    func handleClosure() {
+    func handleClosure(sender: UIButton?) {
         if let closure = self.tapClosure {
-            closure(self.offerAsc  , self.timeAsc)
+            closure(self.offerAsc  , self.timeAsc, sender)
         }
     }
 }

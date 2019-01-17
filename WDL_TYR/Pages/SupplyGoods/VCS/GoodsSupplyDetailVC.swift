@@ -442,10 +442,25 @@ extension GoodsSupplyDetailVC {
     func configTableViewSectionHeader() -> UIView? {
         if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
             let header = Bundle.main.loadNibNamed("GSDetailBidingHeader", owner: nil, options: nil)![1] as! GoodsInBidingHeader
-            header.showStatus(offerSelected: self.offerAmountSort == .DESC, timeSelected: self.timeSort == .ASC)
-            header.tapClosure = {[weak self] (offer , time) in
-                self?.offerAmountSort = offer == true ? .DESC : .ASC
-                self?.timeSort = time == true ? .ASC : .DESC
+            header.showStatus(offerSelected: self.offerAmountSort == .ASC, timeSelected: self.timeSort == .ASC)
+            header.tapClosure = {[weak self] (offer , time, button) in
+               
+
+                if  button?.tag == 155 {
+                    //报价时间按钮
+                    self?.timeSort = time == true ? .ASC : .DESC
+                    self?.offerQueyBean.timeSort = time == true ? .OrderBy_ASC : .OrderBy_DESC
+                    self?.offerAmountSort = SortEnum(rawValue: "")
+                    self?.offerQueyBean.amountSort = QueryDetailOrderBy(rawValue: "")
+                }else{
+                    //报价金额按钮
+                    self?.offerAmountSort = offer == true ? .ASC : .DESC
+                        self?.offerQueyBean.amountSort = offer == true ? .OrderBy_ASC : .OrderBy_DESC
+                    self?.timeSort = SortEnum(rawValue: "")
+                    self?.offerQueyBean.timeSort = QueryDetailOrderBy(rawValue: "")
+                }
+                
+               
                 self?.tableView.beginRefresh()
             }
             return header
