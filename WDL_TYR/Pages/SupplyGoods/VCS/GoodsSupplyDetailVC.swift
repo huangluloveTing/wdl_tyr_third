@@ -42,10 +42,18 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.offerQueyBean.hallId = self.supplyDetail?.id
+        //将报价排序置为原始状态
+        let header = Bundle.main.loadNibNamed("GSDetailBidingHeader", owner: nil, options: nil)![1] as! GoodsInBidingHeader
+        header.showStatus(offerSelected: false, timeSelected: false)
+        
         self.loadAllOffers()
         self.emptyTitle(title: "暂无报价", to: self.tableView)
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+       
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -445,7 +453,6 @@ extension GoodsSupplyDetailVC {
             header.showStatus(offerSelected: self.offerAmountSort == .ASC, timeSelected: self.timeSort == .ASC)
             header.tapClosure = {[weak self] (offer , time, button) in
                
-
                 if  button?.tag == 155 {
                     //报价时间按钮
                     self?.timeSort = time == true ? .ASC : .DESC
