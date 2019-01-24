@@ -25,10 +25,34 @@ class WayBillDetailVC: NormalBaseVC {
     public var wayBillInfo:WayBillInfoBean?
     private var pageInfo:WayBillInfoBean? = WayBillInfoBean()
     private var showBottom:Bool? = false
-    
+    private var realSendLabel: UILabel?//实发吨数
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCells()
+        //添加尾部视图-实发吨数
+        self.addTableViewFooterView()
+    }
+    //添加尾部视图-实发吨数
+    func addTableViewFooterView(){
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: 100))
+        view.backgroundColor = UIColor.white
+        
+        let label1 = UILabel(frame: CGRect(x: 15, y: 10, width: 200, height: 30))
+        label1.textColor = UIColor(hex: "222222")
+        label1.font = UIFont(name: "PingFangSC-Medium", size: 18)
+        label1.textAlignment = .left
+        label1.text = "实发信息"
+        
+        let label2 = UILabel(frame: CGRect(x: 15, y:40, width: 200, height: 40))
+        label2.text = "实发吨数：无"
+        label2.textColor = UIColor(hex: "3f3f3f")
+        label2.font = UIFont.systemFont(ofSize: 15)
+        label2.textAlignment = .left
+        view.addSubview(label1)
+        view.addSubview(label2)
+        self.realSendLabel = label2
+        self.tableView.tableFooterView = view
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +129,7 @@ extension WayBillDetailVC {
             return agencyChangeLogCell(tableView: tableView)
             
         }
+        //货源信息
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillGoodsCell.self)") as! WayBillGoodsCell
             cell.contentInfo(info: self.pageInfo)
@@ -594,11 +619,15 @@ extension WayBillDetailVC {
     func loadDetailInfo() -> Void {
         self.showLoading()
         BaseApi.request(target: API.sinGletransaction(self.wayBillInfo?.id ?? ""), type: BaseResponseModel<WayBillInfoBean>.self)
-            .retry(5)
+            .retry(2)
             .subscribe(onNext: { (data) in
                 self.showSuccess()
                 self.pageInfo = data.data
                 self.wayBillInfo = self.pageInfo
+                
+                //实发吨数
+                self.realSendLabel?.text = (self.pageInfo?.transportWeightReal == nil) ? "实发吨数：无" : "实发吨数：" + (String(Float(self.pageInfo?.transportWeightReal ?? 0)) + "吨")
+                
                 self.tableView.reloadData()
                 self.addBottom()
             }, onError: { (error) in
@@ -751,6 +780,7 @@ extension WayBillDetailVC {
     func tableViewFooterHeightChange() -> Void {
         if self.showBottom == false {
             self.tableView.tableFooterView = UIView()
+           
             return
         }
         self.tableView.tableFooterView = {

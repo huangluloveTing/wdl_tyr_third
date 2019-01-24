@@ -34,7 +34,6 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     private var offerAmountSort: SortEnum!
     private var timeSort:SortEnum!
 
-    
     @IBOutlet weak var tableView: UITableView!
     
     private var currentSupplyStatus:GoodsSupplyStatus = .InBidding
@@ -45,14 +44,12 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
         //将报价排序置为原始状态
         let header = Bundle.main.loadNibNamed("GSDetailBidingHeader", owner: nil, options: nil)![1] as! GoodsInBidingHeader
         header.showStatus(offerSelected: false, timeSelected: false)
-        
         self.loadAllOffers()
         self.emptyTitle(title: "暂无报价", to: self.tableView)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-       
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

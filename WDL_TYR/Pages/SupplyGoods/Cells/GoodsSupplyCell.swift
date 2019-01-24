@@ -147,7 +147,7 @@ extension GoodsSupplyCell {
     func getGoodsSpec(item:GoodsSupplyListItem) -> String? {
         let time = item.loadingTime ?? Date().timeIntervalSince1970 * 1000
         let type = item.goodsType
-        let timeStr = Util.dateFormatter(date: time / 1000, formatter: "MM-dd")
-        return timeStr + " | " + (type ?? "")
+        let timeStr = Util.dateFormatter(date: time / 1000, formatter: "yyyy-MM-dd")
+        return timeStr + " 装货 " + " | " + (type ?? "")
     }
 }

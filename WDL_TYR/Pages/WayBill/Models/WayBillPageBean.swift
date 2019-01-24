@@ -30,7 +30,7 @@ enum WayBillTransportStatus : Int , HandyJSONEnum { // 运单状态
 }
 
 struct WayBillInfoBean : HandyJSON {
- 
+    var transportWeightReal : CGFloat? // (number): 实际运输重量 ,
     var autoTimeInterval : Int? // (integer): 自动成交时间间隔 ,
     var bidPriceWay : Int?      // (integer, optional),
     var carrierName : String?   // (string): 承运人姓名 ,
