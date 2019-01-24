@@ -25,36 +25,12 @@ class WayBillDetailVC: NormalBaseVC {
     public var wayBillInfo:WayBillInfoBean?
     private var pageInfo:WayBillInfoBean? = WayBillInfoBean()
     private var showBottom:Bool? = false
-    private var realSendLabel: UILabel?//实发吨数
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCells()
-        //添加尾部视图-实发吨数
-        self.addTableViewFooterView()
     }
-    //添加尾部视图-实发吨数
-    func addTableViewFooterView(){
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: IPHONE_WIDTH, height: 100))
-        view.backgroundColor = UIColor.white
-        
-        let label1 = UILabel(frame: CGRect(x: 15, y: 10, width: 200, height: 30))
-        label1.textColor = UIColor(hex: "222222")
-        label1.font = UIFont(name: "PingFangSC-Medium", size: 18)
-        label1.textAlignment = .left
-        label1.text = "实发信息"
-        
-        let label2 = UILabel(frame: CGRect(x: 15, y:40, width: 200, height: 40))
-        label2.text = "实发吨数：无"
-        label2.textColor = UIColor(hex: "3f3f3f")
-        label2.font = UIFont.systemFont(ofSize: 15)
-        label2.textAlignment = .left
-        view.addSubview(label1)
-        view.addSubview(label2)
-        self.realSendLabel = label2
-        self.tableView.tableFooterView = view
-        
-    }
-    
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.pageInfo = self.wayBillInfo
@@ -86,6 +62,9 @@ class WayBillDetailVC: NormalBaseVC {
         self.registerCell(nibName: "\(WaybillProtocolCell.self)", for: tableView)
         self.registerCell(nibName: "\(AgencyChangeCarrierCell.self)", for: tableView)
         self.registerCell(nibName: "\(CarrierChangeLogCell.self)", for: tableView)
+        self.registerCell(nibName: "\(ReallSendTonCell.self)", for: tableView)//实发吨数
+        
+      
     }
     
     
@@ -135,18 +114,26 @@ extension WayBillDetailVC {
             cell.contentInfo(info: self.pageInfo)
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
-  
-        cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
-                          loadAddress: self.pageInfo?.startAddress,
-                          loadProvince: self.pageInfo?.startProvince,
-                          loadCity: self.pageInfo?.startCity,
-                          loadLinkPhone: self.pageInfo?.loadingPersonPhone,
-                          endName: self.pageInfo?.consigneeName,
-                          endAddress: self.pageInfo?.endAddress,
-                          endProvince: self.pageInfo?.endProvince,
-                          endCity: self.pageInfo?.endCity,
-                          endPhone: self.pageInfo?.consigneePhone)
+        
+        if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+            
+            cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
+                              loadAddress: self.pageInfo?.startAddress,
+                              loadProvince: self.pageInfo?.startProvince,
+                              loadCity: self.pageInfo?.startCity,
+                              loadLinkPhone: self.pageInfo?.loadingPersonPhone,
+                              endName: self.pageInfo?.consigneeName,
+                              endAddress: self.pageInfo?.endAddress,
+                              endProvince: self.pageInfo?.endProvince,
+                              endCity: self.pageInfo?.endCity,
+                              endPhone: self.pageInfo?.consigneePhone)
+            return cell
+        }
+        //实发吨数
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(ReallSendTonCell.self)") as! ReallSendTonCell
+        cell.realSendLabel.text = (self.pageInfo?.transportWeightReal == nil) ? "无" : (String(Float(self.pageInfo?.transportWeightReal ?? 0)) + "吨")
+        
         return cell
     }
     
@@ -199,17 +186,26 @@ extension WayBillDetailVC {
             }
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
-        cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
-                          loadAddress: self.pageInfo?.startAddress,
-                          loadProvince: self.pageInfo?.startProvince,
-                          loadCity: self.pageInfo?.startCity,
-                          loadLinkPhone: self.pageInfo?.loadingPersonPhone,
-                          endName: self.pageInfo?.consigneeName,
-                          endAddress: self.pageInfo?.endAddress,
-                          endProvince: self.pageInfo?.endProvince,
-                          endCity: self.pageInfo?.endCity,
-                          endPhone: self.pageInfo?.consigneePhone)
+        //联系人
+        if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+            cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
+                              loadAddress: self.pageInfo?.startAddress,
+                              loadProvince: self.pageInfo?.startProvince,
+                              loadCity: self.pageInfo?.startCity,
+                              loadLinkPhone: self.pageInfo?.loadingPersonPhone,
+                              endName: self.pageInfo?.consigneeName,
+                              endAddress: self.pageInfo?.endAddress,
+                              endProvince: self.pageInfo?.endProvince,
+                              endCity: self.pageInfo?.endCity,
+                              endPhone: self.pageInfo?.consigneePhone)
+            return cell
+        }
+       
+        
+        //实发吨数
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(ReallSendTonCell.self)") as! ReallSendTonCell
+        cell.realSendLabel.text = (self.pageInfo?.transportWeightReal == nil) ? "无" : (String(Float(self.pageInfo?.transportWeightReal ?? 0)) + "吨")
         return cell
     }
     
@@ -263,18 +259,27 @@ extension WayBillDetailVC {
             }
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
         //联系人信息
-        cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
-                          loadAddress: self.pageInfo?.startAddress,
-                          loadProvince: self.pageInfo?.startProvince,
-                          loadCity: self.pageInfo?.startCity,
-                          loadLinkPhone: self.pageInfo?.loadingPersonPhone,
-                          endName: self.pageInfo?.consigneeName,
-                          endAddress: self.pageInfo?.endAddress,
-                          endProvince: self.pageInfo?.endProvince,
-                          endCity: self.pageInfo?.endCity,
-                          endPhone: self.pageInfo?.consigneePhone)
+        if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillDetailLinkInfoCell.self)") as! WayBillDetailLinkInfoCell
+            
+            cell.showLinkInfo(loadLinkName: self.pageInfo?.loadingPersonName,
+                              loadAddress: self.pageInfo?.startAddress,
+                              loadProvince: self.pageInfo?.startProvince,
+                              loadCity: self.pageInfo?.startCity,
+                              loadLinkPhone: self.pageInfo?.loadingPersonPhone,
+                              endName: self.pageInfo?.consigneeName,
+                              endAddress: self.pageInfo?.endAddress,
+                              endProvince: self.pageInfo?.endProvince,
+                              endCity: self.pageInfo?.endCity,
+                              endPhone: self.pageInfo?.consigneePhone)
+            
+            return cell
+        }
+        //实发吨数
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(ReallSendTonCell.self)") as! ReallSendTonCell
+        cell.realSendLabel.text = (self.pageInfo?.transportWeightReal == nil) ? "无" :  (String(Float(self.pageInfo?.transportWeightReal ?? 0)) + "吨")
+        
         return cell
     }
     
@@ -314,6 +319,15 @@ extension WayBillDetailVC {
             cell.contentInfo(info: self.pageInfo)
             return cell
         }
+        
+        //实发吨数
+        if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(ReallSendTonCell.self)") as! ReallSendTonCell
+            cell.realSendLabel.text = (self.pageInfo?.transportWeightReal == nil) ? "无" :  (String(Float(self.pageInfo?.transportWeightReal ?? 0)) + "吨")
+            return cell
+        }
+       
+        
         // 有评价信息的展示
         let wayBillStatus = self.currrentEvaluatedStatus()
         switch wayBillStatus {
@@ -414,28 +428,28 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToTransport
         || self.pageInfo?.transportStatus == WayBillTransportStatus.noStart
         || self.pageInfo?.transportStatus == WayBillTransportStatus.willStart { // 待起运
-            return 3
+            return 3 + 1
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.transporting { // 运输中
-            return 4
+            return 4 + 1
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.done { // 已签收
             let wayBillStatus = self.currrentEvaluatedStatus()
             switch wayBillStatus {
             case .noEvaluate:
-                return 3
+                return 3 + 1
             case .EvaluatedEachother:
-                return 4
+                return 4 + 1
             case .myEvaluated:
-                return 4
+                return 4 + 1
             case .toMe:
-                return 4
+                return 4 + 1
             }
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup { // 待签收
-            return 4
+            return 4 + 1
         }
-        return 1
+        return 1 + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -624,10 +638,6 @@ extension WayBillDetailVC {
                 self.showSuccess()
                 self.pageInfo = data.data
                 self.wayBillInfo = self.pageInfo
-                
-                //实发吨数
-                self.realSendLabel?.text = (self.pageInfo?.transportWeightReal == nil) ? "实发吨数：无" : "实发吨数：" + (String(Float(self.pageInfo?.transportWeightReal ?? 0)) + "吨")
-                
                 self.tableView.reloadData()
                 self.addBottom()
             }, onError: { (error) in
