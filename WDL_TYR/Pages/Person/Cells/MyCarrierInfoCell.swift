@@ -60,7 +60,7 @@ extension MyCarrierInfoCell {
         Util.showImage(imageView: avatorImageView, imageUrl: avatorImage)
         self.titleLabel.text = title
         self.phoneLabel.text = phone
-        self.rateLabel.text = Util.showMoney(money: CGFloat(rate ?? 0), after: 1)
+        self.rateLabel.text = Util.showMoney(money: CGFloat(rate ?? 0), after: 2)
         self.tomeLabel.text = String(tomeNum ?? 0)
         self.totalLabel.text = String(total ?? 0)
         showStyle(style: style)

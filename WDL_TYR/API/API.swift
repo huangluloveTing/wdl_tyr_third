@@ -16,6 +16,9 @@ enum API {
     case login(String , String)             // 登录接口
     case register(String , String , String , String) // 注册
     case registerSms(String)                // 获取验证码
+    
+    case getProtocolInfo()//获取注册协议和收货须知
+    
     case loadTaskInfo()                     // 获取省市区
     case getCreateHallDictionary()          // 获取数据字典
     case releaseSource(ReleaseDeliverySourceModel)       // 发布货源
@@ -78,6 +81,10 @@ func apiPath(api:API) -> String {
         return "/consignor/consignorRegister"
     case .registerSms(_):
         return "/consignor/consignorRegisterSms"
+        
+    case .getProtocolInfo():
+        return "/appSetUp/getSetUp"
+        
     case .loadTaskInfo():
         return "/app/common/getAllCityAreaList"
     case .getCreateHallDictionary():
@@ -151,6 +158,8 @@ func apiTask(api:API) -> Task {
     case .login(let account , let pwd):
         return .requestParameters(parameters: ["cellphone":account,"password":pwd], encoding: JSONEncoding.default)
     case .loadTaskInfo():
+        return .requestPlain
+    case .getProtocolInfo():
         return .requestPlain
     case .getMessageNum():
         return .requestPlain

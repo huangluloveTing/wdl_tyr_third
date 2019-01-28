@@ -176,7 +176,7 @@ extension WayBillDetailVC {
         if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WaybillProtocolCell.self)") as! WaybillProtocolCell
             cell.currentConfirm(confirm: self.isConfirm)
-            cell.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.white
             cell.contentView.backgroundColor = UIColor.clear
             cell.readClosure = {[weak self] in
                 self?.toShowConfirmSign()
@@ -249,7 +249,7 @@ extension WayBillDetailVC {
         if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WaybillProtocolCell.self)") as! WaybillProtocolCell
             cell.currentConfirm(confirm: self.isConfirm)
-            cell.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.white
             cell.contentView.backgroundColor = UIColor.clear
             cell.readClosure = {[weak self] in
                 self?.toShowConfirmSign()
@@ -379,14 +379,9 @@ extension WayBillDetailVC {
         let driver = self.pageInfo?.driverName
         let cyPhone = self.pageInfo?.cellPhone
         let driverPhone = self.pageInfo?.driverPhone
-        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs:self.pageInfo?.vehicleNo, self.pageInfo?.vehicleTypeDriver, self.pageInfo?.vehicleLengthDriver, self.pageInfo?.vehicleWidthDriver)
-        let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
+        let truckInfo = Util.concatSeperateStr(seperete: " | ", strs:self.pageInfo?.vehicleNo, self.pageInfo?.vehicleTypeDriver, (self.pageInfo?.vehicleLengthDriver ?? "0") + "m", (self.pageInfo?.vehicleWidthDriver ?? "0") + "m")
+        let dealTime = self.pageInfo?.dealTime
         
-
-//        var show = false
-//        if WDLCoreManager.shared().consignorType == .agency && self.pageInfo?.pickupWay == "zt" && self.pageInfo?.transportStatus == .willStart {
-//            show = true
-//        }
         cell.showDealInfo(unit: unit,
                           amount: amount,
                           cyName: cyName,
@@ -404,7 +399,7 @@ extension WayBillDetailVC {
         let canChange = (self.pageInfo?.driverStatus == 4)
         cell.showCarrierInfo(name: self.pageInfo?.carrierName,
                              phone: self.pageInfo?.cellPhone,
-                             time: self.pageInfo?.dealOfferTime,
+                             time: self.pageInfo?.dealTime,
                              canChange: canChange)
         return cell
     }
@@ -482,7 +477,6 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
                 return 2
             }
             return 1
-            
         }
         if self.pageInfo?.transportStatus == WayBillTransportStatus.done { // 已签收
             if section == 0 {
@@ -517,6 +511,13 @@ extension WayBillDetailVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
       
          if self.pageInfo?.transportStatus == WayBillTransportStatus.willToPickup || self.pageInfo?.transportStatus == WayBillTransportStatus.transporting { // 待签收，运输中
+            if section == 3 {
+                return 10
+            }
+            if section == 4 {
+                return 60
+            }
+         }else {
             if section == 3 {
                 return 60
             }
@@ -561,8 +562,32 @@ extension WayBillDetailVC {
     
     // 查看签收确认须知
     func toShowConfirmSign() -> Void {
-        RegisterAgreeView.showAgreementView(title: RE_SHELVE_AGREEN_TITLE, content: RE_SHELVE_AGREEN_CONTENT)
+        //收货须知
+        self.requestProtocol()
     }
+    
+    func requestProtocol(){
+        self.showLoading()
+        BaseApi.request(target: API.getProtocolInfo(), type: BaseResponseModel<Any>.self)
+            .subscribe(onNext: { data in
+                self.hiddenToast()
+                let dic = data.data as? Dictionary<String, Any>
+                
+                //收货须知
+                let receiveProtocolString = dic?["receivingInstructions"] as? String
+                
+                RegisterAgreeView.showAgreementView(title: RE_SHELVE_AGREEN_TITLE, content: receiveProtocolString ?? "")
+                
+                if receiveProtocolString?.count == 0{
+                    self.showFail(fail: "无法获取相关协议", complete: nil)
+                }
+                
+            }, onError: { (error) in
+                self.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
+    }
+    
     
     // 取消运单
     func cancelWayBill() -> Void {
@@ -721,7 +746,6 @@ extension WayBillDetailVC {
                 bottomCanUse = false
             }
             
-         
             //未配载司机 且货源已过期:取消按钮可点击，起运按钮置灰
             if  self.compareTime(time: (self.pageInfo?.loadingTime ?? 0) / 1000) == true {
                 //过期了 未配载

@@ -559,9 +559,9 @@ extension DeliveryVC {
             let selDate = Date(timeIntervalSince1970: self.selLoadTimeVal)
             let sysDate = Date()
             let result:ComparisonResult = selDate.compare(sysDate)
-            if result != ComparisonResult.orderedDescending || result == ComparisonResult.orderedSame{
-                print("选择的时间 <= 系统时间")
-                self.showWarn(warn: "装货时间只能选择大于今天的时间", complete: nil)
+            if result != ComparisonResult.orderedDescending{
+                print("选择的时间 < 系统时间")
+                self.showWarn(warn: "装货时间只能选择大于等于今天的时间", complete: nil)
                 return false
             }
             return true

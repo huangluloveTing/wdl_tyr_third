@@ -87,12 +87,12 @@ class GSConfirmDealView: UIView {
             self.unitPriceLabel.text = Util.concatSeperateStr(seperete: "", strs: "单价：" ,String(Float(confirm.unit ?? 0))+"元/" , "吨")
             self.amountLabel.text = Util.concatSeperateStr(seperete: "", strs: "总价：" ,String(Float(confirm.total ?? 0)) + "元") 
 //            self.timeLabel.text = Util.dateFormatter(date: confirm.time ?? 0, formatter: "MM-dd HH:mm:ss")
-            self.timeLabel.text = Util.dateFormatter(date: (confirm.time ?? 0) / 1000, formatter: "MM-dd HH:mm")
+            self.timeLabel.text = Util.dateFormatter(date: (confirm.time ?? 0) / 1000, formatter: "yyyy-MM-dd HH:mm")
             //评分星星
             self.starView.score = CGFloat(confirm.score ?? 0.0)
            
             
-            self.scoreLabel.text = Util.showMoney(money: confirm.score ?? 0, after: 1)
+            self.scoreLabel.text = Util.showMoney(money: confirm.score ?? 0, after: 2)
         }
     }
     

@@ -115,9 +115,11 @@ class ModifyPhoneVC: NormalBaseVC {
                 
                 if isNewPhone == true {
                     //是新手机号
+                    self?.verifyButton.isEnabled = false
                     self?.verifyButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
                     self?.verifyButton.setTitle(String(format: "%ds", (60 - time)), for: UIControlState.normal)
                 }else{
+                    self?.oldVerifyButton.isEnabled = false
                     self?.oldVerifyButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
                     self?.oldVerifyButton.setTitle(String(format: "%ds", (60 - time)), for: UIControlState.normal)
                 }
@@ -142,8 +144,10 @@ class ModifyPhoneVC: NormalBaseVC {
    
     //手机号的时间倒计时
     func obtainVerifyCode(phone:String, isNewPhone: Bool) -> Void {
+        self.showLoading()
         BaseApi.request(target: API.registerSms(phone), type: BaseResponseModel<String>.self)
             .subscribe(onNext: { [weak self](data) in
+                self?.showSuccess(success: "获取验证码成", complete: nil)
                 self?.timedownVeryCodeButton(isNewPhone: isNewPhone)
             }, onError: { (error) in
                 self.showFail(fail: error.localizedDescription, complete: nil)

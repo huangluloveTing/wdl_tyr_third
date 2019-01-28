@@ -48,12 +48,12 @@ extension WayBillDealInfoCell {
                       truckInfo:String? ,
                       dealTime:TimeInterval?,
                       showChange:Bool? = false) -> Void {
-        self.unitLabel.text = Util.showMoney(money: unit ?? 0, after: 0)+"元/吨"
-        self.amountLabel.text = Util.showMoney(money: amount ?? 0, after: 0)+"元"
+        self.unitLabel.text = Util.showMoney(money: unit ?? 0, after: 2)+"元/吨"
+        self.amountLabel.text = Util.showMoney(money: amount ?? 0, after: 2)+"元"
         self.cyNameLabel.text = (cyName ?? "") + " " + (cyPhone ?? "")
         self.driverLabel.text = (driver ?? "") + " " + (driverPhone ?? "")
         self.truckInfoLabel.text = truckInfo
-        self.dealTimeLabel.text = Util.dateFormatter(date: dealTime ?? 0, formatter: "MM-dd HH:mm")
+        self.dealTimeLabel.text = Util.dateFormatter(date: (dealTime ?? 0)/1000, formatter: "yyyy-MM-dd HH:mm")
 //        self.changeCarrierButton.isHidden = !(showChange ?? false)
     }
 }

@@ -16,6 +16,7 @@ struct SupplyOfferBean : HandyJSON {
     var carrierName:String? // 承运人姓名
     var carrierType:String? // 承运人类型 ,
     var carrierPhone:String? // 承运人电话,
+    var cellPhone: String? //货源详情承运人电话
     var carrierScore:CGFloat? //评分
     var dealCount : Int?  //历史成交笔数 ,
     var dealStatus : Int? // 成交状态 0=驳回 1=竞价中 2=成交 ,

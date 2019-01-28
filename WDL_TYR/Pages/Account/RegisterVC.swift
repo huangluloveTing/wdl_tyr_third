@@ -90,8 +90,31 @@ class RegisterVC: BaseVC {
 
     //MARK: actions
     @IBAction func toProtocol(_ sender: Any) { // 跳转织布鸟注册协议
-        RegisterAgreeView.showRegisterAgreementView()
+
+        //获取织布鸟协议请求
+        self.requestProtocol()
     }
+    
+    func requestProtocol(){
+        self.showLoading()
+        BaseApi.request(target: API.getProtocolInfo(), type: BaseResponseModel<Any>.self)
+            .subscribe(onNext: { data in
+                self.hiddenToast()
+                let dic = data.data as? Dictionary<String, Any>
+                //注册协议
+                let registerProtocolString = dic?["registrationAgreement"] as? String
+                RegisterAgreeView.showAgreementView(title: "注册协议", content: registerProtocolString ?? "")
+
+                if registerProtocolString?.count == 0{
+                    self.showFail(fail: "无法获取相关协议", complete: nil)
+                }
+            
+            }, onError: { (error) in
+                self.showFail(fail: error.localizedDescription, complete: nil)
+            })
+            .disposed(by: dispose)
+    }
+    
     @IBAction func readProtocolAction(_ sender: UIButton) { // 点击已读协议
         sender.isSelected = !sender.isSelected
         self.registerInfo.readedProtocol = sender.isSelected
