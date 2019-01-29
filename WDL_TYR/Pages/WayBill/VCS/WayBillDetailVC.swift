@@ -25,7 +25,8 @@ class WayBillDetailVC: NormalBaseVC {
     public var wayBillInfo:WayBillInfoBean?
     private var pageInfo:WayBillInfoBean? = WayBillInfoBean()
     private var showBottom:Bool? = false
-
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCells()
@@ -657,7 +658,7 @@ extension WayBillDetailVC {
     // 获取运单详情
     func loadDetailInfo() -> Void {
         self.showLoading()
-        BaseApi.request(target: API.sinGletransaction(self.wayBillInfo?.id ?? ""), type: BaseResponseModel<WayBillInfoBean>.self)
+        BaseApi.request(target: API.sinGletransaction(self.wayBillInfo?.id ?? "",self.wayBillInfo?.transportNo ?? ""), type: BaseResponseModel<WayBillInfoBean>.self)
             .retry(2)
             .subscribe(onNext: { (data) in
                 self.showSuccess()

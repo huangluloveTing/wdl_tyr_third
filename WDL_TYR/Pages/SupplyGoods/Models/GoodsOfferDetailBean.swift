@@ -45,6 +45,8 @@ struct OrderAndOffer : HandyJSON {
 
 struct OderHallBean : HandyJSON {
     var autoTimeInterval : TimeInterval? // (integer): 自动成交时间间隔（小时） ,
+    var transportNo : String?
+
     var bidPriceWay : Int? // (integer): 竞价方式 1=自由 2=指派 ,
     var carrierId : String? // (string): 承运商id ,
     var carrierName : String? // (string): 姓名 ,

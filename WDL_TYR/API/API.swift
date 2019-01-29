@@ -29,7 +29,7 @@ enum API {
     case orderHallManualTransaction(String , String) // 手动成交
     case deleteOrderHall(String)            // 删除货源
     case ownTransportPage(QuerytTransportListBean) // 获取我的运单
-    case sinGletransaction(String)          // 获取运单详情
+    case sinGletransaction(String,String)          // 获取运单详情
     case transportSign(String)              // 运单签收
     case transportTransaction(String)       // 运单起运/transport/transaction
     case getZbnConsignor(String)            // 托运人认证信息
@@ -190,8 +190,8 @@ func apiTask(api:API) -> Task {
     case .ownTransportPage(let bean):
         return .requestParameters(parameters: bean.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
-    case .sinGletransaction(let id):
-        return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
+    case .sinGletransaction(let id, let transportNo):
+        return .requestParameters(parameters: ["hallId": id, "transportNo": transportNo], encoding: URLEncoding.default)
         
     case .transportSign(let code):
         return .requestParameters(parameters: ["transportNo":code], encoding: URLEncoding.default)
@@ -256,7 +256,7 @@ func apiMethod(api:API) -> Moya.Method {
          .onShelf(_) ,
          .registerSms(_) ,
          .undercarriage(_) ,
-         .sinGletransaction(_),
+         .sinGletransaction(_,_),
          .deleteOrderHall(_),
          .getZbnConsignor(_),
          .cancelTransport(_),
