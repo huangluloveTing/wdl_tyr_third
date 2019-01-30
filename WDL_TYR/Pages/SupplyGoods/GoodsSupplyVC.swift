@@ -352,7 +352,6 @@ extension GoodsSupplyVC {
 
 extension GoodsSupplyVC {
     
-    
     // 获取DataSource  创建表格数据源
     static func getDataSource() -> RxTableViewSectionedAnimatedDataSource<MyHeaderSections> {
         let _dataSource = RxTableViewSectionedAnimatedDataSource<MyHeaderSections>(animationConfiguration: AnimationConfiguration(

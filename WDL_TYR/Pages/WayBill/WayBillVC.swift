@@ -45,6 +45,7 @@ class WayBillVC: MainBaseVC {
         super.viewWillAppear(animated)
         //设置消息个数
         self.getMessageNumRequest()
+        self.wr_setNavBarBarTintColor(UIColor(hex: "06C06F"))
         self.tableView.beginRefresh()
         if WDLCoreManager.shared().regionAreas == nil || WDLCoreManager.shared().regionAreas?.count == 0 {
             self.loadAllAreaAndStore {
