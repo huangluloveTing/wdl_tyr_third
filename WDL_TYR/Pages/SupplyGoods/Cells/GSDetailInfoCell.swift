@@ -51,9 +51,9 @@ extension GSDetailInfoCell {
         self.unitLabel.text = Util.showMoney(money: info?.refercneceUnitPrice ?? 0, after: 2) + "元/吨"
         self.totalLabel.text = Util.showMoney(money: info?.refercneceTotalPrice ?? 0, after: 2) + "元"
         self.remarkLabel.text = info?.remark
-        self.loadManLabel.text = info?.loadingPersonName
+        self.loadManLabel.text = (info?.loadingPersonName ?? "") + " " +  (info?.loadingPersonPhone ?? "")
         self.loadAddressLabel.text = info?.startAddress
-        self.reManLabel.text = info?.consigneeName
+        self.reManLabel.text = (info?.consigneeName ?? "") + " " + (info?.consigneePhone ?? "")
         self.reAddressLabel.text = info?.endAddress
     }
 }
