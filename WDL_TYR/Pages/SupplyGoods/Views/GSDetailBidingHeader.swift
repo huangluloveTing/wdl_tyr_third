@@ -211,7 +211,7 @@ extension GSDetailBidingHeader {
    @objc private func timerCountDown() -> Void {
         self.showCountDownLablel(mtime: 0)
     }
-    
+    //倒计时赋值
     private func showCountDownLablel(mtime:TimeInterval) -> Void {
         if self.downTime == 0 {
             return;

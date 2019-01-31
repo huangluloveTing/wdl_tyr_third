@@ -46,6 +46,8 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
         header.showStatus(offerSelected: false, timeSelected: false)
         self.loadAllOffers()
         self.emptyTitle(title: "暂无报价", to: self.tableView)
+        
+        self.getAutoDealTime()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -257,6 +259,21 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
 // load data
 extension GoodsSupplyDetailVC : UITableViewDelegate {
     
+    //MARK:获取自动成交时间
+    func getAutoDealTime(){
+        BaseApi.request(target: API.getGoodsAutoDealTime(self.supplyDetail?.id ?? ""), type: BaseResponseModel<Any>.self)
+            .retry(2)
+            .subscribe(onNext: {[weak self] (data) in
+              print("自动成交时间：\(data)")
+                self?.tableView.reloadData()
+                }, onError: {[weak self] (error) in
+                    self?.showFail(fail: error.localizedDescription, complete: nil)
+                },onDisposed: {
+                    
+            })
+            .disposed(by: dispose)
+    }
+    
     //MARK: 获取数据
     func loadAllOffers() {
         self.showLoading()
@@ -406,8 +423,11 @@ extension GoodsSupplyDetailVC {
                                            loadAddress:hallInfo?.startAddress, // 装货地址
                                            reManName:hallInfo?.consigneeName ,  // 收货人
                                            reAddress:hallInfo?.endAddress)   // 收货地址)
+      
+        //顶部信息赋值
         self.bidingHeader.headerContent(item: headerItem , singleHandle: WDLCoreManager.shared().consignorType == .agency)
         self.bidingHeader.showTimeDown(show: self.pageContentInfo?.zbnOrderHall?.dealWay == 1)
+      
     }
     
     // 当竞价中时，添加上拉加载和下拉刷新

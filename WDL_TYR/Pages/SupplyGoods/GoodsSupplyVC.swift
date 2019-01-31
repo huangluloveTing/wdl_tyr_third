@@ -60,6 +60,7 @@ class GoodsSupplyVC: MainBaseVC {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.wr_setNavBarBarTintColor(UIColor(hex: "06C06F"))
         //设置消息个数
         self.getMessageNumRequest()
         self.tableView.beginRefresh()

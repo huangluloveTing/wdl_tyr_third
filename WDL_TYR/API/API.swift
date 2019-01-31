@@ -18,6 +18,7 @@ enum API {
     case registerSms(String)                // 获取验证码
     
     case getProtocolInfo()//获取注册协议和收货须知
+    case getGoodsAutoDealTime(String)//查询货源自动成交时间
     
     case loadTaskInfo()                     // 获取省市区
     case getCreateHallDictionary()          // 获取数据字典
@@ -81,7 +82,8 @@ func apiPath(api:API) -> String {
         return "/consignor/consignorRegister"
     case .registerSms(_):
         return "/consignor/consignorRegisterSms"
-        
+    case .getGoodsAutoDealTime(_):
+        return "/offer/queryHallSurplusTime"
     case .getProtocolInfo():
         return "/appSetUp/getSetUp"
         
@@ -151,6 +153,11 @@ func apiTask(api:API) -> Task {
     case .registerSms(let phpne):
     //这儿转换
     return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["cellphone":phpne])
+        
+    case .getGoodsAutoDealTime(let hallId):
+        //这儿转换
+        return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["hallId":hallId])
+        
     case .register(let pwd, let phone, let vcode, let vpwd):
         return .requestParameters(parameters: ["password": pwd,"phone": phone,"verificationCode": vcode,"verificationPassword": vpwd], encoding: JSONEncoding.default)
     case .updateSoftWare(let query):
@@ -255,6 +262,7 @@ func apiMethod(api:API) -> Moya.Method {
     case .getCreateHallDictionary() ,
          .onShelf(_) ,
          .registerSms(_) ,
+         .getGoodsAutoDealTime(_) ,
          .undercarriage(_) ,
          .sinGletransaction(_,_),
          .deleteOrderHall(_),
