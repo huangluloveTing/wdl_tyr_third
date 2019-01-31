@@ -35,6 +35,7 @@ class GSDetailBidingHeader: UIView {
     
     private var dispose = DisposeBag()
     typealias BidingTapClosure = (GSTapActionState) -> ()
+    typealias BidingTimeClosure = () -> () //倒计时结束的回调
     public var bidingTapClosure:BidingTapClosure?
     private var timeObservable:Observable<Int>?
     
@@ -71,6 +72,8 @@ class GSDetailBidingHeader: UIView {
     private var downTime : TimeInterval = 0
     private var contentItem:BidingContentItem?
     private var timer : Timer?
+    
+    public var timeClosure : BidingTimeClosure?
 
     @IBAction func offShelveAction(_ sender: Any) {
         if let closure = self.bidingTapClosure {
@@ -198,7 +201,7 @@ extension GSDetailBidingHeader {
             self.timer?.invalidate()
             self.timer = nil
         }
-        self.downTime = time
+        self.downTime = 10
         if #available(iOS 10.0, *) {
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self](mtime) in
                 self?.showCountDownLablel(mtime: 0)
@@ -214,6 +217,9 @@ extension GSDetailBidingHeader {
     
     private func showCountDownLablel(mtime:TimeInterval) -> Void {
         if self.downTime == 0 {
+            if let closure = timeClosure {
+                closure()
+            }
             return;
         }
         self.downTime = self.downTime - 1;

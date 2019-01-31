@@ -46,7 +46,7 @@ class BageView: UIView {
         return imageView
     }()
     
-     lazy var badgeLabel:UILabel = {
+    lazy var badgeLabel:UILabel = {
         var badgeLabel = UILabel()
         badgeLabel.backgroundColor = UIColor.red
         return badgeLabel

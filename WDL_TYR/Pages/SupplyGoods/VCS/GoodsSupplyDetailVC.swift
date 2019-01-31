@@ -53,7 +53,11 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     
     //MARK: lazy
     private lazy var bidingHeader:GSDetailBidingHeader = {
-        return GoodsSupplyDetailVC.biddingHeaderInfoView()
+        let view = GoodsSupplyDetailVC.biddingHeaderInfoView()
+        view.timeClosure = {[weak self] in
+            self?.headerTimeIsZeroCallBack()
+        }
+        return view;
     }() // 当为竞标中时，显示的header
     
     private var offShelveHeader:UIView?
@@ -251,6 +255,11 @@ extension GoodsSupplyDetailVC : UITableViewDataSource {
 
 // load data
 extension GoodsSupplyDetailVC : UITableViewDelegate {
+    
+    //MARK: - 倒计时为零时的回调
+    func headerTimeIsZeroCallBack() -> Void {
+        
+    }
     
     //MARK: 获取数据
     func loadAllOffers() {

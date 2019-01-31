@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Nc-pq-ANR" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
-                            <rect key="frame" x="20" y="13" width="68" height="18"/>
+                            <rect key="frame" x="20" y="6.5" width="68" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="发货地" image="down_header">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,7 +36,7 @@
                             <state key="selected" title="新都区"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxQ-Pw-2ra" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
-                            <rect key="frame" x="178" y="13" width="68" height="18"/>
+                            <rect key="frame" x="178" y="6.5" width="68" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="收货地" image="down_header">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,7 +44,7 @@
                             <state key="selected" title="新都区"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qjM-Ee-qWd" customClass="MyButton" customModule="WDL_TYR" customModuleProvider="target">
-                            <rect key="frame" x="287" y="13" width="68" height="18"/>
+                            <rect key="frame" x="287" y="6.5" width="68" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="状态" image="down_header">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -59,7 +59,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64q-jJ-mOC">
-                            <rect key="frame" x="108" y="21.5" width="40" height="1"/>
+                            <rect key="frame" x="108" y="22" width="40" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="gQ0-M6-BM4"/>
@@ -67,7 +67,7 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="toRight_header" translatesAutoresizingMaskIntoConstraints="NO" id="30b-S1-QFu">
-                            <rect key="frame" x="142" y="14" width="16" height="16"/>
+                            <rect key="frame" x="126" y="6.5" width="32" height="32"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.023529411764705882" green="0.75294117647058822" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,7 +112,7 @@
         </view>
     </objects>
     <resources>
-        <image name="down_header" width="16" height="16"/>
-        <image name="toRight_header" width="16" height="16"/>
+        <image name="down_header" width="32" height="32"/>
+        <image name="toRight_header" width="32" height="32"/>
     </resources>
 </document>
