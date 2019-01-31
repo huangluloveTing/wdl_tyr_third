@@ -47,7 +47,7 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
         self.loadAllOffers()
         self.emptyTitle(title: "暂无报价", to: self.tableView)
         
-        self.getAutoDealTime()
+//        self.getAutoDealTime()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -270,11 +270,12 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     
     //MARK:获取自动成交时间
     func getAutoDealTime(){
-        BaseApi.request(target: API.getGoodsAutoDealTime(self.supplyDetail?.id ?? ""), type: BaseResponseModel<Any>.self)
+        BaseApi.request(target: API.getGoodsAutoDealTime(self.supplyDetail?.id ?? ""), type: BaseResponseModel<GoodSupplyTimeModel>.self)
             .retry(2)
             .subscribe(onNext: {[weak self] (data) in
-              print("自动成交时间：\(data)")
-                self?.tableView.reloadData()
+//              print("自动成交时间：\(data)")
+                self?.pageContentInfo?.surplusTurnoverTime = data.data?.surplusTurnoverTime ?? 0
+                self?.toConfigHeaderInfo()
                 }, onError: {[weak self] (error) in
                     self?.showFail(fail: error.localizedDescription, complete: nil)
                 },onDisposed: {

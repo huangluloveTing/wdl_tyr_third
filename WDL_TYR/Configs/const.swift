@@ -31,9 +31,9 @@ let JPushAppKey = "20aeb9ef1cdc4a5185da6bb6"
 let JPushMasterSecret = "71b55a4396de63853ad08c68"
 
 //测试环境外网
-//let HOST = "http://182.150.21.104:58092/zbn-web"
+let HOST = "http://182.150.21.104:58092/zbn-web"
 //测试内网
-let HOST = "http://172.16.8.52:8081/zbn-web"
+//let HOST = "http://172.16.8.52:8081/zbn-web"
 //deng qing
 //let HOST = "http://172.16.59.19:8282"
 //zhao xiao yang

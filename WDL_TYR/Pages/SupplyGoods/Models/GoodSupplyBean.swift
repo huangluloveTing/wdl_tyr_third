@@ -84,6 +84,12 @@ struct GoodsSupplyOfferModel : HandyJSON {
     var quotedPrice:CGFloat?
 }
 
+struct GoodSupplyTimeModel : HandyJSON {
+    var dealWay: Int?
+    var surplusTurnoverTime : TimeInterval?
+    var id : String?
+}
+
 extension GoodsSupplyListItem : IdentifiableType , Equatable {
     var identity: String {
         return self.id ?? ""
@@ -95,4 +101,5 @@ extension GoodsSupplyListItem : IdentifiableType , Equatable {
 func ==  (lhs: GoodsSupplyListItem, rhs: GoodsSupplyListItem) -> Bool {
     return lhs.toJSONString() == rhs.toJSONString()
 }
+
 

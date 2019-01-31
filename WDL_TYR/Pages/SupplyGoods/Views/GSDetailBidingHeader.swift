@@ -201,7 +201,7 @@ extension GSDetailBidingHeader {
             self.timer?.invalidate()
             self.timer = nil
         }
-        self.downTime = 10
+        self.downTime = time
         if #available(iOS 10.0, *) {
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self](mtime) in
                 self?.showCountDownLablel(mtime: 0)
