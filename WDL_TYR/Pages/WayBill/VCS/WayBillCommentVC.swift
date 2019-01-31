@@ -52,7 +52,7 @@ extension WayBillCommentVC {
         let driver = self.pageInfo?.driverName
         
         let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: self.pageInfo?.vehicleLengthDriver , self.pageInfo?.vehicleWeightDriver , self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleNo)
-        let dealTime = (self.pageInfo?.dealTime ?? 0) / 1000
+        let dealTime = (self.pageInfo?.dealTime ?? 0)
         
         cell.showDealInfo(unit: unit, amount: amount, cyName: cyName, cyPhone: cyPhone, driverPhone: driverPhone, driver: driver, truckInfo: truckInfo, dealTime: dealTime)
     }
@@ -90,7 +90,7 @@ extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(WayBillCommentCell.self)") as! WayBillCommentCell
-             let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: (self.pageInfo?.vehicleLengthDriver ?? "") + "m" , self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleType , self.pageInfo?.vehicleNo)
+             let truckInfo = Util.concatSeperateStr(seperete: " | ", strs: (self.pageInfo?.vehicleLengthDriver ?? "") + "m" , self.pageInfo?.vehicleTypeDriver , self.pageInfo?.vehicleType, self.pageInfo?.vehicleNo)
 
             cell.showDealInfo(unit: self.pageInfo?.dealUnitPrice,
                               amount: self.pageInfo?.dealTotalPrice,
@@ -99,7 +99,7 @@ extension WayBillCommentVC : UITableViewDelegate , UITableViewDataSource {
                               truckInfo: truckInfo,
                               dealTime: self.pageInfo?.dealTime,
                               offerTime: self.pageInfo?.dealOfferTime,
-                              orderNo: self.pageInfo?.transportNo)
+                              orderNo: self.pageInfo?.transportNo,cyPhone: self.pageInfo?.cellPhone ?? "", driverPhone: self.pageInfo?.driverPhone ?? "")
             return cell
         }
         

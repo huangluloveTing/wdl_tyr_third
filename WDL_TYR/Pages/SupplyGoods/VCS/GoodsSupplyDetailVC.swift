@@ -34,7 +34,6 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     private var offerAmountSort: SortEnum!
     private var timeSort:SortEnum!
 
-    
     @IBOutlet weak var tableView: UITableView!
     
     private var currentSupplyStatus:GoodsSupplyStatus = .InBidding
@@ -42,10 +41,18 @@ class GoodsSupplyDetailVC: NormalBaseVC  {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.offerQueyBean.hallId = self.supplyDetail?.id
+        //将报价排序置为原始状态
+        let header = Bundle.main.loadNibNamed("GSDetailBidingHeader", owner: nil, options: nil)![1] as! GoodsInBidingHeader
+        header.showStatus(offerSelected: false, timeSelected: false)
         self.loadAllOffers()
         self.emptyTitle(title: "暂无报价", to: self.tableView)
+        
+        self.getAutoDealTime()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -258,7 +265,22 @@ extension GoodsSupplyDetailVC : UITableViewDelegate {
     
     //MARK: - 倒计时为零时的回调
     func headerTimeIsZeroCallBack() -> Void {
-        
+        self.getAutoDealTime()
+    }
+    
+    //MARK:获取自动成交时间
+    func getAutoDealTime(){
+        BaseApi.request(target: API.getGoodsAutoDealTime(self.supplyDetail?.id ?? ""), type: BaseResponseModel<Any>.self)
+            .retry(2)
+            .subscribe(onNext: {[weak self] (data) in
+              print("自动成交时间：\(data)")
+                self?.tableView.reloadData()
+                }, onError: {[weak self] (error) in
+                    self?.showFail(fail: error.localizedDescription, complete: nil)
+                },onDisposed: {
+                    
+            })
+            .disposed(by: dispose)
     }
     
     //MARK: 获取数据
@@ -410,8 +432,11 @@ extension GoodsSupplyDetailVC {
                                            loadAddress:hallInfo?.startAddress, // 装货地址
                                            reManName:hallInfo?.consigneeName ,  // 收货人
                                            reAddress:hallInfo?.endAddress)   // 收货地址)
+      
+        //顶部信息赋值
         self.bidingHeader.headerContent(item: headerItem , singleHandle: WDLCoreManager.shared().consignorType == .agency)
         self.bidingHeader.showTimeDown(show: self.pageContentInfo?.zbnOrderHall?.dealWay == 1)
+      
     }
     
     // 当竞价中时，添加上拉加载和下拉刷新
@@ -451,10 +476,24 @@ extension GoodsSupplyDetailVC {
     func configTableViewSectionHeader() -> UIView? {
         if self.pageContentInfo?.zbnOrderHall?.isDeal == 0 {
             let header = Bundle.main.loadNibNamed("GSDetailBidingHeader", owner: nil, options: nil)![1] as! GoodsInBidingHeader
-            header.showStatus(offerSelected: self.offerAmountSort == .DESC, timeSelected: self.timeSort == .ASC)
-            header.tapClosure = {[weak self] (offer , time) in
-                self?.offerAmountSort = offer == true ? .DESC : .ASC
-                self?.timeSort = time == true ? .ASC : .DESC
+            header.showStatus(offerSelected: self.offerAmountSort == .ASC, timeSelected: self.timeSort == .ASC)
+            header.tapClosure = {[weak self] (offer , time, button) in
+               
+                if  button?.tag == 155 {
+                    //报价时间按钮
+                    self?.timeSort = time == true ? .ASC : .DESC
+                    self?.offerQueyBean.timeSort = time == true ? .OrderBy_ASC : .OrderBy_DESC
+                    self?.offerAmountSort = SortEnum(rawValue: "")
+                    self?.offerQueyBean.amountSort = QueryDetailOrderBy(rawValue: "")
+                }else{
+                    //报价金额按钮
+                    self?.offerAmountSort = offer == true ? .ASC : .DESC
+                        self?.offerQueyBean.amountSort = offer == true ? .OrderBy_ASC : .OrderBy_DESC
+                    self?.timeSort = SortEnum(rawValue: "")
+                    self?.offerQueyBean.timeSort = QueryDetailOrderBy(rawValue: "")
+                }
+                
+               
                 self?.tableView.beginRefresh()
             }
             return header

@@ -43,15 +43,15 @@ extension WayBillCommentCell {
                       truckInfo:String? ,
                       dealTime:TimeInterval? ,
                       offerTime:TimeInterval? ,
-                      orderNo:String?) -> Void {
-        self.unitLabel.text = Util.showMoney(money: unit ?? 0, after: 0)+"元/吨"
-        self.amountLabel.text = Util.showMoney(money: amount ?? 0, after: 0)+"元"
-        self.cyNameLabel.text = cyName
-        self.driverNameLabel.text = driver
+                      orderNo:String?,cyPhone:String?, driverPhone:String?) -> Void {
+        self.unitLabel.text = Util.showMoney(money: unit ?? 0, after: 2)+"元/吨"
+        self.amountLabel.text = Util.showMoney(money: amount ?? 0, after: 2)+"元"
+        self.cyNameLabel.text = (cyName ?? "") + " " + (cyPhone ?? "")
+        self.driverNameLabel.text = (driver ?? "") + " " + (driverPhone ?? "")
         self.truckInfoLabel.text = truckInfo
 
-         self.timeLabel.text = Util.dateFormatter(date: (dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
-         self.offerTimeLabel.text = Util.dateFormatter(date: (offerTime ?? 0) / 1000, formatter: "MM-dd HH:mm")
+         self.timeLabel.text = Util.dateFormatter(date: (dealTime ?? 0) / 1000, formatter: "yyyy-MM-dd HH:mm")
+         self.offerTimeLabel.text = Util.dateFormatter(date: (offerTime ?? 0) / 1000, formatter: "yyyy-MM-dd HH:mm")
         self.orderNoLabel.text = Util.concatSeperateStr(seperete: "", strs: "运单号：" , orderNo)
         self.wayBillStatus?.status = .Done
 

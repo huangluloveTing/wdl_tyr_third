@@ -60,6 +60,7 @@ class GoodsSupplyVC: MainBaseVC {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.wr_setNavBarBarTintColor(UIColor(hex: "06C06F"))
         //设置消息个数
         self.getMessageNumRequest()
         self.tableView.beginRefresh()
@@ -351,7 +352,6 @@ extension GoodsSupplyVC {
 
 
 extension GoodsSupplyVC {
-    
     
     // 获取DataSource  创建表格数据源
     static func getDataSource() -> RxTableViewSectionedAnimatedDataSource<MyHeaderSections> {

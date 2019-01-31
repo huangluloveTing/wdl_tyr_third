@@ -93,9 +93,13 @@ struct ModityPhoneModel : HandyJSON {
 //    phone (string): 电话号码 ,
 //    verificationCode (string): 验证码 ,
 //    verificationPassword (string): 确认密码
+    
+    var phoneOld:String = ""//原电话号码
+    var verificationCodeOld:String = "" // (string): 原号码验证码 ,
     var carrierCode:String = ""
     var phone:String = ""
     var verificationCode : String = ""
+    
 }
 
 

@@ -48,6 +48,7 @@ extension BaseVC {
     func toWayBillDetail(wayBillInfo:WayBillInfoBean? = nil) {
         let wayBillDetail = WayBillDetailVC()
         wayBillDetail.wayBillInfo = wayBillInfo
+        
         self.push(vc: wayBillDetail, title: "运单详情")
     }
     

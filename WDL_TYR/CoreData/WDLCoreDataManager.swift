@@ -66,7 +66,7 @@ class WDLCoreManager: NSObject {
     
     public func loadUnReadMessage(closure:((Int)->())?) {
         let _ = BaseApi.request(target: API.getMessageNum(), type: BaseResponseModel<Int>.self)
-            .retry()
+            .retry(2)
             .subscribe(onNext: { (data) in
                 self.unreadMessageCount = data.data ?? 0
                 if let closure = closure {

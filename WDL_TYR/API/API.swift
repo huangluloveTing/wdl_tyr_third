@@ -16,6 +16,10 @@ enum API {
     case login(String , String)             // 登录接口
     case register(String , String , String , String) // 注册
     case registerSms(String)                // 获取验证码
+    
+    case getProtocolInfo()//获取注册协议和收货须知
+    case getGoodsAutoDealTime(String)//查询货源自动成交时间
+    
     case loadTaskInfo()                     // 获取省市区
     case getCreateHallDictionary()          // 获取数据字典
     case releaseSource(ReleaseDeliverySourceModel)       // 发布货源
@@ -26,7 +30,7 @@ enum API {
     case orderHallManualTransaction(String , String) // 手动成交
     case deleteOrderHall(String)            // 删除货源
     case ownTransportPage(QuerytTransportListBean) // 获取我的运单
-    case sinGletransaction(String)          // 获取运单详情
+    case sinGletransaction(String,String)          // 获取运单详情
     case transportSign(String)              // 运单签收
     case transportTransaction(String)       // 运单起运/transport/transaction
     case getZbnConsignor(String)            // 托运人认证信息
@@ -47,7 +51,9 @@ enum API {
     case updateCarrier(UpdateCarrierVo)     // 经销商修改自提运单承运人
     
     case getMessageNum() //消息个数
-    case markHasSeenMessage(String)                     // 标记查看过的消息
+//    case markHasSeenMessage(String)                     // 标记查看过的消息
+     case markHasSeenMessage(MessageQueryBean)                     // 标记查看过的消息
+    
     
 }
 
@@ -76,6 +82,11 @@ func apiPath(api:API) -> String {
         return "/consignor/consignorRegister"
     case .registerSms(_):
         return "/consignor/consignorRegisterSms"
+    case .getGoodsAutoDealTime(_):
+        return "/offer/queryHallSurplusTime"
+    case .getProtocolInfo():
+        return "/appSetUp/getSetUp"
+        
     case .loadTaskInfo():
         return "/app/common/getAllCityAreaList"
     case .getCreateHallDictionary():
@@ -142,6 +153,11 @@ func apiTask(api:API) -> Task {
     case .registerSms(let phpne):
     //这儿转换
     return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["cellphone":phpne])
+        
+    case .getGoodsAutoDealTime(let hallId):
+        //这儿转换
+        return .requestCompositeParameters(bodyParameters: [String:String](), bodyEncoding: JSONEncoding.default, urlParameters: ["hallId":hallId])
+        
     case .register(let pwd, let phone, let vcode, let vpwd):
         return .requestParameters(parameters: ["password": pwd,"phone": phone,"verificationCode": vcode,"verificationPassword": vpwd], encoding: JSONEncoding.default)
     case .updateSoftWare(let query):
@@ -149,6 +165,8 @@ func apiTask(api:API) -> Task {
     case .login(let account , let pwd):
         return .requestParameters(parameters: ["cellphone":account,"password":pwd], encoding: JSONEncoding.default)
     case .loadTaskInfo():
+        return .requestPlain
+    case .getProtocolInfo():
         return .requestPlain
     case .getMessageNum():
         return .requestPlain
@@ -164,8 +182,9 @@ func apiTask(api:API) -> Task {
     case .onShelf(let id):
         return .requestParameters(parameters: ["hallId" : id], encoding: URLEncoding.default)
         
-    case .markHasSeenMessage(let id):
-        return .requestParameters(parameters: ["id" : id], encoding: URLEncoding.default)
+    case .markHasSeenMessage(let query):
+//        return .requestParameters(parameters: ["id" : id], encoding: URLEncoding.default)
+        return .requestParameters(parameters: query.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
     case .undercarriage(let hallId):
         return .requestParameters(parameters: ["hallId": hallId], encoding: URLEncoding.default)
         
@@ -178,8 +197,8 @@ func apiTask(api:API) -> Task {
     case .ownTransportPage(let bean):
         return .requestParameters(parameters: bean.toJSON() ?? Dictionary(), encoding: JSONEncoding.default)
         
-    case .sinGletransaction(let id):
-        return .requestParameters(parameters: ["hallId": id], encoding: URLEncoding.default)
+    case .sinGletransaction(let id, let transportNo):
+        return .requestParameters(parameters: ["hallId": id, "transportNo": transportNo], encoding: URLEncoding.default)
         
     case .transportSign(let code):
         return .requestParameters(parameters: ["transportNo":code], encoding: URLEncoding.default)
@@ -243,8 +262,9 @@ func apiMethod(api:API) -> Moya.Method {
     case .getCreateHallDictionary() ,
          .onShelf(_) ,
          .registerSms(_) ,
+         .getGoodsAutoDealTime(_) ,
          .undercarriage(_) ,
-         .sinGletransaction(_),
+         .sinGletransaction(_,_),
          .deleteOrderHall(_),
          .getZbnConsignor(_),
          .cancelTransport(_),
@@ -252,7 +272,6 @@ func apiMethod(api:API) -> Moya.Method {
          .transportSign(_),
          .addCarrier(_),
          .getMessageNum(),
-         .markHasSeenMessage(_),
          .deleteFollowCarrier(_):
         return .get
     default:

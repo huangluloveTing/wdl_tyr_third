@@ -14,6 +14,8 @@
 		184F1F7C21993EF7007B9998 /* IdentifingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184F1F7A21993EF7007B9998 /* IdentifingVC.xib */; };
 		184F1F7F219940FE007B9998 /* IdentiferFailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F1F7D219940FE007B9998 /* IdentiferFailVC.swift */; };
 		184F1F80219940FE007B9998 /* IdentiferFailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */; };
+		1874906E21F987DB009D0BD6 /* ReallSendTonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874906C21F987DB009D0BD6 /* ReallSendTonCell.swift */; };
+		1874906F21F987DB009D0BD6 /* ReallSendTonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1874906D21F987DB009D0BD6 /* ReallSendTonCell.xib */; };
 		1875DF4421A41C94006312D9 /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875DF4221A41C94006312D9 /* MessageDetailVC.swift */; };
 		1875DF4521A41C94006312D9 /* MessageDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1875DF4321A41C94006312D9 /* MessageDetailVC.xib */; };
 		1875DF4821A50618006312D9 /* MessageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875DF4621A50618006312D9 /* MessageDetailCell.swift */; };
@@ -251,6 +253,8 @@
 		184F1F7A21993EF7007B9998 /* IdentifingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentifingVC.xib; sourceTree = "<group>"; };
 		184F1F7D219940FE007B9998 /* IdentiferFailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentiferFailVC.swift; sourceTree = "<group>"; };
 		184F1F7E219940FE007B9998 /* IdentiferFailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IdentiferFailVC.xib; sourceTree = "<group>"; };
+		1874906C21F987DB009D0BD6 /* ReallSendTonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReallSendTonCell.swift; sourceTree = "<group>"; };
+		1874906D21F987DB009D0BD6 /* ReallSendTonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallSendTonCell.xib; sourceTree = "<group>"; };
 		1875DF4221A41C94006312D9 /* MessageDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
 		1875DF4321A41C94006312D9 /* MessageDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageDetailVC.xib; sourceTree = "<group>"; };
 		1875DF4621A50618006312D9 /* MessageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCell.swift; sourceTree = "<group>"; };
@@ -571,6 +575,8 @@
 				704776AB21B130B100628C6F /* AgencyChangeCarrierCell.xib */,
 				704776AE21B1323B00628C6F /* CarrierChangeLogCell.swift */,
 				704776AF21B1323B00628C6F /* CarrierChangeLogCell.xib */,
+				1874906C21F987DB009D0BD6 /* ReallSendTonCell.swift */,
+				1874906D21F987DB009D0BD6 /* ReallSendTonCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1219,6 +1225,7 @@
 				702E39AE218D383C00329643 /* MessageCenterVC.xib in Resources */,
 				70E2754E21415E8500E1A92B /* DropPlaceView.xib in Resources */,
 				70B1301821354E44002A473F /* GSDetailBidingHeader.xib in Resources */,
+				1874906F21F987DB009D0BD6 /* ReallSendTonCell.xib in Resources */,
 				70B524A1218D780000C8AF4E /* ModityPasswordVC.xib in Resources */,
 				702D2CCB21305FC70007A11F /* GoodsSupplyVC.xib in Resources */,
 				705815A121A4EEEB0004A7F8 /* AddCarrierVC.xib in Resources */,
@@ -1384,6 +1391,7 @@
 				702D2CCA21305FC70007A11F /* GoodsSupplyVC.swift in Sources */,
 				70F46020215395C900821790 /* UITextView+YLTextView.m in Sources */,
 				70ED087A212F0236001DCCB2 /* DeliveryVC.swift in Sources */,
+				1874906E21F987DB009D0BD6 /* ReallSendTonCell.swift in Sources */,
 				705815A021A4EEEB0004A7F8 /* AddCarrierVC.swift in Sources */,
 				708150D8213123A400D42723 /* DropView.swift in Sources */,
 				7037B0CE213A238600BDC718 /* images.swift in Sources */,

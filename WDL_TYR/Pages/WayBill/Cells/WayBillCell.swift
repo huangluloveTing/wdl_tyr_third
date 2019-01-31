@@ -42,12 +42,19 @@ extension WayBillCell {
         self.transportInfoStatusDisplay(status: info?.transportStatus?.rawValue ?? 0, to: self.statusLabel)
        
         self.cyLabel.text = info?.carrierName//承运人姓名
-        self.dealTimeLabel.text = Util.dateFormatter(date: (info?.dealTime ?? 0) / 1000, formatter: "MM-dd HH:mm:ss")
-        self.priceLabel.text = Util.showMoney(money: info?.dealUnitPrice ?? 0, after: 0)
+
+        if let time = info?.dealTime {
+            self.dealTimeLabel.text =  Util.dateFormatter(date: (time) / 1000, formatter: "yyyy-MM-dd HH:mm")
+        }else{
+             self.dealTimeLabel.text = ""
+        }
+        
+        self.priceLabel.text = Util.showMoney(money: info?.dealUnitPrice ?? 0, after: 2)
         self.phoneLabel.text = info?.cellPhone ?? ""
         // 物料和装货时间
         let goodsType = info?.goodsType
-        let loadTimeStr = Util.dateFormatter(date: (info?.loadingTime ?? 0) / 1000, formatter: "MM-dd")
+        
+        let loadTimeStr = Util.dateFormatter(date: (info?.loadingTime ?? 0) / 1000, formatter: "yyyy-MM-dd")
         self.goodsInfoLabel.text = loadTimeStr + " " + "装货   " + (goodsType ?? "")
         let image = info?.pickupWay == "zt" ? UIImage.init(named: "运单-自提") : UIImage.init(named: "运单-代办")
         switch (WDLCoreManager.shared().consignorType ?? .third){

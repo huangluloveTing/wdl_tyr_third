@@ -23,8 +23,8 @@ class GoodsSupplyCell: BaseCell {
     @IBOutlet weak var reportLabel: UILabel!
     //多少人报价
     @IBOutlet weak var numLabel: UILabel!
-    //货品名称
-    @IBOutlet weak var goodsNameLabel: UILabel!
+//    //货品名称
+//    @IBOutlet weak var goodsNameLabel: UILabel!
     //车辆货物描述
     @IBOutlet weak var goodsSpecLabel: UILabel!
     //车辆货物详情描述
@@ -75,7 +75,8 @@ extension GoodsSupplyCell {
 
         self.startLabel.text = (item.startProvince ?? " ") + (item.startCity ?? " ")
         self.endLabel.text = (item.endProvince ?? " ") + (item.endCity ?? " ")
-        self.goodsNameLabel.text = item.goodsName ?? " "
+        //物料
+//        self.goodsNameLabel.text = item.goodsName ?? " "
          //车辆货物描述
         self.goodsSpecLabel.text = self.getGoodsSpec(item: item)
         //车辆货物详情描述
@@ -146,7 +147,7 @@ extension GoodsSupplyCell {
     func getGoodsSpec(item:GoodsSupplyListItem) -> String? {
         let time = item.loadingTime ?? Date().timeIntervalSince1970 * 1000
         let type = item.goodsType
-        let timeStr = Util.dateFormatter(date: time / 1000, formatter: "MM-dd")
-        return timeStr + " | " + (type ?? "")
+        let timeStr = Util.dateFormatter(date: time / 1000, formatter: "yyyy-MM-dd")
+        return timeStr + " 装货 " + " | " + (type ?? "")
     }
 }

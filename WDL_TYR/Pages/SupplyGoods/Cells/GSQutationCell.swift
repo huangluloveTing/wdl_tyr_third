@@ -70,7 +70,7 @@ extension GSQutationCell {
             //评分星星
             self.starView.score = CGFloat(item.carrierScore ?? 0.0)
             self.rateLabel.text = String(format: "%.1f", CGFloat(item.carrierScore ?? 0.0))
-            self.unitLabel.text = Util.concatSeperateStr(seperete: "/", strs: Util.showMoney(money: item.quotedPrice ?? 0 , after: 0)+"元" , "吨")
+            self.unitLabel.text = Util.concatSeperateStr(seperete: "/", strs: Util.showMoney(money: item.quotedPrice ?? 0 , after: 2)+"元" , "吨")
             self.reportLabel.text = "报价时间:" + Util.dateFormatter(date: Double(item.offerTime ?? "0")! / 1000, formatter: "yyyy-MM-dd HH:mm:ss")
         }
     }

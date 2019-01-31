@@ -26,6 +26,6 @@ class CarrierChangeLogCell: BaseCell {
 extension CarrierChangeLogCell {
     func showCarrierInfo(name:String? , phone:String? , time:TimeInterval?) -> Void {
         self.carrierNameLabel.text = Util.concatSeperateStr(seperete: " ", strs: name , phone)
-        self.changeTimeLabel.text = Util.dateFormatter(date: time ?? 0, formatter: "MM-dd HH:mm")
+        self.changeTimeLabel.text = Util.dateFormatter(date: (time ?? 0)/1000, formatter: "yyyy-MM-dd HH:mm")
     }
 }

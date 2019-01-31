@@ -29,34 +29,28 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="成都市新都区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-RV-LOO">
-                                <rect key="frame" x="20" y="48" width="127" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <rect key="frame" x="20" y="48" width="98" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="河南心连心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbe-03-H1R">
-                                <rect key="frame" x="201" y="48" width="127" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <rect key="frame" x="172" y="48" width="98" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" image="right_to" translatesAutoresizingMaskIntoConstraints="NO" id="tek-uo-uxk">
-                                <rect key="frame" x="157" y="47.5" width="34" height="22"/>
+                                <rect key="frame" x="128" y="47" width="34" height="22"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="竞价中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGS-aO-G8X">
-                                <rect key="frame" x="333" y="51.5" width="37" height="14.5"/>
+                                <rect key="frame" x="280" y="50.5" width="90" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="精装小麦粉优级" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIM-Sc-2fO">
-                                <rect key="frame" x="20" y="89" width="273.5" height="45"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02-11 装货 玻璃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5f-gD-ufR">
-                                <rect key="frame" x="20" y="149" width="101" height="17"/>
+                                <rect key="frame" x="20" y="149" width="250" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -68,13 +62,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="暂无报价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnH-HI-kPo">
-                                <rect key="frame" x="312.5" y="88" width="57.5" height="17"/>
+                                <rect key="frame" x="312.5" y="87" width="57.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7y3-0a-P2N">
-                                <rect key="frame" x="298.5" y="86" width="11" height="21"/>
+                                <rect key="frame" x="298.5" y="85" width="11" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -103,27 +97,25 @@
                             <constraint firstItem="7y3-0a-P2N" firstAttribute="centerY" secondItem="XnH-HI-kPo" secondAttribute="centerY" id="Mii-9w-JiY"/>
                             <constraint firstItem="ZV1-SO-yua" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" constant="20" id="OAE-q6-bVd"/>
                             <constraint firstItem="hUI-XQ-vgJ" firstAttribute="top" secondItem="UvR-LO-24C" secondAttribute="top" id="PnQ-vt-PS5"/>
-                            <constraint firstItem="D5f-gD-ufR" firstAttribute="top" secondItem="NIM-Sc-2fO" secondAttribute="bottom" constant="15" id="QM2-AJ-18M"/>
-                            <constraint firstItem="NIM-Sc-2fO" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="leading" id="Yos-Ve-z7a"/>
+                            <constraint firstItem="D5f-gD-ufR" firstAttribute="trailing" secondItem="mbe-03-H1R" secondAttribute="trailing" id="YZ8-hH-t0o"/>
                             <constraint firstAttribute="trailing" secondItem="tKF-7O-C1M" secondAttribute="trailing" constant="10" id="Zdd-we-7HB"/>
+                            <constraint firstItem="D5f-gD-ufR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bjy-RV-LOO" secondAttribute="bottom" constant="20" id="bL5-t8-Je8"/>
                             <constraint firstItem="dGS-aO-G8X" firstAttribute="centerY" secondItem="mbe-03-H1R" secondAttribute="centerY" id="esM-at-Nyj"/>
                             <constraint firstItem="tKF-7O-C1M" firstAttribute="top" secondItem="D5f-gD-ufR" secondAttribute="bottom" constant="15" id="fOl-at-Xx5"/>
                             <constraint firstAttribute="bottom" secondItem="1Kc-wC-UII" secondAttribute="bottom" constant="10" id="fdN-NK-trb"/>
                             <constraint firstItem="hUI-XQ-vgJ" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" id="hOY-R1-AdO"/>
                             <constraint firstAttribute="trailing" secondItem="dGS-aO-G8X" secondAttribute="trailing" constant="20" id="j6j-yP-af5"/>
                             <constraint firstItem="tek-uo-uxk" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="trailing" constant="10" id="jIZ-u9-Rbj"/>
-                            <constraint firstItem="NIM-Sc-2fO" firstAttribute="top" secondItem="bjy-RV-LOO" secondAttribute="bottom" constant="20" id="khy-QI-WoF"/>
                             <constraint firstItem="1Kc-wC-UII" firstAttribute="top" secondItem="tKF-7O-C1M" secondAttribute="bottom" constant="10" id="kkR-54-Bx5"/>
                             <constraint firstItem="D5f-gD-ufR" firstAttribute="leading" secondItem="bjy-RV-LOO" secondAttribute="leading" id="lef-tA-16C"/>
                             <constraint firstItem="bjy-RV-LOO" firstAttribute="leading" secondItem="UvR-LO-24C" secondAttribute="leading" constant="20" id="llT-fD-Eah"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="centerY" secondItem="tek-uo-uxk" secondAttribute="centerY" id="qxm-cv-43u"/>
-                            <constraint firstItem="dGS-aO-G8X" firstAttribute="leading" secondItem="mbe-03-H1R" secondAttribute="trailing" constant="5" id="uSA-S1-XHv"/>
+                            <constraint firstItem="dGS-aO-G8X" firstAttribute="leading" secondItem="mbe-03-H1R" secondAttribute="trailing" constant="10" id="uSA-S1-XHv"/>
                             <constraint firstItem="bjy-RV-LOO" firstAttribute="top" secondItem="hUI-XQ-vgJ" secondAttribute="bottom" constant="10" id="vXE-qF-OiL"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="width" secondItem="bjy-RV-LOO" secondAttribute="width" id="wYI-LW-QdC"/>
                             <constraint firstItem="XnH-HI-kPo" firstAttribute="trailing" secondItem="dGS-aO-G8X" secondAttribute="trailing" id="xlr-KX-ctV"/>
                             <constraint firstItem="mbe-03-H1R" firstAttribute="leading" secondItem="tek-uo-uxk" secondAttribute="trailing" constant="10" id="zYL-Bk-hBe"/>
                             <constraint firstItem="ZV1-SO-yua" firstAttribute="top" secondItem="UvR-LO-24C" secondAttribute="top" constant="15" id="ziK-Ml-SJt"/>
-                            <constraint firstItem="7y3-0a-P2N" firstAttribute="leading" secondItem="NIM-Sc-2fO" secondAttribute="trailing" constant="5" id="zlu-a0-pfe"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -142,7 +134,6 @@
                 <outlet property="containerView" destination="UvR-LO-24C" id="x5c-Z3-vOL"/>
                 <outlet property="endLabel" destination="mbe-03-H1R" id="KAG-g1-TJy"/>
                 <outlet property="goodCodeId" destination="ZV1-SO-yua" id="mfY-yQ-THt"/>
-                <outlet property="goodsNameLabel" destination="NIM-Sc-2fO" id="vJJ-EA-Xfz"/>
                 <outlet property="goodsSpecLabel" destination="D5f-gD-ufR" id="WrL-HT-DlB"/>
                 <outlet property="numLabel" destination="7y3-0a-P2N" id="yY6-k3-XSU"/>
                 <outlet property="reportLabel" destination="XnH-HI-kPo" id="gjM-Yp-fFu"/>

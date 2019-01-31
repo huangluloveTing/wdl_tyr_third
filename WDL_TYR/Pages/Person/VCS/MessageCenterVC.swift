@@ -96,7 +96,7 @@ extension MessageCenterVC {
             .retry(2)
             .subscribe(onNext: { [weak self](data) in
                 self?.tableView.endRefresh()
-                self?.showSuccess(success: nil)
+                self?.hiddenToast()
                 self?.configNetDataToUI(lists: data.data?.list ?? [])
                 if (data.data?.list?.count ?? 0) >= (data.data?.total ?? 0) {
                     self?.tableView.noMore()
@@ -115,9 +115,9 @@ extension MessageCenterVC {
     }
  
     //标记已经看过的消息
-    func markMessegeRequest(id: String){
+    func markMessegeRequest(info: MessageQueryBean){
        
-        BaseApi.request(target: API.markHasSeenMessage(id),  type: BaseResponseModel<AnyObject>.self)
+        BaseApi.request(target: API.markHasSeenMessage(info),  type: BaseResponseModel<AnyObject>.self)
             .subscribe(onNext: { (_) in
                 print("标记成功")
             }, onError: { (error) in
@@ -165,17 +165,23 @@ extension MessageCenterVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
-        let info = self.hallLists[indexPath.row]
-        //标记看过的数据
-        self.markMessegeRequest(id: info.id ?? "")
+        var info = self.hallLists[indexPath.row]
+
         if info.msgType == 1 { //系统消息
             self.systermMessages(info: info)
+            //标记看过的数据
+            info.msgStatus = 1
+            self.markMessegeRequest(info: info)
         }
         if info.msgType == 2 { //报价消息
            self.toOfferMessages(info: info)
+            info.msgStatus = 1
+            self.markMessegeRequest(info: info)
         }
         if info.msgType == 3 { // 运单信息
            self.wayBillsMessages(info: info)
+            info.msgStatus = 1
+            self.markMessegeRequest(info: info)
         }
     }
     
