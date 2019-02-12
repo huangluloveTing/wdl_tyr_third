@@ -40,8 +40,8 @@ class ConsignorAuthVC: NormalBaseVC {
         self.legalPersonIdNoTextField.text = authModel.legalPersonId
         Util.showImage(imageView: self.logoImageView, imageUrl: authModel.companyLogo ,placeholder: UIImage.init(named: "认证-企业logo")!)
         Util.showImage(imageView: self.liencesImageView, imageUrl: authModel.businessLicense , placeholder: UIImage.init(named: "认证-营业执照")!)
-        Util.showImage(imageView: self.idCardMainImageView, imageUrl: authModel.legalPersonIdFrontage , placeholder: UIImage.init(named: "我的认证-身份证人像页")!)
-        Util.showImage(imageView: self.idCardOpsiteImageView, imageUrl: authModel.legalPersonIdOpposite , placeholder: UIImage.init(named: "我的认证-身份证")!)
+        Util.showImage(imageView: self.idCardMainImageView, imageUrl: authModel.legalPersonIdFrontage , placeholder: UIImage.init(named: "我的认证-身份证")!)
+        Util.showImage(imageView: self.idCardOpsiteImageView, imageUrl: authModel.legalPersonIdOpposite , placeholder: UIImage.init(named: "我的认证-身份证人像页")!)
         let status = WDLCoreManager.shared().userInfo?.status
         if status == .autherized {
             companyNameTextField.isUserInteractionEnabled = false

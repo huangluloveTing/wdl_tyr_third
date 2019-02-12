@@ -217,7 +217,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                         </textField>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的认证-身份证人像页" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-2m-PjJ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的认证-身份证" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-2m-PjJ">
                                             <rect key="frame" x="12" y="411" width="242.5" height="166.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ekb-2m-PjJ" secondAttribute="height" multiplier="16:11" id="ykW-Jg-zqp"/>
@@ -229,7 +229,7 @@
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的认证-身份证" translatesAutoresizingMaskIntoConstraints="NO" id="KLy-sG-5mS">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的认证-身份证人像页" translatesAutoresizingMaskIntoConstraints="NO" id="KLy-sG-5mS">
                                             <rect key="frame" x="266.5" y="411" width="242.5" height="166.5"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证背面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVW-wd-CYb">
