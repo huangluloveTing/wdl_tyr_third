@@ -41,5 +41,5 @@ let JPushMasterSecret = "71b55a4396de63853ad08c68"
 //liao bing
 //let HOST = "http://172.16.59.47:8082/zbn-web"
 //客户的测试环境
-//let HOST = "http://221.193.233.227:8010/zbn-web"
+let HOST = "http://221.193.233.227:8081/zbn-web"
 
